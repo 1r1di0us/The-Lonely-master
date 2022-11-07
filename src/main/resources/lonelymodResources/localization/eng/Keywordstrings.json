@@ -1,0 +1,129 @@
+[
+  {
+    "PROPER_NAME": "Summon",
+    "NAMES": [
+      "summon",
+      "Summon",
+      "SUMMON"
+    ],
+    "DESCRIPTION": "This companion joins the battle. NL Any Companion already in the fight will be replaced."
+  },
+  {
+    "PROPER_NAME": "Companion Action",
+    "NAMES": [
+      "call",
+      "Call",
+      "CALL"
+    ],
+    "DESCRIPTION": "Tell your Companion to perform this action at the end of your turn. NL Calling another action will override this action. NL You can see your companion's actions by hovering over them."
+  },
+  {
+    "PROPER_NAME": "Basic Action",
+    "NAMES": [
+      "basic",
+      "basic action",
+      "Basic",
+      "Basic Action"
+    ],
+    "DESCRIPTION": "This is the default and weakest Action, which is called at the beginning of your turn."
+  },
+  {
+    "PROPER_NAME": "Attack Action",
+    "NAMES": [
+      "attack",
+      "attack action",
+      "Attack",
+      "Attack Action"
+    ],
+    "DESCRIPTION": "An Action that focuses on dealing damage to a random enemy."
+  },
+  {
+    "PROPER_NAME": "Protect Action",
+    "NAMES": [
+      "protect",
+      "protect action",
+      "Protect",
+      "Protect Action"
+    ],
+    "DESCRIPTION": "An Action focusing on granting you Block, or weakening a random enemy."
+  },
+  {
+    "PROPER_NAME": "Special Action",
+    "NAMES": [
+      "special",
+      "special action",
+      "Special",
+      "Special Action"
+    ],
+    "DESCRIPTION": "The most powerful Action. NL Hover over your companion to see what it does."
+  },
+  {
+    "PROPER_NAME": "Food",
+    "NAMES": [
+      "food",
+      "food.",
+      "Food",
+      "Food."
+    ],
+    "DESCRIPTION": "Given to companions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new companions."
+  },
+  {
+    "PROPER_NAME": "Target",
+    "NAMES": [
+      "target",
+      "target.",
+      "Target",
+      "Target."
+    ],
+    "DESCRIPTION": "Companions will target this enemy instead of a random enemy with their Actions, and they will deal 50% more damage to it."
+  },
+  {
+    "PROPER_NAME": "Return",
+    "NAMES": [
+      "return",
+      "return.",
+      "Return",
+      "Return."
+    ],
+    "DESCRIPTION": "When played, return this card to your hand at the start of next turn."
+  },
+  {
+    "PROPER_NAME": "Plan",
+    "NAMES": [
+      "plan",
+      "Plan",
+      "PLAN"
+    ],
+    "DESCRIPTION": "Look at the top X cards on your discard pile. NL You may choose any of them to shuffle into your draw pile."
+  },
+  {
+    "PROPER_NAME": "Vigor",
+    "NAMES": [
+      "vigor",
+      "vigor.",
+      "Vigor",
+      "Vigor."
+    ],
+    "DESCRIPTION": "The next attack you play deals X more damage."
+  },
+  {
+    "PROPER_NAME": "Stamina",
+    "NAMES": [
+      "stamina",
+      "stamina.",
+      "Stamina",
+      "Stamina."
+    ],
+    "DESCRIPTION": "The next skill you play that gives you Block gives X more Block."
+  },
+  {
+    "PROPER_NAME": "Autoplay",
+    "NAMES": [
+      "autoplay",
+      "autoplay.",
+      "Autoplay",
+      "Autoplay."
+    ],
+    "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
+  }
+]

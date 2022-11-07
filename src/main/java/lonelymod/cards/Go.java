@@ -13,6 +13,7 @@ public class Go extends AbstractEasyCard {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         baseDamage = 8;
         //This will need to be completely changed.
+        //GAAAAAAH
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

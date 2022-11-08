@@ -59,7 +59,11 @@ public class WolfNormalAction extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        passiveAmount = basePassiveAmount;
+        if (AbstractDungeon.player.getPower("Focus") != null) {
+            passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
+        } else {
+            passiveAmount = basePassiveAmount;
+        }
         evokeAmount = baseEvokeAmount;
     }
 
@@ -77,7 +81,7 @@ public class WolfNormalAction extends CustomOrb {
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new CompanionAttackAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                new CompanionAttackAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL, false));
     }
 
     @Override
@@ -104,7 +108,6 @@ public class WolfNormalAction extends CustomOrb {
         renderText(sb);
         hb.render(sb);
     }
-
 
     @Override
     public void triggerEvokeAnimation() { // The evoke animation of this orb is the dark-orb activation effect.

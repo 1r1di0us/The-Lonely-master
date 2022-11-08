@@ -94,6 +94,11 @@
     "NAME": "Unpredictable",
     "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
   },
+  "${ModID}:PrimalPower": {
+    "NAME": "Primal Power",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
+  },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",
     "DESCRIPTION": "Strikes deal !M! more damage. NL At the end of your turn, gain !M! Block.",

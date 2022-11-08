@@ -2,22 +2,22 @@ package lonelymod.cards;
 
 import static lonelymod.ModFile.makeID;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+
+import lonelymod.orbs.WolfAttackAction;
 
 public class Go extends AbstractEasyCard {
     public final static String ID = makeID("Go");
 
     public Go() {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
-        baseDamage = 8;
-        //This will need to be completely changed.
-        //GAAAAAAH
+        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.NONE);
+        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
     }
 
     public void upp() {

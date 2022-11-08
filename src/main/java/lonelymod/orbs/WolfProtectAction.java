@@ -6,34 +6,34 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
-import lonelymod.actions.CompanionAttackAction;
 
 import static lonelymod.ModFile.makeOrbPath;
 
-public class WolfAttackAction extends CustomOrb {
+public class WolfProtectAction extends CustomOrb {
 
     // Standard ID/Description
-    public static final String ORB_ID = makeID("WolfAttackAction");
+    public static final String ORB_ID = makeID("WolfProtectAction");
     private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ORB_ID);
     public static final String[] DESCRIPTIONS = orbString.DESCRIPTION;
 
-    private static final int PASSIVE_AMOUNT = 8;
+    private static final int PASSIVE_AMOUNT = 6;
     private static final int EVOKE_AMOUNT = 0;
+    private final int powerAmount = 3;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
     private float vfxTimer = 1.0f;
@@ -41,8 +41,8 @@ public class WolfAttackAction extends CustomOrb {
     private float vfxIntervalMax = 0.4f;
     private static final float ORB_WAVY_DIST = 0.04f;
     private static final float PI_4 = 12.566371f;
-
-    public WolfAttackAction() {
+    
+    public WolfProtectAction() {
         super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[1], DESCRIPTIONS[2], makeOrbPath("default_orb.png"));
 
         updateDescription();
@@ -70,7 +70,7 @@ public class WolfAttackAction extends CustomOrb {
     @Override
     public void onEvoke() { // 1.On Orb Evoke
 
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("RAGE")); // 1. Play a Jingle Sound. Because why not
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("BLOCK_BREAK")); // 1. Play a Jingle Sound. Because why not
         // For a list of sound effects you can use, look under com.megacrit.cardcrawl.audio.SoundMaster - you can see the list of keys you can use there. As far as previewing what they sound like, open desktop-1.0.jar with something like 7-Zip and go to audio. Reference the file names provided. (Thanks fiiiiilth)
 
     }
@@ -78,16 +78,16 @@ public class WolfAttackAction extends CustomOrb {
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
-                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
+            new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 
-        AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new CompanionAttackAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE, true));
-        //but I wanted the bite effect!!! >:(
         AbstractDungeon.actionManager.addToBottom(
-                new GainBlockAction(AbstractDungeon.player, Math.floorDiv(this.passiveAmount,2)));
-                //you can specify an AbstractCreature source so that's pretty neat.
+            new GainBlockAction(AbstractDungeon.player, this.passiveAmount));
+            //you can specify an AbstractCreature source so that's pretty neat.
+        AbstractDungeon.actionManager.addToBottom(
+            new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VigorPower(AbstractDungeon.player, this.powerAmount), this.powerAmount));
     }
 
+    
     @Override
     public void updateAnimation() {// You can totally leave this as is.
         // If you want to create a whole new orb effect - take a look at conspire's Water Orb. It includes a custom sound, too!
@@ -119,12 +119,12 @@ public class WolfAttackAction extends CustomOrb {
     }
 
     @Override
-    public void playChannelSFX() { // When you channel this orb, the JAW_WORM_DEATH sound plays.
-        CardCrawlGame.sound.play("JAW_WORM_DEATH", 0.1f);
+    public void playChannelSFX() { // When you channel this orb, the BLOCK_ATTACK sound plays.
+        CardCrawlGame.sound.play("BLOCK_ATTACK", 0.1f);
     }
 
     @Override
     public AbstractOrb makeCopy() {
-        return new WolfAttackAction();
+        return new WolfProtectAction();
     }
 }

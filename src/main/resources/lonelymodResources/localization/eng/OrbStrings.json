@@ -11,7 +11,22 @@
     "NAME": "Bite",
     "DESCRIPTION": [
       "#yPassive: Ivan deals #y",
-      " damage to a random enemy. Will prioritize enemies with Target.",
+      " damage to a random enemy, prioritizing enemies with Target.",
+      " Additionally grants Block equal to half the damage dealt."
+    ]
+  },
+  "${ModID}:WolfProtectAction": {
+    "NAME": "Poise",
+    "DESCRIPTION": [
+      "#yPassive: Ivan grants you #b",
+      " Block and #y3 Vigor.",
+      ""
+    ]
+  },
+  "${ModID}:WolfSpecialAction": {
+    "NAME": "Howl",
+    "DESCRIPTION": [
+      "#yPassive: Ivan applies #y3 Weak and Vulnerable to ALL enemies, and gains #y3 Food.",
       ""
     ]
   }

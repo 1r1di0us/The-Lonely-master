@@ -11,6 +11,10 @@
   {
     "PROPER_NAME": "Companion Action",
     "NAMES": [
+      "Companion_Action",
+      "companion_action",
+      "Companion",
+      "companion",
       "call",
       "Call",
       "CALL"
@@ -20,6 +24,8 @@
   {
     "PROPER_NAME": "Basic Action",
     "NAMES": [
+      "Basic_Action",
+      "basic_action",
       "basic",
       "basic action",
       "Basic",
@@ -30,6 +36,8 @@
   {
     "PROPER_NAME": "Attack Action",
     "NAMES": [
+      "Attack_Action",
+      "attack_action",
       "attack",
       "attack action",
       "Attack",
@@ -40,6 +48,8 @@
   {
     "PROPER_NAME": "Protect Action",
     "NAMES": [
+      "Protect_Action",
+      "protect_action",
       "protect",
       "protect action",
       "Protect",
@@ -50,6 +60,8 @@
   {
     "PROPER_NAME": "Special Action",
     "NAMES": [
+      "Special_Action",
+      "special_action",
       "special",
       "special action",
       "Special",

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class Heel extends AbstractEasyCard {
-    public final static String ID = makeID(Heel.class.getSimpleName());
+    public final static String ID = makeID("Heel");
 
     public Heel() {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);

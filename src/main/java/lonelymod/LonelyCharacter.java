@@ -7,7 +7,7 @@ import lonelymod.cards.Defend;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
-import lonelymod.relics.TodoItem;
+import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -55,7 +55,7 @@ public class LonelyCharacter extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                78, 78, 0, 99, 5, this, getStartingRelics(),
+                78, 78, 1, 99, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
@@ -75,7 +75,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(TodoItem.ID);
+        retVal.add(WolfPackPendant.ID);
         return retVal;
     }
 

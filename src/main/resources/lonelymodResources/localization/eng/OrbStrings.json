@@ -1,0 +1,18 @@
+{
+  "${ModID}:WolfNormalAction": {
+    "NAME": "Bark",
+    "DESCRIPTION": [
+      "#yPassive: Ivan deals #y",
+      " damage to a random enemy. Will prioritize enemies with Target.",
+      ""
+    ]
+  },
+  "${ModID}:WolfAttackAction": {
+    "NAME": "Bite",
+    "DESCRIPTION": [
+      "#yPassive: Ivan deals #y",
+      " damage to a random enemy. Will prioritize enemies with Target.",
+      ""
+    ]
+  }
+}

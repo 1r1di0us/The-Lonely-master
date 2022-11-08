@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class Go extends AbstractEasyCard {
-    public final static String ID = makeID(Go.class.getSimpleName());
+    public final static String ID = makeID("Go");
 
     public Go() {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);

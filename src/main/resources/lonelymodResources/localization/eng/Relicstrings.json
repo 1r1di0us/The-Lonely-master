@@ -1,9 +1,9 @@
 {
-  "${ModID}:TodoItem": {
-    "NAME": "Todo Item",
-    "FLAVOR": "TODO: make this a sweet relic.",
+  "${ModID}:WolfPackPendant": {
+    "NAME": "Wolf Pack Pendant",
+    "FLAVOR": "You fashioned this yourself from a dead wolf's tooth.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Summons Ivan at the start of combat."
     ]
   }
 }

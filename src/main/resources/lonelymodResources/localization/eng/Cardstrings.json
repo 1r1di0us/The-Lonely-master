@@ -7,17 +7,17 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
-  "${ModID}:Go!": {
+  "${ModID}:Go": {
     "NAME": "Go!",
-    "DESCRIPTION": "Call Attack."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack."
   },
-  "${ModID}:Heel!": {
+  "${ModID}:Heel": {
     "NAME": "Heel!",
-    "DESCRIPTION": "Call Protect."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",
-    "DESCRIPTION": "Deal !D! damage. This enemy temporarily loses !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. This enemy temporarily loses !M! Strength. lonelymod:Return."
   },
   "${ModID}:FireArrows": {
     "NAME": "Fire Arrows",
@@ -25,15 +25,15 @@
   },
   "${ModID}:Feint": {
     "NAME": "Feint",
-    "DESCRIPTION": "Deal !D! damage. If any damage was blocked, apply !M! vulnerable."
+    "DESCRIPTION": "Deal !D! damage. If any damage was blocked, apply !M! Vulnerable."
   },
   "${ModID}:HailOfArrows": {
     "NAME": "Hail Of Arrows",
-    "DESCRIPTION": "Deal !D! damage to all enemies. NL Return."
+    "DESCRIPTION": "Deal !D! damage to all enemies. NL lonelymod:Return."
   },
   "${ModID}:Marked Arrow": {
     "NAME": "Marked Arrow",
-    "DESCRIPTION": "Deal !D! damage. Apply !M! Target. Call Attack."
+    "DESCRIPTION": "Deal !D! damage. Apply !M! lonelymod:Target. lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
@@ -45,7 +45,7 @@
   },
   "${ModID}:PlotToKill": {
     "NAME": "Plot To Kill",
-    "DESCRIPTION": "Deal !D! damage. NL Plan !M!. Next turn, gain !${ModID}:m2! Energy."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. Next turn, gain !${ModID}:m2! Energy."
   },
   "${ModID}:QuickDraw": {
     "NAME": "Quick Draw",
@@ -53,33 +53,33 @@
   },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
-    "DESCRIPTION": "Deal !D! damage. Can only be played if your Companion intends to Attack."
+    "DESCRIPTION": "Deal !D! damage. NL Can only be played if your lonelymod:Companion intends to lonelymod:Attack."
   },
   "${ModID}:ALittlePloy": {
     "NAME": "A Little Ploy",
-    "DESCRIPTION": "PLain !M!. NL Draw !${ModID}:m2! cards."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
   },
   "${ModID}:AnimalSavagery": {
     "NAME": "Animal Savagery",
-    "DESCRIPTION": "Call Attack. NL At the start of next turn, Call Attack again.",
-    "UPGRADE_DESCRIPTION": "Call Attack. NL At the start of the next two turns, Call Attack again."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL At the start of next turn, lonelymod:Call lonelymod:Attack again.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL At the start of the next two turns, lonelymod:Call lonelymod:Attack again."
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Autoplay. NL Place 1 Instinctive Reaction on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Instinctive Reaction on top of your draw pile."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile.",
-    "UPGRADE_DESCRIPTION": "Autoplay. NL Place 1 Panic Attack on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Panic Attack on top of your draw pile."
   },
   "${ModID}:Impenetrable": {
     "NAME": "Impenetrable",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Stamina. NL Call Protect."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! lonelymod:Stamina. NL lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "Plan !M!. NL Gain !B! block for each card selected."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Gain !B! block for each card selected."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
@@ -87,8 +87,8 @@
   },
   "${ModID}:StandYourGround": {
     "NAME": "Stand Your Ground",
-    "DESCRIPTION": "Gain !B! Block. NL Return.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Vigor. NL Return."
+    "DESCRIPTION": "Gain !B! Block. NL lonelymod:Return.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Vigor. NL lonelymod:Return."
   },
   "${ModID}:Unpredictable": {
     "NAME": "Unpredictable",

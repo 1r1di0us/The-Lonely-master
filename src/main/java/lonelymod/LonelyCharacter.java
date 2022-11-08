@@ -71,7 +71,6 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
-        retVal.add(PrimalPower.ID);
         return retVal;
     }
 

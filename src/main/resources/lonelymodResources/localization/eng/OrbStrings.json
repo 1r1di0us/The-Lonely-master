@@ -12,7 +12,8 @@
     "DESCRIPTION": [
       "#yPassive: Ivan deals #y",
       " damage to a random enemy, prioritizing enemies with Target.",
-      " Additionally grants Block equal to half the damage dealt."
+      " NL Additionally grants Block equal to half the damage dealt.",
+      ""
     ]
   },
   "${ModID}:WolfProtectAction": {

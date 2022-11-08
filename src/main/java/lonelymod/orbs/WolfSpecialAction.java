@@ -58,7 +58,7 @@ public class WolfSpecialAction extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        description = DESCRIPTIONS[0] + passiveAmount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
     }
 
     @Override

@@ -7,13 +7,28 @@
       " #yDexterity."
     ]
   },
+  "${ModID}:AnimalSavageryPower": {
+    "NAME": "Animal Savagery",
+    "DESCRIPTIONS": [
+      "At the start of the next #y",
+      " turn, lonelymod:Call lonelymod:Attack.",
+      " turns, lonelymod:Call lonelymod:Attack."
+    ]
+  },
   "${ModID}:FireArrowsPower": {
-    "NAME": "FireArrowsPower",
+    "NAME": "Fire Arrows",
     "DESCRIPTIONS": [
       "At the start of the next #y",
       " turn, deal #y",
       " turns, deal #y",
       " damage."
+    ]
+  },
+  "${ModID}:StaminaPower": {
+    "NAME": "Stamina",
+    "DESCRIPTIONS": [
+      "The next Block card you play will give you #b",
+      " more Block."
     ]
   }
 }

@@ -1,0 +1,7 @@
+{
+  "${ModID}:PlanAction": {
+    "TEXT": [
+        "Choose any number of cards to shuffle into your Draw Pile. TODO: Plan B"
+    ]
+  }
+}

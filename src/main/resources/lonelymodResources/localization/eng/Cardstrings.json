@@ -33,7 +33,7 @@
   },
   "${ModID}:MarkedArrow": {
     "NAME": "Marked Arrow",
-    "DESCRIPTION": "Deal !D! damage. Apply !M! lonelymod:Target. lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
@@ -45,7 +45,7 @@
   },
   "${ModID}:PlotToKill": {
     "NAME": "Plot To Kill",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. Next turn, gain !${ModID}:m2! Energy."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, gain [E]."
   },
   "${ModID}:QuickDraw": {
     "NAME": "Quick Draw",
@@ -73,17 +73,18 @@
     "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile.",
     "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Panic Attack on top of your draw pile."
   },
-  "${ModID}:Impenetrable": {
-    "NAME": "Impenetrable",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! lonelymod:Stamina. NL lonelymod:Call lonelymod:Protect."
+  "${ModID}:PrepareForTrouble": {
+    "NAME": "Prepare For Trouble",
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Draw !${ModID}:m2! cards. NL lonelymod:Call lonelymod:Protect.",
+    "UPGRADE_DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Draw !${ModID}:m2! cards. NL Gain [E]. NL lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Gain !B! block for each card selected."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Gain !B! Block for each card selected."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Shuffle 2 Dazed into your draw pile. NL Gain !M! Strength."
+    "DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength."
   },
   "${ModID}:StandYourGround": {
     "NAME": "Stand Your Ground",
@@ -93,6 +94,10 @@
   "${ModID}:Unpredictable": {
     "NAME": "Unpredictable",
     "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
+  },
+  "${ModID}:ABrilliantIdea": {
+    "NAME": "A Brilliant Idea",
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
   "${ModID}:PrimalPower": {
     "NAME": "Primal Power",

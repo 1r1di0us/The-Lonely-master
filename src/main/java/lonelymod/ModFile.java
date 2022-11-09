@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.nio.charset.StandardCharsets;
@@ -35,7 +36,7 @@ public class ModFile implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        OnPlayerTurnStartPostDrawSubscriber {
+        PostEnergyRechargeSubscriber {
 
     public static final String modID = "lonelymod";
 
@@ -149,11 +150,13 @@ public class ModFile implements
 
         BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
 
-        BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/OrbStrings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + getLangString() + "/Charstrings.json");
 
         BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
+
+        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/uistrings.json");
     }
 
     @Override
@@ -170,7 +173,7 @@ public class ModFile implements
     }
 
     @Override
-    public void receiveOnPlayerTurnStartPostDraw() {
+    public void receivePostEnergyRecharge() {
         // This makes the return mechanic work.
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (c instanceof AbstractEasyCard) {

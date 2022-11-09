@@ -15,6 +15,7 @@ public class WolfPackPendant extends AbstractEasyRelic {
         super(ID, RelicTier.STARTER, LandingSound.FLAT, LonelyCharacter.Enums.TODO_COLOR);
     }
 
+    @Override
     public void atTurnStart() {
         flash();
         AbstractDungeon.player.channelOrb((AbstractOrb) new WolfNormalAction());

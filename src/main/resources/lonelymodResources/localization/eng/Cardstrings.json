@@ -20,7 +20,7 @@
     "DESCRIPTION": "Deal !D! damage. This enemy temporarily loses !M! Strength. lonelymod:Return."
   },
   "${ModID}:FireArrows": {
-    "NAME": "Fire Arrows",
+    "NAME": "Fire Arrow",
     "DESCRIPTION": "Deal !D! damage. At the start of the next 3 turns, this enemy takes that much damage again."
   },
   "${ModID}:Feint": {
@@ -31,7 +31,7 @@
     "NAME": "Hail Of Arrows",
     "DESCRIPTION": "Deal !D! damage to all enemies. NL lonelymod:Return."
   },
-  "${ModID}:Marked Arrow": {
+  "${ModID}:MarkedArrow": {
     "NAME": "Marked Arrow",
     "DESCRIPTION": "Deal !D! damage. Apply !M! lonelymod:Target. lonelymod:Call lonelymod:Attack."
   },

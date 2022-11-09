@@ -4,10 +4,11 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
+import lonelymod.cards.FireArrows;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.PrimalPower;
 import lonelymod.cards.Strike;
+import lonelymod.cards.democards.complex.InlinePowerDemo;
 import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
@@ -71,6 +72,8 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
+        retVal.add(FireArrows.ID);
+        retVal.add(InlinePowerDemo.ID);
         return retVal;
     }
 

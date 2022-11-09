@@ -15,7 +15,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
@@ -32,7 +34,8 @@ public class ModFile implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        OnPlayerTurnStartPostDrawSubscriber {
 
     public static final String modID = "lonelymod";
 
@@ -164,5 +167,30 @@ public class ModFile implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receiveOnPlayerTurnStartPostDraw() {
+        // This makes the return mechanic work.
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (c instanceof AbstractEasyCard) {
+                AbstractEasyCard ce = (AbstractEasyCard) c;
+                if (ce.willReturn == true) {
+                    ce.willReturn = false;
+                    AbstractDungeon.player.hand.addToHand(ce);
+                }
+            }
+        }
+        // Would be a terrible return mechanic if it didn't also work from the draw pile. It would barely ever return!
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if (c instanceof AbstractEasyCard) {
+                AbstractEasyCard ce = (AbstractEasyCard) c;
+                if (ce.willReturn == true) {
+                    ce.willReturn = false;
+                    AbstractDungeon.player.hand.addToHand(ce);
+                }
+            }
+        }
+        
     }
 }

@@ -21,7 +21,7 @@
   },
   "${ModID}:FireArrows": {
     "NAME": "Fire Arrows",
-    "DESCRIPTION": "Deal !D!x2 damage. At the start of next turn, play this card again."
+    "DESCRIPTION": "Deal !D! damage. At the start of the next 3 turns, this enemy takes that much damage again."
   },
   "${ModID}:Feint": {
     "NAME": "Feint",

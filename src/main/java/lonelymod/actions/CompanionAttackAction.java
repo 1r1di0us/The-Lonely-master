@@ -43,15 +43,18 @@ public class CompanionAttackAction extends AbstractGameAction {
         if (target == 0) {
             targetMonster = AbstractDungeon.getRandomMonster();
             if (targetMonster != null) {
+                if (bite) {
+                    addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+                }
                 addToTop((AbstractGameAction)new DamageAction((AbstractCreature)targetMonster, this.info, this.attackEffect, true));
             }
         }
         else {
-            this.info.output = AbstractOrb.applyLockOn((AbstractCreature)targetMonster, this.info.base); 
+            this.info.output = AbstractOrb.applyLockOn((AbstractCreature)targetMonster, this.info.base);
+            if (bite) {
+                addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+            }
             addToTop((AbstractGameAction)new DamageAction((AbstractCreature)targetMonster, this.info, this.attackEffect, true));
-        }
-        if (bite) {
-            addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
         }
         this.isDone = true;
     }

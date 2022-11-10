@@ -28,6 +28,8 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
+    private boolean turnStart = false;
+
     public AnimalSavageryPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
@@ -51,13 +53,21 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public void atStartOfTurnPostDraw() {
-        flash();
-        if (this.amount > 0) {
-            AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
-            this.amount -= 1;
+        turnStart = true;
+    }
+
+    @Override
+    public void onChannel(AbstractOrb orb) {
+        if (turnStart == true) {
+            flash();
+            if (this.amount > 0) {
+                AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
+                this.amount -= 1;
+            }
+            if (this.amount == 0)
+                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            turnStart = false;
         }
-        if (this.amount == 0)
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override

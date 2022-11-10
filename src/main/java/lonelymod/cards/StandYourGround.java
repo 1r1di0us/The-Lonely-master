@@ -20,12 +20,14 @@ public class StandYourGround extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, m, new VigorPower(p, this.magicNumber)));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new VigorPower(p, this.magicNumber)));
         }
         this.willReturn = true;
     }
 
     public void upp() {
         upgradeMagicNumber(3);
+        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 }

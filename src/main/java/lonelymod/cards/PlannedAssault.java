@@ -3,7 +3,9 @@ package lonelymod.cards;
 import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.defect.GashAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class PlannedAssault extends AbstractEasyCard {
@@ -12,13 +14,13 @@ public class PlannedAssault extends AbstractEasyCard {
     public PlannedAssault() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 2;
-        baseMagicNumber = 5;
+        baseMagicNumber = magicNumber = 5;
         this.exhaust = true;
     }
     
     @Override
     public void triggerWhenDrawn() {
-        this.damage += this.magicNumber;
+        AbstractDungeon.actionManager.addToBottom(new GashAction(this, magicNumber));
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

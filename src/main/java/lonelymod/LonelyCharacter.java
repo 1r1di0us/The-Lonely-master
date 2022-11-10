@@ -3,14 +3,12 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import lonelymod.cards.AnimalSavagery;
 import lonelymod.cards.Defend;
+import lonelymod.cards.Forgetful;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.PrepareForTrouble;
-import lonelymod.cards.Improvise;
+import lonelymod.cards.OccultPractice;
 import lonelymod.cards.Strike;
-import lonelymod.cards.Unpredictable;
 import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
@@ -74,10 +72,8 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
-        retVal.add(AnimalSavagery.ID);
-        retVal.add(PrepareForTrouble.ID);
-        retVal.add(Improvise.ID);
-        retVal.add(Unpredictable.ID);
+        retVal.add(Forgetful.ID);
+        retVal.add(OccultPractice.ID);
         return retVal;
     }
 

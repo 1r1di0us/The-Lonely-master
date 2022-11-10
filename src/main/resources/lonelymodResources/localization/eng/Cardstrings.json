@@ -66,12 +66,13 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Instinctive Reaction on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 Instinctive Reaction into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Instinctive Reaction on top of your draw pile."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Panic Attack on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 Panic Attack into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile."
   },
   "${ModID}:PrepareForTrouble": {
     "NAME": "Prepare For Trouble",
@@ -84,7 +85,8 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength."
+    "DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength."
   },
   "${ModID}:StandYourGround": {
     "NAME": "Stand Your Ground",
@@ -95,9 +97,18 @@
     "NAME": "Unpredictable",
     "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
   },
+  "${ModID}:PanicAttack": {
+    "NAME": "Panic Attack",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Gain [E]. NL Exhaust."
+  },
   "${ModID}:ABrilliantIdea": {
     "NAME": "A Brilliant Idea",
     "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
+  },
+  "${ModID}:InstinctiveReaction": {
+    "NAME": "Instinctive Reaction",
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! cards. NL Gain [E][E]. NL Exhaust."
   },
   "${ModID}:PrimalPower": {
     "NAME": "Primal Power",

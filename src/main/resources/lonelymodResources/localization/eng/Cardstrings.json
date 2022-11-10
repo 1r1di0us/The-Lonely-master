@@ -97,6 +97,10 @@
     "NAME": "Unpredictable",
     "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
   },
+  "${ModID}:OverflowingQuiver": {
+    "NAME": "Overflowing Quiver",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Next turn, create a copy of this card in your hand. NL lonelymod:Return."
+  },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Exhaust.",

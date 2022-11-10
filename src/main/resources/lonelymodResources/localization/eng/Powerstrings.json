@@ -16,12 +16,20 @@
     ]
   },
   "${ModID}:FireArrowsPower": {
-    "NAME": "Fire Arrows",
+    "NAME": "Fire",
     "DESCRIPTIONS": [
       "At the start of the next #y",
       " turn, deal #y",
       " turns, deal #y",
       " damage."
+    ]
+  },
+  "${ModID}:OverflowingQuiverPower": {
+    "NAME": "Overflowing Quiver Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of the next turn, create #y",
+      " Overflowing Quiver in your hand.",
+      " Overflowing Quivers in your hand."
     ]
   },
   "${ModID}:StaminaPower": {

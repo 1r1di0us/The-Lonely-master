@@ -13,7 +13,7 @@ public class Improvise extends AbstractEasyCard {
 
     public Improvise() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = 3;
+        baseMagicNumber = magicNumber = 3;
         baseBlock = 3;
     }
     

@@ -17,8 +17,8 @@ public class PanicAttack extends AbstractEasyCard {
     public PanicAttack() {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF);
         baseDamage = 5;
-        baseMagicNumber = 3;
-        baseSecondMagic = 1;
+        baseMagicNumber = magicNumber = 3;
+        baseSecondMagic = secondMagic = 1;
         exhaust = true;
         isEthereal = true;
     }

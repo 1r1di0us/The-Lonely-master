@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import lonelymod.fields.ReturnField;
+
 public class HailOfArrows extends AbstractEasyCard {
     public final static String ID = makeID("HailOfArrows");
 
@@ -16,7 +18,7 @@ public class HailOfArrows extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        this.willReturn = true;
+        ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {

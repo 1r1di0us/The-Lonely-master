@@ -4,10 +4,8 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
-import lonelymod.cards.Forgetful;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.OccultPractice;
 import lonelymod.cards.Strike;
 import lonelymod.relics.WolfPackPendant;
 
@@ -72,8 +70,6 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
-        retVal.add(Forgetful.ID);
-        retVal.add(OccultPractice.ID);
         return retVal;
     }
 

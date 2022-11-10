@@ -13,7 +13,7 @@ public class ABrilliantIdea extends AbstractEasyCard {
 
     public ABrilliantIdea() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = 4;
+        baseMagicNumber = magicNumber = 4;
     }
     
     @Override

@@ -7,6 +7,7 @@ import basemod.interfaces.*;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
+import lonelymod.fields.ReturnField;
 import lonelymod.relics.AbstractEasyRelic;
 
 import com.badlogic.gdx.Gdx;
@@ -175,25 +176,26 @@ public class ModFile implements
     @Override
     public void receivePostEnergyRecharge() {
         // This makes the return mechanic work.
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (c instanceof AbstractEasyCard) {
-                AbstractEasyCard ce = (AbstractEasyCard) c;
-                if (ce.willReturn == true) {
-                    ce.willReturn = false;
-                    AbstractDungeon.player.hand.addToHand(ce);
-                }
-            }
+        AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
+        AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
+    }
+
+    //an external method
+    private boolean tryMoveCard(AbstractCard c) {
+        if (ReturnField.willReturn.get(c)) {
+            ReturnField.willReturn.set(c, false);
+            AbstractDungeon.player.hand.addToHand(c);
+            return true;
         }
-        // Would be a terrible return mechanic if it didn't also work from the draw pile. It would barely ever return!
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (c instanceof AbstractEasyCard) {
-                AbstractEasyCard ce = (AbstractEasyCard) c;
-                if (ce.willReturn == true) {
-                    ce.willReturn = false;
-                    AbstractDungeon.player.hand.addToHand(ce);
-                }
-            }
-        }
-        
+        //if ReturnField proves to be terrible just add a willReturn field to AbstractEasyCard and use this:
+        //if (c instanceof AbstractEasyCard) {
+        //    AbstractEasyCard ce = (AbstractEasyCard) c;
+        //    if (ce.willReturn) {
+        //        ce.willReturn = false;
+        //        AbstractDungeon.player.hand.addToHand(c);
+        //        return true;
+        //    }
+        //}
+        return false;
     }
 }

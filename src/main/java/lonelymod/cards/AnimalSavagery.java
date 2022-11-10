@@ -16,7 +16,7 @@ public class AnimalSavagery extends AbstractEasyCard{
 
     public AnimalSavagery() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = 1;
+        baseMagicNumber = magicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

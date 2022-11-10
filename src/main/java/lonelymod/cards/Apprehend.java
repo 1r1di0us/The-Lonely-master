@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
+import lonelymod.fields.ReturnField;
+
 public class Apprehend extends AbstractEasyCard {
     public final static String ID = makeID("Apprehend");
 
@@ -23,7 +25,7 @@ public class Apprehend extends AbstractEasyCard {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new StrengthPower(m, -magicNumber)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new GainStrengthPower(m, magicNumber)));
-        this.willReturn = true;
+        ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {

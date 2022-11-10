@@ -15,10 +15,10 @@ public class PlotToKill extends AbstractEasyCard {
     public final static String ID = makeID("PlotToKill");
 
     public PlotToKill() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 3;
-        baseMagicNumber = 5;
-        baseSecondMagic = 1;
+        baseMagicNumber = magicNumber = 5;
+        baseSecondMagic = secondMagic = 1;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

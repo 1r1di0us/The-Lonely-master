@@ -18,9 +18,9 @@ public class PrepareForTrouble extends AbstractEasyCard {
 
     public PrepareForTrouble() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = 3;
-        baseSecondMagic = 2;
-        this.magicNumber = this.baseMagicNumber; //do this or else the first time you cast it will be -1 stamina.
+        baseMagicNumber = magicNumber = 3;
+        baseSecondMagic = secondMagic = 2;
+        //magic Numbers will start out at -1 sometimes if you just say baseMagicNumber = #
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

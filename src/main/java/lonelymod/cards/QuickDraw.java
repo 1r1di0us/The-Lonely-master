@@ -13,9 +13,9 @@ public class QuickDraw extends AbstractEasyCard {
     public final static String ID = makeID("QuickDraw");
 
     public QuickDraw() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 7;
-        baseMagicNumber = 2;
+        baseMagicNumber = magicNumber = 2;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

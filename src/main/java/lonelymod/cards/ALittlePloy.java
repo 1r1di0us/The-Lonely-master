@@ -14,8 +14,8 @@ public class ALittlePloy extends AbstractEasyCard {
 
     public ALittlePloy() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = 2;
-        baseSecondMagic = 1;
+        baseMagicNumber = magicNumber = 2;
+        baseSecondMagic = secondMagic = 1;
     }
     
     @Override

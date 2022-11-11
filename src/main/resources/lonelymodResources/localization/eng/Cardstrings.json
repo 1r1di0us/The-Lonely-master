@@ -85,8 +85,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Shuffle !${ModID}:m2! Dazed into your draw pile. NL Gain !M! Strength."
+    "DESCRIPTION": "Shuffle !${ModID}:m2! Wound into your draw pile. NL Gain !M! Strength."
   },
   "${ModID}:StandYourGround": {
     "NAME": "Stand Your Ground",

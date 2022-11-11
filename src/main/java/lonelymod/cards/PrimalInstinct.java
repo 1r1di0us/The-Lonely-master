@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import lonelymod.orbs.WolfSpecialAction;
 
-public class PrimalPower extends AbstractEasyCard {
-    public final static String ID = makeID("PrimalPower");
+public class PrimalInstinct extends AbstractEasyCard {
+    public final static String ID = makeID("PrimalInstinct");
 
-    public PrimalPower() {
+    public PrimalInstinct() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         exhaust = true;
     }

@@ -3,6 +3,7 @@ package lonelymod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -44,7 +45,8 @@ public class CompanionAttackAction extends AbstractGameAction {
             targetMonster = AbstractDungeon.getRandomMonster();
             if (targetMonster != null) {
                 if (bite) {
-                    addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+                    addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+                    addToBot((AbstractGameAction) new GainBlockAction(AbstractDungeon.player, Math.floorDiv(Math.max(this.info.output - targetMonster.currentBlock, 0), 2)));
                 }
                 addToTop((AbstractGameAction)new DamageAction((AbstractCreature)targetMonster, this.info, this.attackEffect, true));
             }
@@ -52,7 +54,8 @@ public class CompanionAttackAction extends AbstractGameAction {
         else {
             this.info.output = AbstractOrb.applyLockOn((AbstractCreature)targetMonster, this.info.base);
             if (bite) {
-                addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+                addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(targetMonster.hb.cX, targetMonster.hb.cY - 40.0F * Settings.scale, Settings.LIGHT_YELLOW_COLOR.cpy()), 0.1F));
+                addToBot((AbstractGameAction) new GainBlockAction(AbstractDungeon.player, Math.floorDiv(Math.max(this.info.output - targetMonster.currentBlock, 0), 2)));
             }
             addToTop((AbstractGameAction)new DamageAction((AbstractCreature)targetMonster, this.info, this.attackEffect, true));
         }

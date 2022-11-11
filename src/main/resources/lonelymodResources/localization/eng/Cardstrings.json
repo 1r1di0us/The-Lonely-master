@@ -114,10 +114,96 @@
     "NAME": "Instinctive Reaction",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! cards. NL Gain [E][E]. NL Exhaust."
   },
-  "${ModID}:PrimalPower": {
-    "NAME": "Primal Power",
+  "${ModID}:AccursedBeak": {
+    "NAME": "Accursed Beak",
+    "DESCRIPTION": "Deal !D! damage. NL Temporarily lose !M! Strength. NL If you still have Strength, play this card again. NL Exhaust."
+  },
+  "${ModID}:Counterattack": {
+    "NAME": "Counterattack",
+    "DESCRIPTION": "Deal the same damage this enemy is attacking you for, affected by your damage modifiers.",
+    "EXTENDED_DESCRIPTION": [
+      "NL [Deals #y",
+      " damage #y",
+      " times.]"
+    ]
+  },
+  "${ModID}:FeignWeakness": {
+    "NAME": "Feign Weakness",
+    "DESCRIPTION": "Deal !D! damage. NL Temporarily lower target's strength by !M! minus the amount of damage this card dealt. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Lower target's strength by !M! minus the amount of damage this card dealt. NL Exhaust."
+  },
+  "${ModID}:Frenzy": {
+    "NAME": "Frenzy",
+    "DESCRIPTION": "Deal !D! damage. NL Immediately perform your lonelymod:Companion's lonelymod:Attack Action X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Immediately perform your lonelymod:Companion's lonelymod:Attack Action X times."
+  },
+  "${ModID}:MentalOverload": {
+    "NAME": "Mental Overload",
+    "DESCRIPTION": "Deal !D! damage. NL Costs 1 less [E] for every card in your hand."
+  },
+  "${ModID}:Abandon": {
+    "NAME": "Abandon",
+    "DESCRIPTION": "Ethereal. Permanently remove a random card in your hand from your deck. NL End your turn. NL Exhaust."
+  },
+  "${ModID}:Cycle": {
+    "NAME": "Cycle",
+    "DESCRIPTION": "All cards that will return to your hand next turn are returned immediately."
+  },
+  "${ModID}:DefyDeath": {
+    "NAME": "Defy Death",
+    "DESCRIPTION": "This turn, you cannot be reduced to less than 1 HP. NL Next turn, draw !M! more cards. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "This turn, you cannot be reduced to less than 1 HP. NL Next turn, draw !M! more cards and gain [E]. NL Exhaust."
+  },
+  "${ModID}:GrandScheme": {
+    "NAME": "Grand Scheme",
+    "DESCRIPTION": "Discard your draw pile. NL lonelymod:Plan !M!."
+  },
+  "${ModID}:Lonely": {
+    "NAME": "Lonely",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle your choice of Bravery, Desperation, or Resolve into your draw pile. NL It costs 0 when drawn."
+  },
+  "${ModID}:Omen": {
+    "NAME": "Omen",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 3 cards randomly, lonelymod:Summon lonelymod:Omen, and shuffle !M! Primal Instinct's into your draw pile. NL Exhaust."
+  },
+  "${ModID}:Outburst": {
+    "NAME": "Outburst",
+    "DESCRIPTION": "Ethereal. NL Play a random attack from your discard pile 4 times and exhaust it. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Choose an attack from your discard pile. NL Play it 4 times and exhaust it. NL Exhaust."
+  },
+  "${ModID}:PrimalInstinct": {
+    "NAME": "Primal Instinct",
     "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
+  },
+  "${ModID}:AncientPower": {
+    "NAME": "Ancient Power",
+    "DESCRIPTION": "Ethereal. Whenever a card is discarded during your turn, play it and exhaust it.",
+    "UPGRADE_DESCRIPTION": "Whenever a card is discarded during your turn, play it and exhaust it."
+  },
+  "${ModID}:Bravery": {
+    "NAME": "Bravery",
+    "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! temporary Strength.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! temporary Strength and !${ModID}:m2! temporary Dexterity."
+  },
+  "${ModID}:Desperation": {
+    "NAME": "Desperation",
+    "DESCRIPTION": "The first time you run out of energy each turn, gain 1 [E], which you can only use on attacks.",
+    "UPGRADE_DESCRIPTION": "The first time you run out of energy each turn, draw 1 card and gain 1 [E], which you can only use on attacks."
+  },
+  "${ModID}:MuscleMemory": {
+    "NAME": "Muscle Memory",
+    "DESCRIPTION": "Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1 [E].",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1 [E]."
+  },
+  "${ModID}:Resolve": {
+    "NAME": "Resolve",
+    "DESCRIPTION": "Whenever you lose hp, gain !M! Plated Armor.",
+    "UPGRADE_DESCRIPTION": "Whenever you lose hp, gain !M! Plated Armor and trigger Plated Armor."
+  },
+  "${ModID}:WildForm": {
+    "NAME": "Wild Form",
+    "DESCRIPTION": "Grant your lonelymod:Companion !M! lonelymod:Food. NL At the start of each turn, discard 1 random card and lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",

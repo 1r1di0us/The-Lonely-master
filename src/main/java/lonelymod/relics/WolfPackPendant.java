@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import lonelymod.LonelyCharacter;
+import lonelymod.orbs.WolfAttackAction;
 import lonelymod.orbs.WolfNormalAction;
 
 public class WolfPackPendant extends AbstractEasyRelic {
@@ -18,6 +19,10 @@ public class WolfPackPendant extends AbstractEasyRelic {
     @Override
     public void atTurnStart() {
         flash();
-        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfNormalAction());
+        if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) {
+            AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
+        } else {
+            AbstractDungeon.player.channelOrb((AbstractOrb) new WolfNormalAction());
+        }
     }
 }

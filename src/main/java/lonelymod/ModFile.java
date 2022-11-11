@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
@@ -37,7 +38,8 @@ public class ModFile implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        PostEnergyRechargeSubscriber {
+        OnPlayerTurnStartPostDrawSubscriber {
+        //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
 
@@ -174,28 +176,32 @@ public class ModFile implements
     }
 
     @Override
-    public void receivePostEnergyRecharge() {
+    public void receiveOnPlayerTurnStartPostDraw() {
         // This makes the return mechanic work.
-        AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
-        AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (ReturnField.willReturn.get(c)) {
+                ReturnField.willReturn.set(c, false);
+                AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if (ReturnField.willReturn.get(c)) {
+                ReturnField.willReturn.set(c, false);
+                AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
+            }
+        }
+        //Do this if you want it to draw BEFORE drawing the first 5 cards:
+        //AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
+        //AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
     }
 
-    //an external method
+    /*an external method in case you want it
     private boolean tryMoveCard(AbstractCard c) {
         if (ReturnField.willReturn.get(c)) {
             ReturnField.willReturn.set(c, false);
             AbstractDungeon.player.hand.addToHand(c);
             return true;
         }
-        //if ReturnField proves to be terrible just add a willReturn field to AbstractEasyCard and use this:
-        //if (c instanceof AbstractEasyCard) {
-        //    AbstractEasyCard ce = (AbstractEasyCard) c;
-        //    if (ce.willReturn) {
-        //        ce.willReturn = false;
-        //        AbstractDungeon.player.hand.addToHand(c);
-        //        return true;
-        //    }
-        //}
         return false;
-    }
+    }*/
 }

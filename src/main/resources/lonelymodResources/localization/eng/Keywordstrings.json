@@ -9,11 +9,21 @@
     "DESCRIPTION": "This companion joins the battle. NL Any Companion already in the fight will be replaced."
   },
   {
+    "PROPER_NAME": "Omen",
+    "NAMES": [
+      "Omen",
+      "omen",
+      "OMEN"
+    ],
+    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to lonelymod:Protect whoeever summoned it."
+  },
+  {
     "PROPER_NAME": "Companion Action",
     "NAMES": [
       "Companion_Action",
       "companion_action",
       "Companion",
+      "Companion's",
       "companion",
       "call",
       "Call",
@@ -95,7 +105,11 @@
       "return",
       "return.",
       "Return",
-      "Return."
+      "Return.",
+      "returns",
+      "returns.",
+      "Returns",
+      "Returns."
     ],
     "DESCRIPTION": "When played, return this card to your hand at the start of next turn."
   },

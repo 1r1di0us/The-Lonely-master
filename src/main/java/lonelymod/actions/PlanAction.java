@@ -42,9 +42,9 @@ public class PlanAction extends AbstractGameAction {
         this.amount = numCards;
         this.cardPlayed = cardPlayed;
         this.improviseBlock = improviseBlock;
-        if (AbstractDungeon.player.hasPower("TwoStepsAheadPower")) {
-            AbstractDungeon.player.getPower("TwoStepsAheadPower").flash();;
-            this.amount += AbstractDungeon.player.getPower("TwoStepsAheadPower").amount;
+        if (AbstractDungeon.player.hasPower(makeID("TwoStepsAheadPower"))) {
+            AbstractDungeon.player.getPower(makeID("TwoStepsAheadPower")).flash();;
+            this.amount += AbstractDungeon.player.getPower(makeID("TwoStepsAheadPower")).amount;
         } 
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.startingDuration = Settings.ACTION_DUR_FAST;
@@ -61,10 +61,10 @@ public class PlanAction extends AbstractGameAction {
             //for (AbstractPower p : AbstractDungeon.player.powers)
                 //p.onScry(); 
             if (AbstractDungeon.player.discardPile.isEmpty()) {
-                if (AbstractDungeon.player.hasPower("PlanBPower")) {
-                    AbstractDungeon.player.getPower("PlanBPower").flash();
+                if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
+                    AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
                     AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
-                            AbstractDungeon.player.getPower("PlanBPower").amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
+                            AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
                 }
                 this.isDone = true;
                 return;
@@ -92,10 +92,10 @@ public class PlanAction extends AbstractGameAction {
                 }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         } else if (AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            if (AbstractDungeon.player.hasPower("PlanBPower")) {
-                AbstractDungeon.player.getPower("PlanBPower").flash();
+            if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
+                AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
                 AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
-                        AbstractDungeon.player.getPower("PlanBPower").amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
+                        AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
             }
         }
         for (AbstractCard c : AbstractDungeon.player.drawPile.group)

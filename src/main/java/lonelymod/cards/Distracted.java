@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
+
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 
 public class Distracted extends AbstractEasyCard {
@@ -16,6 +18,7 @@ public class Distracted extends AbstractEasyCard {
     public Distracted() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
+        MultiCardPreview.add(this, new InstinctiveReaction());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

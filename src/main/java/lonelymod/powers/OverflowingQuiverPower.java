@@ -47,7 +47,7 @@ public class OverflowingQuiverPower extends AbstractEasyPower implements Cloneab
     }
 
     @Override
-    public void onEnergyRecharge() {
+    public void atStartOfTurnPostDraw() {
         addToBot((AbstractGameAction)new MakeTempCardInHandAction(new OverflowingQuiver(), this.amount));
         addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }

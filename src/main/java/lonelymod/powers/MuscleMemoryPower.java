@@ -4,10 +4,6 @@ import static lonelymod.ModFile.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -17,9 +13,8 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
 import lonelymod.util.TexLoader;
 
-public class StaminaPower extends AbstractEasyPower implements CloneablePowerInterface{
-
-    public static final String POWER_ID = makeID("StaminaPower");
+public class MuscleMemoryPower extends AbstractEasyPower implements CloneablePowerInterface {
+    public static final String POWER_ID = makeID("MuscleMemoryPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -27,7 +22,7 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public StaminaPower(AbstractCreature owner, int amount) {
+    public MuscleMemoryPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -46,19 +41,7 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
         }
 
         updateDescription();
-    }
-
-    @Override
-    public float modifyBlock(float blockAmount) {
-        blockAmount += this.amount;
-        return blockAmount;
-    }
-
-    @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.SKILL && card.baseBlock >= 0) {
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
-        }
+        //the actions this does are in ReturnToHandAction
     }
 
     @Override
@@ -68,6 +51,6 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public AbstractPower makeCopy() {
-        return new StaminaPower(this.owner, this.amount);
+        return new MuscleMemoryPower(this.owner, this.amount);
     }
 }

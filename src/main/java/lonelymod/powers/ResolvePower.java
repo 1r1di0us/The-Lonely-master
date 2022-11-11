@@ -5,21 +5,20 @@ import static lonelymod.ModFile.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
 import lonelymod.util.TexLoader;
 
-public class StaminaPower extends AbstractEasyPower implements CloneablePowerInterface{
+public class ResolvePower extends AbstractEasyPower implements CloneablePowerInterface {
 
-    public static final String POWER_ID = makeID("StaminaPower");
+    public static final String POWER_ID = makeID("ResolvePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -27,7 +26,7 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public StaminaPower(AbstractCreature owner, int amount) {
+    public ResolvePower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -35,6 +34,7 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
         type = PowerType.BUFF;
         isTurnBased = false;
         this.amount = amount;
+        this.isPostActionPower = true;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,16 +49,12 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
-    public float modifyBlock(float blockAmount) {
-        blockAmount += this.amount;
-        return blockAmount;
-    }
-
-    @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.SKILL && card.baseBlock >= 0) {
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+    public int onLoseHp(int damageAmount) {
+        if (damageAmount > 0) {
+            flash();
+            addToBot((AbstractGameAction) new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.amount), this.amount));
         }
+        return damageAmount;
     }
 
     @Override
@@ -68,6 +64,6 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public AbstractPower makeCopy() {
-        return new StaminaPower(this.owner, this.amount);
+        return new ResolvePower(this.owner, this.amount);
     }
 }

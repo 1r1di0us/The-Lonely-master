@@ -38,5 +38,33 @@
       "The next Block card you play will give you #b",
       " more Block."
     ]
+  },
+  "${ModID}:MuscleMemoryPower": {
+    "NAME": "Muscle Memory",
+    "DESCRIPTIONS": [
+      "Whenever a card lonelymod:Returns, temporarily reduce its cost by #y",
+      "."
+    ]
+  },
+  "${ModID}:ResolvePower": {
+    "NAME": "Resolve",
+    "DESCRIPTIONS": [
+      "Whenever you lose hp, gain #y",
+      " Plated Armor."
+    ]
+  },
+  "${ModID}:SteelResolvePower": {
+    "NAME": "Steel Resolve",
+    "DESCRIPTIONS": [
+      "Whenever you lose hp, trigger Plated Armor"
+    ]
+  },
+  "${ModID}:WildFormPower": {
+    "NAME": "Wild Form",
+    "DESCRIPTIONS": [
+      "At the start of your turn, discard #y",
+      " random card and lonelymod:Call lonelymod:Attack.",
+      " random cards and lonelymod:Call lonelymod:Attack."
+    ]
   }
 }

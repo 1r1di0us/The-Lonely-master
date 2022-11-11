@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -82,10 +81,6 @@ public class WolfAttackAction extends CustomOrb {
 
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
                 new CompanionAttackAction(new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.NONE, true));
-        //but I wanted the bite effect!!! >:(
-        AbstractDungeon.actionManager.addToBottom(
-                new GainBlockAction(AbstractDungeon.player, Math.floorDiv(this.passiveAmount,2)));
-                //you can specify an AbstractCreature source so that's pretty neat.
     }
 
     @Override

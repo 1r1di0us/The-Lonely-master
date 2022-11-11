@@ -188,8 +188,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "The first time you run out of energy each turn, gain 1 [E], which you can only use on attacks.",
-    "UPGRADE_DESCRIPTION": "The first time you run out of energy each turn, draw 1 card and gain 1 [E], which you can only use on attacks."
+    "DESCRIPTION": "The first time you run out of energy each turn, gain [E], which you can only use on attacks.",
+    "UPGRADE_DESCRIPTION": "The first time you run out of energy each turn, draw 1 card and gain [E], which you can only use on attacks."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",

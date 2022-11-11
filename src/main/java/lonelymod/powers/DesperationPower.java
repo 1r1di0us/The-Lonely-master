@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
@@ -30,14 +30,14 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     private int turnAmount;
 
     public DesperationPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
 
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.turnAmount = amount;
+        this.turnAmount = this.amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -53,12 +53,13 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void onAfterCardPlayed(AbstractCard usedCard) {
-        if (AbstractDungeon.player.energy.energy == 0) {
+        if (EnergyPanel.getCurrentEnergy() - usedCard.cost == 0) {
             if (this.turnAmount > 0) {
                 this.turnAmount--;
-                AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
-                if (!AbstractDungeon.player.hasPower(makeID("DesperatePower"))) {
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DesperatePower(AbstractDungeon.player)));
+                flash();
+                addToBot(new GainEnergyAction(1));
+                if (!this.owner.hasPower(makeID("DesperatePower"))) {
+                    addToBot(new ApplyPowerAction(this.owner, this.owner, new DesperatePower(this.owner)));
                 }
             }
         }
@@ -71,7 +72,11 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (this.amount == 1) {
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        } else if (this.amount > 1) {
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+        }
     }
 
     @Override

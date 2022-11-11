@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
@@ -29,7 +29,7 @@ public class FinalDesperationPower extends AbstractEasyPower implements Cloneabl
     private int turnAmount;
 
     public FinalDesperationPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
 
@@ -57,17 +57,22 @@ public class FinalDesperationPower extends AbstractEasyPower implements Cloneabl
 
     @Override
     public void onAfterCardPlayed(AbstractCard usedCard) {
-        if (AbstractDungeon.player.energy.energy == 0) {
+        if (EnergyPanel.getCurrentEnergy() - usedCard.cost == 0) {
             if (this.turnAmount > 0) {
+                flash();
                 this.turnAmount--;
-                AbstractDungeon.actionManager.addToBottom(new DrawCardAction(1));
+                addToBot(new DrawCardAction(1));
             }
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (this.amount == 1) {
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        } else if (this.amount > 1) {
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+        }
     }
 
     @Override

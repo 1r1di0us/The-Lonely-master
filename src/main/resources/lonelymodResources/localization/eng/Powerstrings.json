@@ -7,6 +7,15 @@
       " #yDexterity."
     ]
   },
+  "${ModID}:FireArrowsPower": {
+    "NAME": "Fire",
+    "DESCRIPTIONS": [
+      "At the start of the next #y",
+      " turn, deal #y",
+      " turns, deal #y",
+      " damage."
+    ]
+  },
   "${ModID}:AnimalSavageryPower": {
     "NAME": "Animal Savagery",
     "DESCRIPTIONS": [
@@ -15,13 +24,11 @@
       " turns, lonelymod:Call lonelymod:Attack."
     ]
   },
-  "${ModID}:FireArrowsPower": {
-    "NAME": "Fire",
+  "${ModID}:StaminaPower": {
+    "NAME": "Stamina",
     "DESCRIPTIONS": [
-      "At the start of the next #y",
-      " turn, deal #y",
-      " turns, deal #y",
-      " damage."
+      "The next Block card you play will give you #b",
+      " more Block."
     ]
   },
   "${ModID}:OverflowingQuiverPower": {
@@ -32,17 +39,52 @@
       " Overflowing Quivers in your hand."
     ]
   },
-  "${ModID}:StaminaPower": {
-    "NAME": "Stamina",
+  "${ModID}:AncientPowerPower": {
+    "NAME":"Ancient Power",
     "DESCRIPTIONS": [
-      "The next Block card you play will give you #b",
-      " more Block."
+      "Whenever a card is Discarded during your turn, play it and Exhaust it."
+    ]
+  },
+  "${ModID}:BraveryPower": {
+    "NAME": "Bravery",
+    "DESCRIPTIONS": [
+      "At the start of your turn, if any non-minion enemy intends to attack, Gain #y",
+      " temporary Strength."
+    ]
+  },
+  "${ModID}:FoolishBraveryPower": {
+    "NAME": "Foolish Bravery",
+    "DESCRIPTIONS": [
+      "At the start of your turn, if any non-minion enemy intends to attack, Gain #y",
+      " temporary Dexterity."
+    ]
+  },
+  "${ModID}:DesperationPower": {
+    "NAME": "Desperation",
+    "DESCRIPTIONS": [
+      "The first #y",
+      " time you run out of energy each turn, gain [E], which you can only use on attacks.",
+      " times you run out of energy each turn, gain [E], which you can only use on attacks."
+    ]
+  },
+  "${ModID}:DesperatePower": {
+    "NAME": "Desperate",
+    "DESCRIPTIONS": [
+      "For the rest of the turn, you can only play attack cards."
+    ]
+  },
+  "${ModID}:FinalDesperationPower": {
+    "NAME": "Final Desperation",
+    "DESCRIPTIONS": [
+      "The first #y",
+      " time you run out of energy each turn, draw 1 card.",
+      " times you run out of energy each turn, draw 1 card."
     ]
   },
   "${ModID}:MuscleMemoryPower": {
     "NAME": "Muscle Memory",
     "DESCRIPTIONS": [
-      "Whenever a card lonelymod:Returns, temporarily reduce its cost by #y",
+      "Whenever a card Returns, temporarily reduce its cost by #y",
       "."
     ]
   },
@@ -63,8 +105,8 @@
     "NAME": "Wild Form",
     "DESCRIPTIONS": [
       "At the start of your turn, discard #y",
-      " random card and lonelymod:Call lonelymod:Attack.",
-      " random cards and lonelymod:Call lonelymod:Attack."
+      " random card and Call Attack.",
+      " random cards and Call Attack."
     ]
   }
 }

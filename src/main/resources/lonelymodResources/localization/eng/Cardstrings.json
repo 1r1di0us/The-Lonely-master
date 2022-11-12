@@ -29,7 +29,7 @@
   },
   "${ModID}:HailOfArrows": {
     "NAME": "Hail Of Arrows",
-    "DESCRIPTION": "Deal !D! damage to all enemies. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Return."
   },
   "${ModID}:MarkedArrow": {
     "NAME": "Marked Arrow",
@@ -96,6 +96,19 @@
     "NAME": "Unpredictable",
     "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
   },
+  "${ModID}:DoubleTeam": {
+    "NAME": "Double Team",
+    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain !B! Block X+1 times."
+  },
+  "${ModID}:EvilTalons": {
+    "NAME": "Evil Talons",
+    "DESCRIPTION": "Deal !D!x!M! damage. NL Gain !${ModID}:m2! Strength. NL Lose 2 Dexterity."
+  },
+  "${ModID}:Kill": {
+    "NAME": "Kill!",
+    "DESCRIPTION": "Deal !D! Damage. NL lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+  },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Next turn, create a copy of this card in your hand. NL lonelymod:Return."
@@ -105,13 +118,130 @@
     "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Gain [E]. NL Exhaust."
   },
+  "${ModID}:PreparatoryStrike": {
+    "NAME": "Preparatory Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor."
+  },
+  "${ModID}:RelentlessAssault": {
+    "NAME": "Relentless Assault",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
+  },
+  "${ModID}:RiskyMove": {
+    "NAME": "Risky Move",
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E][E]."
+  },
+  "${ModID}:SpareTheWeak": {
+    "NAME": "Spare The Weak",
+    "DESCRIPTION": "If this enemy is a minion, it flees combat. NL If it isn't, deal !D! damage."
+  },
+  "${ModID}:SingleOut": {
+    "NAME": "Single Out",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every other enemy in combat.",
+    "UPGRADE_DESCRIPTION": ""
+  },
   "${ModID}:ABrilliantIdea": {
     "NAME": "A Brilliant Idea",
     "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
+  "${ModID}:BrokenHeart": {
+    "NAME": "Broken Heart",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 Outburst into your draw pile."
+  },
+  "${ModID}:BrokenWill": {
+    "NAME": "Broken Will",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 Feign Weakness into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 Feign Weakness on top of your draw pile."
+  },
+  "${ModID}:BrokenSpirit": {
+    "NAME": "Broken Spirit",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 Primal Instinct into your draw pile."
+  },
+  "${ModID}:Capture": {
+    "NAME": "Capture",
+    "DESCRIPTION": "This turn, Whenever you attack this enemy, it temporarily loses !M! Strength"
+  },
+  "${ModID}:DarkRitual": {
+    "NAME": "Dark Ritual",
+    "DESCRIPTION": "Gain 1 Ritual. NL Discard !M! random cards.",
+    "UPGRADE_DESCRIPTION": "Gain 1 Ritual. NL Discard !M! random card."
+  },
+  "${ModID}:DogPile": {
+    "NAME": "Dog Pile",
+    "DESCRIPTION": "During the next !M! turns, whenever you gain Block, lonelymod:Call lonelymod:Protect. NL Gain !B! Block."
+  },
   "${ModID}:InstinctiveReaction": {
     "NAME": "Instinctive Reaction",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! cards. NL Gain [E][E]. NL Exhaust."
+  },
+  "${ModID}:KeepItTogether": {
+    "NAME": "Keep It Together",
+    "DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards.",
+    "UPGRADE_DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL draw !M! cards. lonelymod:Return."
+  },
+  "${ModID}:OvercomeWeakness": {
+    "NAME": "OvercomeWeakness",
+    "DESCRIPTION": "Gain !M! Vigor and !M! lonelymod:Stamina for every stack of debuffs you have."
+  },
+  "${ModID}:PartOfThePlan": {
+    "NAME": "Part Of The Plan",
+    "DESCRIPTION": "Gain !B! Block. Whenever you lonelymod:Plan, draw this card from your draw pile."
+  },
+  "${ModID}:Fetch": {
+    "NAME": "Fetch!",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL If your lonelymod:Companion attacks this enemy this turn, grant it 1 lonelymod:Food. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL Apply 1 lonelymod:Target. NL If your lonelymod:Companion attacks this enemy this turn, grant it 1 lonelymod:Food. NL Exhaust."
+  },
+  "${ModID}:TacticalMove": {
+    "NAME": "Tactical Move",
+    "DESCRIPTION": "If this enemy intends to attack, lonelymod:Call lonelymod:Protect. NL Otherwise, lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "If this enemy intends to attack, lonelymod:Call lonelymod:Protect. NL Otherwise, lonelymod:Call lonelymod:Attack. NL Draw !M! card."
+  },
+  "${ModID}:ThinkOutsideTheBox": {
+    "NAME": "Think Outside The Box",
+    "DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose a card to add into your hand."
+    ]
+  },
+  "${ModID}:TwistedMemory": {
+    "NAME": "Twisted Memory",
+    "DESCRIPTION": "Ethereal. NL This turn, gain !M! Strength and !${ModID}:m2! Dexterity. NL Shuffle 2 Dazed into your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL This turn, gain !M! Strength and !${ModID}:m2! Dexterity. NL Shuffle 2 Dazed into your draw pile."
+  },
+  "${ModID}:Unwavering": {
+    "NAME": "Unwavering",
+    "DESCRIPTION": "Ethereal. NL Gain Block equal to all enemies' combined Strength + !M!. NL lonelymod:Return."
+  },
+  "${ModID}:DefensiveReflexes": {
+    "NAME": "Defensive Reflexes",
+    "DESCRIPTION": "Whenever you draw an Unplayable card, gain !M! block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw an Unplayable card, gain !M! block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block."
+  },
+  "${ModID}:FearOfTheBeast": {
+    "NAME": "Fear Of The Beast",
+    "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! lonelymod:Stamina."
+  },
+  "${ModID}:MultiShot": {
+    "NAME": "Multi-Shot",
+    "DESCRIPTION": "Whenever you play an attack card, deal !M! damage to a random enemy.",
+    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !M! damage !${ModID}:m2! times to a random enemy"
+  },
+  "${ModID}:Motivation": {
+    "NAME": "Motivation",
+    "DESCRIPTION": "Grant your lonelymod:Companion !M! lonelymod:Food."
+  },
+  "${ModID}:PlanB": {
+    "NAME": "Plan B",
+    "DESCRIPTION": "Whenever you lonelymod:Plan, but don't select any cards, deal !M! damage to a random enemy."
+  },
+  "${ModID}:Recover": {
+    "NAME": "Recover",
+    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect action, Gain [E] and draw !M! card next turn."
+  },
+  "${ModID}:TwoStepsAhead": {
+    "NAME": "Two Steps Ahead",
+    "DESCRIPTION": "Whenever you lonelymod:Plan, lonelymod:Plan !M! more."
   },
   "${ModID}:AccursedBeak": {
     "NAME": "Accursed Beak",
@@ -138,7 +268,7 @@
   },
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",
-    "DESCRIPTION": "Deal !D! damage. NL Costs 1 less [E] for every card in your hand."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less [E] for every card in your hand."
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",

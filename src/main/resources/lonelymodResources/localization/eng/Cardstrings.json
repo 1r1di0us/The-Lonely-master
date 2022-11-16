@@ -103,7 +103,7 @@
   },
   "${ModID}:EvilTalons": {
     "NAME": "Evil Talons",
-    "DESCRIPTION": "Deal !D!x!M! damage. NL Gain !${ModID}:m2! Strength. NL Lose 2 Dexterity."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !${ModID}:m2! Strength. NL Lose 2 Dexterity."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
@@ -122,13 +122,13 @@
     "NAME": "Preparatory Strike",
     "DESCRIPTION": "Deal !D! damage. NL Gain !M! Vigor."
   },
-  "${ModID}:RelentlessAssault": {
-    "NAME": "Relentless Assault",
+  "${ModID}:RelentlessOnslaught": {
+    "NAME": "Relentless Onslaught",
     "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
   },
   "${ModID}:RiskyMove": {
     "NAME": "Risky Move",
-    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E][E]."
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E] [E]."
   },
   "${ModID}:SpareTheWeak": {
     "NAME": "Spare The Weak",
@@ -136,8 +136,7 @@
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every other enemy in combat.",
-    "UPGRADE_DESCRIPTION": ""
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every other enemy in combat."
   },
   "${ModID}:ABrilliantIdea": {
     "NAME": "A Brilliant Idea",

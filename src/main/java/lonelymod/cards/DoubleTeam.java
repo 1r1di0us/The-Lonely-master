@@ -17,7 +17,6 @@ public class DoubleTeam extends AbstractEasyCard {
         baseMagicNumber = magicNumber = 0;
         baseDamage = 5;
         baseBlock = 4;
-        exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

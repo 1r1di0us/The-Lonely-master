@@ -39,8 +39,17 @@
       " Overflowing Quivers in your hand."
     ]
   },
+  "${ModID}:ShockAndAwePower": {
+    "NAME": "Shock and Awe",
+    "DESCRIPTIONS": [
+      "At the start of the next turn, ",
+      "At the start of the next #y",
+      " turns, ",
+      " will be stunned."
+    ]
+  },
   "${ModID}:AncientPowerPower": {
-    "NAME":"Ancient Power",
+    "NAME": "Ancient Power",
     "DESCRIPTIONS": [
       "Whenever a card is Discarded during your turn, play it and Exhaust it."
     ]

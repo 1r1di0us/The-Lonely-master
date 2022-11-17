@@ -4,11 +4,10 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
+import lonelymod.cards.FeignWeakness;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.RelentlessOnslaught;
-import lonelymod.cards.RiskyMove;
-import lonelymod.cards.SingleOut;
+import lonelymod.cards.Outburst;
 import lonelymod.cards.SpareTheWeak;
 import lonelymod.cards.Strike;
 import lonelymod.relics.WolfPackPendant;
@@ -74,10 +73,9 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
-        retVal.add(RiskyMove.ID);
-        retVal.add(RelentlessOnslaught.ID);
         retVal.add(SpareTheWeak.ID);
-        retVal.add(SingleOut.ID);
+        retVal.add(Outburst.ID);
+        retVal.add(FeignWeakness.ID);
         return retVal;
     }
 

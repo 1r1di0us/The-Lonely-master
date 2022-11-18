@@ -3,6 +3,7 @@ package lonelymod.cards;
 import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -27,6 +28,11 @@ public class Bravery extends AbstractEasyCard {
         }
     }
     
+    @Override
+    public void onChoseThisOption() { //this happens when you choose this card when playing Lonely
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true, false));
+    }
+
     @Override
     public void upp() {
         upgradeSecondMagic(3);

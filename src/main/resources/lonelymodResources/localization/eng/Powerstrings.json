@@ -48,6 +48,14 @@
       " will be stunned."
     ]
   },
+  "${ModID}:DefyDeathPower": {
+    "NAME": "Defying Death",
+    "DESCRIPTIONS": [
+      "You cannot die. Lasts #y",
+      " turn.",
+      " turns."
+    ]
+  },
   "${ModID}:AncientPowerPower": {
     "NAME": "Ancient Power",
     "DESCRIPTIONS": [

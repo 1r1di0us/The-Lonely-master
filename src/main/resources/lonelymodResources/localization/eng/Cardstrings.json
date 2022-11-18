@@ -57,7 +57,8 @@
   },
   "${ModID}:ALittlePloy": {
     "NAME": "A Little Ploy",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! card.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
   },
   "${ModID}:AnimalSavagery": {
     "NAME": "Animal Savagery",
@@ -271,7 +272,8 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. Permanently remove a random card in your hand from your deck. NL End your turn. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Draw !M! cards. NL Permanently remove a random card in your hand from your deck. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Draw !${ModID}:m2! card. NL Permanently remove a random card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:Cycle": {
     "NAME": "Cycle",

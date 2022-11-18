@@ -16,7 +16,7 @@ public class OverflowingQuiver extends AbstractEasyCard {
 
     public OverflowingQuiver() {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 4;
+        baseDamage = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -26,6 +26,6 @@ public class OverflowingQuiver extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(1);
     }
 }

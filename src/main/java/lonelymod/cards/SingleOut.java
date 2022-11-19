@@ -16,7 +16,7 @@ public class SingleOut extends AbstractEasyCard {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseDamage = 4;
         baseBlock = 3;
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

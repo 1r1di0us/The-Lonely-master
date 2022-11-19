@@ -59,7 +59,7 @@ public class PlanAction extends AbstractGameAction {
         }
         if (this.duration == this.startingDuration) {
             //for (AbstractPower p : AbstractDungeon.player.powers)
-                //p.onScry(); 
+                //p.onPlan(selectedCards);
             if (AbstractDungeon.player.discardPile.isEmpty()) {
                 if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
                     AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();

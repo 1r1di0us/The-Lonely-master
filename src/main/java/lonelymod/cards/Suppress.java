@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.EasyXCostAction;
 
-public class DoubleTeam extends AbstractEasyCard {
-    public final static String ID = makeID("DoubleTeam");
+public class Suppress extends AbstractEasyCard {
+    public final static String ID = makeID("Suppress");
 
-    public DoubleTeam() {
+    public Suppress() {
         super(ID, -1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseMagicNumber = magicNumber = 0;
         baseDamage = 5;

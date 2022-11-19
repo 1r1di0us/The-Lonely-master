@@ -3,6 +3,8 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
+import lonelymod.cards.AccursedBeak;
+import lonelymod.cards.Counterattack;
 import lonelymod.cards.Defend;
 import lonelymod.cards.DefyDeath;
 import lonelymod.cards.Go;
@@ -74,6 +76,8 @@ public class LonelyCharacter extends CustomPlayer {
         retVal.add(Heel.ID);
         retVal.add(DefyDeath.ID);
         retVal.add(MentalOverload.ID);
+        retVal.add(Counterattack.ID);
+        retVal.add(AccursedBeak.ID);
         return retVal;
     }
 

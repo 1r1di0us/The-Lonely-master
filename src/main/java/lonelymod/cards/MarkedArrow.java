@@ -16,8 +16,8 @@ public class MarkedArrow extends AbstractEasyCard {
 
     public MarkedArrow() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 6;
-        baseMagicNumber = magicNumber = 1;
+        baseDamage = 4;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

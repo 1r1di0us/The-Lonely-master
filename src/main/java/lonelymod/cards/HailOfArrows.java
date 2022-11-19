@@ -13,7 +13,7 @@ public class HailOfArrows extends AbstractEasyCard {
 
     public HailOfArrows() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 5;
+        baseDamage = 6;
         this.isMultiDamage = true;
     }
 

@@ -15,7 +15,7 @@ public class InstinctiveReaction extends AbstractEasyCard {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 4;
         baseMagicNumber = magicNumber = 1;
-        baseSecondMagic = secondMagic = 2;
+        baseSecondMagic = secondMagic = 1;
         exhaust = true;
         isEthereal = true;
     }
@@ -28,6 +28,6 @@ public class InstinctiveReaction extends AbstractEasyCard {
 
     public void upp() {
         upgradeBlock(2);
-        upgradeMagicNumber(1);
+        upgradeSecondMagic(1);
     }
 }

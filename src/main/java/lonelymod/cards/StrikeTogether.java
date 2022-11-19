@@ -4,12 +4,16 @@ import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.orbs.WolfAttackAction;
 
 public class StrikeTogether extends AbstractEasyCard {
     public final static String ID = makeID("StrikeTogether");
+    private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(makeID("StrikeTogetherMessage"));
+    public static final String[] TEXT = uistring.TEXT;
 
     public StrikeTogether() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
@@ -22,6 +26,7 @@ public class StrikeTogether extends AbstractEasyCard {
         if (p.orbs.get(0) instanceof WolfAttackAction) {
             return true;
         }
+        this.cantUseMessage = TEXT[0];
         return false;
     }
     

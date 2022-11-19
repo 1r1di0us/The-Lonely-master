@@ -2,7 +2,7 @@ package lonelymod.cards;
 
 import static lonelymod.ModFile.makeID;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,6 +13,7 @@ public class SpareTheWeak extends AbstractEasyCard {
     public SpareTheWeak() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
         baseDamage = 16;
+        this.isMultiDamage = true;
         this.exhaust = true;
     }
 
@@ -21,10 +22,8 @@ public class SpareTheWeak extends AbstractEasyCard {
             if (mon.hasPower("Minion")) {
                 mon.escape();
             }
-            else {
-                dmg(mon, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-            }
         }
+        allDmg(AttackEffect.SLASH_HEAVY);
     }
 
     public void upp() {

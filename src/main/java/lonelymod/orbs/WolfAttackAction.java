@@ -69,7 +69,7 @@ public class WolfAttackAction extends CustomOrb {
     @Override
     public void onEvoke() { // 1.On Orb Evoke
 
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("RAGE")); // 1. Play a Jingle Sound. Because why not
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("JAW_WORM_DEATH")); // 1. Play a Jingle Sound. Because why not
         // For a list of sound effects you can use, look under com.megacrit.cardcrawl.audio.SoundMaster - you can see the list of keys you can use there. As far as previewing what they sound like, open desktop-1.0.jar with something like 7-Zip and go to audio. Reference the file names provided. (Thanks fiiiiilth)
 
     }
@@ -115,7 +115,7 @@ public class WolfAttackAction extends CustomOrb {
 
     @Override
     public void playChannelSFX() { // When you channel this orb, the JAW_WORM_DEATH sound plays.
-        CardCrawlGame.sound.play("JAW_WORM_DEATH", 0.1f);
+        CardCrawlGame.sound.play("RAGE", 0.1f);
     }
 
     @Override

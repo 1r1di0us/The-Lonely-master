@@ -15,7 +15,7 @@ public class EvilTalons extends AbstractEasyCard {
 
     public EvilTalons() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 5;
+        baseDamage = 4;
         baseMagicNumber = magicNumber = 2;
         baseSecondMagic = secondMagic = 5;
     }

@@ -3,13 +3,11 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import lonelymod.cards.AccursedBeak;
 import lonelymod.cards.Counterattack;
 import lonelymod.cards.Defend;
 import lonelymod.cards.DefyDeath;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.MentalOverload;
 import lonelymod.cards.Strike;
 import lonelymod.relics.WolfPackPendant;
 
@@ -75,9 +73,7 @@ public class LonelyCharacter extends CustomPlayer {
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
         retVal.add(DefyDeath.ID);
-        retVal.add(MentalOverload.ID);
         retVal.add(Counterattack.ID);
-        retVal.add(AccursedBeak.ID);
         return retVal;
     }
 
@@ -139,8 +135,8 @@ public class LonelyCharacter extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        System.out.println("YOU NEED TO SET getStartCardForEvent() in your " + getClass().getSimpleName() + " file!");
-        return null;
+        AbstractCard GremlinCard = new Go();
+        return GremlinCard;
     }
 
     @Override

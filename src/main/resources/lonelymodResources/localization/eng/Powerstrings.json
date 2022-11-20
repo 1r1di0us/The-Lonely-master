@@ -39,6 +39,45 @@
       " Overflowing Quivers in your hand."
     ]
   },
+  "${ModID}:DefensiveReflexesPower": {
+    "NAME": "Defensive Reflexes",
+    "DESCRIPTIONS": [
+      "Whenever you draw an Unplayable card, gain #y",
+      " Block. Whenever you draw an Autoplay card, gain #y",
+      " Block."
+    ]
+  },
+  "${ModID}:FearOfTheBeastPower": {
+    "NAME": "Fear Of The Beast",
+    "DESCRIPTIONS": [
+      "Whenever you Call Attack, gain #y",
+      " Stamina."
+    ]
+  },
+  "${ModID}:MultiShotPower": {
+    "NAME": "Multi-Shot",
+    "DESCRIPTIONS": [
+      "Whenver you play an Attack card, deal #y4 damage to #y",
+      "1 random enemy.",
+      " random enemies."
+    ]
+  },
+  "${ModID}:PlanBPower": {
+    "NAME": "Plan B",
+    "DESCRIPTIONS": [
+      "Whenever you Plan, but don't choose any cards, Deal #y",
+      " damage to a random enemy."
+    ]
+  },
+  "${ModID}:RecoveryPower": {
+    "NAME": "Recovery",
+    "DESCRIPTIONS": [
+      "Whenever your Companion Protects, gain #y",
+      " Energy and draw #y",
+      " Card next turn.",
+      " Cards next turn."
+    ]
+  },
   "${ModID}:ShockAndAwePower": {
     "NAME": "Shock and Awe",
     "DESCRIPTIONS": [

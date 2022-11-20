@@ -25,9 +25,7 @@ public class PlanAction extends AbstractGameAction {
     public static final String[] TEXT = uistring.TEXT;
 
     private float startingDuration;
-
     private AbstractEasyCard cardPlayed;
-
     private int improviseBlock;
 
     public PlanAction(int numCards) {
@@ -42,9 +40,9 @@ public class PlanAction extends AbstractGameAction {
         this.amount = numCards;
         this.cardPlayed = cardPlayed;
         this.improviseBlock = improviseBlock;
-        if (AbstractDungeon.player.hasPower(makeID("TwoStepsAheadPower"))) {
-            AbstractDungeon.player.getPower(makeID("TwoStepsAheadPower")).flash();;
-            this.amount += AbstractDungeon.player.getPower(makeID("TwoStepsAheadPower")).amount;
+        if (AbstractDungeon.player.hasPower(makeID("ThreeStepsAheadPower"))) {
+            AbstractDungeon.player.getPower(makeID("ThreeStepsAheadPower")).flash();;
+            this.amount += AbstractDungeon.player.getPower(makeID("ThreeStepsAheadPower")).amount;
         } 
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.startingDuration = Settings.ACTION_DUR_FAST;
@@ -58,8 +56,6 @@ public class PlanAction extends AbstractGameAction {
             return;
         }
         if (this.duration == this.startingDuration) {
-            //for (AbstractPower p : AbstractDungeon.player.powers)
-                //p.onPlan(selectedCards);
             if (AbstractDungeon.player.discardPile.isEmpty()) {
                 if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
                     AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
@@ -98,6 +94,8 @@ public class PlanAction extends AbstractGameAction {
                         AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
             }
         }
+        //for (AbstractPower p : AbstractDungeon.player.powers)
+                //p.onPlan(selectedCards);
         for (AbstractCard c : AbstractDungeon.player.drawPile.group)
             if (c instanceof AbstractEasyCard) {
                 AbstractEasyCard ce = (AbstractEasyCard)c;

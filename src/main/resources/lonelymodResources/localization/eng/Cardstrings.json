@@ -9,11 +9,12 @@
   },
   "${ModID}:Go": {
     "NAME": "Go!",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Heel": {
     "NAME": "Heel!",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",
@@ -47,8 +48,8 @@
     "NAME": "Plot To Kill",
     "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, gain [E]."
   },
-  "${ModID}:QuickDraw": {
-    "NAME": "Quick Draw",
+  "${ModID}:QuickThinking": {
+    "NAME": "Quick Thinking",
     "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, draw !M! cards."
   },
   "${ModID}:StrikeTogether": {
@@ -155,18 +156,19 @@
     "NAME": "Broken Spirit",
     "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 Primal Instinct into your draw pile."
   },
-  "${ModID}:Capture": {
-    "NAME": "Capture",
-    "DESCRIPTION": "This turn, Whenever you attack this enemy, it temporarily loses !M! Strength"
-  },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain 1 Ritual. NL Discard !M! random cards.",
-    "UPGRADE_DESCRIPTION": "Gain 1 Ritual. NL Discard !M! random card."
+    "DESCRIPTION": "Gain !M! Ritual. NL Discard !${ModID}:m2! random cards.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Discard !${ModID}:m2! random cards."
   },
   "${ModID}:DogPile": {
     "NAME": "Dog Pile",
     "DESCRIPTION": "During the next !M! turns, whenever you gain Block, lonelymod:Call lonelymod:Protect. NL Gain !B! Block."
+  },
+  "${ModID}:Fetch": {
+    "NAME": "Fetch!",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL If your lonelymod:Companion attacks this enemy this turn, grant it !M! lonelymod:Food. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL Apply !${ModID}:m2! lonelymod:Target. NL If your lonelymod:Companion attacks this enemy this turn, grant it !M! lonelymod:Food. NL Exhaust."
   },
   "${ModID}:InstinctiveReaction": {
     "NAME": "Instinctive Reaction",
@@ -186,10 +188,10 @@
     "NAME": "Part Of The Plan",
     "DESCRIPTION": "Gain !B! Block. Whenever you lonelymod:Plan, draw this card from your draw pile."
   },
-  "${ModID}:Fetch": {
-    "NAME": "Fetch!",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL If your lonelymod:Companion attacks this enemy this turn, grant it 1 lonelymod:Food. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL Apply 1 lonelymod:Target. NL If your lonelymod:Companion attacks this enemy this turn, grant it 1 lonelymod:Food. NL Exhaust."
+  "${ModID}:PinDown": {
+    "NAME": "Pin Down",
+    "DESCRIPTION": "This turn, whenever you attack an enemy, Apply !M! lonelymod:Target.",
+    "UPGRADE_DESCRIPTION": "This turn, whenever you attack an enemy, Apply !M! lonelymod:Target and !M! Vulnerable."
   },
   "${ModID}:TacticalMove": {
     "NAME": "Tactical Move",
@@ -235,12 +237,12 @@
     "NAME": "Plan B",
     "DESCRIPTION": "Whenever you lonelymod:Plan, but don't select any cards, deal !M! damage to a random enemy."
   },
-  "${ModID}:Recover": {
-    "NAME": "Recover",
+  "${ModID}:Recovery": {
+    "NAME": "Recovery",
     "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect action, Gain [E] and draw !M! card next turn."
   },
-  "${ModID}:TwoStepsAhead": {
-    "NAME": "Two Steps Ahead",
+  "${ModID}:ThreeStepsAhead": {
+    "NAME": "Three Steps Ahead",
     "DESCRIPTION": "Whenever you lonelymod:Plan, lonelymod:Plan !M! more."
   },
   "${ModID}:AccursedBeak": {
@@ -263,7 +265,7 @@
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
     "DESCRIPTION": "Deal !D! damage. NL Immediately perform your lonelymod:Companion lonelymod:Attack Action X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Immediately perform your lonelymod:Companion lonelymod:Attack Action X times."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Immediately perform your lonelymod:Companion lonelymod:Attack Action X+1 times."
   },
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",

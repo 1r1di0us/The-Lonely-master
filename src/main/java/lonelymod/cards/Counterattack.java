@@ -68,7 +68,7 @@ public class Counterattack extends AbstractEasyCard {
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
         if (mo.getIntentBaseDmg() >= 0 && !mo.isDeadOrEscaped()) {
-            this.baseDamage = mo.getIntentBaseDmg();
+            this.baseDamage = mo.getIntentDmg();
             this.baseMagicNumber = this.magicNumber = (int)ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
             super.calculateCardDamage(mo);
             //logger.info("Counterattack: " + this.damage + ", " + this.magicNumber + ".");

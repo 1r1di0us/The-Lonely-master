@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class QuickDraw extends AbstractEasyCard {
-    public final static String ID = makeID("QuickDraw");
+public class QuickThinking extends AbstractEasyCard {
+    public final static String ID = makeID("QuickThinking");
 
-    public QuickDraw() {
+    public QuickThinking() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 7;
         baseMagicNumber = magicNumber = 2;

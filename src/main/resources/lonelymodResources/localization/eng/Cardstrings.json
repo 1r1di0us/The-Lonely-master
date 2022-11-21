@@ -217,8 +217,8 @@
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",
-    "DESCRIPTION": "Whenever you draw an Unplayable card, gain !M! block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw an Unplayable card, gain !M! block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block."
+    "DESCRIPTION": "Whenever you draw an Unplayable card, gain !M! Block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw an Unplayable card, gain !M! Block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block."
   },
   "${ModID}:FearOfTheBeast": {
     "NAME": "Fear Of The Beast",
@@ -226,8 +226,8 @@
   },
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
-    "DESCRIPTION": "Whenever you play an attack card, deal !M! damage to a random enemy.",
-    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !M! damage !${ModID}:m2! times to a random enemy"
+    "DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemy.",
+    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemies"
   },
   "${ModID}:Motivation": {
     "NAME": "Motivation",

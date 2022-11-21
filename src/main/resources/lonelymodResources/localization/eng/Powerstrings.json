@@ -58,7 +58,7 @@
     "NAME": "Multi-Shot",
     "DESCRIPTIONS": [
       "Whenver you play an Attack card, deal #y4 damage to #y",
-      "1 random enemy.",
+      " random enemy.",
       " random enemies."
     ]
   },
@@ -76,6 +76,13 @@
       " Energy and draw #y",
       " Card next turn.",
       " Cards next turn."
+    ]
+  },
+  "${ModID}:ThreeStepsAheadPower": {
+    "NAME": "Three Steps Ahead",
+    "DESCRIPTIONS": [
+      "Whenever you Plan, Plan #y",
+      " more."
     ]
   },
   "${ModID}:ShockAndAwePower": {

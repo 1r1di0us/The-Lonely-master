@@ -51,6 +51,9 @@ public class PlanAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        //for (AbstractPower p : AbstractDungeon.player.powers) {
+        //  this.amount = p.onPlan(this.amount);
+        //}
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             this.isDone = true;
             return;
@@ -94,13 +97,19 @@ public class PlanAction extends AbstractGameAction {
                         AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
             }
         }
-        //for (AbstractPower p : AbstractDungeon.player.powers)
-                //p.onPlan(selectedCards);
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+        //for (AbstractCard c : AbstractDungeon.player.drawPile.group) {}
+        //for (AbstractCard c : AbstractDungeon.player.discardPile.group) {}
+        //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            //c.triggerOnPlan();
             if (c instanceof AbstractEasyCard) {
                 AbstractEasyCard ce = (AbstractEasyCard)c;
                 ce.triggerOnPlan();
             }
+        }
+        //for (AbstractPower p : AbstractDungeon.player.powers) {
+        //  p.postPlan(selectedCards.size());
+        //}
         tickDuration();
     }
 }

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import lonelymod.actions.EasyModalChoiceAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.EasyModalChoiceCard;
 
 import static lonelymod.ModFile.makeID;
 import static lonelymod.util.Wiz.*;

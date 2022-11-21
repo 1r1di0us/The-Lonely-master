@@ -1,6 +1,7 @@
-package lonelymod.cards;
+package lonelymod.cards.democards.complex;
 
 import basemod.AutoAdd;
+import lonelymod.cards.AbstractEasyCard;
 
 import static lonelymod.ModFile.makeID;
 

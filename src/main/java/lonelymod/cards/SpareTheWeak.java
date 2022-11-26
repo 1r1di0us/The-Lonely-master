@@ -27,6 +27,6 @@ public class SpareTheWeak extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(4);
+        upgradeDamage(5);
     }
 }

@@ -51,7 +51,9 @@
       "attack",
       "attack action",
       "Attack",
-      "Attack Action"
+      "Attack Action",
+      "attacks",
+      "Attacks"
     ],
     "DESCRIPTION": "An Action that focuses on dealing damage to a random enemy."
   },

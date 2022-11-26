@@ -15,6 +15,7 @@ public class MultiShot extends AbstractEasyCard {
     public MultiShot() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
+        baseSecondMagic = secondMagic = 4; //unnecessary except for card strings
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

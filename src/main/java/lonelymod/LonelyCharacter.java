@@ -10,6 +10,7 @@ import lonelymod.cards.Heel;
 import lonelymod.cards.PlanB;
 import lonelymod.cards.PlotToKill;
 import lonelymod.cards.Strike;
+import lonelymod.cards.StrikeTogether;
 import lonelymod.cards.ThreeStepsAhead;
 import lonelymod.relics.WolfPackPendant;
 
@@ -78,6 +79,7 @@ public class LonelyCharacter extends CustomPlayer {
         retVal.add(PlotToKill.ID);
         retVal.add(PlanB.ID);
         retVal.add(ThreeStepsAhead.ID);
+        retVal.add(StrikeTogether.ID);
         return retVal;
     }
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.core.Settings;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.cards.AbstractEasyCard;
 
 import static lonelymod.ModFile.makeOrbPath;
 
@@ -49,6 +51,13 @@ public class WolfProtectAction extends CustomOrb {
 
         angle = MathUtils.random(360.0f); // More Animation-related Numbers
         channelAnimTimer = 0.5f;
+
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c instanceof AbstractEasyCard) {
+                AbstractEasyCard ce = (AbstractEasyCard) c;
+                ce.triggerOnAbility();
+            }
+        }
     }
 
     @Override
@@ -69,10 +78,7 @@ public class WolfProtectAction extends CustomOrb {
 
     @Override
     public void onEvoke() { // 1.On Orb Evoke
-
         AbstractDungeon.actionManager.addToBottom(new SFXAction("BLOCK_BREAK")); // 1. Play a Jingle Sound. Because why not
-        // For a list of sound effects you can use, look under com.megacrit.cardcrawl.audio.SoundMaster - you can see the list of keys you can use there. As far as previewing what they sound like, open desktop-1.0.jar with something like 7-Zip and go to audio. Reference the file names provided. (Thanks fiiiiilth)
-
     }
 
     @Override
@@ -90,12 +96,11 @@ public class WolfProtectAction extends CustomOrb {
     
     @Override
     public void updateAnimation() {// You can totally leave this as is.
-        // If you want to create a whole new orb effect - take a look at conspire's Water Orb. It includes a custom sound, too!
         super.updateAnimation();
         angle += Gdx.graphics.getDeltaTime() * 45.0f;
         vfxTimer -= Gdx.graphics.getDeltaTime();
         if (vfxTimer < 0.0f) {
-            AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(cX, cY)); // This is the purple-sparkles in the orb. You can change this to whatever fits your orb.
+            AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(cX, cY));
             vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
         }
     }

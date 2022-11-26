@@ -4,11 +4,6 @@
         "Choose any number of cards to shuffle into your Draw Pile."
     ]
   },
-  "${ModID}:StrikeTogetherMessage": {
-    "TEXT": [
-      "Your Companion does not intend to Attack!"
-    ]
-  },
   "${ModID}:CounterattackMessage": {
     "TEXT": [
       "This enemy is not attacking you!"

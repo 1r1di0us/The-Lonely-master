@@ -54,7 +54,7 @@
   },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
-    "DESCRIPTION": "Deal !D! damage. NL Can only be played if your lonelymod:Companion intends to lonelymod:Attack."
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !M! additional damage."
   },
   "${ModID}:ALittlePloy": {
     "NAME": "A Little Ploy",
@@ -110,7 +110,7 @@
   },
   "${ModID}:ImpatientStrikes": {
     "NAME": "Impatient Strikes",
-    "DESCRIPTION": "TODO: Costs 1 less [E] for each lonelymod:Action you lonelymod:Call this turn. NL Deal !D! damage !M! times."
+    "DESCRIPTION": "TODO: Finish this. NL Costs 1 less [E] for each lonelymod:Action you lonelymod:Call this turn. NL Deal !D! damage !M! times."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
@@ -215,8 +215,8 @@
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",
-    "DESCRIPTION": "Whenever you draw an Unplayable card, gain !M! Block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw an Unplayable card, gain !M! Block. NL Whenever you draw an Autoplay card, gain !${ModID}:m2! Block."
+    "DESCRIPTION": "Whenever you draw a card, if it is Unplayable, gain !M! Block. NL If it is an lonleymod:Autoplay card, gain !${ModID}:m2! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a card, if it is Unplayable gain !M! Block. NL If it is an lonelymod:Autoplay card, gain !${ModID}:m2! Block."
   },
   "${ModID}:FearOfTheBeast": {
     "NAME": "Fear Of The Beast",

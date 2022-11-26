@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.powers.FearOfTheBeastPower;
 
 public class FearOfTheBeast extends AbstractEasyCard {
-    public final static String ID = makeID("PlanB");
+    public final static String ID = makeID("FearOfTheBeast");
 
     public FearOfTheBeast() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);

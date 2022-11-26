@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -66,13 +67,13 @@ public class ShockAndAwePower extends AbstractEasyPower implements CloneablePowe
     @Override
     public void updateDescription() {
         if (target == null || target.name == null && target.id == null) {
-            description = DESCRIPTIONS[0] + "target enemy" + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + FontHelper.colorString("target enemy", "r") + DESCRIPTIONS[3];
         } else if (target.name == null) {
-            description = DESCRIPTIONS[0] + target.id + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + FontHelper.colorString(target.id, "r") + DESCRIPTIONS[3];
         } else if (amount == 1) {
-            description = DESCRIPTIONS[0] + target.name + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + FontHelper.colorString(target.name, "r") + DESCRIPTIONS[3];
         } else if (amount > 1) {
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + target.name + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + FontHelper.colorString(target.name, "r") + DESCRIPTIONS[3];
         }
     }
 

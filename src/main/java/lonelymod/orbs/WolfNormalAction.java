@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
-import lonelymod.actions.CompanionAttackAction;
+import lonelymod.actions.WolfDamageAction;
 
 import static lonelymod.ModFile.makeOrbPath;
 
@@ -81,7 +81,7 @@ public class WolfNormalAction extends CustomOrb {
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new CompanionAttackAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL, false));
+                new WolfDamageAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL, false));
     }
 
     @Override

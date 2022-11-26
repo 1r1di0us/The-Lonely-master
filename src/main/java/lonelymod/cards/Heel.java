@@ -14,8 +14,8 @@ public class Heel extends AbstractEasyCard {
     public final static String ID = makeID("Heel");
 
     public Heel() {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.SELF);
-        this.baseDamage = 3;
+        super(ID, 2, CardType.ATTACK, CardRarity.BASIC, CardTarget.SELF_AND_ENEMY);
+        this.baseDamage = 9;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

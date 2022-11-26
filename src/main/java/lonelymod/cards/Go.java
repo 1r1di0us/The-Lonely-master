@@ -15,13 +15,14 @@ public class Go extends AbstractEasyCard {
     public final static String ID = makeID("Go");
 
     public Go() {
-        super(ID, 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 0;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (upgraded) {
-            addToBot(new ApplyPowerAction(p, m, new LockOnPower(m, this.magicNumber), this.magicNumber));
+            AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
+            addToBot(new ApplyPowerAction(targetMonster, p, new LockOnPower(targetMonster, this.magicNumber), this.magicNumber));
         }
         AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
     }

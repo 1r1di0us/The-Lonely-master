@@ -10,31 +10,38 @@
   "${ModID}:FireArrowsPower": {
     "NAME": "Fire",
     "DESCRIPTIONS": [
-      "At the start of the next #y",
-      " turn, deal #y",
-      " turns, deal #y",
+      "At the start of the next #b",
+      " turn, deal #b",
+      " turns, deal #b",
       " damage."
     ]
   },
   "${ModID}:AnimalSavageryPower": {
     "NAME": "Animal Savagery",
     "DESCRIPTIONS": [
-      "At the start of the next #y",
-      " turn, lonelymod:Call lonelymod:Attack.",
-      " turns, lonelymod:Call lonelymod:Attack."
+      "At the start of the next #b",
+      " turn, #yCall #yAttack.",
+      " turns, #yCall #yAttack."
     ]
   },
   "${ModID}:StaminaPower": {
     "NAME": "Stamina",
     "DESCRIPTIONS": [
-      "The next Block card you play will give you #b",
+      "The next #yBlock card you play will give you #b",
       " more Block."
+    ]
+  },
+  "${ModID}:FetchPower": {
+    "NAME": "Fetch",
+    "DESCRIPTIONS": [
+      "The next time your #yCompanion #yAttacks this enemy, grant #b",
+      " #yFood"
     ]
   },
   "${ModID}:OverflowingQuiverPower": {
     "NAME": "Overflowing Quiver Next Turn",
     "DESCRIPTIONS": [
-      "At the start of the next turn, create #y",
+      "At the start of the next turn, create #b",
       " Overflowing Quiver in your hand.",
       " Overflowing Quivers in your hand."
     ]
@@ -42,22 +49,22 @@
   "${ModID}:DefensiveReflexesPower": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTIONS": [
-      "Whenever you draw an Unplayable card, gain #y",
-      " Block. Whenever you draw an Autoplay card, gain #y",
+      "Whenever you draw an Unplayable card, gain #b",
+      " Block. Whenever you draw an Autoplay card, gain #b",
       " Block."
     ]
   },
   "${ModID}:FearOfTheBeastPower": {
     "NAME": "Fear Of The Beast",
     "DESCRIPTIONS": [
-      "Whenever you Call Attack, gain #y",
-      " Stamina."
+      "Whenever you Call Attack, gain #b",
+      " #yStamina."
     ]
   },
   "${ModID}:MultiShotPower": {
     "NAME": "Multi-Shot",
     "DESCRIPTIONS": [
-      "Whenver you play an Attack card, deal #y4 damage to #y",
+      "Whenver you play an Attack card, deal #y4 damage to #b",
       " random enemy.",
       " random enemies."
     ]
@@ -65,15 +72,15 @@
   "${ModID}:PlanBPower": {
     "NAME": "Plan B",
     "DESCRIPTIONS": [
-      "Whenever you Plan, but don't choose any cards, Deal #y",
+      "Whenever you #yPlan, but don't choose any cards, Deal #b",
       " damage to a random enemy."
     ]
   },
   "${ModID}:RecoveryPower": {
     "NAME": "Recovery",
     "DESCRIPTIONS": [
-      "Whenever your Companion Protects, gain #y",
-      " Energy and draw #y",
+      "Whenever your Companion Protects, gain #b",
+      " Energy and draw #b",
       " Card next turn.",
       " Cards next turn."
     ]
@@ -81,7 +88,7 @@
   "${ModID}:ThreeStepsAheadPower": {
     "NAME": "Three Steps Ahead",
     "DESCRIPTIONS": [
-      "Whenever you Plan, Plan #y",
+      "Whenever you #yPlan, #yPlan #b",
       " more."
     ]
   },
@@ -89,7 +96,7 @@
     "NAME": "Shock and Awe",
     "DESCRIPTIONS": [
       "At the start of the next turn, ",
-      "At the start of the next #y",
+      "At the start of the next #b",
       " turns, ",
       " will be stunned."
     ]
@@ -97,7 +104,7 @@
   "${ModID}:DefyDeathPower": {
     "NAME": "Defying Death",
     "DESCRIPTIONS": [
-      "You cannot die. Lasts #y",
+      "You cannot die. Lasts #b",
       " turn.",
       " turns."
     ]
@@ -105,29 +112,29 @@
   "${ModID}:AncientPowerPower": {
     "NAME": "Ancient Power",
     "DESCRIPTIONS": [
-      "Whenever a card is Discarded during your turn, play it and Exhaust it."
+      "Whenever a card is discarded during your turn, play it and #yExhaust it."
     ]
   },
   "${ModID}:BraveryPower": {
     "NAME": "Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any non-minion enemy intends to attack, Gain #y",
-      " temporary Strength."
+      "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
+      " temporary #yStrength."
     ]
   },
   "${ModID}:FoolishBraveryPower": {
     "NAME": "Foolish Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any non-minion enemy intends to attack, Gain #y",
-      " temporary Dexterity."
+      "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
+      " temporary #yDexterity."
     ]
   },
   "${ModID}:DesperationPower": {
     "NAME": "Desperation",
     "DESCRIPTIONS": [
-      "The first #y",
-      " time you run out of energy each turn, gain [E], which you can only use on attacks.",
-      " times you run out of energy each turn, gain [E], which you can only use on attacks."
+      "The first #b",
+      " time you run out of Energy each turn, gain #y1 Energy, which you can only use on attacks.",
+      " times you run out of Energy each turn, gain #y1 Energy, which you can only use on attacks."
     ]
   },
   "${ModID}:DesperatePower": {
@@ -139,37 +146,37 @@
   "${ModID}:FinalDesperationPower": {
     "NAME": "Final Desperation",
     "DESCRIPTIONS": [
-      "The first #y",
-      " time you run out of energy each turn, draw 1 card.",
-      " times you run out of energy each turn, draw 1 card."
+      "The first #b",
+      " time you run out of energy each turn, draw #y1 card.",
+      " times you run out of energy each turn, draw #y1 card."
     ]
   },
   "${ModID}:MuscleMemoryPower": {
     "NAME": "Muscle Memory",
     "DESCRIPTIONS": [
-      "Whenever a card Returns, temporarily reduce its cost by #y",
+      "Whenever a card #yReturns, temporarily reduce its cost by #b",
       "."
     ]
   },
   "${ModID}:ResolvePower": {
     "NAME": "Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose hp, gain #y",
-      " Plated Armor."
+      "Whenever you lose #rHP, gain #b",
+      " #yPlated #yArmor."
     ]
   },
   "${ModID}:SteelResolvePower": {
     "NAME": "Steel Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose hp, trigger Plated Armor"
+      "Whenever you lose #rHP, trigger #yPlated #yArmor"
     ]
   },
   "${ModID}:WildFormPower": {
     "NAME": "Wild Form",
     "DESCRIPTIONS": [
-      "At the start of your turn, discard #y",
-      " random card and Call Attack.",
-      " random cards and Call Attack."
+      "At the start of your turn, discard #b",
+      " random card and #yCall #yAttack.",
+      " random cards and #yCall #yAttack."
     ]
   }
 }

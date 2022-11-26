@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 
 import lonelymod.powers.DefyDeathPower;
 
@@ -16,22 +15,17 @@ public class DefyDeath extends AbstractEasyCard {
 
     public DefyDeath() {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
-        baseSecondMagic = secondMagic = 0;
+        baseMagicNumber = magicNumber = 3;
         this.exhaust = true;
     }
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DefyDeathPower(p, 1), 1));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, magicNumber), magicNumber));
-        if (upgraded)
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedPower(p, secondMagic), secondMagic));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GainStrengthPower(p, this.magicNumber), this.magicNumber));
     }
 
     public void upp() {
-        upgradeSecondMagic(1);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        upgradeMagicNumber(2);
     }
 }

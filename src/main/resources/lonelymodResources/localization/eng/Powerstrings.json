@@ -46,6 +46,24 @@
       " Overflowing Quivers in your hand."
     ]
   },
+  "${ModID}:DogPilePower": {
+    "NAME": "Dog Pile",
+    "DESCRIPTIONS": [
+      "During the next #b",
+      " turn, whenever you gain Block, #yCall #yProtect.",
+      " turns, whenever you gain Block, #yCall #yProtect."
+    ]
+  },
+  "${ModID}:PinDownPower": {
+    "NAME": "Pin Down",
+    "DESCRIPTIONS": [
+      "This turn, whenever you deal unblocked attack damage to an enemy, apply #b",
+      " #yVulnerable.",
+      " #yVulnerable and #b",
+      " #yTarget."
+
+    ]
+  },
   "${ModID}:DefensiveReflexesPower": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTIONS": [

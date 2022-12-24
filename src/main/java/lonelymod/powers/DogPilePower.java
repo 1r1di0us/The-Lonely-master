@@ -15,12 +15,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
-import lonelymod.orbs.WolfAttackAction;
+import lonelymod.orbs.WolfProtectAction;
 import lonelymod.util.TexLoader;
 
-public class AnimalSavageryPower extends AbstractEasyPower implements CloneablePowerInterface {
-   
-    public static final String POWER_ID = makeID("AnimalSavageryPower");
+public class DogPilePower extends AbstractEasyPower implements CloneablePowerInterface {
+
+    public static final String POWER_ID = makeID("DogPilePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -28,9 +28,9 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private boolean turnStart = false;
+    private boolean duringTurn;
 
-    public AnimalSavageryPower(AbstractCreature owner, int amount) {
+    public DogPilePower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -38,6 +38,8 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+
+        this.duringTurn = true;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,21 +54,32 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        turnStart = true;
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        if (isPlayer) {
+            this.duringTurn = false;
+        }
     }
 
     @Override
-    public void onChannel(AbstractOrb orb) {
-        if (turnStart == true) {
+    public void atStartOfTurn() {
+        this.duringTurn = true;
+    }
+
+    @Override
+    public void onGainedBlock(float blockAmount) {
+        if (blockAmount > 0.0f && duringTurn) {
             flash();
-            if (this.amount > 1) {
-                AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
-                this.amount -= 1;
-            }
-            else if (this.amount <= 1)
-                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
-            turnStart = false;
+            AbstractDungeon.player.channelOrb((AbstractOrb) new WolfProtectAction());
+        }
+    }
+
+    @Override
+    public void atEndOfRound() {
+        if (this.amount > 1) {
+            this.amount -= 1;
+        }
+        else if (this.amount <= 1) {
+            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
     }
 
@@ -81,6 +94,6 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public AbstractPower makeCopy() {
-        return new AnimalSavageryPower(this.owner, this.amount);
+        return new DogPilePower(this.owner, this.amount);
     }
 }

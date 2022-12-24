@@ -4,23 +4,23 @@ import static lonelymod.ModFile.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.LockOnPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
-import lonelymod.orbs.WolfAttackAction;
 import lonelymod.util.TexLoader;
 
-public class AnimalSavageryPower extends AbstractEasyPower implements CloneablePowerInterface {
-   
-    public static final String POWER_ID = makeID("AnimalSavageryPower");
+public class PinDownPower extends AbstractEasyPower implements CloneablePowerInterface {
+    
+    public static final String POWER_ID = makeID("PinDownPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -28,9 +28,9 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private boolean turnStart = false;
+    private boolean upgraded;
 
-    public AnimalSavageryPower(AbstractCreature owner, int amount) {
+    public PinDownPower(AbstractCreature owner, int amount, boolean upgraded) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -38,6 +38,7 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.upgraded = upgraded;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,35 +53,33 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        turnStart = true;
-    }
-
-    @Override
-    public void onChannel(AbstractOrb orb) {
-        if (turnStart == true) {
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             flash();
-            if (this.amount > 1) {
-                AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
-                this.amount -= 1;
+            addToBot(new ApplyPowerAction(target, this.owner, new VulnerablePower(target, this.amount, false), this.amount));
+            if (this.upgraded) {
+                addToBot(new ApplyPowerAction(target, this.owner, new LockOnPower(target, this.amount), this.amount));
             }
-            else if (this.amount <= 1)
-                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
-            turnStart = false;
         }
     }
 
     @Override
+    public void atEndOfRound() {
+        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+    }
+    
+    @Override
     public void updateDescription() {
-        if (amount == 1) {
+        if (!this.upgraded) {
             description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        } else if (amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+        }
+        else {
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
         }
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new AnimalSavageryPower(this.owner, this.amount);
+        return new PinDownPower(this.owner, this.amount, this.upgraded);
     }
 }

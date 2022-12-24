@@ -5,13 +5,14 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
 import lonelymod.cards.DefyDeath;
+import lonelymod.cards.DogPile;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.PlanB;
+import lonelymod.cards.PartOfThePlan;
+import lonelymod.cards.PinDown;
 import lonelymod.cards.PlotToKill;
 import lonelymod.cards.Strike;
-import lonelymod.cards.StrikeTogether;
-import lonelymod.cards.ThreeStepsAhead;
+import lonelymod.cards.TacticalMove;
 import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
@@ -76,10 +77,11 @@ public class LonelyCharacter extends CustomPlayer {
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
         retVal.add(DefyDeath.ID);
+        retVal.add(DogPile.ID);
+        retVal.add(PinDown.ID);
+        retVal.add(TacticalMove.ID);
         retVal.add(PlotToKill.ID);
-        retVal.add(PlanB.ID);
-        retVal.add(ThreeStepsAhead.ID);
-        retVal.add(StrikeTogether.ID);
+        retVal.add(PartOfThePlan.ID);
         return retVal;
     }
 

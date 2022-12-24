@@ -14,23 +14,44 @@ public class Unwavering extends AbstractEasyCard {
     public Unwavering() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 12;
+        this.baseMagicNumber = this.magicNumber = 12;
+        //magic number just sets the thing in the description
         this.isEthereal = true;
-
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int additionalBlock = 0;
-        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon.hasPower("Strength")) {
-                additionalBlock += mon.getPower("Strength").amount;
-            }
-        }
-        this.block += additionalBlock;
         blck();
         ReturnField.willReturn.set(this, true);
     }
 
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        int realBaseBlock = this.baseBlock;
+        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mon.hasPower("Strength")) {
+                this.baseBlock += mon.getPower("Strength").amount;
+            }
+        }
+        super.calculateCardDamage(mo);
+        this.baseBlock = realBaseBlock;
+        this.isBlockModified = (this.block != this.baseBlock);
+    }
+
+    @Override
+    public void applyPowers() {
+        int realBaseBlock = this.baseBlock;
+        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mon.hasPower("Strength")) {
+                this.baseBlock += mon.getPower("Strength").amount;
+            }
+        }
+        super.applyPowers();
+        this.baseBlock = realBaseBlock;
+        this.isBlockModified = (this.block != this.baseBlock);
+    }
+
     public void upp() {
         upgradeBlock(3);
+        upgradeMagicNumber(3);
     }
 }

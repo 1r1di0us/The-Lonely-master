@@ -211,7 +211,7 @@
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
-    "DESCRIPTION": "Ethereal. NL Gain Block equal to all enemies' combined Strength + !M!. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. Gain additional Block equal to the enemies' combined Strength. NL lonelymod:Return."
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",

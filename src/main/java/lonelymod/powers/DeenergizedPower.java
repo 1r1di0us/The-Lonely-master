@@ -14,12 +14,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
-import lonelymod.actions.CompanionProtectAbilityAction;
 import lonelymod.util.TexLoader;
 
-public class DogPilePower extends AbstractEasyPower implements CloneablePowerInterface {
-
-    public static final String POWER_ID = makeID("DogPilePower");
+public class DeenergizedPower extends AbstractEasyPower implements CloneablePowerInterface {
+    public static final String POWER_ID = makeID("DeenergizedPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -27,18 +25,16 @@ public class DogPilePower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private boolean duringTurn;
-
-    public DogPilePower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
+    public DeenergizedPower(AbstractCreature owner, int energyAmt) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, energyAmt);
 
         this.owner = owner;
 
-        type = PowerType.BUFF;
+        type = PowerType.DEBUFF;
         isTurnBased = true;
-        this.amount = amount;
-
-        this.duringTurn = true;
+        this.amount = energyAmt;
+        if (this.amount >= 999)
+            this.amount = 999;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -51,48 +47,32 @@ public class DogPilePower extends AbstractEasyPower implements CloneablePowerInt
 
         updateDescription();
     }
-
-    @Override
-    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (isPlayer) {
-            this.duringTurn = false;
-        }
+  
+    //I have no clue what this is supposed to do...? is this necessary?
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if (this.amount >= 999)
+        this.amount = 999; 
     }
-
-    @Override
-    public void atStartOfTurn() {
-        this.duringTurn = true;
-    }
-
-    @Override
-    public void onGainedBlock(float blockAmount) {
-        if (blockAmount > 0.0f && duringTurn) {
-            flash();
-            AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
-        }
-    }
-
-    @Override
-    public void atEndOfRound() {
-        if (this.amount > 1) {
-            this.amount -= 1;
-        }
-        else if (this.amount <= 1) {
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
-        }
-    }
-
+    
     @Override
     public void updateDescription() {
-        if (amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        } else if (amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
-        }
+        if (this.amount == 1) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        } else {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+        } 
+    }
+    
+    @Override
+    public void onEnergyRecharge() {
+        flash();
+        AbstractDungeon.player.loseEnergy(this.amount);
+        addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new DogPilePower(this.owner, this.amount);
+        return new DeenergizedPower(this.owner, this.amount);
     }
 }

@@ -1,33 +1,65 @@
 {
-  "${ModID}:WolfNormalAction": {
+  "${ModID}:WolfBasicAbility": {
     "NAME": "Bark",
     "DESCRIPTION": [
-      "#yPassive: Ivan deals #y",
-      " damage to a random enemy. Will prioritize enemies with Target.",
+      "#yPassive: Ivan deals #b",
+      " damage to a random enemy. Will prioritize enemies with #yTarget.",
       ""
     ]
   },
-  "${ModID}:WolfAttackAction": {
+  "${ModID}:WolfAttackAbility": {
     "NAME": "Bite",
     "DESCRIPTION": [
-      "#yPassive: Ivan deals #y",
-      " damage to a random enemy, prioritizing enemies with Target.",
-      " NL Additionally grants Block equal to half the damage dealt.",
+      "#yPassive: Ivan deals #b",
+      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      " NL Additionally grants #yBlock equal to half the damage dealt.",
       ""
     ]
   },
-  "${ModID}:WolfProtectAction": {
+  "${ModID}:WolfProtectAbility": {
     "NAME": "Poise",
     "DESCRIPTION": [
       "#yPassive: Ivan grants you #b",
-      " Block and #y3 Vigor.",
+      " #yBlock and 3 #yVigor.",
       ""
     ]
   },
-  "${ModID}:WolfSpecialAction": {
+  "${ModID}:WolfSpecialAbility": {
     "NAME": "Howl",
     "DESCRIPTION": [
-      "#yPassive: Ivan applies #y3 Weak and Vulnerable to ALL enemies, and gains #y3 Food.",
+      "#yPassive: Ivan applies 3 #yWeak and #yVulnerable to ALL enemies, and gains 3 #yFood.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdBasicAbility": {
+    "NAME": "Swoop",
+    "DESCRIPTION": [
+      "#yPassive: Omen deals #b",
+      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdAttackAbility": {
+    "NAME": "Peck",
+    "DESCRIPTION": [
+      "#yPassive: Omen deals #b",
+      " damage #b",
+      " times, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdProtectAbility": {
+    "NAME": "Screech",
+    "DESCRIPTION": [
+      "#yPassive: Omen grants you #b",
+      " #yBlock twice, and applies 2 #yVulnerable to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdSpecialAbility": {
+    "NAME": "Sharpen",
+    "DESCRIPTION": [
+      "#yPassive: Omen gains 1 #yFood. Omen's #yAttack, Peck, now hits 2 more times",
       ""
     ]
   }

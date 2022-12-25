@@ -79,5 +79,4 @@ public class FinalDesperationPower extends AbstractEasyPower implements Cloneabl
     public AbstractPower makeCopy() {
         return new FinalDesperationPower(this.owner, this.amount);
     }
-    
 }

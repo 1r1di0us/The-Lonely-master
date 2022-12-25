@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
-import lonelymod.orbs.WolfAttackAction;
-import lonelymod.orbs.WolfProtectAction;
+import lonelymod.actions.CompanionAttackAbilityAction;
+import lonelymod.actions.CompanionProtectAbilityAction;
 
 public class TacticalMove extends AbstractEasyCard{
     public final static String ID = makeID("TacticalMove");
@@ -22,10 +22,10 @@ public class TacticalMove extends AbstractEasyCard{
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new VigorPower(p, this.magicNumber), this.magicNumber));
         if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() > 0) {
-            p.channelOrb(new WolfProtectAction());
+            AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
         }
         else if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() <= 0) {
-            p.channelOrb(new WolfAttackAction());
+            AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
         }
     }
 

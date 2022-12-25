@@ -3,14 +3,13 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import lonelymod.cards.BrokenHeart;
 import lonelymod.cards.Defend;
-import lonelymod.cards.DefyDeath;
+import lonelymod.cards.Forgetful;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
-import lonelymod.cards.OvercomeWeakness;
+import lonelymod.cards.ImpatientStrikes;
+import lonelymod.cards.Omen;
 import lonelymod.cards.Strike;
-import lonelymod.cards.Unwavering;
 import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
@@ -74,10 +73,9 @@ public class LonelyCharacter extends CustomPlayer {
         }
         retVal.add(Go.ID);
         retVal.add(Heel.ID);
-        retVal.add(DefyDeath.ID);
-        retVal.add(Unwavering.ID);
-        retVal.add(BrokenHeart.ID);
-        retVal.add(OvercomeWeakness.ID);
+        retVal.add(Forgetful.ID);
+        retVal.add(Omen.ID);
+        retVal.add(ImpatientStrikes.ID);
         return retVal;
     }
 

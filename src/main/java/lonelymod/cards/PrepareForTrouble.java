@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.orbs.WolfProtectAction;
+import lonelymod.actions.CompanionProtectAbilityAction;
 import lonelymod.powers.StaminaPower;
 
 public class PrepareForTrouble extends AbstractEasyCard {
@@ -29,7 +28,7 @@ public class PrepareForTrouble extends AbstractEasyCard {
         if (upgraded) {
             AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
         }
-        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfProtectAction());
+        AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
     }
 
     public void upp() {

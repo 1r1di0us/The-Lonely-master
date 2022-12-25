@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
-import lonelymod.orbs.WolfAttackAction;
+import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.util.TexLoader;
 
 public class AnimalSavageryPower extends AbstractEasyPower implements CloneablePowerInterface {
@@ -61,7 +61,7 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
         if (turnStart == true) {
             flash();
             if (this.amount > 1) {
-                AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
+                AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
                 this.amount -= 1;
             }
             else if (this.amount <= 1)

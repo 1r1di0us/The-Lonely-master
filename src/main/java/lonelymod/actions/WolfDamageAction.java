@@ -21,10 +21,9 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
 public class WolfDamageAction extends AbstractGameAction {
     private DamageInfo info;
-    
-    private int target;
 
     private AbstractMonster targetMonster;
+    private boolean targeted = false;
     private boolean bite;
     
     public WolfDamageAction(DamageInfo info, AbstractGameAction.AttackEffect effect, boolean bite) {
@@ -32,22 +31,12 @@ public class WolfDamageAction extends AbstractGameAction {
       this.attackEffect = effect;
       this.actionType = AbstractGameAction.ActionType.DAMAGE;
       this.attackEffect = AbstractGameAction.AttackEffect.NONE;
-      this.target = 0;
-      this.targetMonster = null;
+      this.targetMonster = getTarget();
       this.bite = bite;
     }
     
     public void update() {
-        for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (m.hasPower(LockOnPower.POWER_ID)) {
-                if (target < m.getPower(LockOnPower.POWER_ID).amount) {
-                    target = m.getPower(LockOnPower.POWER_ID).amount;
-                    targetMonster = m;
-                }
-            }
-        }
-        if (target == 0) {
-            targetMonster = AbstractDungeon.getRandomMonster();
+        if (!targeted) {
             if (targetMonster != null) {
                 if (bite) { //If this was called by WolfAttack because bite needs its own thing to happen
                     //targetMonster.powers.triggerOnAttacked;
@@ -79,5 +68,24 @@ public class WolfDamageAction extends AbstractGameAction {
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, 2), 2));
         }
         this.isDone = true;
+    }
+
+    private AbstractMonster getTarget() {
+        int target = 0;
+        AbstractMonster targetMonster = null;
+        for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (m.hasPower(LockOnPower.POWER_ID)) {
+                if (target < m.getPower(LockOnPower.POWER_ID).amount) {
+                    target = m.getPower(LockOnPower.POWER_ID).amount;
+                    targetMonster = m;
+                }
+            }
+        }
+        if (target == 0)
+            targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        else {
+            this.targeted = true;
+        }
+        return targetMonster;
     }
 }

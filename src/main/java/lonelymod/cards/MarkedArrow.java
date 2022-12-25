@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 
-import lonelymod.orbs.WolfAttackAction;
+import lonelymod.actions.CompanionAttackAbilityAction;
 
 public class MarkedArrow extends AbstractEasyCard {
     public final static String ID = makeID("MarkedArrow");
@@ -23,7 +23,7 @@ public class MarkedArrow extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new LockOnPower(m, magicNumber)));
-        AbstractDungeon.player.channelOrb(new WolfAttackAction());
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
     }
 
     public void upp() {

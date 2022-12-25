@@ -18,10 +18,10 @@
     "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to lonelymod:Protect whoeever summoned it."
   },
   {
-    "PROPER_NAME": "Companion Action",
+    "PROPER_NAME": "Companion Ability",
     "NAMES": [
-      "Companion_Action",
-      "companion_action",
+      "Companion_Ability",
+      "companion_ability",
       "Companion",
       "Companion's",
       "companion",
@@ -29,57 +29,57 @@
       "Call",
       "CALL"
     ],
-    "DESCRIPTION": "Tell your Companion to perform this action at the end of your turn. NL Calling another action will override this action. NL You can see your companion's actions by hovering over them."
+    "DESCRIPTION": "Tell your Companion to perform this ability at the end of your turn. NL Calling another ability will override this ability. NL TODO:You can see your companion's abilities by hovering over them."
   },
   {
-    "PROPER_NAME": "Basic Action",
+    "PROPER_NAME": "Basic Ability",
     "NAMES": [
-      "Basic_Action",
-      "basic_action",
+      "Basic_Ability",
+      "basic_ability",
       "basic",
-      "basic action",
+      "basic ability",
       "Basic",
-      "Basic Action"
+      "Basic Ability"
     ],
-    "DESCRIPTION": "This is the default and weakest Action, which is called at the beginning of your turn."
+    "DESCRIPTION": "This is the default and weakest Ability, which is called at the beginning of your turn."
   },
   {
-    "PROPER_NAME": "Attack Action",
+    "PROPER_NAME": "Attack Ability",
     "NAMES": [
-      "Attack_Action",
-      "attack_action",
+      "Attack_Ability",
+      "attack_ability",
       "attack",
-      "attack action",
+      "attack ability",
       "Attack",
-      "Attack Action",
+      "Attack Ability",
       "attacks",
       "Attacks"
     ],
-    "DESCRIPTION": "An Action that focuses on dealing damage to a random enemy."
+    "DESCRIPTION": "An Ability that focuses on dealing damage to a random enemy."
   },
   {
-    "PROPER_NAME": "Protect Action",
+    "PROPER_NAME": "Protect Ability",
     "NAMES": [
-      "Protect_Action",
-      "protect_action",
+      "Protect_Ability",
+      "protect_ability",
       "protect",
-      "protect action",
+      "protect ability",
       "Protect",
-      "Protect Action"
+      "Protect Ability"
     ],
-    "DESCRIPTION": "An Action focusing on granting you Block, or weakening a random enemy."
+    "DESCRIPTION": "An Ability focusing on granting you Block, or weakening a random enemy."
   },
   {
-    "PROPER_NAME": "Special Action",
+    "PROPER_NAME": "Special Ability",
     "NAMES": [
-      "Special_Action",
-      "special_action",
+      "Special_Ability",
+      "special_ability",
       "special",
-      "special action",
+      "special ability",
       "Special",
-      "Special Action"
+      "Special Ability"
     ],
-    "DESCRIPTION": "The most powerful Action. NL Hover over your companion to see what it does."
+    "DESCRIPTION": "The most powerful Ability. NL Hover over your companion to see what it does."
   },
   {
     "PROPER_NAME": "Food",
@@ -99,7 +99,7 @@
       "Target",
       "Target."
     ],
-    "DESCRIPTION": "Companions will target this enemy instead of a random enemy with their Actions, and they will deal 50% more damage to it."
+    "DESCRIPTION": "Companions will target this enemy instead of a random enemy with their Abilitys, and they will deal 50% more damage to it."
   },
   {
     "PROPER_NAME": "Return",

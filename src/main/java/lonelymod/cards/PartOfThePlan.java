@@ -29,6 +29,6 @@ public class PartOfThePlan extends AbstractEasyCard{
 
     public void upp() {
         upgradeMagicNumber(1);
-        upgradeBlock(2);
+        upgradeBlock(1);
     }
 }

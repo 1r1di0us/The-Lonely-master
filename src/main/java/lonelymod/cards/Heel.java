@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.orbs.WolfProtectAction;
+import lonelymod.actions.CompanionProtectAbilityAction;
 
 public class Heel extends AbstractEasyCard {
     public final static String ID = makeID("Heel");
@@ -20,7 +19,7 @@ public class Heel extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AttackEffect.BLUNT_LIGHT);
-        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfProtectAction());
+        AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
     }
 
     public void upp() {

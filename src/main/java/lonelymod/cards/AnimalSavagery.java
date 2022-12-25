@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.orbs.WolfAttackAction;
+import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.powers.AnimalSavageryPower;
 
 public class AnimalSavagery extends AbstractEasyCard{
@@ -20,7 +19,7 @@ public class AnimalSavagery extends AbstractEasyCard{
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AnimalSavageryPower(p, this.magicNumber), this.magicNumber));
     }
 

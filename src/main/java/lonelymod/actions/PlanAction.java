@@ -79,14 +79,13 @@ public class PlanAction extends AbstractGameAction {
             } 
             AbstractDungeon.gridSelectScreen.open(tmpGroup, this.amount, true, TEXT[0]);
         } else if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
-                if (cardPlayed != null) {
-                    AbstractDungeon.player.discardPile.moveToDeck(c, true);
-                    if (cardPlayed instanceof ABrilliantIdea)
-                        AbstractDungeon.actionManager.addToBottom(new UpgradeSpecificCardAction(c));
-                    if (cardPlayed != null && cardPlayed instanceof Improvise)
-                        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, improviseBlock));
-                }
+            for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+                AbstractDungeon.player.discardPile.moveToDeck(c, true);
+                if (cardPlayed != null && cardPlayed instanceof ABrilliantIdea)
+                    AbstractDungeon.actionManager.addToBottom(new UpgradeSpecificCardAction(c));
+                else if (cardPlayed != null && cardPlayed instanceof Improvise)
+                    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, improviseBlock));
+            }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
         //for (AbstractCard c : AbstractDungeon.player.drawPile.group) {}

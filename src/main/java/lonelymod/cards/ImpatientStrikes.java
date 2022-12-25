@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class ImpatientStrikes extends AbstractEasyCard {
     public final static String ID = makeID("ImpatientStrikes");
+    public static int attackCounter;
 
     public ImpatientStrikes() {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
@@ -24,15 +25,18 @@ public class ImpatientStrikes extends AbstractEasyCard {
     }
 
     @Override
-    public void triggerOnAbility() {
-        setCostForTurn(this.costForTurn - 1);
+    public void triggerOnAbility(int abilityType) {
+        if (abilityType == 2) {
+            attackCounter++;
+            setCostForTurn(this.cost - attackCounter);
+        }
     }
 
-    //@Override
-    //public void triggerWhenDrawn() {
-    //    super.triggerWhenDrawn();
-    //    setCostForTurn(this.cost - GameActionManager.abilitiesCalledThisTurn); //Its gonna stay broken until I make actual companions
-    //}
+    @Override
+    public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
+        setCostForTurn(this.cost - attackCounter);
+    }
 
     public void upp() {
         upgradeDamage(3);

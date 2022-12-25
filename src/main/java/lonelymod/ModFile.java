@@ -4,8 +4,11 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import lonelymod.actions.CompanionAttackAbilityAction;
+import lonelymod.actions.CompanionBasicAbilityAction;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
+import lonelymod.cards.ImpatientStrikes;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.fields.ReturnField;
@@ -38,7 +41,8 @@ public class ModFile implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        OnPlayerTurnStartPostDrawSubscriber {
+        OnPlayerTurnStartPostDrawSubscriber,
+        OnPlayerTurnStartSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -177,7 +181,7 @@ public class ModFile implements
 
     @Override
     public void receiveOnPlayerTurnStartPostDraw() {
-        // This makes the return mechanic work.
+        // This makes the return mechanic work:
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (ReturnField.willReturn.get(c)) {
                 ReturnField.willReturn.set(c, false);
@@ -190,7 +194,7 @@ public class ModFile implements
                 AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
             }
         }
-        //Do this if you want it to draw BEFORE drawing the first 5 cards:
+        //Do this with the external method if you want it to draw BEFORE drawing the first 5 cards:
         //AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
         //AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
     }
@@ -204,4 +208,15 @@ public class ModFile implements
         }
         return false;
     }*/
+    
+    @Override
+    public void receiveOnPlayerTurnStart() {
+        //calls start of turn ability and resets attackCounter (which is used for ImpatientStrikes)
+        ImpatientStrikes.attackCounter = 0;
+        if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) {
+            AbstractDungeon.actionManager.addToTop(new CompanionAttackAbilityAction());
+        } else {
+            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
+        }
+    }
 }

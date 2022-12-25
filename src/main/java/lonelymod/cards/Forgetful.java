@@ -4,8 +4,10 @@ import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -28,6 +30,7 @@ public class Forgetful extends AbstractEasyCard {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PanicAttack(), 1, true, true));
         else if (upgraded)
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PanicAttack(), 1, false, true));
+        AbstractDungeon.actionManager.addToBottom(new WaitAction(Settings.ACTION_DUR_MED)); //0.5f
     }
 
     public void upp() {

@@ -230,6 +230,7 @@ public abstract class AbstractEasyCard extends CustomCard {
     public void triggerOnPlan() {
     }
 
-    public void triggerOnAbility() { //Ability is used to differentiate from actions
+    public void triggerOnAbility(int abilityType) {
+        //1 = basic, 2 = attack, 3 = protect, 4 = special
     }
 }

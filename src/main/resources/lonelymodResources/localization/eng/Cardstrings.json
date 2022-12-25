@@ -110,7 +110,7 @@
   },
   "${ModID}:ImpatientStrikes": {
     "NAME": "Impatient Strikes",
-    "DESCRIPTION": "TODO: Fix this. NL Costs 1 less [E] for each lonelymod:Action you lonelymod:Call this turn. NL Deal !D! damage !M! times."
+    "DESCRIPTION": "TODO: Fix this. NL Costs 1 less [E] for each lonelymod:Ability you lonelymod:Call this turn. NL Deal !D! damage !M! times."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
@@ -207,7 +207,7 @@
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL This turn, gain !M! Strength. NL Next turn, draw !${ModID}:m2! less cards. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL This turn, gain !M! Strength. NL Start the next turn with !${ModID}:m2! less energy. NL Exhaust."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -237,7 +237,7 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect action, Gain [E] and draw !M! card next turn."
+    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect Ability, Gain [E] and draw !M! card next turn."
   },
   "${ModID}:ThreeStepsAhead": {
     "NAME": "Three Steps Ahead",
@@ -262,8 +262,8 @@
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
-    "DESCRIPTION": "Deal !D! damage. NL Immediately perform your lonelymod:Companion lonelymod:Attack Action X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Immediately perform your lonelymod:Companion lonelymod:Attack Action X+1 times."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack, which your lonelymod:Companion immediately performs X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack, which your lonelymod:Companion immediately performs X+1 times."
   },
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",
@@ -292,7 +292,7 @@
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 3 cards randomly, lonelymod:Summon lonelymod:Omen, and shuffle !M! Primal Instinct's into your draw pile. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! cards randomly, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! Primal Instinct's into your draw pile. NL Exhaust."
   },
   "${ModID}:Outburst": {
     "NAME": "Outburst",

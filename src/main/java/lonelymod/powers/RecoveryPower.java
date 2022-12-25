@@ -9,13 +9,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
-import lonelymod.orbs.WolfProtectAction;
+import lonelymod.orbs.ByrdProtectAbility;
+import lonelymod.orbs.WolfProtectAbility;
 import lonelymod.util.TexLoader;
 
 public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface {
@@ -52,7 +54,8 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            if (AbstractDungeon.player.orbs.get(0) instanceof WolfProtectAction) {
+            AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
+            if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
                 addToBot(new ApplyPowerAction(owner, owner, new EnergizedPower(owner, amount), amount));
                 addToBot(new ApplyPowerAction(owner, owner, new DrawCardNextTurnPower(owner, amount), amount));
             }

@@ -64,6 +64,13 @@
 
     ]
   },
+  "${ModID}:DeenergizedPower": {
+    "NAME": "De-energized",
+    "DESCRIPTIONS": [
+      "Lose #b",
+      " [E] next turn."
+    ]
+  },
   "${ModID}:DefensiveReflexesPower": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTIONS": [
@@ -125,6 +132,13 @@
       "You cannot die. Lasts #b",
       " turn.",
       " turns."
+    ]
+  },
+  "${ModID}:OmenPower": {
+    "NAME": "Omen",
+    "DESCRIPTIONS": [
+      "The Ravyn, #yOmen, is now your #yCompanion. #yFeed him and he will #rdestroy your enemies. #yOmen's attack currently hits #b",
+      " times."
     ]
   },
   "${ModID}:AncientPowerPower": {

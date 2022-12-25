@@ -6,10 +6,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
+import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.fields.ReturnField;
-import lonelymod.orbs.WolfAttackAction;
 
 public class Kill extends AbstractEasyCard {
     public final static String ID = makeID("Kill");
@@ -21,7 +20,7 @@ public class Kill extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        AbstractDungeon.player.channelOrb((AbstractOrb) new WolfAttackAction());
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
         ReturnField.willReturn.set(this, true);
     }
 

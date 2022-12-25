@@ -11,11 +11,9 @@ import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -23,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
+import lonelymod.actions.AutoplayWaitAction;
 import lonelymod.actions.CompanionProtectAbilityAction;
 import lonelymod.powers.OmenPower;
 
@@ -56,7 +55,7 @@ public class Omen extends AbstractEasyCard {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PrimalInstinct(), 1, true, true));
         }
         AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
-        AbstractDungeon.actionManager.addToBottom(new WaitAction(Settings.ACTION_DUR_LONG));
+        AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
     }
 
     public void upp() {

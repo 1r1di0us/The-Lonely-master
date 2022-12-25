@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
+import lonelymod.actions.AutoplayWaitAction;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 
@@ -26,6 +27,7 @@ public class Distracted extends AbstractEasyCard {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new InstinctiveReaction(), 1, true, true));
         else if (upgraded)
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new InstinctiveReaction(), 1, false, true));
+        AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
     }
 
     public void upp() {

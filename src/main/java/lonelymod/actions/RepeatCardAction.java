@@ -8,14 +8,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class RepeatCardAction extends AbstractGameAction {
-    private AbstractCard funCard;
+    private AbstractCard repeatCard;
 
     public RepeatCardAction(AbstractMonster target, AbstractCard card) {
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.WAIT;
         this.source = AbstractDungeon.player;
         this.target = target;
-        this.funCard = card;
+        this.repeatCard = card;
     }
 
     public RepeatCardAction(AbstractCard card) {
@@ -28,7 +28,7 @@ public class RepeatCardAction extends AbstractGameAction {
             if (target == null) {
                 target = AbstractDungeon.getRandomMonster();
             }
-            GameActionManager.queueExtraCard(funCard, (AbstractMonster)target);
+            GameActionManager.queueExtraCard(repeatCard, (AbstractMonster)target);
         }
 
         this.isDone = true;

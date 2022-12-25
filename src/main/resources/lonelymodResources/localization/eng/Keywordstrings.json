@@ -27,7 +27,9 @@
       "companion",
       "call",
       "Call",
-      "CALL"
+      "CALL",
+      "Ability",
+      "ability"
     ],
     "DESCRIPTION": "Tell your Companion to perform this ability at the end of your turn. NL Calling another ability will override this ability. NL TODO:You can see your companion's abilities by hovering over them."
   },

@@ -35,7 +35,7 @@ public class ByrdProtectAbility extends CustomOrb {
 
     private static final int PASSIVE_AMOUNT = 5;
     private static final int EVOKE_AMOUNT = 0;
-    private final int powerAmount = 2;
+    private final int powerAmount = 3;
     private AbstractMonster targetMonster;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
@@ -100,8 +100,10 @@ public class ByrdProtectAbility extends CustomOrb {
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. gain block
                 new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
-        AbstractDungeon.actionManager.addToBottom(// 3. And apply vulnerable
-                new ApplyPowerAction(this.targetMonster, AbstractDungeon.player, new VulnerablePower(this.targetMonster, powerAmount, false), powerAmount));
+        AbstractDungeon.actionManager.addToBottom(
+                new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.targetMonster, AbstractDungeon.player, // 3. apply vulnerable
+                new VulnerablePower(this.targetMonster, powerAmount, true), powerAmount)); //I guess ravyn is a monster?
     }
 
     @Override

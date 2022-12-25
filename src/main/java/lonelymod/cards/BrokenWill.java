@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
+import lonelymod.actions.AutoplayWaitAction;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 
@@ -30,7 +31,8 @@ public class BrokenWill extends AbstractEasyCard {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new FeignWeakness(), 1, true, true));
         else if (upgraded)
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new FeignWeakness(), 1, false, true));
-    }
+        AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
+        }
 
     public void upp() {
         this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;

@@ -14,6 +14,8 @@ import lonelymod.powers.SteelResolvePower;
 public class Resolve extends AbstractEasyCard {
     public final static String ID = makeID("Resolve");
 
+    private static boolean setCostToZero = false;
+
     public Resolve() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 3;
@@ -30,6 +32,15 @@ public class Resolve extends AbstractEasyCard {
     @Override
     public void onChoseThisOption() { //this happens when you choose this card when playing Lonely
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true, false));
+        setCostToZero = true;
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        if (setCostToZero) {
+            this.setCostForTurn(0);
+            setCostToZero = false;
+        }
     }
     
     @Override

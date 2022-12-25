@@ -59,8 +59,8 @@ public class ByrdAttackAbility extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        if (AbstractDungeon.player.hasPower("OmenPower")) {
-            peckAmount = AbstractDungeon.player.getPower("OmenPower").amount;
+        if (AbstractDungeon.player.hasPower(makeID("OmenPower"))) {
+            peckAmount = AbstractDungeon.player.getPower(makeID("OmenPower")).amount;
         } else {
             peckAmount = 0;
         }

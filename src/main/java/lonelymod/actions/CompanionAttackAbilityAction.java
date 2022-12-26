@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Lightning;
 
 import lonelymod.cards.AbstractEasyCard;
 //import lonelymod.orbs.BearAttackAbility;
 import lonelymod.orbs.ByrdAttackAbility;
-//import lonelymod.orbs.SquirrelAttackAbility;
+import lonelymod.orbs.SquirrelAttackAbility;
 import lonelymod.orbs.WolfAttackAbility;
 
 public class CompanionAttackAbilityAction extends AbstractGameAction {
@@ -42,8 +41,7 @@ public class CompanionAttackAbilityAction extends AbstractGameAction {
             AbstractDungeon.player.channelOrb((AbstractOrb)new WolfAttackAbility());
         }
         else {
-            AbstractDungeon.player.channelOrb(new Lightning());
-            //AbstractDungeon.player.channelOrb((AbstractOrb)new SquirrelAttackAbility());
+            AbstractDungeon.player.channelOrb((AbstractOrb)new SquirrelAttackAbility());
         }
         this.isDone = true;
     }

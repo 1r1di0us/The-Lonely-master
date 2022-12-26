@@ -15,25 +15,26 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.powers.IOUPower;
 
 import static lonelymod.ModFile.makeOrbPath;
 
-public class WolfProtectAbility extends CustomOrb {
+public class SquirrelSpecialAbility extends CustomOrb {
 
     // Standard ID/Description
-    public static final String ORB_ID = makeID("WolfProtectAbility");
+    public static final String ORB_ID = makeID("SquirrelSpecialAbility");
     private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ORB_ID);
     public static final String[] DESCRIPTIONS = orbString.DESCRIPTION;
 
-    private static final int PASSIVE_AMOUNT = 6;
+    private static final int PASSIVE_AMOUNT = 0;
     private static final int EVOKE_AMOUNT = 0;
-    private static final int powerAmount = 3;
+    private static int powerAmount = 0;
+    private static int random = -1;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
     private float vfxTimer = 1.0f;
@@ -42,8 +43,8 @@ public class WolfProtectAbility extends CustomOrb {
     private static final float ORB_WAVY_DIST = 0.04f;
     private static final float PI_4 = 12.566371f;
     
-    public WolfProtectAbility() {
-        super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[1], DESCRIPTIONS[2], makeOrbPath("default_orb.png"));
+    public SquirrelSpecialAbility() {
+        super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[0], DESCRIPTIONS[1], makeOrbPath("default_orb.png"));
 
         updateDescription();
 
@@ -54,44 +55,45 @@ public class WolfProtectAbility extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        description = DESCRIPTIONS[0] + passiveAmount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0];
     }
 
     @Override
     public void applyFocus() {
-        if (AbstractDungeon.player.getPower("Focus") != null) {
-            passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
-        } else {
-            passiveAmount = basePassiveAmount;
-        }
+        passiveAmount = basePassiveAmount;
         evokeAmount = baseEvokeAmount;
+        if (random < 1) {
+            powerAmount = 0;
+            random++;
+        } else if (random == 1) {
+            powerAmount = 1;
+            random = -2;
+        }
     }
 
     @Override
     public void onEvoke() { // 1.On Orb Evoke
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("BLOCK_BREAK")); // 1. Play a Jingle Sound. Because why not
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_GREMLINDOPEY_2A")); // 1. Play a Jingle Sound. Because why not
     }
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
-            new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
-
+            new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
         AbstractDungeon.actionManager.addToBottom(
             new GainBlockAction(AbstractDungeon.player, this.passiveAmount));
             //you can specify an AbstractCreature source so that's pretty neat.
-        AbstractDungeon.actionManager.addToBottom(
-            new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VigorPower(AbstractDungeon.player, powerAmount), powerAmount));
+        if (powerAmount > 0)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
     }
 
-    
     @Override
     public void updateAnimation() {// You can totally leave this as is.
         super.updateAnimation();
         angle += Gdx.graphics.getDeltaTime() * 45.0f;
         vfxTimer -= Gdx.graphics.getDeltaTime();
         if (vfxTimer < 0.0f) {
-            AbstractDungeon.effectList.add(new DarkOrbPassiveEffect(cX, cY));
+            AbstractDungeon.effectList.add(new PlasmaOrbPassiveEffect(cX, cY));
             vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
         }
     }
@@ -111,16 +113,16 @@ public class WolfProtectAbility extends CustomOrb {
 
     @Override
     public void triggerEvokeAnimation() { // The evoke animation of this orb is the dark-orb activation effect.
-        AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(cX, cY));
+        AbstractDungeon.effectsQueue.add(new LightningOrbActivateEffect(cX, cY));
     }
 
     @Override
-    public void playChannelSFX() { // When you channel this orb, the BLOCK_ATTACK sound plays.
-        CardCrawlGame.sound.play("BLOCK_ATTACK", 0.1f);
+    public void playChannelSFX() { // When you channel this orb, the GREMLINFAT sound plays.
+        CardCrawlGame.sound.play("VO_GREMLINFAT_2B", -0.2f);
     }
 
     @Override
     public AbstractOrb makeCopy() {
-        return new WolfProtectAbility();
+        return new SquirrelSpecialAbility();
     }
 }

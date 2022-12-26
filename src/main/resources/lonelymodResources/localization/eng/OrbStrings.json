@@ -1,9 +1,39 @@
 {
+  "${ModID}:SquirrelBasicAbility": {
+    "NAME": "Chitter",
+    "DESCRIPTION": [
+      "#yPassive: Chip grants you #b",
+      " #yBlock.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelAttackAbility": {
+    "NAME": "Throw Rock",
+    "DESCRIPTION": [
+      "#yPassive: Chip deals #b",
+      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelProtectAbility": {
+    "NAME": "Distract",
+    "DESCRIPTION": [
+      "#yPassive: Chip applies 3 #yWeak to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelSpecialAbility": {
+    "NAME": "Dig",
+    "DESCRIPTION": [
+      "#yPassive: TODO: Chip digs for a #yRelic, and has a 25% chance to find one!",
+      ""
+    ]
+  },
   "${ModID}:WolfBasicAbility": {
     "NAME": "Bark",
     "DESCRIPTION": [
       "#yPassive: Ivan deals #b",
-      " damage to a random enemy. Will prioritize enemies with #yTarget.",
+      " damage to a random enemy, prioritizing enemies with #yTarget.",
       ""
     ]
   },

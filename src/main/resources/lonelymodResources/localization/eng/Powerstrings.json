@@ -210,5 +210,12 @@
       " random card and #yCall #yAttack.",
       " random cards and #yCall #yAttack."
     ]
+  },
+  "${ModID}:IOUPower": {
+    "NAME": "I Owe You",
+    "DESCRIPTIONS": [
+      "I owe you #b",
+      " relics, but I'm too #rlazy right now."
+    ]
   }
 }

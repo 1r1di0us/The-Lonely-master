@@ -64,8 +64,10 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
                 AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
                 this.amount -= 1;
             }
-            else if (this.amount <= 1)
+            else if (this.amount <= 1) {
+                AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
                 addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            }
             turnStart = false;
         }
     }

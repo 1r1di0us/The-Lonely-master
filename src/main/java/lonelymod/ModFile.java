@@ -147,6 +147,8 @@ public class ModFile implements
         new AutoAdd(modID)
                 .packageFilter(AbstractEasyCard.class)
                 .setDefaultSeen(true)
+                .notPackageFilter("lonelymod.cards.democards.complex")
+                .notPackageFilter("lonelymod.cards.democards.simple")
                 .cards();
     }
 
@@ -214,7 +216,7 @@ public class ModFile implements
         //calls start of turn ability and resets attackCounter (which is used for ImpatientStrikes)
         ImpatientStrikes.attackCounter = 0;
         if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) {
-            AbstractDungeon.actionManager.addToTop(new CompanionAttackAbilityAction());
+            AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
         } else {
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
         }

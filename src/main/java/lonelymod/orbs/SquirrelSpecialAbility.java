@@ -83,8 +83,9 @@ public class SquirrelSpecialAbility extends CustomOrb {
         AbstractDungeon.actionManager.addToBottom(
             new GainBlockAction(AbstractDungeon.player, this.passiveAmount));
             //you can specify an AbstractCreature source so that's pretty neat.
-        if (powerAmount > 0)
+        if (powerAmount > 0) {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
+        }
     }
 
     @Override

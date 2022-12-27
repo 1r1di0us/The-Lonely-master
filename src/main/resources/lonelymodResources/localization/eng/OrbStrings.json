@@ -25,7 +25,7 @@
   "${ModID}:SquirrelSpecialAbility": {
     "NAME": "Dig",
     "DESCRIPTION": [
-      "#yPassive: TODO: Chip digs for a #yRelic, and has a 25% chance to find one!",
+      "#yPassive: TODO: Finish this. NL Chip digs for a #yRelic, and has a 25% chance to find one!",
       ""
     ]
   },

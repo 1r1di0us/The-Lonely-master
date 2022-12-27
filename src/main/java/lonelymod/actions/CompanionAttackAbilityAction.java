@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.cards.AbstractEasyCard;
+import lonelymod.interfaces.TriggerOnAbilityInterface;
 //import lonelymod.orbs.BearAttackAbility;
 import lonelymod.orbs.ByrdAttackAbility;
 import lonelymod.orbs.SquirrelAttackAbility;
@@ -25,9 +25,8 @@ public class CompanionAttackAbilityAction extends AbstractGameAction {
     public void update() {
         // trigger cards in hand for triggerOnAbility
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c instanceof AbstractEasyCard) {
-                AbstractEasyCard ce = (AbstractEasyCard) c;
-                ce.triggerOnAbility(2);
+            if (c instanceof TriggerOnAbilityInterface) {
+                ((TriggerOnAbilityInterface) c).triggerOnAbility(2);
             }
         }
         

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
+import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.util.TexLoader;
 
 public class WildFormPower extends AbstractEasyPower implements CloneablePowerInterface {
@@ -47,8 +48,14 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
     }
 
     @Override
+    public void onSpecificTrigger() {
+        //couldn't get it to work smoothly any other way, stuff actually happens in the ModFile
+        flash();
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
+    }
+
+    @Override
     public void atStartOfTurnPostDraw() {
-        //apparently this only happens once.
         AbstractDungeon.actionManager.addToBottom(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, true));
     }
 

@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.DrawToHandAction;
+import lonelymod.interfaces.TriggerOnPlanInterface;
 
-public class PartOfThePlan extends AbstractEasyCard{
+public class PartOfThePlan extends AbstractEasyCard implements TriggerOnPlanInterface {
     public final static String ID = makeID("PartOfThePlan");
 
     public PartOfThePlan() {

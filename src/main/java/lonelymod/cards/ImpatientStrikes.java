@@ -3,11 +3,12 @@ package lonelymod.cards;
 import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-//import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ImpatientStrikes extends AbstractEasyCard {
+import lonelymod.interfaces.TriggerOnAbilityInterface;
+
+public class ImpatientStrikes extends AbstractEasyCard implements TriggerOnAbilityInterface {
     public final static String ID = makeID("ImpatientStrikes");
     public static int attackCounter;
 

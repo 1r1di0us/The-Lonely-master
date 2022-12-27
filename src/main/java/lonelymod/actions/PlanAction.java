@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import lonelymod.cards.ABrilliantIdea;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.Improvise;
+import lonelymod.interfaces.TriggerOnPlanInterface;
 
 public class PlanAction extends AbstractGameAction {
     public static final String ID = makeID("PlanAction");
@@ -93,9 +94,8 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             //c.triggerOnPlan();
-            if (c instanceof AbstractEasyCard) {
-                AbstractEasyCard ce = (AbstractEasyCard)c;
-                ce.triggerOnPlan();
+            if (c instanceof TriggerOnPlanInterface) {
+                ((TriggerOnPlanInterface) c).triggerOnPlan();
             }
         }
         //for (AbstractPower p : AbstractDungeon.player.powers) {

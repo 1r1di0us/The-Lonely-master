@@ -226,11 +226,4 @@ public abstract class AbstractEasyCard extends CustomCard {
     protected void upSecondDamage(int x) {
         upgradeSecondDamage(x);
     }
-
-    public void triggerOnPlan() {
-    }
-
-    public void triggerOnAbility(int abilityType) {
-        //1 = basic, 2 = attack, 3 = protect, 4 = special
-    }
 }

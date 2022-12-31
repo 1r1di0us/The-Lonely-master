@@ -34,7 +34,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
     private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ORB_ID);
     public static final String[] DESCRIPTIONS = orbString.DESCRIPTION;
 
-    private static final int PASSIVE_AMOUNT = 5;
+    private static final int PASSIVE_AMOUNT = 2;
     private static final int EVOKE_AMOUNT = 0;
     private static int powerAmount = 10;
     private boolean targeted = false;
@@ -60,7 +60,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        description = DESCRIPTIONS[0] + PASSIVE_AMOUNT + DESCRIPTIONS[1] + powerAmount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + passiveAmount + DESCRIPTIONS[1] + powerAmount + DESCRIPTIONS[2];
     }
 
     @Override

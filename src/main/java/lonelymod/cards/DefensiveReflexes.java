@@ -23,8 +23,9 @@ public class DefensiveReflexes extends AbstractEasyCard {
     }
     
     public void upp() {
-        if (!upgraded) {
+        if (!upgraded)
             this.isInnate = true;
-        }
+        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 }

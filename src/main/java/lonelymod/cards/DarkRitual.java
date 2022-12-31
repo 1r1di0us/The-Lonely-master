@@ -24,7 +24,8 @@ public class DarkRitual extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.isInnate = true;
+        if (!upgraded)
+            this.isInnate = true;
         this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }

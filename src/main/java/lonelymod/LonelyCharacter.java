@@ -173,6 +173,14 @@ public class LonelyCharacter extends CustomPlayer {
         return TEXT[2];
     }
 
+    //animation for replacing the starter relic
+    /*public void onEquipBearCubPendant() {
+        loadAnimation("lonelymodResources/images/char/mainChar/NewProject2.atlas", "lonelymodResources/images/char/mainChar/NewProject2.json", SIZE_SCALE);
+        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        this.stateData.setMix("Hit", "Idle", 0.1F);
+        e.setTimeScale(0.7F);
+    } */
+
     public static class Enums {
         @SpireEnum
         public static AbstractPlayer.PlayerClass THE_LONELY;

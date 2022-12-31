@@ -217,5 +217,15 @@
       "I owe you #b",
       " relics, but I'm too #rlazy right now."
     ]
+  },
+  "${ModID}:SquirrelDigPower": {
+    "NAME": "Digging",
+    "DESCRIPTIONS": [
+      "Chip is currently digging underground. At the start of next turn, he will pop out and deal #b",
+      " damage #b",
+      " times to ",
+      ".",
+      "Nobody knows what this does."
+    ]
   }
 }

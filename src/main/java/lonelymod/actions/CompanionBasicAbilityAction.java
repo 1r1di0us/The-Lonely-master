@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import lonelymod.interfaces.TriggerOnAbilityInterface;
-//import lonelymod.orbs.BearBasicAbility;
+import lonelymod.orbs.BearBasicAbility;
 import lonelymod.orbs.ByrdBasicAbility;
 import lonelymod.orbs.SquirrelBasicAbility;
 import lonelymod.orbs.WolfBasicAbility;
@@ -33,9 +33,9 @@ public class CompanionBasicAbilityAction extends AbstractGameAction {
         if (AbstractDungeon.player.hasPower(makeID("OmenPower"))) {
             AbstractDungeon.player.channelOrb((AbstractOrb)new ByrdBasicAbility());
         }
-        //else if (AbstractDungeon.player.hasRelic(makeID("BearCubPendant"))) {
-        //    AbstractDungeon.player.channelOrb((AbstractOrb)new BearBasicAbility());
-        //}
+        else if (AbstractDungeon.player.hasRelic(makeID("BearCubPendant"))) {
+            AbstractDungeon.player.channelOrb((AbstractOrb)new BearBasicAbility());
+        }
         else if (AbstractDungeon.player.hasRelic(makeID("WolfPackPendant"))) {
             AbstractDungeon.player.channelOrb((AbstractOrb)new WolfBasicAbility());
         }

@@ -25,7 +25,9 @@
   "${ModID}:SquirrelSpecialAbility": {
     "NAME": "Dig",
     "DESCRIPTION": [
-      "#yPassive: TODO: Finish this. NL Chip digs for a #yRelic, and has a 25% chance to find one!",
+      "#yPassive: Chip digs into the ground. Next turn, he will pop out and deal #b",
+      " damage #b",
+      " times to a random enemy, prioritizing enemies with #yTarget.",
       ""
     ]
   },
@@ -61,6 +63,38 @@
       ""
     ]
   },
+  "${ModID}:BearBasicAbility": {
+    "NAME": "Growl",
+    "DESCRIPTION": [
+      "#yPassive: Grawl applies 2 #yWeak to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:BearAttackAbility": {
+    "NAME": "Maul",
+    "DESCRIPTION": [
+      "#yPassive: Grawl deals $b",
+      "x2 damage to a random enemy, and #b",
+      " more damage if the enemy is #yWeak. Prioritizes enemies with #yTarget.",
+      ""
+    ]
+  },
+  "${ModID}:BearProtectAbility": {
+    "NAME": "Bear Hug",
+    "DESCRIPTION": [
+      "#yPassive: Grawl grants you #b",
+      "x3 #yBlock.",
+      ""
+    ]
+  },
+  "${ModID}:BearSpecialAbility": {
+    "NAME": "Body Tackle",
+    "DESCRIPTION": [
+      "#yPassive: Grawl grants you #b",
+      "x4 block, and then applies 3 #yWeak and -5 #yStrength to a random enemy, prioritizing enemies with #yTarget.",
+      ""
+    ]
+  },
   "${ModID}:ByrdBasicAbility": {
     "NAME": "Swoop",
     "DESCRIPTION": [
@@ -82,7 +116,7 @@
     "NAME": "Screech",
     "DESCRIPTION": [
       "#yPassive: Omen grants you #b",
-      " #yBlock twice, and applies 2 #yVulnerable to a random enemy, prioritizing enemies with #yTarget.",
+      "x2 #yBlock, and applies 2 #yVulnerable to a random enemy, prioritizing enemies with #yTarget.",
       ""
     ]
   },
@@ -90,6 +124,13 @@
     "NAME": "Sharpen",
     "DESCRIPTION": [
       "#yPassive: Omen gains 1 #yFood. Omen's #yAttack, Peck, now hits 2 more times",
+      ""
+    ]
+  },
+  "${ModID}:StunnedAbility": {
+    "NAME": "Stunned",
+    "DESCRIPTION": [
+      "#yPassive: Your Companion is stunned and will do nothing this turn. NL Calling a new ability will not un-stun your Companion.",
       ""
     ]
   }

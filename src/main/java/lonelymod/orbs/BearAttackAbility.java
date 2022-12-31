@@ -12,33 +12,33 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.LockOnPower;
-import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
+import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateEffect;
+import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
-import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 
 import basemod.abstracts.CustomOrb;
 
 import static lonelymod.ModFile.makeOrbPath;
 
-public class ByrdAttackAbility extends CustomOrb {
+public class BearAttackAbility extends CustomOrb {
 
     // Standard ID/Description
-    public static final String ORB_ID = makeID("ByrdAttackAbility");
+    public static final String ORB_ID = makeID("BearAttackAbility");
     private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ORB_ID);
     public static final String[] DESCRIPTIONS = orbString.DESCRIPTION;
 
-    private static final int PASSIVE_AMOUNT = 1;
+    private static final int PASSIVE_AMOUNT = 5;
     private static final int EVOKE_AMOUNT = 0;
 
-    private AbstractMonster targetMonster;
     private boolean targeted = false;
-    private int peckAmount;
+    private AbstractMonster targetMonster;
+
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
     private float vfxTimer = 1.0f;
@@ -46,8 +46,8 @@ public class ByrdAttackAbility extends CustomOrb {
     private float vfxIntervalMax = 0.4f;
     private static final float ORB_WAVY_DIST = 0.04f;
     private static final float PI_4 = 12.566371f;
-
-    public ByrdAttackAbility() {
+    
+    public BearAttackAbility() {
         super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[2], DESCRIPTIONS[3], makeOrbPath("default_orb.png"));
 
         updateDescription();
@@ -59,12 +59,7 @@ public class ByrdAttackAbility extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        if (AbstractDungeon.player.hasPower(makeID("OmenPower"))) {
-            peckAmount = AbstractDungeon.player.getPower(makeID("OmenPower")).amount;
-        } else {
-            peckAmount = 0;
-        }
-        description = DESCRIPTIONS[0] + passiveAmount + DESCRIPTIONS[1] + peckAmount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + passiveAmount + DESCRIPTIONS[1] + passiveAmount + DESCRIPTIONS[2];
     }
 
     @Override
@@ -83,11 +78,23 @@ public class ByrdAttackAbility extends CustomOrb {
 
     @Override
     public void onEvoke() { // 1.On Orb Evoke
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("THUNDERCLAP")); // 1. Play a thunder Sound. Because why not
-        // For a list of sound effects you can use, look under com.megacrit.cardcrawl.audio.SoundMaster - you can see the list of keys you can use there. As far as previewing what they sound like, open desktop-1.0.jar with something like 7-Zip and go to audio. Reference the file names provided. (Thanks fiiiiilth)
-
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("SLIME_BLINK_1")); // 1. Play a Jingle Sound. Because why not
     }
 
+    @Override
+    public void onEndOfTurn() {// 1.At the end of your turn.
+        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
+            new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
+        AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
+            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
+        AbstractDungeon.actionManager.addToBottom(// deal damage
+            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
+        if (targetMonster.hasPower("Weak")) {
+            AbstractDungeon.actionManager.addToBottom(// deal damage
+                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
+        }
+    }
+    
     private AbstractMonster getTarget() {
         int target = 0;
         AbstractMonster targetMonster = null;
@@ -108,23 +115,12 @@ public class ByrdAttackAbility extends CustomOrb {
     }
 
     @Override
-    public void onEndOfTurn() {// 1.At the end of your turn.
-        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
-                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-        for (int i = 0; i < peckAmount; i++) {
-            AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_LIGHT));
-        }
-    }
-
-    @Override
     public void updateAnimation() {// You can totally leave this as is.
-        // If you want to create a whole new orb effect - take a look at conspire's Water Orb. It includes a custom sound, too!
         super.updateAnimation();
         angle += Gdx.graphics.getDeltaTime() * 45.0f;
         vfxTimer -= Gdx.graphics.getDeltaTime();
         if (vfxTimer < 0.0f) {
-            AbstractDungeon.effectList.add(new LightningOrbPassiveEffect(cX, cY)); // This is the purple-sparkles in the orb. You can change this to whatever fits your orb.
+            AbstractDungeon.effectList.add(new FrostOrbPassiveEffect(cX, cY));
             vfxTimer = MathUtils.random(vfxIntervalMin, vfxIntervalMax);
         }
     }
@@ -144,16 +140,16 @@ public class ByrdAttackAbility extends CustomOrb {
 
     @Override
     public void triggerEvokeAnimation() { // The evoke animation of this orb is the dark-orb activation effect.
-        AbstractDungeon.effectsQueue.add(new PlasmaOrbActivateEffect(cX, cY));
+        AbstractDungeon.effectsQueue.add(new FrostOrbActivateEffect(cX, cY));
     }
 
     @Override
-    public void playChannelSFX() { // When you channel this orb, play the sound. VO_CULTIST has 6 sounds, 1A, 1B, 1C, 2A, 2B, and 2C
-        CardCrawlGame.sound.play("VO_CULTIST_1B", 0.1f);
+    public void playChannelSFX() { // When you channel this orb, the GREMLINFAT sound plays.
+        CardCrawlGame.sound.play("VO_GIANTHEAD_1B", 0.1f);
     }
 
     @Override
     public AbstractOrb makeCopy() {
-        return new ByrdAttackAbility();
+        return new BearAttackAbility();
     }
 }

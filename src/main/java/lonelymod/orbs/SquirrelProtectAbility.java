@@ -34,7 +34,7 @@ public class SquirrelProtectAbility extends CustomOrb {
 
     private static final int PASSIVE_AMOUNT = 0;
     private static final int EVOKE_AMOUNT = 0;
-    private static final int powerAmount = 4;
+    private static final int powerAmount = 3;
     private AbstractMonster targetMonster;
 
 

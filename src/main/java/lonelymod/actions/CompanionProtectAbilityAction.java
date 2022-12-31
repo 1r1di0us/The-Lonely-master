@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import lonelymod.interfaces.TriggerOnAbilityInterface;
-//import lonelymod.orbs.BearProtectAbility;
+import lonelymod.orbs.BearProtectAbility;
 import lonelymod.orbs.ByrdProtectAbility;
 import lonelymod.orbs.SquirrelProtectAbility;
 import lonelymod.orbs.WolfProtectAbility;
@@ -30,17 +30,19 @@ public class CompanionProtectAbilityAction extends AbstractGameAction {
             }
         }
 
-        if (AbstractDungeon.player.hasPower(makeID("OmenPower"))) {
-            AbstractDungeon.player.channelOrb((AbstractOrb)new ByrdProtectAbility());
-        }
-        //else if (AbstractDungeon.player.hasRelic(makeID("BearCubPendant"))) {
-        //    AbstractDungeon.player.channelOrb((AbstractOrb)new BearProtectAbility());
-        //}
-        else if (AbstractDungeon.player.hasRelic(makeID("WolfPackPendant"))) {
-            AbstractDungeon.player.channelOrb((AbstractOrb)new WolfProtectAbility());
-        }
-        else {
-            AbstractDungeon.player.channelOrb((AbstractOrb)new SquirrelProtectAbility());
+        if (!(AbstractDungeon.player.orbs.get(0).ID.equals(makeID("StunnedAbility")))) {
+            if (AbstractDungeon.player.hasPower(makeID("OmenPower"))) {
+                AbstractDungeon.player.channelOrb((AbstractOrb)new ByrdProtectAbility());
+            }
+            else if (AbstractDungeon.player.hasRelic(makeID("BearCubPendant"))) {
+                AbstractDungeon.player.channelOrb((AbstractOrb)new BearProtectAbility());
+            }
+            else if (AbstractDungeon.player.hasRelic(makeID("WolfPackPendant"))) {
+                AbstractDungeon.player.channelOrb((AbstractOrb)new WolfProtectAbility());
+            }
+            else {
+                AbstractDungeon.player.channelOrb((AbstractOrb)new SquirrelProtectAbility());
+            }
         }
         this.isDone = true;
     }

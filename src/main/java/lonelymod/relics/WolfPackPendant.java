@@ -10,4 +10,9 @@ public class WolfPackPendant extends AbstractEasyRelic {
     public WolfPackPendant() {
         super(ID, RelicTier.STARTER, LandingSound.FLAT, LonelyCharacter.Enums.TODO_COLOR);
     }
+
+    @Override
+    public void atBattleStart() {
+        flash();
+    }
 }

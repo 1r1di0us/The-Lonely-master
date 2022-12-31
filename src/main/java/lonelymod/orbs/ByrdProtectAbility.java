@@ -18,9 +18,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
+import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 
 import basemod.abstracts.CustomOrb;
 
@@ -133,7 +133,7 @@ public class ByrdProtectAbility extends CustomOrb {
 
     @Override
     public void triggerEvokeAnimation() { // The evoke animation of this orb is the dark-orb activation effect.
-        AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(cX, cY));
+        AbstractDungeon.effectsQueue.add(new PlasmaOrbActivateEffect(cX, cY));
     }
 
     @Override

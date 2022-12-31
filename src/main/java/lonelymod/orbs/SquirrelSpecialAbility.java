@@ -8,19 +8,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import basemod.abstracts.CustomOrb;
-import lonelymod.powers.IOUPower;
+import lonelymod.powers.SquirrelDigPower;
 
 import static lonelymod.ModFile.makeOrbPath;
 
@@ -31,10 +34,12 @@ public class SquirrelSpecialAbility extends CustomOrb {
     private static final OrbStrings orbString = CardCrawlGame.languagePack.getOrbString(ORB_ID);
     public static final String[] DESCRIPTIONS = orbString.DESCRIPTION;
 
-    private static final int PASSIVE_AMOUNT = 0;
+    private static final int PASSIVE_AMOUNT = 5;
     private static final int EVOKE_AMOUNT = 0;
-    private static int powerAmount = 0;
-    private static int random = -1;
+    private static int powerAmount = 10;
+    private boolean targeted = false;
+    private AbstractMonster targetMonster;
+    //private static int random = -1;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
     private float vfxTimer = 1.0f;
@@ -44,7 +49,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
     private static final float PI_4 = 12.566371f;
     
     public SquirrelSpecialAbility() {
-        super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[0], DESCRIPTIONS[1], makeOrbPath("default_orb.png"));
+        super(ORB_ID, orbString.NAME, PASSIVE_AMOUNT, EVOKE_AMOUNT, DESCRIPTIONS[2], DESCRIPTIONS[3], makeOrbPath("default_orb.png"));
 
         updateDescription();
 
@@ -55,12 +60,22 @@ public class SquirrelSpecialAbility extends CustomOrb {
     @Override
     public void updateDescription() { // Set the on-hover description of the orb
         applyFocus(); // Apply Focus (Look at the next method)
-        description = DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0] + PASSIVE_AMOUNT + DESCRIPTIONS[1] + powerAmount + DESCRIPTIONS[2];
     }
 
     @Override
     public void applyFocus() {
-        passiveAmount = basePassiveAmount;
+        this.targetMonster = getTarget();
+        if (AbstractDungeon.player.getPower("Focus") != null) {
+            passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
+        } else {
+            passiveAmount = basePassiveAmount;
+        }
+        evokeAmount = baseEvokeAmount;
+        if (targeted) {
+            applyLockOn(this.targetMonster, this.passiveAmount);
+        }
+        /*passiveAmount = basePassiveAmount;
         evokeAmount = baseEvokeAmount;
         if (random < 1) {
             powerAmount = 0;
@@ -68,7 +83,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
         } else if (random == 1) {
             powerAmount = 1;
             random = -2;
-        }
+        }*/
     }
 
     @Override
@@ -80,12 +95,31 @@ public class SquirrelSpecialAbility extends CustomOrb {
     public void onEndOfTurn() {// 1.At the end of your turn.
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
+        DamageInfo info = new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS);
         AbstractDungeon.actionManager.addToBottom(
-            new GainBlockAction(AbstractDungeon.player, this.passiveAmount));
-            //you can specify an AbstractCreature source so that's pretty neat.
-        if (powerAmount > 0) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
+            new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SquirrelDigPower(AbstractDungeon.player, targetMonster, info, powerAmount), powerAmount));
+        //if (powerAmount > 0) {
+        //    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
+        //}
+    }
+
+    private AbstractMonster getTarget() {
+        int target = 0;
+        AbstractMonster targetMonster = null;
+        for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (m.hasPower(LockOnPower.POWER_ID)) {
+                if (target < m.getPower(LockOnPower.POWER_ID).amount) {
+                    target = m.getPower(LockOnPower.POWER_ID).amount;
+                    targetMonster = m;
+                }
+            }
         }
+        if (target == 0)
+            targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        else {
+            this.targeted = true;
+        }
+        return targetMonster;
     }
 
     @Override

@@ -45,7 +45,6 @@ public class Desperation extends AbstractEasyCard {
     
     @Override
     public void upp() {
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

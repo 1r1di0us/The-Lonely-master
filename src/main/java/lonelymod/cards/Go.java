@@ -28,7 +28,6 @@ public class Go extends AbstractEasyCard {
 
     public void upp() {
         upgradeMagicNumber(1);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        this.initializeDescription();
+        uDesc();
     }
 }

@@ -31,7 +31,6 @@ public class Distracted extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

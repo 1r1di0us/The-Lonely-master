@@ -25,7 +25,6 @@ public class MuscleMemory extends AbstractEasyCard {
     @Override
     public void upp() {
         this.isInnate = true;
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

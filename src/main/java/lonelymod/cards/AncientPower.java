@@ -23,7 +23,6 @@ public class AncientPower extends AbstractEasyCard {
     
     public void upp() {
         this.isEthereal = false;
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

@@ -60,7 +60,6 @@ public class Omen extends AbstractEasyCard {
 
     public void upp() {
         upgradeSecondMagic(1);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

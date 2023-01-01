@@ -12,6 +12,7 @@ public class BearCubPendant extends AbstractEasyRelic {
 
     public BearCubPendant() {
         super(ID, RelicTier.BOSS, LandingSound.SOLID, LonelyCharacter.Enums.TODO_COLOR);
+        //figured this out from DarkVexon's FishingCharacter
     }    
 
     @Override

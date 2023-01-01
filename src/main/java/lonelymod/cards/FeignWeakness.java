@@ -35,7 +35,6 @@ public class FeignWeakness extends AbstractEasyCard {
 
     public void upp() {
         upgradeMagicNumber(5);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

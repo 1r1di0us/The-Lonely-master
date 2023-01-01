@@ -22,7 +22,6 @@ public class PrimalInstinct extends AbstractEasyCard {
 
     public void upp() {
         this.exhaust = false;
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

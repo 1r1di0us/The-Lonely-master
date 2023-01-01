@@ -29,7 +29,6 @@ public class StandYourGround extends AbstractEasyCard {
 
     public void upp() {
         upgradeMagicNumber(3);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

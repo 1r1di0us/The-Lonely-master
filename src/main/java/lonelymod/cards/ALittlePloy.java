@@ -27,7 +27,6 @@ public class ALittlePloy extends AbstractEasyCard {
     public void upp() {
         upgradeMagicNumber(1);
         upgradeSecondMagic(1);
-        this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        uDesc();
     }
 }

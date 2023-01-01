@@ -22,7 +22,7 @@ public class Frenzy extends AbstractEasyCard {
     public Frenzy() {
         super(ID, -1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseMagicNumber = magicNumber = 0;
-        baseDamage = 8;
+        baseDamage = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -48,8 +48,7 @@ public class Frenzy extends AbstractEasyCard {
     }*/
 
     public void upp() {
-        upgradeDamage(2);
-        upgradeMagicNumber(1);
+        upgradeDamage(3);
         uDesc();
     }
 }

@@ -74,6 +74,9 @@ public class SquirrelProtectAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
+        if (targetMonster.isDeadOrEscaped()) {
+            targetMonster = getTarget();
+        }
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
         AbstractDungeon.actionManager.addToBottom(

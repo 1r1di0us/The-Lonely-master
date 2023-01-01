@@ -31,7 +31,7 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
 
         this.owner = owner;
 
-        type = PowerType.BUFF;
+        type = PowerType.DEBUFF;
         isTurnBased = false;
         this.amount = amount;
 

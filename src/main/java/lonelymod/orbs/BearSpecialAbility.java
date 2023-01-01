@@ -85,6 +85,9 @@ public class BearSpecialAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
+        if (targetMonster.isDeadOrEscaped()) {
+            targetMonster = getTarget();
+        }
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. gain block

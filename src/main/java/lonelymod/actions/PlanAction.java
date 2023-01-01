@@ -61,14 +61,13 @@ public class PlanAction extends AbstractGameAction {
         }
         if (this.duration == this.startingDuration) {
             if (AbstractDungeon.player.discardPile.isEmpty()) {
-                if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
+                /*if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
                     AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
                     AbstractDungeon.actionManager.addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
                             AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
-                }
+                }*/
                 this.isDone = true;
-                return;
-            } 
+            }
             CardGroup tmpGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             if (this.amount != -1) {
                 for (int i = 0; i < Math.min(this.amount, AbstractDungeon.player.discardPile.size()); i++)

@@ -15,6 +15,7 @@ public class AbandonAction extends AbstractGameAction {
     @Override
     public void update() {
         CardGroup TEMP = new CardGroup(AbstractDungeon.player.hand.getPurgeableCards(), CardGroupType.UNSPECIFIED);
+        CardGroup REALTEMP = new CardGroup(TEMP, CardGroupType.UNSPECIFIED);
         for (AbstractCard c : TEMP.group) {
             boolean realCard = false;
             for (AbstractCard mc : AbstractDungeon.player.masterDeck.group) {
@@ -23,10 +24,10 @@ public class AbandonAction extends AbstractGameAction {
                 }
             }
             if (realCard == false) {
-                TEMP.removeCard(c);
+                REALTEMP.removeCard(c);
             }
         }
-        AbstractCard cardToExhaust = AbstractDungeon.player.hand.findCardById(TEMP.getRandomCard(AbstractDungeon.cardRandomRng).cardID);
+        AbstractCard cardToExhaust = AbstractDungeon.player.hand.findCardById(REALTEMP.getRandomCard(AbstractDungeon.cardRandomRng).cardID);
         AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(cardToExhaust, AbstractDungeon.player.hand));
         AbstractCard cardToPurge = AbstractDungeon.player.masterDeck.findCardById(cardToExhaust.cardID);
         AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(cardToPurge, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));

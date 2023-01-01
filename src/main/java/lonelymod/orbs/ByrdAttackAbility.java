@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -88,6 +89,22 @@ public class ByrdAttackAbility extends CustomOrb {
 
     }
 
+    @Override
+    public void onEndOfTurn() {// 1.At the end of your turn.
+        if (targetMonster.isDeadOrEscaped()) {
+            targetMonster = getTarget();
+        }
+        if (targetMonster.hasPower(makeID("Fetch"))) {
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(targetMonster, targetMonster, makeID("FetchPower")));
+        }
+        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
+                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+        for (int i = 0; i < peckAmount; i++) {
+            AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
+                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_LIGHT));
+        }
+    }
+
     private AbstractMonster getTarget() {
         int target = 0;
         AbstractMonster targetMonster = null;
@@ -107,16 +124,6 @@ public class ByrdAttackAbility extends CustomOrb {
             this.targeted = true;
         }
         return targetMonster;
-    }
-
-    @Override
-    public void onEndOfTurn() {// 1.At the end of your turn.
-        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
-                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-        for (int i = 0; i < peckAmount; i++) {
-            AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_LIGHT));
-        }
     }
 
     @Override

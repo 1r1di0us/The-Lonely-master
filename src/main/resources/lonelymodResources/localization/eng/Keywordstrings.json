@@ -15,7 +15,7 @@
       "omen",
       "OMEN"
     ],
-    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to lonelymod:Protect whoeever summoned it."
+    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to Protect whoever summoned it."
   },
   {
     "PROPER_NAME": "Companion Ability",
@@ -91,7 +91,7 @@
       "Food",
       "Food."
     ],
-    "DESCRIPTION": "Given to companions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new companions."
+    "DESCRIPTION": "Given to companions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new Companions."
   },
   {
     "PROPER_NAME": "Target",

@@ -73,7 +73,7 @@
   "${ModID}:BearAttackAbility": {
     "NAME": "Maul",
     "DESCRIPTION": [
-      "#yPassive: Grawl deals $b",
+      "#yPassive: Grawl deals #b",
       "x2 damage to a random enemy, and #b",
       " more damage if the enemy is #yWeak. Prioritizes enemies with #yTarget.",
       ""

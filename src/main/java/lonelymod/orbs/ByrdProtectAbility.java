@@ -77,6 +77,21 @@ public class ByrdProtectAbility extends CustomOrb {
         // For a list of sound effects you can use, look under com.megacrit.cardcrawl.audio.SoundMaster - you can see the list of keys you can use there. As far as previewing what they sound like, open desktop-1.0.jar with something like 7-Zip and go to audio. Reference the file names provided. (Thanks fiiiiilth)
 
     }
+
+    @Override
+    public void onEndOfTurn() {// 1.At the end of your turn.
+        if (targetMonster.isDeadOrEscaped()) {
+            targetMonster = getTarget();
+        }
+        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
+                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
+        AbstractDungeon.actionManager.addToBottom(// 2. gain block
+                new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
+        AbstractDungeon.actionManager.addToBottom(
+                new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.targetMonster, AbstractDungeon.player, // 3. apply vulnerable
+                new VulnerablePower(this.targetMonster, powerAmount, false), powerAmount)); //I guess ravyn is a monster?
+    }
     
     private AbstractMonster getTarget() {
         int target = 0;
@@ -94,18 +109,6 @@ public class ByrdProtectAbility extends CustomOrb {
                 targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         }
         return targetMonster;
-    }
-
-    @Override
-    public void onEndOfTurn() {// 1.At the end of your turn.
-        AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
-                new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
-        AbstractDungeon.actionManager.addToBottom(// 2. gain block
-                new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
-        AbstractDungeon.actionManager.addToBottom(
-                new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.targetMonster, AbstractDungeon.player, // 3. apply vulnerable
-                new VulnerablePower(this.targetMonster, powerAmount, false), powerAmount)); //I guess ravyn is a monster?
     }
 
     @Override

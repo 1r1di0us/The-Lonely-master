@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,7 +13,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
@@ -33,6 +34,9 @@ public class WolfBasicAbility extends CustomOrb {
 
     private static final int PASSIVE_AMOUNT = 4;
     private static final int EVOKE_AMOUNT = 0;
+    
+    private boolean targeted = false;
+    private AbstractMonster targetMonster;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
     private float vfxTimer = 1.0f;
@@ -58,10 +62,14 @@ public class WolfBasicAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
+        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
             passiveAmount = basePassiveAmount;
+        }
+        if (targeted) {
+            applyLockOn(this.targetMonster, this.passiveAmount);
         }
         evokeAmount = baseEvokeAmount;
     }
@@ -79,7 +87,28 @@ public class WolfBasicAbility extends CustomOrb {
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-                new WolfDamageAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_DIAGONAL, false));
+                new WolfDamageAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), targetMonster, false));
+    }
+
+    private AbstractMonster getTarget() {
+        int target = 0;
+        AbstractMonster targetMonster = null;
+        for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (!m.isDeadOrEscaped() && m.hasPower(LockOnPower.POWER_ID)) {
+                if (target < m.getPower(LockOnPower.POWER_ID).amount) {
+                    target = m.getPower(LockOnPower.POWER_ID).amount;
+                    targetMonster = m;
+                }
+            }
+        }
+        if (target == 0) {
+            while (targetMonster == null || targetMonster.isDeadOrEscaped())
+                targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        }
+        else {
+            this.targeted = true;
+        }
+        return targetMonster;
     }
 
     @Override

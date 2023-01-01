@@ -30,7 +30,7 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private int damage;
+    private static final int damage = 4;
     
     public MultiShotPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

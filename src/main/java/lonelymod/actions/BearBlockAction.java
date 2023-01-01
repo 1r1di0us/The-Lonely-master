@@ -25,10 +25,10 @@ public class BearBlockAction extends AbstractGameAction {
     @Override
     public void update() {
         if (AbstractDungeon.player.hasPower(makeID("StaminaPower"))) {
-            addToBot(new RemoveSpecificPowerAction(source, source, AbstractDungeon.player.getPower(makeID("StaminaPower"))));
+            addToBot(new RemoveSpecificPowerAction(target, target, AbstractDungeon.player.getPower(makeID("StaminaPower"))));
         }
         for (int i = 0; i < numTimes; i++) {
-            addToBot(new GainBlockAction(source, source, blockAmount));
+            addToBot(new GainBlockAction(target, target, blockAmount));
         }
         this.isDone = true;
     }

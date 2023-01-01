@@ -12,6 +12,7 @@ import lonelymod.cards.ImpatientStrikes;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.fields.ReturnField;
+import lonelymod.interfaces.TriggerOnReturnInterface;
 import lonelymod.relics.AbstractEasyRelic;
 
 import com.badlogic.gdx.Gdx;
@@ -188,12 +189,18 @@ public class ModFile implements
             if (ReturnField.willReturn.get(c)) {
                 ReturnField.willReturn.set(c, false);
                 AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
+                if (c instanceof TriggerOnReturnInterface) {
+                    ((TriggerOnReturnInterface) c).triggerOnReturn();
+                }
             }
         }
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             if (ReturnField.willReturn.get(c)) {
                 ReturnField.willReturn.set(c, false);
                 AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
+                if (c instanceof TriggerOnReturnInterface) {
+                    ((TriggerOnReturnInterface) c).triggerOnReturn();
+                }
             }
         }
         //Do this with the external method if you want it to draw BEFORE drawing the first 5 cards:

@@ -13,7 +13,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
+import lonelymod.orbs.BearAttackAbility;
 import lonelymod.orbs.ByrdAttackAbility;
+import lonelymod.orbs.SquirrelAttackAbility;
 import lonelymod.orbs.WolfAttackAbility;
 import lonelymod.util.TexLoader;
 
@@ -50,7 +52,7 @@ public class FearOfTheBeastPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public void onChannel(AbstractOrb orb) {
-        if (orb instanceof WolfAttackAbility || orb instanceof ByrdAttackAbility) { //|| orb instanceof BearAttackAbility || orb instanceof SquirrelAttackAbility
+        if (orb instanceof SquirrelAttackAbility || orb instanceof WolfAttackAbility || orb instanceof BearAttackAbility || orb instanceof ByrdAttackAbility) { //|| orb instanceof BearAttackAbility || orb instanceof SquirrelAttackAbility
             addToBot(new ApplyPowerAction(owner, owner, new StaminaPower(owner, amount), amount));
         }
     }

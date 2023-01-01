@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,6 +19,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.LockOnPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
@@ -86,12 +88,12 @@ public class BearAttackAbility extends CustomOrb {
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
-            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
+            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS), AttackEffect.BLUNT_HEAVY));
         AbstractDungeon.actionManager.addToBottom(// deal damage
-            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
-        if (targetMonster.hasPower("Weak")) {
+            new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS), AttackEffect.BLUNT_HEAVY));
+        if (targetMonster.hasPower(WeakPower.POWER_ID)) {
             AbstractDungeon.actionManager.addToBottom(// deal damage
-                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.BLUNT_HEAVY));
+                new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS), AttackEffect.BLUNT_HEAVY));
         }
     }
     
@@ -99,15 +101,17 @@ public class BearAttackAbility extends CustomOrb {
         int target = 0;
         AbstractMonster targetMonster = null;
         for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (m.hasPower(LockOnPower.POWER_ID)) {
+            if (!m.isDeadOrEscaped() && m.hasPower(LockOnPower.POWER_ID)) {
                 if (target < m.getPower(LockOnPower.POWER_ID).amount) {
                     target = m.getPower(LockOnPower.POWER_ID).amount;
                     targetMonster = m;
                 }
             }
         }
-        if (target == 0)
-            targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        if (target == 0) {
+            while (targetMonster == null || targetMonster.isDeadOrEscaped())
+                targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        }
         else {
             this.targeted = true;
         }

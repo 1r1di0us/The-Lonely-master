@@ -79,15 +79,17 @@ public class WolfDamageAction extends AbstractGameAction {
         int target = 0;
         AbstractMonster targetMonster = null;
         for (AbstractMonster m: (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (m.hasPower(LockOnPower.POWER_ID)) {
+            if (!m.isDeadOrEscaped() && m.hasPower(LockOnPower.POWER_ID)) {
                 if (target < m.getPower(LockOnPower.POWER_ID).amount) {
                     target = m.getPower(LockOnPower.POWER_ID).amount;
                     targetMonster = m;
                 }
             }
         }
-        if (target == 0)
-            targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        if (target == 0) {
+            while (targetMonster == null || targetMonster.isDeadOrEscaped())
+                targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        }
         else {
             this.isTargeted = true;
         }

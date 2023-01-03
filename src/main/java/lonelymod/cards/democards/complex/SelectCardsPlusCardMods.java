@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 import static lonelymod.util.Wiz.*;
 
 import java.util.ArrayList;

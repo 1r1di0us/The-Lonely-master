@@ -1,6 +1,6 @@
 package lonelymod.cards;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;

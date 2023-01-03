@@ -3,7 +3,7 @@ package lonelymod.cards.cardvars;
 import basemod.abstracts.DynamicVariable;
 import lonelymod.cards.AbstractEasyCard;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

@@ -26,7 +26,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
 import static lonelymod.LonelyCharacter.Enums.TODO_COLOR;
-import static lonelymod.ModFile.*;
+import static lonelymod.LonelyMod.*;
 
 import java.util.ArrayList;
 

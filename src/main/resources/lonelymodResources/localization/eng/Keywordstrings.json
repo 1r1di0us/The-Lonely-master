@@ -101,7 +101,7 @@
       "Target",
       "Target."
     ],
-    "DESCRIPTION": "This enemy takes 50% more damage from #yCompanions. NL #yCompanions will prioritize this enemy when choosing a random enemy with their #yAbilities."
+    "DESCRIPTION": "Target creatures takes 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures whenever their #yAbility chooses a random enemy."
   },
   {
     "PROPER_NAME": "Return",
@@ -155,5 +155,17 @@
       "Autoplay."
     ],
     "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
+  },
+  {
+    "PROPER_NAME": "Note",
+    "NAMES": [
+      "NOTE",
+      "NOTE:",
+      "Note",
+      "Note:",
+      "note",
+      "note:"
+    ],
+    "DESCRIPTION": "Because #yCompanions are currently implemented as #yOrbs, and this card may give you cards that generate other non-#yCompanion #yOrbs, this will be unintended gameplay and may have bugs."
   }
 ]

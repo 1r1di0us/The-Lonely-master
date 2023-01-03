@@ -20,9 +20,9 @@
     "NAME": "Apprehend",
     "DESCRIPTION": "Deal !D! damage. This enemy temporarily loses !M! Strength. lonelymod:Return."
   },
-  "${ModID}:FireArrows": {
+  "${ModID}:FireArrow": {
     "NAME": "Fire Arrow",
-    "DESCRIPTION": "Deal !D! damage. At the start of the next 3 turns, this enemy takes that much damage again."
+    "DESCRIPTION": "Deal !D! damage. This enemy takes that much damage at the start of the next 3 turns."
   },
   "${ModID}:Feint": {
     "NAME": "Feint",
@@ -199,8 +199,8 @@
   },
   "${ModID}:ThinkOutsideTheBox": {
     "NAME": "Think Outside The Box",
-    "DESCRIPTION": "NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
+    "DESCRIPTION": "lonelymod:NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Choose a card to add into your hand."
     ]

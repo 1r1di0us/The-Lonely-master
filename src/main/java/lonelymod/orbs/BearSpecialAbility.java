@@ -1,6 +1,6 @@
 package lonelymod.orbs;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import basemod.abstracts.CustomOrb;
 import lonelymod.actions.BearBlockAction;
 
-import static lonelymod.ModFile.makeOrbPath;
+import static lonelymod.LonelyMod.makeOrbPath;
 
 public class BearSpecialAbility extends CustomOrb {
 

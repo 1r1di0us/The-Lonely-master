@@ -1,6 +1,6 @@
 package lonelymod.cards.democards.simple;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 import static lonelymod.util.Wiz.atb;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;

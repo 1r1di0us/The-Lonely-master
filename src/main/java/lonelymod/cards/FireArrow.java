@@ -1,6 +1,6 @@
 package lonelymod.cards;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.powers.FireArrowsPower;
 
-public class FireArrows extends AbstractEasyCard {
-    public final static String ID = makeID("FireArrows");
+public class FireArrow extends AbstractEasyCard {
+    public final static String ID = makeID("FireArrow");
 
-    public FireArrows() {
+    public FireArrow() {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 4;
     }

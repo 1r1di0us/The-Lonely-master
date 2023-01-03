@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 
-import static lonelymod.ModFile.makeImagePath;
+import static lonelymod.LonelyMod.makeImagePath;
 
 import java.util.HashMap;
 

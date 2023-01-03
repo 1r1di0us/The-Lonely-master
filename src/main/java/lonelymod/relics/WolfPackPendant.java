@@ -1,6 +1,6 @@
 package lonelymod.relics;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import lonelymod.LonelyCharacter;
 

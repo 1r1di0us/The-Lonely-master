@@ -36,7 +36,7 @@ import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
-public class ModFile implements
+public class LonelyMod implements
         EditCardsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
@@ -82,7 +82,7 @@ public class ModFile implements
         return "eng";
     }
 
-    public ModFile() {
+    public LonelyMod() {
         BaseMod.subscribe(this);
 
         BaseMod.addColor(LonelyCharacter.Enums.TODO_COLOR, characterColor,
@@ -116,7 +116,7 @@ public class ModFile implements
     }
 
     public static void initialize() {
-        ModFile thismod = new ModFile();
+        LonelyMod thismod = new LonelyMod();
     }
 
     @Override

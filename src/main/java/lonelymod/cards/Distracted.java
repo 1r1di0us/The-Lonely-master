@@ -1,6 +1,6 @@
 package lonelymod.cards;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import lonelymod.actions.AutoplayWaitAction;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
@@ -19,7 +18,7 @@ public class Distracted extends AbstractEasyCard {
     public Distracted() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
-        MultiCardPreview.add(this, new InstinctiveReaction());
+        this.cardsToPreview = (AbstractCard) new InstinctiveReaction();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

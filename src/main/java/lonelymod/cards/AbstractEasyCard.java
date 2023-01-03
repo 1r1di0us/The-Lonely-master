@@ -4,8 +4,8 @@ import basemod.abstracts.CustomCard;
 import lonelymod.LonelyCharacter;
 import lonelymod.util.CardArtRoller;
 
-import static lonelymod.ModFile.makeImagePath;
-import static lonelymod.ModFile.modID;
+import static lonelymod.LonelyMod.makeImagePath;
+import static lonelymod.LonelyMod.modID;
 import static lonelymod.util.Wiz.atb;
 import static lonelymod.util.Wiz.att;
 

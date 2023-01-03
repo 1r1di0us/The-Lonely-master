@@ -1,6 +1,6 @@
 package lonelymod.cards.democards.complex;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 import static lonelymod.util.Wiz.*;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

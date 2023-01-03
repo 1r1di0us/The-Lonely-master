@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import lonelymod.ModFile;
+import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
 public abstract class AbstractEasyPower extends AbstractPower {
@@ -29,8 +29,8 @@ public abstract class AbstractEasyPower extends AbstractPower {
         this.amount = amount;
         this.type = powerType;
 
-        Texture normalTexture = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/" + ID.replaceAll(ModFile.modID + ":", "") + "32.png");
-        Texture hiDefImage = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/" + ID.replaceAll(ModFile.modID + ":", "") + "84.png");
+        Texture normalTexture = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/" + ID.replaceAll(LonelyMod.modID + ":", "") + "32.png");
+        Texture hiDefImage = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/" + ID.replaceAll(LonelyMod.modID + ":", "") + "84.png");
         if (hiDefImage != null) {
             region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
             if (normalTexture != null)

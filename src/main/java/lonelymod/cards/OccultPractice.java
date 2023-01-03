@@ -1,6 +1,6 @@
 package lonelymod.cards;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -24,6 +24,7 @@ public class OccultPractice extends AbstractEasyCard {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;
         baseSecondMagic = secondMagic = 1;
+        this.cardsToPreview = (AbstractCard) new Wound();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

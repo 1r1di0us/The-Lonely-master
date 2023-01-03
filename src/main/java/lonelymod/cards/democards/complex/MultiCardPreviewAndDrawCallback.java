@@ -3,7 +3,7 @@ package lonelymod.cards.democards.complex;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import lonelymod.cards.AbstractEasyCard;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 import static lonelymod.util.Wiz.atb;
 import static lonelymod.util.Wiz.shuffleIn;
 

@@ -3,8 +3,8 @@ package lonelymod.relics;
 import basemod.abstracts.CustomRelic;
 import lonelymod.util.TexLoader;
 
-import static lonelymod.ModFile.makeRelicPath;
-import static lonelymod.ModFile.modID;
+import static lonelymod.LonelyMod.makeRelicPath;
+import static lonelymod.LonelyMod.modID;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;

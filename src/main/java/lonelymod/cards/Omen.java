@@ -1,6 +1,6 @@
 package lonelymod.cards;
 
-import static lonelymod.ModFile.makeID;
+import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
 import lonelymod.actions.AutoplayWaitAction;
 import lonelymod.actions.CompanionProtectAbilityAction;
 import lonelymod.powers.OmenPower;
@@ -34,7 +33,7 @@ public class Omen extends AbstractEasyCard {
         this.baseSecondMagic = secondMagic = 1;
         this.exhaust = true;
         AutoplayField.autoplay.set(this, true);
-        MultiCardPreview.add(this, new PrimalInstinct());
+        this.cardsToPreview = (AbstractCard) new PrimalInstinct();
     }
     
     @Override

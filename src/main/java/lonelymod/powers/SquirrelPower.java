@@ -4,22 +4,18 @@ import static lonelymod.ModFile.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
-
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.ModFile;
 import lonelymod.util.TexLoader;
 
-public class DefensiveReflexesPower extends AbstractEasyPower implements CloneablePowerInterface {
-   
-    public static final String POWER_ID = makeID("DefensiveReflexesPower");
+public class SquirrelPower extends AbstractEasyPower implements CloneablePowerInterface {
+
+    public static final String POWER_ID = makeID("SquirrelPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -27,17 +23,13 @@ public class DefensiveReflexesPower extends AbstractEasyPower implements Cloneab
     private static final Texture tex84 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(ModFile.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    //private int autoplayAmount;
-
-    public DefensiveReflexesPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
+    public SquirrelPower(AbstractCreature owner) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 1);
 
         this.owner = owner;
 
         type = PowerType.BUFF;
         isTurnBased = false;
-        this.amount = amount;
-        //this.autoplayAmount = amount * 3;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,22 +44,12 @@ public class DefensiveReflexesPower extends AbstractEasyPower implements Cloneab
     }
 
     @Override
-    public void onCardDraw(AbstractCard card) {
-        if (card.cost == -2 || AutoplayField.autoplay.get(card)) {
-            addToBot(new GainBlockAction(owner, owner, amount));
-        }
-        //else if (AutoplayField.autoplay.get(card)) {
-        //    addToBot(new GainBlockAction(owner, owner, autoplayAmount));
-        //}
-    }
-
-    @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new DefensiveReflexesPower(this.owner, this.amount);
+        return new SquirrelPower(this.owner);
     }
 }

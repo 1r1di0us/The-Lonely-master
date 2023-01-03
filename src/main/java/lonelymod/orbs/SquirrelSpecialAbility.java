@@ -37,7 +37,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
     private static final int PASSIVE_AMOUNT = 2;
     private static final int EVOKE_AMOUNT = 0;
     private static int powerAmount = 10;
-    private boolean targeted = false;
+    
     private AbstractMonster targetMonster;
     //private static int random = -1;
 
@@ -65,16 +65,13 @@ public class SquirrelSpecialAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
             passiveAmount = basePassiveAmount;
         }
         evokeAmount = baseEvokeAmount;
-        if (targeted) {
-            applyLockOn(this.targetMonster, this.passiveAmount);
-        }
+        
         /*passiveAmount = basePassiveAmount;
         evokeAmount = baseEvokeAmount;
         if (random < 1) {
@@ -93,14 +90,13 @@ public class SquirrelSpecialAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), 0.1f));
         DamageInfo info = new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS);
         AbstractDungeon.actionManager.addToBottom(
             new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SquirrelDigPower(AbstractDungeon.player, targetMonster, info, powerAmount), powerAmount));
+        
         //if (powerAmount > 0) {
         //    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
         //}
@@ -122,7 +118,7 @@ public class SquirrelSpecialAbility extends CustomOrb {
                 targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         }
         else {
-            this.targeted = true;
+            this.passiveAmount = applyLockOn(targetMonster, this.passiveAmount);
         }
         return targetMonster;
     }

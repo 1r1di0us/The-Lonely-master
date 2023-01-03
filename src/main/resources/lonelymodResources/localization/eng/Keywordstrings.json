@@ -6,7 +6,7 @@
       "Summon",
       "SUMMON"
     ],
-    "DESCRIPTION": "This companion joins the battle. NL Any Companion already in the fight will be replaced."
+    "DESCRIPTION": "This #yCompanion joins the battle. NL Any #yCompanion already in the fight will be replaced."
   },
   {
     "PROPER_NAME": "Omen",
@@ -15,7 +15,7 @@
       "omen",
       "OMEN"
     ],
-    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to Protect whoever summoned it."
+    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to #yProtect whoever summoned it."
   },
   {
     "PROPER_NAME": "Companion Ability",
@@ -31,7 +31,7 @@
       "Ability",
       "ability"
     ],
-    "DESCRIPTION": "Tell your Companion to perform this ability at the end of your turn. NL Calling another ability will override this ability."
+    "DESCRIPTION": "Tell your #yCompanion to perform this #yAbility at the end of your turn. NL Calling another #yAbility will override this #yAbility."
   },
   {
     "PROPER_NAME": "Basic Ability",
@@ -43,7 +43,7 @@
       "Basic",
       "Basic Ability"
     ],
-    "DESCRIPTION": "This is the default and weakest Ability, which is called at the beginning of your turn."
+    "DESCRIPTION": "This is the weakest #yAbility, which is called at the beginning of your turn."
   },
   {
     "PROPER_NAME": "Attack Ability",
@@ -57,7 +57,7 @@
       "attacks",
       "Attacks"
     ],
-    "DESCRIPTION": "An Ability that focuses on dealing damage to a random enemy."
+    "DESCRIPTION": "An #yAbility that focuses on dealing damage to a random enemy."
   },
   {
     "PROPER_NAME": "Protect Ability",
@@ -69,7 +69,7 @@
       "Protect",
       "Protect Ability"
     ],
-    "DESCRIPTION": "An Ability focusing on granting you Block, or weakening a random enemy."
+    "DESCRIPTION": "An #yAbility focusing on granting you #yBlock, or weakening a random enemy."
   },
   {
     "PROPER_NAME": "Special Ability",
@@ -81,7 +81,7 @@
       "Special",
       "Special Ability"
     ],
-    "DESCRIPTION": "The most powerful Ability. NL Hover over your companion to see what it does."
+    "DESCRIPTION": "The most powerful #yAbility. NL Effects vary greatly between #yCompanions."
   },
   {
     "PROPER_NAME": "Food",
@@ -91,7 +91,7 @@
       "Food",
       "Food."
     ],
-    "DESCRIPTION": "Given to companions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new Companions."
+    "DESCRIPTION": "Given to #yCompanions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new #yCompanions."
   },
   {
     "PROPER_NAME": "Target",
@@ -101,7 +101,7 @@
       "Target",
       "Target."
     ],
-    "DESCRIPTION": "Companions will target this enemy instead of a random enemy with their Abilitys, and they will deal 50% more damage to it."
+    "DESCRIPTION": "This enemy takes 50% more damage from #yCompanions. NL #yCompanions will prioritize this enemy when choosing a random enemy with their #yAbilities."
   },
   {
     "PROPER_NAME": "Return",
@@ -144,7 +144,7 @@
       "Stamina",
       "Stamina."
     ],
-    "DESCRIPTION": "The next skill you play that gives you Block gives X more Block."
+    "DESCRIPTION": "The next card you play that gives you #yBlock gives X more #yBlock."
   },
   {
     "PROPER_NAME": "Autoplay",

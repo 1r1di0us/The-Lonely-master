@@ -61,7 +61,6 @@ public class BearBasicAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         passiveAmount = basePassiveAmount;
         evokeAmount = baseEvokeAmount;
     }
@@ -73,9 +72,7 @@ public class BearBasicAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
         AbstractDungeon.actionManager.addToBottom(

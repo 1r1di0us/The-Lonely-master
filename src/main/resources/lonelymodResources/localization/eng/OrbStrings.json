@@ -11,14 +11,14 @@
     "NAME": "Throw Rock",
     "DESCRIPTION": [
       "#yPassive: Chip deals #b",
-      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      " damage to a random enemy.",
       ""
     ]
   },
   "${ModID}:SquirrelProtectAbility": {
     "NAME": "Distract",
     "DESCRIPTION": [
-      "#yPassive: Chip applies 3 #yWeak to a random enemy, prioritizing enemies with #yTarget.",
+      "#yPassive: Chip applies 3 #yWeak to a random enemy.",
       ""
     ]
   },
@@ -27,7 +27,7 @@
     "DESCRIPTION": [
       "#yPassive: Chip digs into the ground. Next turn, he will pop out and deal #b",
       " damage #b",
-      " times to a random enemy, prioritizing enemies with #yTarget.",
+      " times to a random enemy.",
       ""
     ]
   },
@@ -35,7 +35,7 @@
     "NAME": "Bark",
     "DESCRIPTION": [
       "#yPassive: Ivan deals #b",
-      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      " damage to a random enemy.",
       ""
     ]
   },
@@ -43,7 +43,7 @@
     "NAME": "Bite",
     "DESCRIPTION": [
       "#yPassive: Ivan deals #b",
-      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      " damage to a random enemy.",
       " NL Additionally grants #yBlock equal to half the damage dealt.",
       ""
     ]
@@ -66,7 +66,7 @@
   "${ModID}:BearBasicAbility": {
     "NAME": "Growl",
     "DESCRIPTION": [
-      "#yPassive: Grawl applies 2 #yWeak to a random enemy, prioritizing enemies with #yTarget.",
+      "#yPassive: Grawl applies 2 #yWeak to a random enemy.",
       ""
     ]
   },
@@ -75,7 +75,7 @@
     "DESCRIPTION": [
       "#yPassive: Grawl deals #b",
       "x2 damage to a random enemy, and #b",
-      " more damage if the enemy is #yWeak. Prioritizes enemies with #yTarget.",
+      " more damage if the enemy is #yWeak.",
       ""
     ]
   },
@@ -91,7 +91,7 @@
     "NAME": "Body Tackle",
     "DESCRIPTION": [
       "#yPassive: Grawl grants you #b",
-      "x4 block, and then applies 3 #yWeak and -5 #yStrength to a random enemy, prioritizing enemies with #yTarget.",
+      "x4 block, and then applies 3 #yWeak and -5 #yStrength to a random enemy.",
       ""
     ]
   },
@@ -99,7 +99,7 @@
     "NAME": "Swoop",
     "DESCRIPTION": [
       "#yPassive: Omen deals #b",
-      " damage to a random enemy, prioritizing enemies with #yTarget.",
+      " damage to a random enemy.",
       ""
     ]
   },
@@ -108,7 +108,7 @@
     "DESCRIPTION": [
       "#yPassive: Omen deals #b",
       " damage #b",
-      " times, prioritizing enemies with #yTarget.",
+      " times.",
       ""
     ]
   },
@@ -116,7 +116,7 @@
     "NAME": "Screech",
     "DESCRIPTION": [
       "#yPassive: Omen grants you #b",
-      "x2 #yBlock, and applies 2 #yVulnerable to a random enemy, prioritizing enemies with #yTarget.",
+      "x2 #yBlock, and applies 2 #yVulnerable to a random enemy.",
       ""
     ]
   },

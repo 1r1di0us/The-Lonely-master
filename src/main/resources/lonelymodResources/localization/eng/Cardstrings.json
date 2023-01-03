@@ -215,8 +215,8 @@
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",
-    "DESCRIPTION": "Whenever you draw a card, if it is Unplayable, gain !M! Block. NL If it is an lonelymod:Autoplay card, gain !${ModID}:m2! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a card, if it is Unplayable gain !M! Block. NL If it is an lonelymod:Autoplay card, gain !${ModID}:m2! Block."
+    "DESCRIPTION": "Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block."
   },
   "${ModID}:FearOfTheBeast": {
     "NAME": "Fear Of The Beast",

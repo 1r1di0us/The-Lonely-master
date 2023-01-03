@@ -36,6 +36,7 @@ public class ByrdProtectAbility extends CustomOrb {
     private static final int PASSIVE_AMOUNT = 5;
     private static final int EVOKE_AMOUNT = 0;
     private static final int powerAmount = 3;
+    
     private AbstractMonster targetMonster;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
@@ -62,7 +63,6 @@ public class ByrdProtectAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
@@ -80,9 +80,7 @@ public class ByrdProtectAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. gain block

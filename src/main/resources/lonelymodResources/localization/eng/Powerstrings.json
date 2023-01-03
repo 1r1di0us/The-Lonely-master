@@ -74,8 +74,7 @@
   "${ModID}:DefensiveReflexesPower": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTIONS": [
-      "Whenever you draw an Unplayable card, gain #b",
-      " Block. Whenever you draw an Autoplay card, gain #b",
+      "Whenever you draw a Status, Curse, or Autoplay card, gain #b",
       " Block."
     ]
   },
@@ -216,6 +215,12 @@
     "DESCRIPTIONS": [
       "I owe you #b",
       " relics, but I'm too #rlazy right now."
+    ]
+  },
+  "${ModID}:SquirrelPower": {
+    "NAME": "Chip",
+    "DESCRIPTIONS": [
+      "Chip the Squirrel has answered your #yCall and joined you in combat!"
     ]
   },
   "${ModID}:SquirrelDigPower": {

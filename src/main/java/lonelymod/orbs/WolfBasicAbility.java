@@ -35,7 +35,6 @@ public class WolfBasicAbility extends CustomOrb {
     private static final int PASSIVE_AMOUNT = 4;
     private static final int EVOKE_AMOUNT = 0;
     
-    private boolean targeted = false;
     private AbstractMonster targetMonster;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
@@ -62,14 +61,10 @@ public class WolfBasicAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
             passiveAmount = basePassiveAmount;
-        }
-        if (targeted) {
-            applyLockOn(this.targetMonster, this.passiveAmount);
         }
         evokeAmount = baseEvokeAmount;
     }
@@ -83,6 +78,7 @@ public class WolfBasicAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), 0.1f));
 
@@ -106,7 +102,7 @@ public class WolfBasicAbility extends CustomOrb {
                 targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         }
         else {
-            this.targeted = true;
+            this.passiveAmount = applyLockOn(targetMonster, this.passiveAmount);
         }
         return targetMonster;
     }

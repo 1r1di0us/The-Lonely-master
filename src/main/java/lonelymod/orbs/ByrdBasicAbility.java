@@ -36,7 +36,6 @@ public class ByrdBasicAbility extends CustomOrb {
     private static final int PASSIVE_AMOUNT = 10;
     private static final int EVOKE_AMOUNT = 0;
 
-    private boolean targeted = false;
     private AbstractMonster targetMonster;
 
     // Animation Rendering Numbers - You can leave these at default, or play around with them and see what they change.
@@ -63,16 +62,12 @@ public class ByrdBasicAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
             passiveAmount = basePassiveAmount;
         }
         evokeAmount = baseEvokeAmount;
-        if (targeted) {
-            applyLockOn(this.targetMonster, this.passiveAmount);
-        }
     }
 
     @Override
@@ -84,9 +79,7 @@ public class ByrdBasicAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
@@ -109,7 +102,7 @@ public class ByrdBasicAbility extends CustomOrb {
                 targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         }
         else {
-            this.targeted = true;
+            this.passiveAmount = applyLockOn(targetMonster, this.passiveAmount);
         }
         return targetMonster;
     }

@@ -3,7 +3,7 @@
     "NAME": "Wolf Pack Pendant",
     "FLAVOR": "You fashioned this yourself from a dead wolf's tooth.",
     "DESCRIPTIONS": [
-      "#ySummons Ivan at the start of combat. NL Ivan gains #b2 #yFocus whenever he kills a non-minion enemy."
+      "#ySummons Ivan at the start of combat. NL Ivan gains #b2 #yFood whenever he kills a non-minion enemy."
     ]
   },
   "${ModID}:BearCubPendant": {

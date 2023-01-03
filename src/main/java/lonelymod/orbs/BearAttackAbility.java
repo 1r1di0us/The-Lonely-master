@@ -39,7 +39,6 @@ public class BearAttackAbility extends CustomOrb {
     private static final int PASSIVE_AMOUNT = 5;
     private static final int EVOKE_AMOUNT = 0;
 
-    private boolean targeted = false;
     private AbstractMonster targetMonster;
 
 
@@ -67,16 +66,12 @@ public class BearAttackAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
             passiveAmount = basePassiveAmount;
         }
         evokeAmount = baseEvokeAmount;
-        if (targeted) {
-            applyLockOn(this.targetMonster, this.passiveAmount);
-        }
     }
 
     @Override
@@ -86,9 +81,7 @@ public class BearAttackAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         if (targetMonster.hasPower(makeID("Fetch"))) {
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(targetMonster, targetMonster, makeID("FetchPower")));
         }
@@ -120,7 +113,7 @@ public class BearAttackAbility extends CustomOrb {
                 targetMonster = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         }
         else {
-            this.targeted = true;
+            this.passiveAmount = applyLockOn(targetMonster, this.passiveAmount);
         }
         return targetMonster;
     }

@@ -39,6 +39,7 @@ public class BearSpecialAbility extends CustomOrb {
     private static final int weakAmount = 3;
     private static final int powerAmount = 5;
     private static final int blockTimes = 4;
+    
     private AbstractMonster targetMonster;
 
 
@@ -66,7 +67,6 @@ public class BearSpecialAbility extends CustomOrb {
 
     @Override
     public void applyFocus() {
-        this.targetMonster = getTarget();
         if (AbstractDungeon.player.getPower("Focus") != null) {
             passiveAmount = AbstractDungeon.player.getPower("Focus").amount + basePassiveAmount;
         } else {
@@ -85,9 +85,7 @@ public class BearSpecialAbility extends CustomOrb {
 
     @Override
     public void onEndOfTurn() {// 1.At the end of your turn.
-        if (targetMonster.isDeadOrEscaped()) {
-            targetMonster = getTarget();
-        }
+        targetMonster = getTarget();
         AbstractDungeon.actionManager.addToBottom(// 1.This orb will have a flare effect
             new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. gain block

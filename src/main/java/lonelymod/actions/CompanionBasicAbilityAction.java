@@ -3,6 +3,7 @@ package lonelymod.actions;
 import static lonelymod.ModFile.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,6 +14,7 @@ import lonelymod.orbs.BearBasicAbility;
 import lonelymod.orbs.ByrdBasicAbility;
 import lonelymod.orbs.SquirrelBasicAbility;
 import lonelymod.orbs.WolfBasicAbility;
+import lonelymod.powers.SquirrelPower;
 
 public class CompanionBasicAbilityAction extends AbstractGameAction {
 
@@ -40,6 +42,12 @@ public class CompanionBasicAbilityAction extends AbstractGameAction {
             AbstractDungeon.player.channelOrb((AbstractOrb)new WolfBasicAbility());
         }
         else {
+            if (!AbstractDungeon.player.hasPower(makeID("SquirrelPower"))) {
+                if (AbstractDungeon.player.maxOrbs <= 0) {
+                    AbstractDungeon.player.increaseMaxOrbSlots(1, false);
+                }
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SquirrelPower(AbstractDungeon.player)));
+            }
             AbstractDungeon.player.channelOrb((AbstractOrb)new SquirrelBasicAbility());
         }
         this.isDone = true;

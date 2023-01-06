@@ -18,14 +18,14 @@ public class Distracted extends AbstractEasyCard {
     public Distracted() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = (AbstractCard) new InstinctiveReaction();
+        this.cardsToPreview = (AbstractCard) new Overreaction();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (!upgraded)
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new InstinctiveReaction(), 1, true, true));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Overreaction(), 1, true, true));
         else if (upgraded)
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new InstinctiveReaction(), 1, false, true));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Overreaction(), 1, false, true));
         AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
     }
 

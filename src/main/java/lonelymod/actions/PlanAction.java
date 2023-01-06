@@ -67,6 +67,8 @@ public class PlanAction extends AbstractGameAction {
                             AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
                 }*/
                 this.isDone = true;
+                triggerPlanActions();
+                return;
             }
             CardGroup tmpGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             if (this.amount != -1) {
@@ -88,6 +90,12 @@ public class PlanAction extends AbstractGameAction {
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
+
+        tickDuration();
+        triggerPlanActions();
+    }
+
+    private void triggerPlanActions() {
         //for (AbstractCard c : AbstractDungeon.player.drawPile.group) {}
         //for (AbstractCard c : AbstractDungeon.player.discardPile.group) {}
         //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
@@ -100,7 +108,7 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractPower p : AbstractDungeon.player.powers) {
         //  p.postPlan(selectedCards.size());
         //}
-        tickDuration();
+        
         if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
                 AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();

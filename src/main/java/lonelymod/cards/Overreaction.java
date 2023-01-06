@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class InstinctiveReaction extends AbstractEasyCard {
-    public final static String ID = makeID("InstinctiveReaction");
+public class Overreaction extends AbstractEasyCard {
+    public final static String ID = makeID("Overreaction");
 
-    public InstinctiveReaction() {
+    public Overreaction() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 4;
         baseMagicNumber = magicNumber = 1;

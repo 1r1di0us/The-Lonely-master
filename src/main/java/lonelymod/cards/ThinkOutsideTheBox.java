@@ -12,7 +12,7 @@ public class ThinkOutsideTheBox extends AbstractEasyCard {
     public static final String ID = makeID("ThinkOutsideTheBox");
     
     public ThinkOutsideTheBox() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.exhaust = true;
     }
     

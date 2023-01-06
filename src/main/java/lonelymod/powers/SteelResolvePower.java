@@ -54,7 +54,7 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
             flash();
             //triggers plated armor
             if (AbstractDungeon.player.hasPower("Plated Armor"))
-                addToBot((AbstractGameAction) new GainBlockAction(this.owner, this.owner, AbstractDungeon.player.getPower("Plated Armor").amount));
+                addToTop((AbstractGameAction) new GainBlockAction(this.owner, this.owner, AbstractDungeon.player.getPower("Plated Armor").amount));
         }
         return damageAmount;
     }

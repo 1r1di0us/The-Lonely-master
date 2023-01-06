@@ -49,6 +49,6 @@ public class Frenzy extends AbstractEasyCard {
 
     public void upp() {
         upgradeDamage(3);
-        uDesc();
+        //uDesc();
     }
 }

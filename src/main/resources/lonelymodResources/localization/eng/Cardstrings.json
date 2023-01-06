@@ -18,11 +18,11 @@
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",
-    "DESCRIPTION": "Deal !D! damage. This enemy temporarily loses !M! Strength. lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. Enemy loses !M! Strength this turn. lonelymod:Return."
   },
   "${ModID}:FireArrow": {
     "NAME": "Fire Arrow",
-    "DESCRIPTION": "Deal !D! damage. This enemy takes that much damage at the start of the next 3 turns."
+    "DESCRIPTION": "Deal !D! damage. Enemy takes that much damage at the start of the next 3 turns."
   },
   "${ModID}:Feint": {
     "NAME": "Feint",
@@ -68,13 +68,13 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 Instinctive Reaction into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 Instinctive Reaction on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 #yInstinctive #yReaction into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 #yInstinctive #yReaction on top of your draw pile."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 Panic Attack into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 Panic Attack on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 #yPanic #yAttack into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 #yPanic #yAttack on top of your draw pile."
   },
   "${ModID}:PrepareForTrouble": {
     "NAME": "Prepare For Trouble",
@@ -150,16 +150,16 @@
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 Outburst into your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 #yOutburst into your draw pile."
   },
   "${ModID}:BrokenWill": {
     "NAME": "Broken Will",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 Feign Weakness into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 Feign Weakness on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 #yFeign #yWeakness into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 #yFeign #yWeakness on top of your draw pile."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 Primal Instinct into your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 #yPrimal #yInstinct into your draw pile."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -170,11 +170,6 @@
     "NAME": "Dog Pile",
     "DESCRIPTION": "During the next !M! turns, whenever you gain Block, lonelymod:Call lonelymod:Protect. NL Gain !B! Block."
   },
-  "${ModID}:InstinctiveReaction": {
-    "NAME": "Instinctive Reaction",
-    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E] [E]. NL Exhaust."
-  },
   "${ModID}:KeepItTogether": {
     "NAME": "Keep It Together",
     "DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards.",
@@ -184,18 +179,23 @@
     "NAME": "Overcome Weakness",
     "DESCRIPTION": "Gain !M! Strength and !M! Dexterity for every stack of debuffs you have. NL Exhaust."
   },
+  "${ModID}:Overreaction": {
+    "NAME": "Overreaction",
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E] [E]. NL Exhaust."
+  },
   "${ModID}:PartOfThePlan": {
     "NAME": "Part Of The Plan",
     "DESCRIPTION": "Gain !B! Block. Whenever you lonelymod:Plan, draw this card from your draw pile."
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "This turn, whenever you deal unblocked attack damage to an enemy, Apply !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "This turn, whenever you deal unblocked attack damage to an enemy, Apply !M! Vulnerable and !M! lonelymod:Target."
+    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable and !M! lonelymod:Target."
   },
   "${ModID}:TacticalMove": {
     "NAME": "Tactical Move",
-    "DESCRIPTION": "Gain !M! Vigor. NL If this enemy intends to attack, lonelymod:Call lonelymod:Protect. NL Otherwise, lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Gain !M! Vigor. NL If the enemy intends to attack, lonelymod:Call lonelymod:Protect. NL Otherwise, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:ThinkOutsideTheBox": {
     "NAME": "Think Outside The Box",
@@ -207,7 +207,7 @@
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL This turn, gain !M! Strength. NL Start the next turn with !${ModID}:m2! less energy. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. NL Start the next turn with !${ModID}:m2! less energy. NL Exhaust."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -262,8 +262,7 @@
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack, which your lonelymod:Companion immediately performs X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack, which your lonelymod:Companion immediately performs X+1 times."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack, which your lonelymod:Companion immediately performs X times."
   },
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",

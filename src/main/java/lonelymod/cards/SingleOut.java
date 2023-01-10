@@ -23,7 +23,7 @@ public class SingleOut extends AbstractEasyCard {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new LockOnPower(m, magicNumber), magicNumber));
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon != m && !mon.isDeadOrEscaped()) {
+            if (!mon.isDeadOrEscaped()) {
                 blck();
             }
         }

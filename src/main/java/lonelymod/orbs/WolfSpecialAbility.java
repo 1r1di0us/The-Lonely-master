@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -88,6 +89,14 @@ public class WolfSpecialAbility extends CustomOrb {
                 new ApplyPowerAction((AbstractCreature)mo, AbstractDungeon.player, new VulnerablePower((AbstractCreature)mo, this.powerAmount, false), this.powerAmount, true, AbstractGameAction.AttackEffect.NONE)); 
         AbstractDungeon.actionManager.addToBottom(
             new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, this.powerAmount), this.powerAmount));
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
 
     

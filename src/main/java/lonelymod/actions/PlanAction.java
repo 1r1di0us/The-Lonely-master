@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
-import lonelymod.cards.ABrilliantIdea;
+import lonelymod.cards.Genius;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.Improvise;
 import lonelymod.interfaces.TriggerOnPlanInterface;
@@ -83,7 +83,7 @@ public class PlanAction extends AbstractGameAction {
         } else if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 AbstractDungeon.player.discardPile.moveToDeck(c, true);
-                if (cardPlayed != null && cardPlayed instanceof ABrilliantIdea)
+                if (cardPlayed != null && cardPlayed instanceof Genius)
                     AbstractDungeon.actionManager.addToBottom(new UpgradeSpecificCardAction(c));
                 else if (cardPlayed != null && cardPlayed instanceof Improvise)
                     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, improviseBlock));

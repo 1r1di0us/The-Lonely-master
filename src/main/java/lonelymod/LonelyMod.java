@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.nio.charset.StandardCharsets;
@@ -43,7 +44,8 @@ public class LonelyMod implements
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
-        OnPlayerTurnStartSubscriber {
+        OnPlayerTurnStartSubscriber,
+        OnStartBattleSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -222,16 +224,28 @@ public class LonelyMod implements
     public void receiveOnPlayerTurnStart() {
         //calls start of turn ability and resets attackCounter (which is used for ImpatientStrikes)
         ImpatientStrikes.attackCounter = 0;
-        if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WilForm is active
+
+        //calls abilities at the start of each turn. I have changed this to be recursive on every ability while we still use orbs.
+        /*if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
             AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
         } else if (AbstractDungeon.player instanceof LonelyCharacter) { //or if this is the lonely
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
         } else if (AbstractDungeon.player.hasPower(makeID("SquirrelPower"))) { //or if an action is called without any companions, the player gets the squirrel power
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        } // normally, orbs only happen if you have prismatic shard, have relevant run modifiers, or are the defect (or lonely as of now)
+        }*/
+        
+        // normally, orbs only happen if you have prismatic shard, have relevant run modifiers, or are the defect (or lonely as of now)
         // but if we did the same thing for companions, prismatic shard would just give you 3 metallicize at the start of combat
         // so instead, chip will always show up if you call an attack by any means, whether thats foreign influence or not.
         // perhaps we should instead change the base companion to do nothing as its basic ability, and give it a cool passive or something.
         // I also really like the idea of having the base companion be different for each base character.
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom arg0) {
+        //calls the basic ability at the start of combat. Recursive stuff means the companion will be there forever, unless you channel lightning or something.
+        if (AbstractDungeon.player instanceof LonelyCharacter) {
+            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
+        }
     }
 }

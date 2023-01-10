@@ -29,7 +29,9 @@
       "Call",
       "CALL",
       "Ability",
-      "ability"
+      "ability",
+      "Abilities",
+      "abilities"
     ],
     "DESCRIPTION": "Tell your #yCompanion to perform this #yAbility at the end of your turn. NL Calling another #yAbility will override this #yAbility."
   },

@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -84,6 +85,14 @@ public class ByrdBasicAbility extends CustomOrb {
                 new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.DARK), 0.1f));
         AbstractDungeon.actionManager.addToBottom(// 2. And deal damage
                 new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount), AttackEffect.SLASH_HEAVY));
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
 
     private AbstractMonster getTarget() {

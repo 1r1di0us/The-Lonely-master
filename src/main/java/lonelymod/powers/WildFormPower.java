@@ -47,16 +47,17 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
         updateDescription();
     }
 
-    @Override
+    /*@Override
     public void onSpecificTrigger() {
-        //couldn't get it to work smoothly any other way, stuff actually happens in the ModFile
         flash();
         AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
-    }
+    }*/
 
     @Override
-    public void atStartOfTurnPostDraw() {
+    public void atStartOfTurn() {
+        flash();
         AbstractDungeon.actionManager.addToBottom(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, true));
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
     }
 
     @Override

@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.PlanAction;
 
-public class ABrilliantIdea extends AbstractEasyCard {
-    public final static String ID = makeID("ABrilliantIdea");
+public class Genius extends AbstractEasyCard {
+    public final static String ID = makeID("Genius");
 
-    public ABrilliantIdea() {
+    public Genius() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 4;
     }

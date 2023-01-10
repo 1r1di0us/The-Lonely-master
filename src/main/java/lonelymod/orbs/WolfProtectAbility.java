@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -82,6 +83,14 @@ public class WolfProtectAbility extends CustomOrb {
             //you can specify an AbstractCreature source so that's pretty neat.
         AbstractDungeon.actionManager.addToBottom(
             new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VigorPower(AbstractDungeon.player, powerAmount), powerAmount));
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
 
     

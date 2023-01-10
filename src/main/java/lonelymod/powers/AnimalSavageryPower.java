@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+//import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
@@ -28,7 +28,7 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private boolean turnStart = false;
+    //private boolean turnStart = false;
 
     public AnimalSavageryPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -52,10 +52,20 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        turnStart = true;
+    public void onSpecificTrigger() {
+        this.amount -= 1;
+        this.flash();
+        AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
+        if (this.amount <= 1) {
+            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        }
     }
 
+    /*@Override
+    public void onStartOfTurnPostDraw() {
+        this.turnStart = true;
+    }
+    
     @Override
     public void onChannel(AbstractOrb orb) {
         if (turnStart == true) {
@@ -70,7 +80,7 @@ public class AnimalSavageryPower extends AbstractEasyPower implements CloneableP
             }
             turnStart = false;
         }
-    }
+    }*/
 
     @Override
     public void updateDescription() {

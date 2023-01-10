@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -94,6 +95,14 @@ public class BearAttackAbility extends CustomOrb {
         if (targetMonster.hasPower(WeakPower.POWER_ID)) {
             AbstractDungeon.actionManager.addToBottom(// deal damage
                 new DamageAction(this.targetMonster, new DamageInfo(AbstractDungeon.player, this.passiveAmount, DamageType.THORNS), AttackEffect.BLUNT_HEAVY));
+        }
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
         }
     }
     

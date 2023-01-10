@@ -23,7 +23,7 @@ public class Counterattack extends AbstractEasyCard {
     //public static final Logger logger = LogManager.getLogger(Counterattack.class.getName());
 
     public Counterattack() {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseMagicNumber = magicNumber = 0;
     }
 
@@ -97,6 +97,6 @@ public class Counterattack extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(2);
+        upgradeBaseCost(1);
     }
 }

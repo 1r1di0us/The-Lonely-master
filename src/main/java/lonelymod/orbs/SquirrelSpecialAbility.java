@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 import lonelymod.powers.SquirrelDigPower;
 
 import static lonelymod.LonelyMod.makeOrbPath;
@@ -100,6 +101,14 @@ public class SquirrelSpecialAbility extends CustomOrb {
         //if (powerAmount > 0) {
         //    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IOUPower(AbstractDungeon.player, powerAmount), powerAmount));
         //}
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
 
     private AbstractMonster getTarget() {

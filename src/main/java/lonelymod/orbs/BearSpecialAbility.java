@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 
 import basemod.abstracts.CustomOrb;
 import lonelymod.actions.BearBlockAction;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -94,6 +95,14 @@ public class BearSpecialAbility extends CustomOrb {
             new ApplyPowerAction(targetMonster, AbstractDungeon.player, new WeakPower(targetMonster, weakAmount, false), weakAmount));
         AbstractDungeon.actionManager.addToBottom(// 4. Apply strength loss
             new ApplyPowerAction(targetMonster, AbstractDungeon.player, new StrengthPower(targetMonster, -powerAmount), -powerAmount));
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
     
     private AbstractMonster getTarget() {

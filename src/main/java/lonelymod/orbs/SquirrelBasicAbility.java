@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
 import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbPassiveEffect;
 
 import basemod.abstracts.CustomOrb;
+import lonelymod.actions.CompanionBasicAbilityAction;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -77,6 +78,14 @@ public class SquirrelBasicAbility extends CustomOrb {
         AbstractDungeon.actionManager.addToBottom(
             new GainBlockAction(AbstractDungeon.player, this.passiveAmount));
             //you can specify an AbstractCreature source so that's pretty neat.
+
+        //call next ability
+        if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {
+            AbstractDungeon.player.getPower(makeID("AnimalSavageryPower")).onSpecificTrigger();
+        }
+        else {
+            AbstractDungeon.actionManager.addToBottom(new CompanionBasicAbilityAction());
+        }
     }
     
     @Override

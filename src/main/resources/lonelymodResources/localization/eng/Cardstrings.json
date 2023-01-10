@@ -63,8 +63,8 @@
   },
   "${ModID}:AnimalSavagery": {
     "NAME": "Animal Savagery",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL At the start of next turn, lonelymod:Call lonelymod:Attack again.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL At the start of the next two turns, lonelymod:Call lonelymod:Attack again."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL After performing the next lonelymod:Ability, lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL After performing the next two lonelymod:Abilities, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
@@ -118,7 +118,7 @@
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Next turn, create a copy of this card in your hand. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Next turn, add a copy of this card to your hand. NL lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -138,14 +138,14 @@
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every other enemy in combat."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every enemy in combat."
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !${ModID}:m2! Strength. NL Lose 2 Dexterity."
   },
-  "${ModID}:ABrilliantIdea": {
-    "NAME": "A Brilliant Idea",
+  "${ModID}:Genius": {
+    "NAME": "Genius",
     "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
   "${ModID}:BrokenHeart": {
@@ -245,7 +245,7 @@
   },
   "${ModID}:AccursedBeak": {
     "NAME": "Accursed Beak",
-    "DESCRIPTION": "Deal !D! damage. NL Temporarily lose !M! Strength. NL If you still have Strength, play this card again. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. If you still have Strength, play this card again. NL Exhaust."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
@@ -270,8 +270,8 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. NL Draw !M! cards. NL Permanently remove a random card in your hand from your deck. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Draw !${ModID}:m2! card. NL Permanently remove a random card in your hand from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Draw !M! cards. Permanently remove a random card in your hand from your deck. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Draw !${ModID}:m2! card. Permanently remove a random card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:Cycle": {
     "NAME": "Cycle",
@@ -287,12 +287,12 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle your choice of Bravery, Desperation, or Resolve into your draw pile. NL It costs 0 when drawn."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Choose 1 of #yBravery, #yDesperation, #yResolve to shuffle into your draw pile. NL It costs 0 when drawn."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! cards randomly, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! Primal Instinct into your draw pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! cards randomly, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! Primal Instincts into your draw pile. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! #yPrimal #yInstinct into your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! #yPrimal #yInstincts into your draw pile. NL Exhaust."
 
   },
   "${ModID}:Outburst": {
@@ -332,7 +332,7 @@
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
-    "DESCRIPTION": "Grant your lonelymod:Companion !M! lonelymod:Food. NL At the start of each turn, discard 1 random card and lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Grant !M! lonelymod:Food. NL At the start of each turn, discard 1 random card and lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",

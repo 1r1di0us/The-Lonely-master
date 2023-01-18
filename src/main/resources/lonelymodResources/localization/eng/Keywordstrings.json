@@ -15,7 +15,7 @@
       "omen",
       "OMEN"
     ],
-    "DESCRIPTION": "A very swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to #yProtect whoever summoned it."
+    "DESCRIPTION": "A swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to #yProtect whoever summoned it."
   },
   {
     "PROPER_NAME": "Companion Ability",
@@ -103,7 +103,7 @@
       "Target",
       "Target."
     ],
-    "DESCRIPTION": "Target creatures takes 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures whenever their #yAbility chooses a random enemy."
+    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yAbilities."
   },
   {
     "PROPER_NAME": "Return",

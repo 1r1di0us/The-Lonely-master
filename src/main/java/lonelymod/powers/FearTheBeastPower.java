@@ -19,9 +19,9 @@ import lonelymod.orbs.SquirrelAttackAbility;
 import lonelymod.orbs.WolfAttackAbility;
 import lonelymod.util.TexLoader;
 
-public class FearOfTheBeastPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class FearTheBeastPower extends AbstractEasyPower implements CloneablePowerInterface {
    
-    public static final String POWER_ID = makeID("FearOfTheBeastPower");
+    public static final String POWER_ID = makeID("FearTheBeastPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -29,7 +29,7 @@ public class FearOfTheBeastPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public FearOfTheBeastPower(AbstractCreature owner, int amount) {
+    public FearTheBeastPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -64,6 +64,6 @@ public class FearOfTheBeastPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public AbstractPower makeCopy() {
-        return new FearOfTheBeastPower(this.owner, this.amount);
+        return new FearTheBeastPower(this.owner, this.amount);
     }
 }

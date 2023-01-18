@@ -78,8 +78,8 @@
       " Block."
     ]
   },
-  "${ModID}:FearOfTheBeastPower": {
-    "NAME": "Fear Of The Beast",
+  "${ModID}:FearTheBeastPower": {
+    "NAME": "Fear The Beast",
     "DESCRIPTIONS": [
       "Whenever you Call Attack, gain #b",
       " #yStamina."

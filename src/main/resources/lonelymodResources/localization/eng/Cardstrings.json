@@ -68,13 +68,13 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 #yInstinctive #yReaction into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 #yInstinctive #yReaction on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 *Overreaction into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 *Overreaction on top of your draw pile."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 #yPanic #yAttack into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 #yPanic #yAttack on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 *Panic *Attack into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 *Panic *Attack on top of your draw pile."
   },
   "${ModID}:PrepareForTrouble": {
     "NAME": "Prepare For Trouble",
@@ -87,7 +87,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Shuffle !${ModID}:m2! Wound into your draw pile. NL Gain !M! Strength."
+    "DESCRIPTION": "Shuffle !${ModID}:m2! *Wound into your draw pile. NL Gain !M! Strength."
   },
   "${ModID}:StandYourGround": {
     "NAME": "Stand Your Ground",
@@ -118,7 +118,7 @@
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Next turn, add a copy of this card to your hand. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. Deal !D! damage. Next turn, add a copy of this card to your hand. NL lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -150,16 +150,16 @@
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 #yOutburst into your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 *Outburst into your draw pile."
   },
   "${ModID}:BrokenWill": {
     "NAME": "Broken Will",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 #yFeign #yWeakness into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 #yFeign #yWeakness on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 *Feign *Weakness into your draw pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 *Feign *Weakness on top of your draw pile."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 #yPrimal #yInstinct into your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 *Primal *Instinct into your draw pile."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -211,15 +211,15 @@
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
-    "DESCRIPTION": "Ethereal. NL Gain !B! Block. Gain additional Block equal to ALL enemies' combined Strength. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. Gain !B! Block. Gain additional Block equal to ALL enemies' combined Strength. NL lonelymod:Return."
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTION": "Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block.",
     "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block."
   },
-  "${ModID}:FearOfTheBeast": {
-    "NAME": "Fear Of The Beast",
+  "${ModID}:FearTheBeast": {
+    "NAME": "Fear The Beast",
     "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! lonelymod:Stamina."
   },
   "${ModID}:MultiShot": {
@@ -287,12 +287,12 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Choose 1 of #yBravery, #yDesperation, #yResolve to shuffle into your draw pile. NL It costs 0 when drawn."
+    "DESCRIPTION": "lonelymod:Autoplay. Choose 1 of *Bravery, *Desperation, *Resolve to shuffle into your draw pile. It costs 0 when drawn."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! #yPrimal #yInstinct into your draw pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards, lonelymod:Summon lonelymod:Omen, and shuffle !${ModID}:m2! #yPrimal #yInstincts into your draw pile. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal *Instinct into your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal *Instincts into your draw pile. NL Exhaust."
 
   },
   "${ModID}:Outburst": {

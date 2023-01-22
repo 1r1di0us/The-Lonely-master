@@ -28,7 +28,7 @@ public class AbandonAction extends AbstractGameAction {
             }
         }
         AbstractCard cardToExhaust = AbstractDungeon.player.hand.findCardById(REALTEMP.getRandomCard(AbstractDungeon.cardRandomRng).cardID);
-        AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(cardToExhaust, AbstractDungeon.player.hand));
+        AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(cardToExhaust, AbstractDungeon.player.hand));
         AbstractCard cardToPurge = AbstractDungeon.player.masterDeck.findCardById(cardToExhaust.cardID);
         AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(cardToPurge, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         AbstractDungeon.player.masterDeck.removeCard(cardToPurge);

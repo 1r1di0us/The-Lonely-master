@@ -36,7 +36,7 @@ public class LonelyAction extends AbstractGameAction {
         //if (this.upgraded)
             //for (AbstractCard c : cardChoices)
                 //c.upgrade();
-        addToBot((AbstractGameAction)new ChooseOneAction(cardChoices));
+        addToTop((AbstractGameAction)new ChooseOneAction(cardChoices));
         //after choosing a card, that card's onChooseAction activates
         this.isDone = true;
     }

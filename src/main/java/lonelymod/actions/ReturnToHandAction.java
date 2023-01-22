@@ -25,7 +25,7 @@ public class ReturnToHandAction extends AbstractGameAction {
                 AbstractDungeon.player.hand.addToHand(this.card);
                 //maybe I should have a hook here in case someone wants to mod extra cards into my mod. haha thats silly though.
                 if (AbstractDungeon.player.hasPower(makeID("MuscleMemoryPower"))) {
-                    AbstractDungeon.actionManager.addToBottom(new ReduceCostForTurnAction(this.card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
+                    AbstractDungeon.actionManager.addToTop(new ReduceCostForTurnAction(this.card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
                 }
                 this.card.unhover();
                 this.card.setAngle(0.0F, true);
@@ -38,7 +38,7 @@ public class ReturnToHandAction extends AbstractGameAction {
             else if (AbstractDungeon.player.discardPile.contains(this.card) && AbstractDungeon.player.hand.size() < 10) {
                 AbstractDungeon.player.hand.addToHand(this.card);
                 if (AbstractDungeon.player.hasPower(makeID("MuscleMemoryPower"))) {
-                    AbstractDungeon.actionManager.addToBottom(new ReduceCostForTurnAction(card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
+                    AbstractDungeon.actionManager.addToTop(new ReduceCostForTurnAction(card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
                 }
                 this.card.unhover();
                 this.card.setAngle(0.0F, true);

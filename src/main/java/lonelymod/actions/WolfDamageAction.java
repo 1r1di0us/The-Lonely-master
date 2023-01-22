@@ -42,7 +42,7 @@ public class WolfDamageAction extends AbstractGameAction {
             AbstractDungeon.actionManager.clearPostCombatActions();
         //gain focus if the wolf killed it
         if ((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead && !this.target.hasPower("Minion")) {
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, 2), 2));
+            addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, 2), 2));
         }
         this.isDone = true;
     }

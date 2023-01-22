@@ -163,8 +163,7 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain !M! Ritual. NL Discard !${ModID}:m2! random cards.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Discard !${ModID}:m2! random cards."
+    "DESCRIPTION": "Discard your hand. NL Gain !M! Ritual for each card discarded. NL Exhaust."
   },
   "${ModID}:DogPile": {
     "NAME": "Dog Pile",
@@ -245,7 +244,7 @@
   },
   "${ModID}:AccursedBeak": {
     "NAME": "Accursed Beak",
-    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. If you still have Strength, play this card again. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. If you still have Strength, play this card again."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
@@ -312,8 +311,8 @@
   },
   "${ModID}:Bravery": {
     "NAME": "Bravery",
-    "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! temporary Strength.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! temporary Strength and !${ModID}:m2! temporary Dexterity."
+    "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Strength that turn.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Strength and !${ModID}:m2! Dexterity that turn."
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",

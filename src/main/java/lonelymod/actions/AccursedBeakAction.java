@@ -23,9 +23,10 @@ public class AccursedBeakAction extends AbstractGameAction {
             if (player.getPower("Strength").amount > 0) {
                 AbstractCard tmp = cardToQueue.makeStatEquivalentCopy();
                 tmp.purgeOnUse = true;
-                addToBot(new NewQueueCardAction(tmp, target, false, true));
+                addToTop(new NewQueueCardAction(tmp, target, false, true));
             }
         }
+        this.isDone = true;
     }
 
 }

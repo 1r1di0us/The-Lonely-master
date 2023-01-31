@@ -69,7 +69,7 @@ public class LonelyMod implements
     private static final String POWER_L_ART = modID + "Resources/images/1024/power.png";
     private static final String CARD_ENERGY_L = modID + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = modID + "Resources/images/charSelect/charButton.png";
-    private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/charBG.png";
+    private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/LonelyBG.png";
 
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,

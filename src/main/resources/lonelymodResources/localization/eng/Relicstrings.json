@@ -1,0 +1,17 @@
+{
+  "${ModID}:WolfPackPendant": {
+    "NAME": "Wolf Pack Pendant",
+    "FLAVOR": "You fashioned this yourself from a dead wolf's tooth.",
+    "DESCRIPTIONS": [
+      "lonelymod:Summons Ivan at the start of combat. NL Ivan gains #b2 lonelymod:Food whenever he kills a non-minion enemy."
+    ]
+  },
+  "${ModID}:BearCubPendant": {
+    "NAME": "Bear Cub Pendant",
+    "FLAVOR": "The weak make way for the strong.",
+    "DESCRIPTIONS": [
+      "Replaces ",
+      ".[] NL lonelymod:Summons Grawl at the start of combat. NL Grawl will use leftover lonelymod:Stamina whenever he grants you #yBlock."
+    ]
+  }
+}

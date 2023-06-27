@@ -1,0 +1,173 @@
+[
+  {
+    "PROPER_NAME": "Summon",
+    "NAMES": [
+      "summon",
+      "Summon",
+      "SUMMON"
+    ],
+    "DESCRIPTION": "This #yCompanion joins the battle. NL Any #yCompanion already in the fight will be replaced."
+  },
+  {
+    "PROPER_NAME": "Omen",
+    "NAMES": [
+      "Omen",
+      "omen",
+      "OMEN"
+    ],
+    "DESCRIPTION": "A swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to #yProtect whoever summoned it."
+  },
+  {
+    "PROPER_NAME": "Companion Ability",
+    "NAMES": [
+      "Companion_Ability",
+      "companion_ability",
+      "Companion",
+      "Companion's",
+      "companion",
+      "call",
+      "Call",
+      "CALL",
+      "Ability",
+      "ability",
+      "Abilities",
+      "abilities"
+    ],
+    "DESCRIPTION": "Tell your #yCompanion to perform this #yAbility at the end of your turn. NL Calling another #yAbility will override this #yAbility."
+  },
+  {
+    "PROPER_NAME": "Basic Ability",
+    "NAMES": [
+      "Basic_Ability",
+      "basic_ability",
+      "basic",
+      "basic ability",
+      "Basic",
+      "Basic Ability"
+    ],
+    "DESCRIPTION": "This is the weakest #yAbility, which is called at the beginning of your turn."
+  },
+  {
+    "PROPER_NAME": "Attack Ability",
+    "NAMES": [
+      "Attack_Ability",
+      "attack_ability",
+      "attack",
+      "attack ability",
+      "Attack",
+      "Attack Ability",
+      "attacks",
+      "Attacks"
+    ],
+    "DESCRIPTION": "An #yAbility that focuses on dealing damage to a random enemy."
+  },
+  {
+    "PROPER_NAME": "Protect Ability",
+    "NAMES": [
+      "Protect_Ability",
+      "protect_ability",
+      "protect",
+      "protect ability",
+      "Protect",
+      "Protect Ability"
+    ],
+    "DESCRIPTION": "An #yAbility focusing on granting you #yBlock, or weakening a random enemy."
+  },
+  {
+    "PROPER_NAME": "Special Ability",
+    "NAMES": [
+      "Special_Ability",
+      "special_ability",
+      "special",
+      "special ability",
+      "Special",
+      "Special Ability"
+    ],
+    "DESCRIPTION": "The most powerful #yAbility. NL Effects vary greatly between #yCompanions."
+  },
+  {
+    "PROPER_NAME": "Food",
+    "NAMES": [
+      "food",
+      "food.",
+      "Food",
+      "Food."
+    ],
+    "DESCRIPTION": "Given to #yCompanions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new #yCompanions."
+  },
+  {
+    "PROPER_NAME": "Target",
+    "NAMES": [
+      "target",
+      "target.",
+      "Target",
+      "Target."
+    ],
+    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yAbilities."
+  },
+  {
+    "PROPER_NAME": "Return",
+    "NAMES": [
+      "return",
+      "return.",
+      "Return",
+      "Return.",
+      "returns",
+      "returns.",
+      "Returns",
+      "Returns."
+    ],
+    "DESCRIPTION": "When played, return this card to your hand at the start of next turn."
+  },
+  {
+    "PROPER_NAME": "Plan",
+    "NAMES": [
+      "plan",
+      "Plan",
+      "PLAN"
+    ],
+    "DESCRIPTION": "Look at the top X cards on your discard pile. NL You may choose any of them to shuffle into your draw pile."
+  },
+  {
+    "PROPER_NAME": "Vigor",
+    "NAMES": [
+      "vigor",
+      "vigor.",
+      "Vigor",
+      "Vigor."
+    ],
+    "DESCRIPTION": "The next attack you play deals X more damage."
+  },
+  {
+    "PROPER_NAME": "Stamina",
+    "NAMES": [
+      "stamina",
+      "stamina.",
+      "Stamina",
+      "Stamina."
+    ],
+    "DESCRIPTION": "The next card you play that gives you #yBlock gives X more #yBlock."
+  },
+  {
+    "PROPER_NAME": "Autoplay",
+    "NAMES": [
+      "autoplay",
+      "autoplay.",
+      "Autoplay",
+      "Autoplay."
+    ],
+    "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
+  },
+  {
+    "PROPER_NAME": "Note",
+    "NAMES": [
+      "NOTE",
+      "NOTE:",
+      "Note",
+      "Note:",
+      "note",
+      "note:"
+    ],
+    "DESCRIPTION": "Because #yCompanions are currently implemented as #yOrbs, and this card may give you cards that generate other non-#yCompanion #yOrbs, this will be unintended gameplay and may have bugs."
+  }
+]

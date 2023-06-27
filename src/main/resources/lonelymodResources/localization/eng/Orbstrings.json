@@ -1,0 +1,137 @@
+{
+  "${ModID}:SquirrelBasicAbility": {
+    "NAME": "Chitter",
+    "DESCRIPTION": [
+      "#yPassive: Chip grants you #b",
+      " #yBlock.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelAttackAbility": {
+    "NAME": "Throw Rock",
+    "DESCRIPTION": [
+      "#yPassive: Chip deals #b",
+      " damage to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelProtectAbility": {
+    "NAME": "Distract",
+    "DESCRIPTION": [
+      "#yPassive: Chip applies 3 #yWeak to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:SquirrelSpecialAbility": {
+    "NAME": "Dig",
+    "DESCRIPTION": [
+      "#yPassive: Chip digs into the ground. Next turn, he will pop out and deal #b",
+      " damage #b",
+      " times to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:WolfBasicAbility": {
+    "NAME": "Bark",
+    "DESCRIPTION": [
+      "#yPassive: Ivan deals #b",
+      " damage to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:WolfAttackAbility": {
+    "NAME": "Bite",
+    "DESCRIPTION": [
+      "#yPassive: Ivan deals #b",
+      " damage to a random enemy.",
+      " NL Additionally grants #yBlock equal to half the damage dealt.",
+      ""
+    ]
+  },
+  "${ModID}:WolfProtectAbility": {
+    "NAME": "Poise",
+    "DESCRIPTION": [
+      "#yPassive: Ivan grants you #b",
+      " #yBlock and 3 #yVigor.",
+      ""
+    ]
+  },
+  "${ModID}:WolfSpecialAbility": {
+    "NAME": "Howl",
+    "DESCRIPTION": [
+      "#yPassive: Ivan applies 3 #yWeak and #yVulnerable to ALL enemies, and gains 3 #yFood.",
+      ""
+    ]
+  },
+  "${ModID}:BearBasicAbility": {
+    "NAME": "Growl",
+    "DESCRIPTION": [
+      "#yPassive: Grawl applies 2 #yWeak to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:BearAttackAbility": {
+    "NAME": "Maul",
+    "DESCRIPTION": [
+      "#yPassive: Grawl deals #b",
+      "x2 damage to a random enemy, and #b",
+      " more damage if the enemy is #yWeak.",
+      ""
+    ]
+  },
+  "${ModID}:BearProtectAbility": {
+    "NAME": "Bear Hug",
+    "DESCRIPTION": [
+      "#yPassive: Grawl grants you #b",
+      "x3 #yBlock.",
+      ""
+    ]
+  },
+  "${ModID}:BearSpecialAbility": {
+    "NAME": "Body Tackle",
+    "DESCRIPTION": [
+      "#yPassive: Grawl grants you #b",
+      "x4 block, and then applies 3 #yWeak and -5 #yStrength to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdBasicAbility": {
+    "NAME": "Swoop",
+    "DESCRIPTION": [
+      "#yPassive: Omen deals #b",
+      " damage to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdAttackAbility": {
+    "NAME": "Peck",
+    "DESCRIPTION": [
+      "#yPassive: Omen deals #b",
+      " damage #b",
+      " times.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdProtectAbility": {
+    "NAME": "Screech",
+    "DESCRIPTION": [
+      "#yPassive: Omen grants you #b",
+      "x2 #yBlock, and applies 2 #yVulnerable to a random enemy.",
+      ""
+    ]
+  },
+  "${ModID}:ByrdSpecialAbility": {
+    "NAME": "Sharpen",
+    "DESCRIPTION": [
+      "#yPassive: Omen gains 1 #yFood. Omen's #yAttack, Peck, now hits 2 more times",
+      ""
+    ]
+  },
+  "${ModID}:StunnedAbility": {
+    "NAME": "Stunned",
+    "DESCRIPTION": [
+      "#yPassive: Your Companion is stunned and will do nothing this turn. NL Calling a new ability will not un-stun your Companion.",
+      ""
+    ]
+  }
+}

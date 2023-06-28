@@ -2,7 +2,7 @@
   "modid": "${ModID}",
   "name": "${project.name}",
   "author_list": [
-    "zrgrush(Rushalisk)"
+    "${project.author}"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
@@ -10,7 +10,8 @@
   "mts_version": "${ModTheSpire.version}",
   "dependencies": [
     "basemod",
-    "stslib"
+    "stslib",
+    "friendlymonsters"
   ]
 }
 

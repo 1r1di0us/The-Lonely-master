@@ -65,21 +65,16 @@ public abstract class AbstractCompanion extends AbstractCreature {
     private static final Logger logger = LogManager.getLogger(AbstractCompanion.class.getName());
 
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("AbstractMonster"); //huh?
-  
     public static final String[] TEXT = uiStrings.TEXT;
-  
+
     private static final float DEATH_TIME = 1.8F;
-  
     private static final float ESCAPE_TIME = 3.0F;
-  
     protected static final byte ESCAPE = 99;
-  
     protected static final byte ROLL = 98;
   
     public float deathTimer = 0.0F;
   
     private Color nameColor = new Color();
-  
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
   
     protected Texture img;
@@ -89,7 +84,6 @@ public abstract class AbstractCompanion extends AbstractCreature {
     protected HashMap<Byte, String> moveSet = new HashMap<>();
   
     public boolean escaped = false;
-  
     public boolean escapeNext = false;
   
     private PowerTip intentTip = new PowerTip();
@@ -103,7 +97,6 @@ public abstract class AbstractCompanion extends AbstractCreature {
     private CompanionMoveInfo move;
     
     private float intentParticleTimer = 0.0F;
-    
     private float intentAngle = 0.0F;
     
     public ArrayList<Byte> moveHistory = new ArrayList<>();
@@ -117,11 +110,8 @@ public abstract class AbstractCompanion extends AbstractCreature {
     private BobEffect bobEffect = new BobEffect();
     
     private static final float INTENT_HB_W = 64.0F * Settings.scale;
-    
     public Hitbox intentHb;
-    
     public Intent intent = Intent.DEBUG;
-    
     public Intent tipIntent = Intent.DEBUG;
     
     public float intentAlpha = 0.0F;
@@ -131,15 +121,11 @@ public abstract class AbstractCompanion extends AbstractCreature {
     public float intentOffsetX = 0.0F;
     
     private Texture intentImg = null;
-    
     private Texture intentBg = null;
-    
+
     private int intentDmg = -1;
-    
     private int intentBaseDmg = -1;
-    
     private int intentMultiAmt = 0;
-    
     private boolean isMultiDmg = false;
     
     private Color intentColor = Color.WHITE.cpy();
@@ -149,10 +135,9 @@ public abstract class AbstractCompanion extends AbstractCreature {
     protected List<Disposable> disposables = new ArrayList<>();
     
     public static String[] MOVES;
-    
     public static String[] DIALOG;
 
-    public static Comparator<AbstractMonster> sortByHitbox;
+    public static Comparator<AbstractMonster> sortByHitbox; //no?
 
     public enum Intent {
         ATTACK, ATTACK_BUFF, ATTACK_DEBUFF, ATTACK_DEFEND, BUFF, DEBUFF, STRONG_DEBUFF, DEBUG, DEFEND, DEFEND_DEBUFF, DEFEND_BUFF, ESCAPE, MAGIC, NONE, SLEEP, STUN, UNKNOWN;
@@ -175,7 +160,7 @@ public abstract class AbstractCompanion extends AbstractCreature {
         this.hb_x = hb_x * Settings.scale;
         this.hb_y = hb_y * Settings.scale;
         if (imgUrl != null)
-        this.img = ImageMaster.loadImage(imgUrl); 
+            this.img = ImageMaster.loadImage(imgUrl);
         this.intentHb = new Hitbox(INTENT_HB_W, INTENT_HB_W);
         this.hb = new Hitbox(this.hb_w, this.hb_h);
         refreshHitboxLocation();

@@ -1,6 +1,8 @@
 package lonelymod.companions;
 
+import static lonelymod.LonelyMod.makeCompanionPath;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -21,10 +24,39 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import lonelymod.util.TexLoader;
 
-public class Bones {
+public class Bones extends AbstractCreature {
+
+    protected static final Texture img = TexLoader.getTexture(makeCompanionPath("Bones.png"));
+
+    public Bones(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
+        //I am super lost
+        if (Settings.isMobile)
+            hb_w *= 1.17F;
+        this.drawX = Settings.WIDTH * 0.75F + offsetX * Settings.xScale;
+        this.drawY = AbstractDungeon.floorY + offsetY * Settings.yScale;
+    }
+
+    @Override
+    public void damage(DamageInfo damageInfo) {
+        return; //don't think i need this...
+    }
 
     public void render(SpriteBatch sb) {
+        if (this.atlas == null) {
+            sb.setColor(this.tint.color);
+            if (this.img != null)
+                sb.draw(this.img, this.drawX - this.img
+
+                        .getWidth() * Settings.scale / 2.0F + this.animX, this.drawY + this.animY, this.img
+
+                        .getWidth() * Settings.scale, this.img
+                        .getHeight() * Settings.scale, 0, 0, this.img
+
+                        .getWidth(), this.img
+                        .getHeight(), this.flipHorizontal, this.flipVertical);
+        }
         /*if (!this.isDead && !this.escaped) {
             if (this.atlas == null) {
                 sb.setColor(this.tint.color);

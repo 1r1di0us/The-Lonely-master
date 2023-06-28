@@ -117,6 +117,8 @@ public class LonelyMod implements
         return modID + "Resources/images/cards/" + resourcePath;
     }
 
+    public static String makeCompanionPath(String resourcePath) { return modID + "Resources/images/companions/" + resourcePath; }
+
     public static void initialize() {
         LonelyMod thismod = new LonelyMod();
     }

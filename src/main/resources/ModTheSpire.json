@@ -2,7 +2,7 @@
   "modid": "${ModID}",
   "name": "${project.name}",
   "author_list": [
-    "${project.author}"
+    "zrgrush(Rushalisk)"
   ],
   "description": "${project.description}",
   "version": "${project.version}",
@@ -11,7 +11,7 @@
   "dependencies": [
     "basemod",
     "stslib",
-    "friendlymonsters"
+    "FriendlyMonsters"
   ]
 }
 

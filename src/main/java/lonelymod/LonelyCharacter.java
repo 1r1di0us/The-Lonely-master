@@ -3,7 +3,8 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import hlysine.friendlymonsters.characters.AbstractPlayerWithMinions;
+//import hlysine.friendlymonsters.characters.AbstractPlayerWithMinions;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.cards.Defend;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
@@ -31,12 +32,14 @@ import static lonelymod.LonelyMod.*;
 
 import java.util.ArrayList;
 
-public class LonelyCharacter extends AbstractPlayerWithMinions {
+public class LonelyCharacter extends CustomPlayer {
 
     static final String ID = makeID("Lonely");
     static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
+
+    public static AbstractMonster[] Companions = {null};
 
 
     public LonelyCharacter(String name, PlayerClass setClass) {
@@ -52,8 +55,8 @@ public class LonelyCharacter extends AbstractPlayerWithMinions {
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 240.0F * Settings.scale);
 
-        setBaseMinionPowerChance(0);
-        setBaseMinionAttackTargetChance(0);
+        //setBaseMinionPowerChance(0);
+        //setBaseMinionAttackTargetChance(0);
     }
 
     @Override

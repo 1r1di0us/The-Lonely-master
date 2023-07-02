@@ -1,3 +1,4 @@
+/*
 package lonelymod.companions;
 
 import basemod.BaseMod;
@@ -26,20 +27,20 @@ public class Bones2 extends AbstractFriendlyMonster {
     public static final String IMG = makeCompanionPath("Bones.png");
 
     public Bones2(float drawX, float drawY) {
-        super(NAME, ID, MAX_HP, 0, 0, 200, 200, IMG, drawX, drawY);
+        super(NAME, ID, MAX_HP, 0, 0, 400, 300, IMG, drawX, drawY);
+
+        setMove("Basic", (byte)1, Intent.DEFEND);
 
         addMove(new MinionMove("Basic", this,
                 new Texture("images/ui/intent/defend.png"),
-                "Deal 3 damage",
+                "Grant 3 Block",
                 () -> {
-                    AbstractMonster target = AbstractDungeon.getRandomMonster();
-                    DamageInfo info = new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL);
-                    info.applyPowers(this, target); // <--- This lets powers effect minions attacks
-                    AbstractDungeon.actionManager.addToBottom(new DamageAction(target, info));
+                    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, this, 3));
                 }
         ));
     }
 
-    /*@Override
-    public void renderHealth(SpriteBatch sb) {}*/
+    @Override
+    public void renderHealth(SpriteBatch sb) {}
 }
+*/

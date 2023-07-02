@@ -1,0 +1,120 @@
+package lonelymod.companions;
+
+import basemod.BaseMod;
+import basemod.animations.AbstractAnimation;
+import basemod.interfaces.ModelRenderSubscriber;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.Environment;
+import com.badlogic.gdx.graphics.g3d.ModelBatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Method;
+
+/*public class AbstractCompanion2 extends AbstractMonster implements ModelRenderSubscriber {
+
+    public AbstractAnimation animation;
+
+    private static final MethodHandle renderNameHandle;
+
+
+    @Override
+    public void takeTurn() {
+
+    }
+
+    @Override
+    protected void getMove(int i) {
+
+    }
+    @Override
+    public void receiveModelRender(ModelBatch batch, Environment env) {
+        this.animation.renderModel(batch, env);
+    }
+
+    public void render(SpriteBatch sb) {
+        if (!this.isDead && !this.escaped) {
+            if (this.atlas != null) {
+                switch (this.animation.type()) {
+                    case NONE:
+                        this.state.update(Gdx.graphics.getDeltaTime());
+                        this.state.apply(this.skeleton);
+                        this.skeleton.updateWorldTransform();
+                        this.skeleton.setPosition(this.drawX + this.animX, this.drawY + this.animY);
+                        this.skeleton.setColor(this.tint.color);
+                        this.skeleton.setFlip(this.flipHorizontal, this.flipVertical);
+                        sb.end();
+                        CardCrawlGame.psb.begin();
+                        sr.draw(CardCrawlGame.psb, this.skeleton);
+                        CardCrawlGame.psb.end();
+                        sb.begin();
+                        sb.setBlendFunction(770, 771);
+                        break;
+                    case MODEL:
+                        BaseMod.publishAnimationRender(sb);
+                        break;
+                    case SPRITE:
+                        this.animation.setFlip(this.flipHorizontal, this.flipVertical);
+                        this.animation.renderSprite(sb, this.drawX + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY);
+                }
+            } else {
+                sb.setColor(this.tint.color);
+                if (this.img != null) {
+                    this.drawStaticImg(sb);
+                }
+            }
+
+            if (this == AbstractDungeon.getCurrRoom().monsters.hoveredMonster && this.atlas == null) {
+                sb.setBlendFunction(770, 1);
+                sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.1F));
+                if (this.img != null) {
+                    this.drawStaticImg(sb);
+                    sb.setBlendFunction(770, 771);
+                }
+            }
+
+            this.hb.render(sb);
+            this.intentHb.render(sb);
+            //this.healthHb.render(sb);
+        }
+
+        if (!AbstractDungeon.player.isDead) {
+            //this.renderHealth(sb);
+
+            try {
+                renderNameHandle.invoke(this, sb);
+            } catch (Throwable var3) {
+                var3.printStackTrace();
+            }
+        }
+
+        if (!this.hasTakenTurn()) {
+            this.moves.render(sb);
+        }
+
+    }
+
+    private void drawStaticImg(SpriteBatch sb) {
+        sb.draw(this.img, this.drawX - (float)this.img.getWidth() * this.scale * Settings.scale / 2.0F + this.animX, this.drawY + this.animY, (float)this.img.getWidth() * this.scale * Settings.scale, (float)this.img.getHeight() * this.scale * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);// 329 330 332 333 336 337
+    }
+
+    static {
+        MethodHandle tmpHandle;
+        try {
+            Method renderMethod = AbstractMonster.class.getDeclaredMethod("renderName", SpriteBatch.class);
+            renderMethod.setAccessible(true);
+            tmpHandle = MethodHandles.publicLookup().unreflect(renderMethod);
+        } catch (NoSuchMethodException | IllegalAccessException var2) {
+            var2.printStackTrace();
+            tmpHandle = null;
+        }
+
+        renderNameHandle = tmpHandle;
+    }
+}*/

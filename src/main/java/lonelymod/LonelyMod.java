@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.megacrit.cardcrawl.localization.*;
 import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.actions.CompanionBasicAbilityAction;
 import lonelymod.actions.ReturnToHandAction;
@@ -24,12 +25,6 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.RelicStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -171,6 +166,8 @@ public class LonelyMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
 
         BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/uistrings.json");
+
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, modID + "Resources/localization/" + getLangString() + "/Companionstrings.json");
     }
 
     @Override
@@ -228,13 +225,13 @@ public class LonelyMod implements
         ImpatientStrikes.attackCounter = 0;
 
         //calls abilities at the start of each turn. I have changed this to be recursive on every ability while we still use orbs.
-        /*if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
+        if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
             AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
         } else if (AbstractDungeon.player instanceof LonelyCharacter) { //or if this is the lonely
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
         } else if (AbstractDungeon.player.hasPower(makeID("SquirrelPower"))) { //or if an action is called without any companions, the player gets the squirrel power
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        }*/
+        }
         
         // normally, orbs only happen if you have prismatic shard, have relevant run modifiers, or are the defect (or lonely as of now)
         // but if we did the same thing for companions, prismatic shard would just give you 3 metallicize at the start of combat

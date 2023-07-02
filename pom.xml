@@ -63,13 +63,6 @@
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>friendlymonsters</groupId>
-            <artifactId>FriendlyMonsters</artifactId>
-            <version>1.1.0</version>
-            <scope>system</scope>
-            <systemPath>${steam.path}/workshop/content/646570/2816293692/FriendlyMonsters.jar</systemPath>
-        </dependency>
     </dependencies>
 
 

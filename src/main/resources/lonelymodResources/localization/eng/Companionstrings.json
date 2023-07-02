@@ -1,0 +1,11 @@
+{
+  "Bones": {
+    "MOVES": [
+      "Bark",
+      "Bite",
+      "Poise",
+      "Howl"
+    ],
+    "NAME": "Bones"
+  }
+}

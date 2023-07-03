@@ -78,6 +78,13 @@
       " Block."
     ]
   },
+  "${ModID}:CompanionVigorPower": {
+    "NAME": "Vigor",
+    "DESCRIPTIONS": [
+      "The Companion's next attack deals #b",
+      " additional damage."
+    ]
+  },
   "${ModID}:FearTheBeastPower": {
     "NAME": "Fear The Beast",
     "DESCRIPTIONS": [

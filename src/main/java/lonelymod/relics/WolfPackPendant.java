@@ -2,10 +2,10 @@ package lonelymod.relics;
 
 import static lonelymod.LonelyMod.makeID;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 //import hlysine.friendlymonsters.utils.MinionUtils;
 import lonelymod.LonelyCharacter;
 import lonelymod.actions.SummonBonesAction;
+import lonelymod.companions.Bones;
 //import lonelymod.companions.Bones2;
 
 public class WolfPackPendant extends AbstractEasyRelic {
@@ -18,7 +18,6 @@ public class WolfPackPendant extends AbstractEasyRelic {
     @Override
     public void atBattleStart() {
         flash();
-        addToBot(new SummonBonesAction(LonelyCharacter.Companions));
-        /*MinionUtils.addMinion(AbstractDungeon.player, new Bones2(-750, -25));*/
+        addToBot(new SummonBonesAction());
     }
 }

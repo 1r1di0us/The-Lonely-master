@@ -20,6 +20,7 @@ public class Heel extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AttackEffect.BLUNT_LIGHT);
         AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
+        //addToBot(new CallProtectAction());
     }
 
     public void upp() {

@@ -24,6 +24,7 @@ public class Go extends AbstractEasyCard {
             addToBot(new ApplyPowerAction(targetMonster, p, new LockOnPower(targetMonster, this.magicNumber), this.magicNumber));
         }
         AbstractDungeon.actionManager.addToBottom(new CompanionAttackAbilityAction());
+        //addToBot(new CallAttackAction());
     }
 
     public void upp() {

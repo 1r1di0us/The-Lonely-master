@@ -225,13 +225,13 @@ public class LonelyMod implements
         ImpatientStrikes.attackCounter = 0;
 
         //calls abilities at the start of each turn. I have changed this to be recursive on every ability while we still use orbs.
-        if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
+        /*if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
             AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
         } else if (AbstractDungeon.player instanceof LonelyCharacter) { //or if this is the lonely
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
         } else if (AbstractDungeon.player.hasPower(makeID("SquirrelPower"))) { //or if an action is called without any companions, the player gets the squirrel power
             AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        }
+        }*/
         
         // normally, orbs only happen if you have prismatic shard, have relevant run modifiers, or are the defect (or lonely as of now)
         // but if we did the same thing for companions, prismatic shard would just give you 3 metallicize at the start of combat
@@ -243,8 +243,8 @@ public class LonelyMod implements
     @Override
     public void receiveOnBattleStart(AbstractRoom arg0) {
         //calls the basic ability at the start of combat. Recursive stuff means the companion will be there forever, unless you channel lightning or something.
-        //if (AbstractDungeon.player instanceof LonelyCharacter) {
-        //    AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        //}
+        if (AbstractDungeon.player instanceof LonelyCharacter) {
+            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
+        }
     }
 }

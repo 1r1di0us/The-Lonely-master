@@ -3,12 +3,11 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-//import hlysine.friendlymonsters.characters.AbstractPlayerWithMinions;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.cards.Defend;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
+import lonelymod.companions.AbstractCompanion;
 import lonelymod.relics.WolfPackPendant;
 
 import com.badlogic.gdx.graphics.Color;
@@ -39,8 +38,7 @@ public class LonelyCharacter extends CustomPlayer {
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
 
-    public static AbstractMonster[] Companions = {null};
-
+    public static AbstractCompanion currCompanion = null;
 
     public LonelyCharacter(String name, PlayerClass setClass) {
         super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(
@@ -55,8 +53,6 @@ public class LonelyCharacter extends CustomPlayer {
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 240.0F * Settings.scale);
 
-        //setBaseMinionPowerChance(0);
-        //setBaseMinionAttackTargetChance(0);
     }
 
     @Override

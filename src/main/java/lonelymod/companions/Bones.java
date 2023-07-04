@@ -3,6 +3,7 @@ package lonelymod.companions;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -37,4 +38,19 @@ public class Bones extends AbstractCompanion {
     protected void getMove(int i) {
         setMove(MOVES[0], (byte)0, AbstractMonster.Intent.DEFEND);
     }
+
+    /*@Override
+    public void updateIntentTip() {
+        switch (nextMove) {
+            case 0:
+                this.intentTip.header = TEXT[0];
+                if (this.isMultiDmg) {
+                    this.intentTip.body = TEXT[12] + this.getIntentDmg() + TEXT[2] + this.intentMultiAmt + TEXT[3];
+                } else {
+                    this.intentTip.body = TEXT[12] + this.getIntentDmg() + TEXT[5];
+                }
+                this.intentTip.img = ImageMaster.INTENT_ATTACK_DEFEND;
+                return;
+        }
+    }*/
 }

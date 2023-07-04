@@ -39,6 +39,7 @@ public class LonelyCharacter extends CustomPlayer {
     static final String[] TEXT = characterStrings.TEXT;
 
     public static AbstractCompanion currCompanion = null;
+    public static AbstractCompanion hoveredCompanion = null;
 
     public LonelyCharacter(String name, PlayerClass setClass) {
         super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(

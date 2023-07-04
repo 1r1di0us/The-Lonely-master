@@ -41,7 +41,6 @@ public class SummonBonesAction extends AbstractGameAction {
             this.c.usePreBattleAction();
         } else {
             //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
-
         }
     }
 }

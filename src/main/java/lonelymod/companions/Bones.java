@@ -21,7 +21,6 @@ public class Bones extends AbstractCompanion {
 
     public Bones(float drawX, float drawY) {
         super(NAME, ID, 0.0F, 0.0F, 400.0F, 300.0F, IMG, drawX, drawY);
-        setMove(MOVES[0], (byte)0, AbstractMonster.Intent.DEFEND);
     }
 
     @Override

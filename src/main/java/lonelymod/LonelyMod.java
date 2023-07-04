@@ -243,8 +243,8 @@ public class LonelyMod implements
     @Override
     public void receiveOnBattleStart(AbstractRoom arg0) {
         //calls the basic ability at the start of combat. Recursive stuff means the companion will be there forever, unless you channel lightning or something.
-        if (AbstractDungeon.player instanceof LonelyCharacter) {
-            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        }
+        //if (AbstractDungeon.player instanceof LonelyCharacter) {
+        //    AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
+        //}
     }
 }

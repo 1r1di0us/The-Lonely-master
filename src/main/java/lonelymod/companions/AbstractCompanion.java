@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;*/
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 /*import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -34,6 +35,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     protected abstract void getMove(int i);
+
+    @Override
+    public void renderHealth(SpriteBatch sb) {}
 
     //the render functions are copied from AbstractMonster.
     //the only change I did is remove the interaction with Runic Dome.

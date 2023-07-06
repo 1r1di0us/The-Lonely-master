@@ -61,9 +61,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     @Override
     protected abstract void getMove(int i);
 
-    @Override
-    public void renderHealth(SpriteBatch sb) {}
-
+    //important rendering functions:
     @Override
     public void update() {
         for (AbstractPower p : this.powers)
@@ -144,6 +142,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
                 }
             }
     }
+
+    //hook methods?
 
     /*@Override
     public void createIntent() {
@@ -352,4 +352,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
             }
         }
     }*/
+
+    //useless methods I have destroyed:
+    @Override
+    public void renderHealth(SpriteBatch sb) {}
+    @Override
+    public void useUniversalPreBattleAction() {}
 }

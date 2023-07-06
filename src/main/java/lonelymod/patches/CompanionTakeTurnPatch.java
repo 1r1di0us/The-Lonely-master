@@ -1,18 +1,41 @@
 package lonelymod.patches;
 
 
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.MonsterQueueItem;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import lonelymod.LonelyCharacter;
+
+import java.util.ArrayList;
 
 @SpirePatch(
         clz=GameActionManager.class,
-        method="callEndOfTurnActions"
+        method="getNextAction"
 )
 public class CompanionTakeTurnPatch {
-    public static void Postfix(GameActionManager __instance) {
+
+    @SpireInsertPatch(
+            locator=Locator.class,
+            localvars={}
+    )
+
+    public static void Insert(GameActionManager __instance) {
         if (LonelyCharacter.currCompanion != null) {
-            LonelyCharacter.currCompanion.takeTurn();
+            if (!(AbstractDungeon.getCurrRoom()).skipMonsterTurn) {
+                AbstractDungeon.actionManager.monsterQueue.add(new MonsterQueueItem(LonelyCharacter.currCompanion));
+            }
+        }
+    }
+
+    private static class Locator extends SpireInsertLocator {
+        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+            Matcher finalMatcher = new Matcher.FieldAccessMatcher(GameActionManager.class, "monsterAttacksQueued");
+
+            return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[1]};
         }
     }
 }

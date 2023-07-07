@@ -30,7 +30,7 @@ public class CompanionEndOfTurnPowersPatch {
 
     private static class Locator extends SpireInsertLocator {
         public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-            Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractMonster.class, "monsters");
+            Matcher finalMatcher = new Matcher.FieldAccessMatcher(MonsterGroup.class, "monsters");
 
             return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[1]};
         }

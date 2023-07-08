@@ -1,19 +1,25 @@
 package lonelymod.companions;
 
-//import basemod.ReflectionHacks;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
-/*import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+/*import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;*/
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.*;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;*/
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BobEffect;
@@ -33,24 +39,24 @@ public abstract class AbstractCompanion extends AbstractMonster {
     private BobEffect bobEffect = new BobEffect();
     private ArrayList<AbstractGameEffect> intentVfx = new ArrayList<>();
 
-    //public intentTip = ReflectionHacks.
+    public EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
 
     /*private Color nameColor = new Color();
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
     private float hoverTimer = 0.0F;
-    private float intentAngle = 0.0F;
-    private PowerTip intentTip = new PowerTip();
-    private Texture intentImg = null;
-    private int intentDmg = -1;
-    private int intentBaseDmg = -1;
-    private int intentMultiAmt = 0;
-    private boolean isMultiDmg = false;
-    private Color intentColor = Color.WHITE.cpy();*/
+    private float intentAngle = 0.0F;*/
+    public PowerTip intentTip = new PowerTip();
+    public Texture intentImg = null;
+    public int intentDmg = -1;
+    public int intentBaseDmg = -1;
+    public int intentMultiAmt = 0;
+    public boolean isMultiDmg = false;
+    private Color intentColor = Color.WHITE.cpy();
 
-    private static final byte BASIC = 0;
-    private static final byte ATTACK = 1;
-    private static final byte PROTECT = 2;
-    private static final byte SPECIAL = 3;
+    public static final byte DEFAULT = 0;
+    public static final byte ATTACK = 1;
+    public static final byte PROTECT = 2;
+    public static final byte SPECIAL = 3;
 
     public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -143,7 +149,92 @@ public abstract class AbstractCompanion extends AbstractMonster {
             }
     }
 
-    //hook methods?
+    //calculate methods
+    private void calculateDamage(int dmg) {
+        AbstractCreature target = getTarget();
+        float tmp = dmg;
+        for (AbstractPower p : this.powers)
+            tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+        for (AbstractPower p : target.powers)
+            tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        for (AbstractPower p : this.powers)
+            tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
+        for (AbstractPower p : target.powers)
+            tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+        dmg = MathUtils.floor(tmp);
+        if (dmg < 0)
+            dmg = 0;
+        this.intentDmg = dmg;
+    }
+
+    @Override
+    public void applyPowers() {
+        for (DamageInfo dmg : this.damage) {
+            dmg.applyPowers(this, this.getTarget());
+        }
+        if (this.move != null && this.move.baseDamage > -1)
+            calculateDamage(this.move.baseDamage);
+        this.intentImg = getIntentImg();
+        updateIntentTip();
+    }
+
+    public AbstractCreature getTarget() {
+        AbstractMonster currTarget = AbstractDungeon.getRandomMonster();
+        int targetAmount = 0;
+        MonsterGroup targetGroup = new MonsterGroup(currTarget);
+        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mon.hasPower("TargetPower")) {
+                if (targetAmount < mon.getPower("TargetPower").amount) {
+                    targetAmount = mon.getPower("TargetPower").amount;
+                    targetGroup = new MonsterGroup(mon);
+                }
+                else if (targetAmount == mon.getPower("TargetPower").amount) {
+                    targetGroup.add(mon);
+                }
+            }
+        }
+        if (targetAmount > 0) {
+            currTarget = targetGroup.getRandomMonster(true);
+        }
+        return currTarget;
+    }
+
+    private Texture getIntentImg() {
+        switch (this.intent) {
+            case ATTACK:
+                return getAttackIntent();
+            case ATTACK_BUFF:
+                return getAttackIntent();
+            case ATTACK_DEBUFF:
+                return getAttackIntent();
+            case ATTACK_DEFEND:
+                return getAttackIntent();
+            case BUFF:
+                return ImageMaster.INTENT_BUFF_L;
+            case DEBUFF:
+                return ImageMaster.INTENT_DEBUFF_L;
+            case STRONG_DEBUFF:
+                return ImageMaster.INTENT_DEBUFF2_L;
+            case DEFEND:
+                return ImageMaster.INTENT_DEFEND_L;
+            case DEFEND_DEBUFF:
+                return ImageMaster.INTENT_DEFEND_L;
+            case DEFEND_BUFF:
+                return ImageMaster.INTENT_DEFEND_BUFF_L;
+            case ESCAPE:
+                return ImageMaster.INTENT_ESCAPE_L;
+            case MAGIC:
+                return ImageMaster.INTENT_MAGIC_L;
+            case SLEEP:
+                return ImageMaster.INTENT_SLEEP_L;
+            case STUN:
+                return null;
+            case UNKNOWN:
+                return ImageMaster.INTENT_UNKNOWN_L;
+        }
+        return ImageMaster.INTENT_UNKNOWN_L;
+    }
 
     /*@Override
     public void createIntent() {
@@ -168,7 +259,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateIntentTip();
     }*/
 
-    //public abstract void updateIntentTip();
+    public abstract void updateIntentTip();
 
     //the render functions are copied from AbstractMonster.
     //the only change I did is remove the interaction with Runic Dome for both renderTip and render

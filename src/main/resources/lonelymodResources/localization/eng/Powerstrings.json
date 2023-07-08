@@ -85,6 +85,14 @@
       " additional damage."
     ]
   },
+  "${ModID}:TargetPower": {
+    "NAME": "Target",
+    "DESCRIPTIONS": [
+      "Companions will deal 50% more damage to this enemy. They will also prioritize this enemy with their moves. Will last #b",
+      " more turn.",
+      " more turns."
+    ]
+  },
   "${ModID}:FearTheBeastPower": {
     "NAME": "Fear The Beast",
     "DESCRIPTIONS": [

@@ -3,12 +3,13 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
+import com.esotericsoftware.spine.AnimationState;
 import lonelymod.cards.Defend;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.relics.WolfPackPendant;
+import lonelymod.relics.BonesStomach;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -40,6 +41,8 @@ public class LonelyCharacter extends CustomPlayer {
 
     public static AbstractCompanion currCompanion = null;
     public static AbstractCompanion hoveredCompanion = null;
+
+    private static final Float SIZE_SCALE = 0.8F;
 
     public LonelyCharacter(String name, PlayerClass setClass) {
         super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(
@@ -79,7 +82,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(WolfPackPendant.ID);
+        retVal.add(BonesStomach.ID);
         return retVal;
     }
 
@@ -178,12 +181,12 @@ public class LonelyCharacter extends CustomPlayer {
     }
 
     //animation for replacing the starter relic
-    /*public void onEquipBearCubPendant() {
+    public void onEquipMeatsStomach() {
         loadAnimation("lonelymodResources/images/char/mainChar/NewProject2.atlas", "lonelymodResources/images/char/mainChar/NewProject2.json", SIZE_SCALE);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.7F);
-    } */
+    }
 
     public static class Enums {
         @SpireEnum

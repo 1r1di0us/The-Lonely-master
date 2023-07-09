@@ -1,17 +1,17 @@
 {
-  "${ModID}:WolfPackPendant": {
-    "NAME": "Wolf Pack Pendant",
-    "FLAVOR": "You fashioned this yourself from a dead wolf's tooth.",
+  "${ModID}:BonesStomach": {
+    "NAME": "Bones' Stomach",
+    "FLAVOR": "Given as a sign of trust, it has always been this empty.",
     "DESCRIPTIONS": [
-      "lonelymod:Summons Ivan at the start of combat. NL Ivan gains #b2 lonelymod:Food whenever he kills a non-minion enemy."
+      "At the start of combat, #ySummon #yBones."
     ]
   },
-  "${ModID}:BearCubPendant": {
-    "NAME": "Bear Cub Pendant",
-    "FLAVOR": "The weak make way for the strong.",
+  "${ModID}:MeatsStomach": {
+    "NAME": "MeatsStomach",
+    "FLAVOR": "Despite being full, he’s still hungry. You changed his name to be more fitting.",
     "DESCRIPTIONS": [
       "Replaces ",
-      ".[] NL lonelymod:Summons Grawl at the start of combat. NL Grawl will use leftover lonelymod:Stamina whenever he grants you #yBlock."
+      ".[] NL At the start of combat, #ySummon #yMeat."
     ]
   }
 }

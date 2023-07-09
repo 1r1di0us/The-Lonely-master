@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 
 import lonelymod.actions.CallAttackAction;
+import lonelymod.powers.TargetPower;
 
 public class Go extends AbstractEasyCard {
     public final static String ID = makeID("Go");
@@ -21,7 +22,7 @@ public class Go extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (upgraded) {
             AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
-            addToBot(new ApplyPowerAction(targetMonster, p, new LockOnPower(targetMonster, this.magicNumber), this.magicNumber));
+            addToBot(new ApplyPowerAction(targetMonster, p, new TargetPower(targetMonster, this.magicNumber, false), this.magicNumber));
         }
         addToBot(new CallAttackAction());
     }

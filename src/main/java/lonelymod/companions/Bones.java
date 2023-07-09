@@ -105,24 +105,24 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
+        flashIntent();
         setMove(MOVES[1], ATTACK, AbstractMonster.Intent.ATTACK_BUFF, this.damage.get(0).base);
         this.targetEnemy = getTarget();
         createIntent();
-        flashIntent();
     }
 
     @Override
     public void callProtect() {
+        flashIntent();
         setMove(MOVES[2], PROTECT, AbstractMonster.Intent.DEFEND_BUFF);
         createIntent();
-        flashIntent();
     }
 
     @Override
     public void callSpecial() {
+        flashIntent();
         setMove(MOVES[3], SPECIAL, AbstractMonster.Intent.STRONG_DEBUFF);
         createIntent();
-        flashIntent();
     }
 
     @Override

@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
 
-public class BearCubPendant extends AbstractEasyRelic {
-    public static final String ID = makeID("BearCubPendant");
+public class MeatsStomach extends AbstractEasyRelic {
+    public static final String ID = makeID("MeatsStomach");
 
-    public BearCubPendant() {
+    public MeatsStomach() {
         super(ID, RelicTier.BOSS, LandingSound.SOLID, LonelyCharacter.Enums.TODO_COLOR);
         //figured this out from DarkVexon's FishingCharacter
     }    
@@ -23,15 +23,15 @@ public class BearCubPendant extends AbstractEasyRelic {
     @Override
     public void onEquip() {
         if (AbstractDungeon.player instanceof LonelyCharacter) {
-            //((LonelyCharacter) AbstractDungeon.player).onEquipBearCubPendant();
+            ((LonelyCharacter) AbstractDungeon.player).onEquipMeatsStomach();
         }
     }
 
     @Override
     public void obtain() {
-        if (AbstractDungeon.player.hasRelic(WolfPackPendant.ID)) {
+        if (AbstractDungeon.player.hasRelic(BonesStomach.ID)) {
             for (int i = 0; i < AbstractDungeon.player.relics.size(); ++i) {
-                if (AbstractDungeon.player.relics.get(i).relicId.equals(WolfPackPendant.ID)) {
+                if (AbstractDungeon.player.relics.get(i).relicId.equals(BonesStomach.ID)) {
                     instantObtain(AbstractDungeon.player, i, true);
                     break;
                 }
@@ -43,13 +43,13 @@ public class BearCubPendant extends AbstractEasyRelic {
 
     @Override
     public boolean canSpawn() {
-        return AbstractDungeon.player.hasRelic(makeID("WolfPackPendant"));
+        return AbstractDungeon.player.hasRelic(BonesStomach.ID);
     }
 
     @Override
     public String getUpdatedDescription() {
         // Colorize the starter relic's name
-        String name = new WolfPackPendant().name;
+        String name = new BonesStomach().name;
         StringBuilder sb = new StringBuilder();
         for (String word : name.split(" ")) {
             sb.append("[#").append(LonelyMod.characterColor.toString()).append("]").append(word).append("[] ");

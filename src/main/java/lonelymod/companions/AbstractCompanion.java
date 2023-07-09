@@ -277,6 +277,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
         }
         for (DamageInfo dmg : this.damage) {
             dmg.applyPowers(this, targetEnemy);
+            if (isTargeted) {
+                dmg.output = (int)(dmg.output * 1.5F);
+            }
         }
         if (this.move.baseDamage > -1)
             calculateDamage(this.move.baseDamage);

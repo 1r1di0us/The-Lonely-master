@@ -14,7 +14,7 @@ public class DefensiveReflexes extends AbstractEasyCard {
 
     public DefensiveReflexes() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 4;
+        baseMagicNumber = magicNumber = 8;
         //baseSecondMagic = secondMagic = 12; //we don't actually use this anymore
     }
 

@@ -40,8 +40,8 @@
     "NAME": "Perfect Shot",
     "DESCRIPTION": "Deal !D! damage."
   },
-  "${ModID}:PlannedAssault": {
-    "NAME": "Planned Assault",
+  "${ModID}:PlottedDemise": {
+    "NAME": "Plotted Demise",
     "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, incease its damage by !M!. NL Exhaust."
   },
   "${ModID}:PlotToKill": {

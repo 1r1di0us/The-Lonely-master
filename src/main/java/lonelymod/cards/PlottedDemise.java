@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class PlannedAssault extends AbstractEasyCard {
-    public final static String ID = makeID("PlannedAssault");
+public class PlottedDemise extends AbstractEasyCard {
+    public final static String ID = makeID("PlottedDemise");
 
-    public PlannedAssault() {
+    public PlottedDemise() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 2;
         baseMagicNumber = magicNumber = 5;

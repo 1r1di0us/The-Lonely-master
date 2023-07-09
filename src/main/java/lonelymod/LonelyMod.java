@@ -40,7 +40,8 @@ public class LonelyMod implements
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         OnPlayerTurnStartSubscriber,
-        OnStartBattleSubscriber {
+        OnStartBattleSubscriber,
+        PostBattleSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -223,7 +224,6 @@ public class LonelyMod implements
     public void receiveOnPlayerTurnStart() {
         //calls start of turn ability and resets attackCounter (which is used for ImpatientStrikes)
         ImpatientStrikes.attackCounter = 0;
-
         //calls abilities at the start of each turn. I have changed this to be recursive on every ability while we still use orbs.
         /*if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
             AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
@@ -246,5 +246,12 @@ public class LonelyMod implements
         //if (AbstractDungeon.player instanceof LonelyCharacter) {
         //    AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
         //}
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        if (LonelyCharacter.currCompanion != null) {
+            LonelyCharacter.currCompanion = null;
+        }
     }
 }

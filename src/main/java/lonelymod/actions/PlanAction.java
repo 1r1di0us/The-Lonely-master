@@ -22,8 +22,8 @@ import lonelymod.interfaces.TriggerOnPlanInterface;
 
 public class PlanAction extends AbstractGameAction {
     public static final String ID = makeID("PlanAction");
-    private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(ID);
-    public static final String[] TEXT = uistring.TEXT;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
+    public static final String[] TEXT = uiStrings.TEXT;
 
     private float startingDuration;
     private AbstractEasyCard cardPlayed;

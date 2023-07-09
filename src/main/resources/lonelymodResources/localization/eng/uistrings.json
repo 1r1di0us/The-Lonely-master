@@ -8,5 +8,31 @@
     "TEXT": [
       "This enemy is not attacking you!"
     ]
+  },
+  "${ModID}:CallActionMessage": {
+    "TEXT": [
+      "But nobody came..."
+    ]
+  },
+  "${ModID}:AbstractCompanion": {
+    "TEXT": [
+      "#yBark",
+      "#yBones intends to grant you #b",
+      " #yBlock.",
+      "#yBite",
+      "#yBones intends to attack an enemy for #b",
+      " damage, and then gain #b",
+      " #yStrength",
+      "#yPoise",
+      "#yBones intends to grant you #b",
+      " #yBlock and gain #b",
+      " #yVigor.",
+      "#yHowl",
+      "#yBones intends to apply #b",
+      " #yVulnerable and #b",
+      " #yTarget to ALL enemies, gain #b",
+      " #yStrength, and grant you #b",
+      " #yStrength."
+    ]
   }
 }

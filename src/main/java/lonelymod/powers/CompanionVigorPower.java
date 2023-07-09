@@ -55,11 +55,9 @@ public class CompanionVigorPower extends AbstractEasyPower implements CloneableP
         return damage;
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.ATTACK) {
-            flash();
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "Vigor"));
-        }
+    public void onSpecificTrigger() {
+        flash();
+        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
     @Override

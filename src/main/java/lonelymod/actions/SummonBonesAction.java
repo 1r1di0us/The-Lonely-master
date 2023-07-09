@@ -1,6 +1,6 @@
 package lonelymod.actions;
 
-import com.badlogic.gdx.math.Interpolation;
+//import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import lonelymod.LonelyCharacter;
@@ -39,8 +39,8 @@ public class SummonBonesAction extends AbstractGameAction {
             //this.c.animX = 0.0F;
             this.c.showHealthBar();
             this.c.usePreBattleAction();
-        } else {
+        }// else {
             //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
-        }
+        //}
     }
 }

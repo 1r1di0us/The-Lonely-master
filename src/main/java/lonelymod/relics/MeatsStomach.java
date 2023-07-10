@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
+import lonelymod.actions.SummonMeatAction;
 
 public class MeatsStomach extends AbstractEasyRelic {
     public static final String ID = makeID("MeatsStomach");
@@ -18,6 +19,7 @@ public class MeatsStomach extends AbstractEasyRelic {
     @Override
     public void atBattleStart() {
         flash();
+        addToBot(new SummonMeatAction());
     }
 
     @Override

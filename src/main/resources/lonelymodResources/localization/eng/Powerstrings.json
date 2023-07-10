@@ -236,7 +236,7 @@
   "${ModID}:CompanionVigorPower": {
     "NAME": "Vigor",
     "DESCRIPTIONS": [
-      "The Companion's next attack deals #b",
+      "The Companion's next #yAttack move will deal #b",
       " additional damage."
     ]
   },
@@ -248,6 +248,13 @@
       "."
     ]
   },
+  "${ModID}:CompanionStaminaPower": {
+    "NAME": "Stamina",
+    "DESCRIPTIONS": [
+      "The Companion's next #yProtect move will grant #b",
+      " additional #yBlock."
+    ]
+  },
   "${ModID}:TargetPower": {
     "NAME": "Target",
     "DESCRIPTIONS": [
@@ -257,11 +264,18 @@
     ]
   },
   "${ModID}:BonesPower": {
-    "NAME": "Bones",
+    "NAME": "Feast",
     "DESCRIPTIONS": [
-      "Whenever an enemy dies, #yBones gains #b",
+      "Whenever a non-minion enemy dies, #yBones gains #b",
       " #yStrength and #b",
       " #yDexterity."
+    ]
+  },
+  "${ModID}:MeatPower": {
+    "NAME": "Intimidate",
+    "DESCRIPTIONS": [
+      "Whenever you fully #yBlock an enemy's attack, apply #b",
+      " #yWeak to that enemy."
     ]
   }
 }

@@ -7,5 +7,14 @@
       "Howl"
     ],
     "NAME": "Bones"
+  },
+  "Meat": {
+    "MOVES": [
+      "Stretch",
+      "Maul",
+      "Body Block",
+      "Eat"
+    ],
+    "NAME": "Meat"
   }
 }

@@ -32,7 +32,24 @@
       " #yVulnerable and #b",
       " #yTarget to ALL enemies, gain #b",
       " #yStrength, and grant you #b",
-      " #yStrength."
+      " #yStrength.",
+      "Stretch",
+      "Meat intends to gain #b",
+      " #yVigor and #b",
+      " #yStamina.",
+      "Maul",
+      "Meat intends to deal #b",
+      " damage #b",
+      " times. If the target is #yConstricted, Meat will attack #b",
+      " more time.",
+      "Body Block",
+      "Meat intends to grant you #b",
+      " #yBlock #b",
+      " times.",
+      "Eat",
+      "Meat intends to deal #b",
+      " damage. If the target is #yWeakened, Meat will apply #b",
+      " #yConstricted."
     ]
   }
 }

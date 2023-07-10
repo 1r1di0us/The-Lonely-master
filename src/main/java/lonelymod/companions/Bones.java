@@ -20,13 +20,13 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.actions.CallDefaultAction;
 import lonelymod.powers.BonesPower;
+import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
-import static lonelymod.LonelyMod.makeID;
 
 public class Bones extends AbstractCompanion {
     public static final String ID = "Bones";
@@ -71,22 +71,24 @@ public class Bones extends AbstractCompanion {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
-            case ATTACK: //bug not doing target
+            case ATTACK:
                 AbstractDungeon.actionManager.addToBottom(new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
-
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                         .cpy()), 0.0F));
                 addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
-                if (hasPower(CompanionVigorPower.POWER_ID)) {
+                if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                }
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 break;
             case SPECIAL:
@@ -139,7 +141,7 @@ public class Bones extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = TEXT[0];
                 this.intentTip.body = TEXT[1] + this.intentBlock + TEXT[2];
-                this.intentTip.img = ImageMaster.INTENT_DEFEND_L;
+                this.intentTip.img = ImageMaster.INTENT_DEFEND;
                 return;
             case ATTACK:
                 this.intentTip.header = TEXT[3];
@@ -149,12 +151,12 @@ public class Bones extends AbstractCompanion {
             case PROTECT:
                 this.intentTip.header = TEXT[7];
                 this.intentTip.body = TEXT[8] + this.intentBlock + TEXT[9] + PROTECT_PWR_AMT + TEXT[10];
-                this.intentTip.img = ImageMaster.INTENT_DEFEND_BUFF_L;
+                this.intentTip.img = ImageMaster.INTENT_DEFEND_BUFF;
                 return;
             case SPECIAL:
                 this.intentTip.header = TEXT[11];
                 this.intentTip.body = TEXT[12] + SPECIAL_DEBUFF_AMT + TEXT[13] + SPECIAL_DEBUFF_AMT + TEXT[14] + SPECIAL_PWR_AMT + TEXT[15] + SPECIAL_PWR_AMT + TEXT[16];
-                this.intentTip.img = ImageMaster.INTENT_DEBUFF2_L;
+                this.intentTip.img = ImageMaster.INTENT_DEBUFF2;
                 return;
         }
         this.intentTip.header = "NOT SET";

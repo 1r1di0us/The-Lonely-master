@@ -39,9 +39,6 @@ public class LonelyCharacter extends CustomPlayer {
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
 
-    public static AbstractCompanion currCompanion = null;
-    public static AbstractCompanion hoveredCompanion = null;
-
     private static final Float SIZE_SCALE = 0.8F;
 
     public LonelyCharacter(String name, PlayerClass setClass) {

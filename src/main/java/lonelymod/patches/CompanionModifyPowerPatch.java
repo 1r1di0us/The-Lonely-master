@@ -3,6 +3,7 @@ package lonelymod.patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
 
 @SpirePatch(
         clz=AbstractDungeon.class,
@@ -11,8 +12,8 @@ import lonelymod.LonelyCharacter;
 public class CompanionModifyPowerPatch {
 
     public static void Postfix() {
-        if (LonelyCharacter.currCompanion != null) {
-            LonelyCharacter.currCompanion.applyPowers();
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
         }
     }
 }

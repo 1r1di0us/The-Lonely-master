@@ -78,21 +78,6 @@
       " Block."
     ]
   },
-  "${ModID}:CompanionVigorPower": {
-    "NAME": "Vigor",
-    "DESCRIPTIONS": [
-      "The Companion's next attack deals #b",
-      " additional damage."
-    ]
-  },
-  "${ModID}:TargetPower": {
-    "NAME": "Target",
-    "DESCRIPTIONS": [
-      "Companions will deal 50% more damage to this enemy. They will also prioritize this enemy with their moves. Will last #b",
-      " more turn.",
-      " more turns."
-    ]
-  },
   "${ModID}:FearTheBeastPower": {
     "NAME": "Fear The Beast",
     "DESCRIPTIONS": [
@@ -246,6 +231,37 @@
       " times to ",
       ".",
       "Nobody knows what this does."
+    ]
+  },
+  "${ModID}:CompanionVigorPower": {
+    "NAME": "Vigor",
+    "DESCRIPTIONS": [
+      "The Companion's next attack deals #b",
+      " additional damage."
+    ]
+  },
+  "${ModID}:CompanionDexterityPower":  {
+    "NAME": "Dexterity",
+    "DESCRIPTIONS": [
+      "Increases #yBlock granted by #b",
+      "Decreases #yBlock granted by #b",
+      "."
+    ]
+  },
+  "${ModID}:TargetPower": {
+    "NAME": "Target",
+    "DESCRIPTIONS": [
+      "Companions will deal 50% more damage to this enemy. They will also prioritize this enemy with their moves. Will last #b",
+      " more turn.",
+      " more turns."
+    ]
+  },
+  "${ModID}:BonesPower": {
+    "NAME": "Bones",
+    "DESCRIPTIONS": [
+      "Whenever an enemy dies, #yBones gains #b",
+      " #yStrength and #b",
+      " #yDexterity."
     ]
   }
 }

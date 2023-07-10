@@ -18,72 +18,72 @@
     "DESCRIPTION": "A swift and powerful creature, able to destroy all who oppose it. NL Upon arrival, Omen will attempt to #yProtect whoever summoned it."
   },
   {
-    "PROPER_NAME": "Companion Ability",
+    "PROPER_NAME": "Companion Move",
     "NAMES": [
-      "Companion_Ability",
-      "companion_ability",
+      "Companion_Move",
+      "companion_move",
       "Companion",
       "Companion's",
       "companion",
       "call",
       "Call",
       "CALL",
-      "Ability",
-      "ability",
-      "Abilities",
-      "abilities"
+      "Move",
+      "move",
+      "Moves",
+      "moves"
     ],
-    "DESCRIPTION": "Tell your #yCompanion to perform this #yAbility at the end of your turn. NL Calling another #yAbility will override this #yAbility."
+    "DESCRIPTION": "Tell your #yCompanion to perform this #yMove at the end of your turn. NL Calling another #yMove will override this #yMove."
   },
   {
-    "PROPER_NAME": "Basic Ability",
+    "PROPER_NAME": "Default Move",
     "NAMES": [
-      "Basic_Ability",
-      "basic_ability",
-      "basic",
-      "basic ability",
-      "Basic",
-      "Basic Ability"
+      "Default_Move",
+      "default_move",
+      "default",
+      "default move",
+      "Default",
+      "Default Move"
     ],
-    "DESCRIPTION": "This is the weakest #yAbility, which is called at the beginning of your turn."
+    "DESCRIPTION": "This is the weakest #yMove, which is #yCalled at the beginning of your turn."
   },
   {
-    "PROPER_NAME": "Attack Ability",
+    "PROPER_NAME": "Attack Move",
     "NAMES": [
-      "Attack_Ability",
-      "attack_ability",
+      "Attack_Move",
+      "attack_move",
       "attack",
-      "attack ability",
+      "attack move",
       "Attack",
-      "Attack Ability",
+      "Attack Move",
       "attacks",
       "Attacks"
     ],
-    "DESCRIPTION": "An #yAbility that focuses on dealing damage to a random enemy."
+    "DESCRIPTION": "A #yMove that focuses on dealing damage to a random enemy."
   },
   {
-    "PROPER_NAME": "Protect Ability",
+    "PROPER_NAME": "Protect Move",
     "NAMES": [
-      "Protect_Ability",
-      "protect_ability",
+      "Protect_Move",
+      "protect_move",
       "protect",
-      "protect ability",
+      "protect move",
       "Protect",
-      "Protect Ability"
+      "Protect Move"
     ],
-    "DESCRIPTION": "An #yAbility focusing on granting you #yBlock, or weakening a random enemy."
+    "DESCRIPTION": "A #yMove focusing on granting you #yBlock, or weakening a random enemy."
   },
   {
-    "PROPER_NAME": "Special Ability",
+    "PROPER_NAME": "Special Move",
     "NAMES": [
-      "Special_Ability",
-      "special_ability",
+      "Special_Move",
+      "special_move",
       "special",
-      "special ability",
+      "special move",
       "Special",
-      "Special Ability"
+      "Special Move"
     ],
-    "DESCRIPTION": "The most powerful #yAbility. NL Effects vary greatly between #yCompanions."
+    "DESCRIPTION": "The most powerful #yMove. NL Effects vary greatly between #yCompanions."
   },
   {
     "PROPER_NAME": "Food",
@@ -103,7 +103,7 @@
       "Target",
       "Target."
     ],
-    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yAbilities."
+    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yMoves."
   },
   {
     "PROPER_NAME": "Return",

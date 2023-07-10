@@ -26,7 +26,9 @@ import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashIntentEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
-import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.ModifyCompanionBlockInterface;
+import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,12 +62,15 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public int intentBaseDmg = -1;
     public int intentMultiAmt = 0;
     public boolean isMultiDmg = false;
+    public int intentBlock = -1;
+    public int intentBaseBlock = -1;
     private Color intentColor = Color.WHITE.cpy();
 
     public static final byte DEFAULT = 0;
     public static final byte ATTACK = 1;
     public static final byte PROTECT = 2;
     public static final byte SPECIAL = 3;
+    private boolean isBlockModified = false;
 
 
     public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
@@ -77,17 +82,24 @@ public abstract class AbstractCompanion extends AbstractMonster {
     @Override
     public abstract void takeTurn();
 
-    @Override
-    protected void getMove(int i) {
-        this.callDefault();
-    }
-
     public abstract void callDefault();
     public abstract void callAttack();
     public abstract void callProtect();
     public abstract void callSpecial();
 
     public abstract void updateIntentTip();
+
+    @Override
+    public void init() {
+        this.getMove();
+    }
+
+    @Override
+    protected void getMove(int paramInt) {};
+
+    protected void getMove() {
+        this.callDefault();
+    }
 
     @Override
     public void createIntent() {
@@ -154,11 +166,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.setMove((String)null, nextMove, intent, -1, 0, false);
     }
 
-    @Override
-    public void init() {
-        this.getMove(AbstractDungeon.aiRng.random(99));
-    }
-
     //important update methods:
 
     @Override
@@ -171,17 +178,17 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateIntent();
         this.tint.update();
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.DEATH) {
-            LonelyCharacter.hoveredCompanion = null;
+            CompanionField.hoveredCompanion.set(AbstractDungeon.player, null);
             this.hb.update();
             this.intentHb.update();
             this.healthHb.update();
             if ((this.hb.hovered || this.intentHb.hovered || this.healthHb.hovered) && !AbstractDungeon.player.isDraggingCard) {
-                LonelyCharacter.hoveredCompanion = this;
+                CompanionField.hoveredCompanion.set(AbstractDungeon.player, this);
             }
-            if (LonelyCharacter.hoveredCompanion == null)
+            if (CompanionField.hoveredCompanion.get(AbstractDungeon.player) == null)
                 AbstractDungeon.player.hoverEnemyWaitTimer = -1.0F;
         } else {
-            LonelyCharacter.hoveredCompanion = null;
+            CompanionField.hoveredCompanion.set(AbstractDungeon.player, null);
         }
     }
 
@@ -260,6 +267,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         for (AbstractPower p : targetEnemy.powers)
             tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        if (isTargeted)
+            tmp = (int)(tmp * 1.5F);
         for (AbstractPower p : this.powers)
             tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
         for (AbstractPower p : targetEnemy.powers)
@@ -272,14 +281,14 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     public void applyPowers() {
+        applyPowersToBlock();
         if (targetEnemy == null) {
             targetEnemy = getTarget();
         }
         for (DamageInfo dmg : this.damage) {
             dmg.applyPowers(this, targetEnemy);
-            if (isTargeted) {
+            if (isTargeted)
                 dmg.output = (int)(dmg.output * 1.5F);
-            }
         }
         if (this.move.baseDamage > -1)
             calculateDamage(this.move.baseDamage);
@@ -292,12 +301,12 @@ public abstract class AbstractCompanion extends AbstractMonster {
         int targetAmount = 0;
         MonsterGroup targetGroup = new MonsterGroup(currTarget);
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon.hasPower("TargetPower")) {
-                if (targetAmount < mon.getPower("TargetPower").amount) {
-                    targetAmount = mon.getPower("TargetPower").amount;
+            if (mon.hasPower(TargetPower.POWER_ID)) {
+                if (targetAmount < mon.getPower(TargetPower.POWER_ID).amount) {
+                    targetAmount = mon.getPower(TargetPower.POWER_ID).amount;
                     targetGroup = new MonsterGroup(mon);
                 }
-                else if (targetAmount == mon.getPower("TargetPower").amount) {
+                else if (targetAmount == mon.getPower(TargetPower.POWER_ID).amount) {
                     targetGroup.add(mon);
                 }
             }
@@ -310,6 +319,20 @@ public abstract class AbstractCompanion extends AbstractMonster {
             isTargeted = false;
         }
         return currTarget;
+    }
+
+    protected void applyPowersToBlock() {
+        this.isBlockModified = false;
+        float tmp = this.intentBaseBlock;
+        for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers) {
+            if (p instanceof ModifyCompanionBlockInterface)
+                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, this);
+        }
+        if (this.intentBaseBlock != MathUtils.floor(tmp))
+            this.isBlockModified = true;
+        if (tmp < 0.0F)
+            tmp = 0.0F;
+        this.intentBlock = MathUtils.floor(tmp);
     }
 
     private Texture getIntentImg() {

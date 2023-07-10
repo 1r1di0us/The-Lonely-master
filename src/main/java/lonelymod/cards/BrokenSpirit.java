@@ -20,13 +20,13 @@ public class BrokenSpirit extends AbstractEasyCard {
     public BrokenSpirit() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = (AbstractCard) new PrimalInstinct();
+        this.cardsToPreview = (AbstractCard) new Primal();
         this.baseMagicNumber = this.magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FrailPower(p, this.magicNumber, false), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PrimalInstinct(), 1, true, true));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));
         AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
     }
 

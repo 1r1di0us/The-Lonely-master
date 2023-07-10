@@ -3,17 +3,15 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
+import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -30,7 +28,7 @@ public class TargetPower extends AbstractEasyPower implements CloneablePowerInte
 
     private boolean justApplied = false;
     public TargetPower(AbstractCreature owner, int amount, boolean isSourceCompanion) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, amount);
+        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, amount);
 
         this.owner = owner;
 
@@ -54,8 +52,9 @@ public class TargetPower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void onInitialApplication() {
-        if (LonelyCharacter.currCompanion != null) {
-            LonelyCharacter.currCompanion.applyPowers();
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).targetEnemy = CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+            CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
         }
     }
 

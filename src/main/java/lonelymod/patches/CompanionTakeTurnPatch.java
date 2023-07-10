@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.MonsterQueueItem;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
 
 import java.util.ArrayList;
 
@@ -24,9 +25,9 @@ public class CompanionTakeTurnPatch {
     )
 
     public static void Insert(GameActionManager __instance) {
-        if (LonelyCharacter.currCompanion != null) {
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             if (!(AbstractDungeon.getCurrRoom()).skipMonsterTurn) {
-                AbstractDungeon.actionManager.monsterQueue.add(new MonsterQueueItem(LonelyCharacter.currCompanion));
+                AbstractDungeon.actionManager.monsterQueue.add(new MonsterQueueItem(CompanionField.currCompanion.get(AbstractDungeon.player)));
             }
         }
     }

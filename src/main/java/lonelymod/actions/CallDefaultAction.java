@@ -11,13 +11,13 @@ import lonelymod.fields.CompanionField;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class CallAttackAction extends AbstractGameAction {
+public class CallDefaultAction extends AbstractGameAction {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CallActionMessage"));
     public static final String[] TEXT = uiStrings.TEXT;
 
     private AbstractPlayer player;
 
-    public CallAttackAction() {
+    public CallDefaultAction() {
         this.actionType = ActionType.SPECIAL;
         this.duration = this.startDuration = Settings.ACTION_DUR_FAST;
         this.player = AbstractDungeon.player;
@@ -28,7 +28,7 @@ public class CallAttackAction extends AbstractGameAction {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.player.dialogX, this.player.dialogY, 3.0F, TEXT[0], true));
         }
         else {
-            CompanionField.currCompanion.get(AbstractDungeon.player).callAttack();
+            CompanionField.currCompanion.get(AbstractDungeon.player).callDefault();
         }
         this.isDone = true;
     }

@@ -1,8 +1,10 @@
 package lonelymod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
 
 @SpirePatch(
         clz= MonsterGroup.class,
@@ -11,8 +13,8 @@ import lonelymod.LonelyCharacter;
 public class CompanionUpdatePatch {
 
     public static void Prefix(MonsterGroup __instance) {
-        if (LonelyCharacter.currCompanion != null) {
-            LonelyCharacter.currCompanion.update();
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).update();
         }
     }
 

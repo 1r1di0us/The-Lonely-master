@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -24,11 +25,11 @@ public class CallSpecialAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (LonelyCharacter.currCompanion == null) {
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) == null) {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.player.dialogX, this.player.dialogY, 3.0F, TEXT[0], true));
         }
         else {
-            LonelyCharacter.currCompanion.callSpecial();
+            CompanionField.currCompanion.get(AbstractDungeon.player).callSpecial();
         }
         this.isDone = true;
     }

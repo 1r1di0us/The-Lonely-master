@@ -299,8 +299,8 @@
     "DESCRIPTION": "Play a random attack from your discard pile !M! times and exhaust it. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Choose an attack from your discard pile. NL Play it !M! times and exhaust it. NL Exhaust."
   },
-  "${ModID}:PrimalInstinct": {
-    "NAME": "Primal Instinct",
+  "${ModID}:Primal": {
+    "NAME": "Primal",
     "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
   },

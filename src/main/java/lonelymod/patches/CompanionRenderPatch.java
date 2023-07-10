@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.buttons.PeekButton;
 import lonelymod.LonelyCharacter;
+import lonelymod.fields.CompanionField;
 
 @SpirePatch(
         clz= AbstractPlayer.class,
@@ -13,11 +14,11 @@ import lonelymod.LonelyCharacter;
 )
 public class CompanionRenderPatch {
     public static void Prefix(AbstractPlayer __instance, SpriteBatch sb) {
-        if (LonelyCharacter.currCompanion != null) {
-            if (LonelyCharacter.hoveredCompanion != null && AbstractDungeon.player.hoverEnemyWaitTimer < 0.0F)
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            if (CompanionField.hoveredCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.player.hoverEnemyWaitTimer < 0.0F)
                 if (!AbstractDungeon.isScreenUp || PeekButton.isPeeking)
-                    LonelyCharacter.hoveredCompanion.renderTip(sb);
-            LonelyCharacter.currCompanion.render(sb);
+                    CompanionField.hoveredCompanion.get(AbstractDungeon.player).renderTip(sb);
+            CompanionField.currCompanion.get(AbstractDungeon.player).render(sb);
         }
     }
 }

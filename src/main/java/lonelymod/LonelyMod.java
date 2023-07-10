@@ -12,6 +12,7 @@ import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.ImpatientStrikes;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
+import lonelymod.fields.CompanionField;
 import lonelymod.fields.ReturnField;
 import lonelymod.interfaces.TriggerOnReturnInterface;
 import lonelymod.relics.AbstractEasyRelic;
@@ -250,8 +251,8 @@ public class LonelyMod implements
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        if (LonelyCharacter.currCompanion != null) {
-            LonelyCharacter.currCompanion = null;
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
     }
 }

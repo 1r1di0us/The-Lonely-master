@@ -3,9 +3,11 @@ package lonelymod.actions;
 //import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyCharacter;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Bones;
+import lonelymod.fields.CompanionField;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,18 +22,18 @@ public class SummonBonesAction extends AbstractGameAction {
             this.startDuration = Settings.ACTION_DUR_LONG;
         }
         this.duration = this.startDuration;
-        if (LonelyCharacter.currCompanion != null) {
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
             return;
         }
         this.c = new Bones(-750, -25);
-        LonelyCharacter.currCompanion = this.c;
+        CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
+        this.c.init();
     }
 
     public void update() {
         if (this.duration == this.startDuration) {
             //this.c.animX = 1200.0F * Settings.xScale;
-            this.c.init();
             this.c.applyPowers();
         }
         tickDuration();

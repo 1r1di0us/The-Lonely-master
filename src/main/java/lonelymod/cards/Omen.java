@@ -33,7 +33,7 @@ public class Omen extends AbstractEasyCard {
         this.baseSecondMagic = secondMagic = 1;
         this.exhaust = true;
         AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = (AbstractCard) new PrimalInstinct();
+        this.cardsToPreview = (AbstractCard) new Primal();
     }
     
     @Override
@@ -49,9 +49,9 @@ public class Omen extends AbstractEasyCard {
         if (p.hasPower("Focus"))
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p, p, p.getPower("Focus")));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new OmenPower(p, 6), 6));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PrimalInstinct(), 1, true, true));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));
         if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new PrimalInstinct(), 1, true, true));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));
         }
         AbstractDungeon.actionManager.addToBottom(new CompanionProtectAbilityAction());
         AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));

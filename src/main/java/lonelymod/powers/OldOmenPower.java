@@ -1,19 +1,21 @@
 package lonelymod.powers;
 
-import basemod.interfaces.CloneablePowerInterface;
+import static lonelymod.LonelyMod.makeID;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+
+import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-import static lonelymod.LonelyMod.makeID;
+public class OldOmenPower extends AbstractEasyPower implements CloneablePowerInterface {
 
-public class OmenPower extends AbstractEasyPower implements CloneablePowerInterface {
-    public static final String POWER_ID = makeID("OmenPower");
+    public static final String POWER_ID = makeID("OldOmenPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -21,16 +23,16 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public OmenPower(AbstractCreature owner, int amount) {
+    public OldOmenPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
 
         type = PowerType.BUFF;
         isTurnBased = false;
-            this.amount = amount;
+        this.amount = amount;
 
-            if (tex84 != null) {
+        if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
             if (tex32 != null)
                 region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, tex32.getWidth(), tex32.getHeight());
@@ -41,7 +43,7 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
 
         updateDescription();
     }
-
+    
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
@@ -49,6 +51,6 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public AbstractPower makeCopy() {
-        return new OmenPower(this.owner, this.amount);
+        return new OldOmenPower(this.owner, this.amount);
     }
 }

@@ -133,7 +133,7 @@
       " turns."
     ]
   },
-  "${ModID}:OmenPower": {
+  "${ModID}:OldOmenPower": {
     "NAME": "Omen",
     "DESCRIPTIONS": [
       "The Ravyn, #yOmen, is now your #yCompanion. #yFeed him and he will #rdestroy your enemies. NL Upon arrival, #yOmen will attempt to protect you. NL #yOmen's attack currently hits #b",
@@ -276,6 +276,13 @@
     "DESCRIPTIONS": [
       "Whenever you fully #yBlock an enemy's attack, apply #b",
       " #yWeak to that enemy."
+    ]
+  },
+  "${ModID}:OmenPower": {
+    "NAME": "Claws",
+    "DESCRIPTIONS": [
+      "Omen's attack move hits #b",
+      " times."
     ]
   }
 }

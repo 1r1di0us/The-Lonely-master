@@ -8,7 +8,7 @@
   },
   "${ModID}:MeatsStomach": {
     "NAME": "MeatsStomach",
-    "FLAVOR": "Despite being full, he’s still hungry. You changed his name to be more fitting.",
+    "FLAVOR": "You changed his name to something more fitting.",
     "DESCRIPTIONS": [
       "Replaces ",
       ".[] NL At the start of combat, #ySummon #yMeat."

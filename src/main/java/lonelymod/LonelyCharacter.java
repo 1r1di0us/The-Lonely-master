@@ -80,7 +80,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(MeatsStomach.ID);
+        retVal.add(BonesStomach.ID);
         return retVal;
     }
 
@@ -180,10 +180,10 @@ public class LonelyCharacter extends CustomPlayer {
 
     //animation for replacing the starter relic
     public void onEquipMeatsStomach() {
-        loadAnimation("lonelymodResources/images/char/mainChar/NewProject2.atlas", "lonelymodResources/images/char/mainChar/NewProject2.json", SIZE_SCALE);
+        /*loadAnimation("lonelymodResources/images/char/mainChar/NewProject2.atlas", "lonelymodResources/images/char/mainChar/NewProject2.json", SIZE_SCALE);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Hit", "Idle", 0.1F);
-        e.setTimeScale(0.7F);
+        e.setTimeScale(0.7F);*/
     }
 
     public static class Enums {

@@ -16,5 +16,59 @@
       "Eat"
     ],
     "NAME": "Meat"
+  },
+  "Omen": {
+    "MOVES": [
+      "Dive",
+      "Shred",
+      "Shriek",
+      "Sharpen"
+    ],
+    "NAME": "Omen"
+  },
+  "Outcast": {
+    "MOVES": [
+      "Nothing",
+      "Spear Jab",
+      "Hold Ground",
+      "Train Up"
+    ],
+    "NAME": "Fring"
+  },
+  "Oracle": {
+    "MOVES": [
+      "Nothing",
+      "Fiery Blast",
+      "Peaceful Protest",
+      "Chant"
+    ],
+    "NAME": "Sowru"
+  },
+  "Mechanic": {
+    "MOVES": [
+      "Nothing",
+      "Electrocute",
+      "Ice Wall",
+      "Robo Arm"
+    ],
+    "NAME": "Blert"
+  },
+  "Spy": {
+    "MOVES": [
+      "Nothing",
+      "Assassinate",
+      "Speedy",
+      "Poison Cloud"
+    ],
+    "NAME": "Dzil"
+  },
+  "Maniac": {
+    "MOVES": [
+      "Nothing",
+      "Harass",
+      "Scare",
+      "Empower"
+    ],
+    "NAME": "Kharn"
   }
 }

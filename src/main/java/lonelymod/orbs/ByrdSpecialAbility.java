@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.PlasmaOrbActivateEffect;
 
 import basemod.abstracts.CustomOrb;
 import lonelymod.actions.CompanionBasicAbilityAction;
-import lonelymod.powers.OmenPower;
+import lonelymod.powers.OldOmenPower;
 
 import static lonelymod.LonelyMod.makeOrbPath;
 
@@ -79,7 +79,7 @@ public class ByrdSpecialAbility extends CustomOrb {
         AbstractDungeon.actionManager.addToBottom(// 2. add food
                 new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FocusPower(AbstractDungeon.player, this.foodAmount), this.foodAmount));
         AbstractDungeon.actionManager.addToBottom(// 3. increase peck
-                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new OmenPower(AbstractDungeon.player, this.peckAmount), this.peckAmount));
+                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new OldOmenPower(AbstractDungeon.player, this.peckAmount), this.peckAmount));
         
         //call next ability
         if (AbstractDungeon.player.hasPower(makeID("AnimalSavageryPower"))) {

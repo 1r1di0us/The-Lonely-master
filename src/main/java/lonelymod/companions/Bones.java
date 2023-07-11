@@ -23,15 +23,11 @@ import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.TargetPower;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 
 public class Bones extends AbstractCompanion {
     public static final String ID = "Bones";
-
-    private static final Logger logger = LogManager.getLogger(AbstractMonster.class.getName());
 
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Bones");
     public static final String NAME = monsterStrings.NAME;
@@ -105,7 +101,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callDefault() {
-        setMove(MOVES[0], DEFAULT, AbstractMonster.Intent.DEFEND);
+        setMove(MOVES[0], DEFAULT, Intent.DEFEND);
         this.intentBaseBlock = defaultBlk;
         applyPowersToBlock();
         createIntent();
@@ -114,7 +110,7 @@ public class Bones extends AbstractCompanion {
     @Override
     public void callAttack() {
         flashIntent();
-        setMove(MOVES[1], ATTACK, AbstractMonster.Intent.ATTACK_BUFF, this.damage.get(0).base);
+        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base);
         this.targetEnemy = getTarget();
         createIntent();
     }
@@ -122,7 +118,7 @@ public class Bones extends AbstractCompanion {
     @Override
     public void callProtect() {
         flashIntent();
-        setMove(MOVES[2], PROTECT, AbstractMonster.Intent.DEFEND_BUFF);
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
         this.intentBaseBlock = protectBlk;
         applyPowersToBlock();
         createIntent();
@@ -131,7 +127,7 @@ public class Bones extends AbstractCompanion {
     @Override
     public void callSpecial() {
         flashIntent();
-        setMove(MOVES[3], SPECIAL, AbstractMonster.Intent.STRONG_DEBUFF);
+        setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
         createIntent();
     }
 
@@ -146,17 +142,17 @@ public class Bones extends AbstractCompanion {
             case ATTACK:
                 this.intentTip.header = TEXT[3];
                 this.intentTip.body = TEXT[4] + this.intentDmg + TEXT[5] + ATTACK_PWR_AMT + TEXT[6];
-                this.intentTip.img = ImageMaster.INTENT_ATTACK_BUFF;
+                this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = TEXT[7];
                 this.intentTip.body = TEXT[8] + this.intentBlock + TEXT[9] + PROTECT_PWR_AMT + TEXT[10];
-                this.intentTip.img = ImageMaster.INTENT_DEFEND_BUFF;
+                this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = TEXT[11];
                 this.intentTip.body = TEXT[12] + SPECIAL_DEBUFF_AMT + TEXT[13] + SPECIAL_DEBUFF_AMT + TEXT[14] + SPECIAL_PWR_AMT + TEXT[15] + SPECIAL_PWR_AMT + TEXT[16];
-                this.intentTip.img = ImageMaster.INTENT_DEBUFF2;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

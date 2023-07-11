@@ -374,7 +374,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             dmg.output = 0;
     }
 
-    private Texture getIntentImg() {
+    public Texture getIntentImg() {
         switch (this.intent) {
             case ATTACK:
                 return getAttackIntent();

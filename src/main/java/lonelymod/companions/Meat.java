@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
@@ -22,18 +21,12 @@ import lonelymod.actions.CallDefaultAction;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
-import static lonelymod.LonelyMod.makeID;
 
 public class Meat extends AbstractCompanion {
     public static final String ID = "Meat";
-
-    private static final Logger logger = LogManager.getLogger(AbstractMonster.class.getName());
-
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Bones");
+    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Meat");
     public static final String NAME = monsterStrings.NAME;
 
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -83,6 +76,7 @@ public class Meat extends AbstractCompanion {
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -103,22 +97,25 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void callDefault() {
-        setMove(MOVES[0], DEFAULT, AbstractMonster.Intent.BUFF);
+        setMove(MOVES[0], DEFAULT, Intent.BUFF);
         createIntent();
     }
 
     @Override
     public void callAttack() {
         flashIntent();
-        setMove(MOVES[1], ATTACK, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
         this.targetEnemy = getTarget();
+        if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 3, true);
+        else
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 2, true);
         createIntent();
     }
 
     @Override
     public void callProtect() {
         flashIntent();
-        setMove(MOVES[2], PROTECT, AbstractMonster.Intent.DEFEND);
+        setMove(MOVES[2], PROTECT, Intent.DEFEND);
         this.intentBaseBlock = protectBlk;
         applyPowersToBlock();
         createIntent();
@@ -127,7 +124,7 @@ public class Meat extends AbstractCompanion {
     @Override
     public void callSpecial() {
         flashIntent();
-        setMove(MOVES[3], SPECIAL, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(1).base);
+        setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base);
         this.targetEnemy = getTarget();
         createIntent();
     }
@@ -138,22 +135,22 @@ public class Meat extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = TEXT[17];
                 this.intentTip.body = TEXT[18] + DEFAULT_PWR_AMT + TEXT[19] + DEFAULT_PWR_AMT + TEXT[20];
-                this.intentTip.img = ImageMaster.INTENT_BUFF;
+                this.intentTip.img = getIntentImg();
                 return;
             case ATTACK:
                 this.intentTip.header = TEXT[21];
                 this.intentTip.body = TEXT[22] + this.intentDmg + TEXT[23] + ATTACK_AMT + TEXT[24] + 1 + TEXT[25];
-                this.intentTip.img = ImageMaster.INTENT_ATK_3;
+                this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = TEXT[26];
                 this.intentTip.body = TEXT[27] + this.intentBlock + TEXT[28] + PROTECT_AMT + TEXT[29];
-                this.intentTip.img = ImageMaster.INTENT_DEFEND;
+                this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = TEXT[30];
                 this.intentTip.body = TEXT[31] + this.intentDmg + TEXT[32] + SPECIAL_DEBUFF_AMT + TEXT[33];
-                this.intentTip.img = ImageMaster.INTENT_ATTACK_DEBUFF;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

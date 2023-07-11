@@ -5,16 +5,16 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Meat;
+import lonelymod.companions.Outcast;
 import lonelymod.fields.CompanionField;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class SummonMeatAction extends AbstractGameAction {
-    private static final Logger logger = LogManager.getLogger(SummonMeatAction.class.getName());
+public class SummonOutcastAction extends AbstractGameAction {
+    private static final Logger logger = LogManager.getLogger(SummonOutcastAction.class.getName());
     private AbstractCompanion c;
 
-    public SummonMeatAction() {
+    public SummonOutcastAction() {
         if (Settings.FAST_MODE) {
             this.startDuration = Settings.ACTION_DUR_FAST;
         } else {
@@ -25,7 +25,7 @@ public class SummonMeatAction extends AbstractGameAction {
             logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
             return;
         }
-        this.c = new Meat(-750, -25);
+        this.c = new Outcast(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
     }

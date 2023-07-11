@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import lonelymod.actions.AutoplayWaitAction;
 import lonelymod.actions.CompanionProtectAbilityAction;
-import lonelymod.powers.OmenPower;
+import lonelymod.powers.OldOmenPower;
 
 public class Omen extends AbstractEasyCard {
     public final static String ID = makeID("Omen");
@@ -48,7 +48,7 @@ public class Omen extends AbstractEasyCard {
         AbstractDungeon.actionManager.addToBottom(new DiscardAction(p, p, 3, true));
         if (p.hasPower("Focus"))
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p, p, p.getPower("Focus")));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new OmenPower(p, 6), 6));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new OldOmenPower(p, 6), 6));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));
         if (upgraded) {
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));

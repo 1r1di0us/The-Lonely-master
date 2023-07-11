@@ -29,7 +29,7 @@ public class PowerOnMonsterDeathPatch {
     )
 
     public static void Insert(AbstractMonster __instance, boolean triggerRelics) {
-        if (triggerRelics)
+        if (triggerRelics && CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers)
                 if (p instanceof BonesPower)
                     ((BonesPower) p).onMonsterDeath(__instance);

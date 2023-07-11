@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.*;
@@ -264,8 +265,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
         float tmp = dmg;
         for (AbstractPower p : this.powers)
             tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
-        for (AbstractPower p : targetEnemy.powers)
-            tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        for (AbstractPower p : targetEnemy.powers) {
+            if (!(p instanceof VulnerablePower))
+                tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         if (isTargeted)
             tmp = (int)(tmp * 1.5F);
@@ -286,9 +290,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             targetEnemy = getTarget();
         }
         for (DamageInfo dmg : this.damage) {
-            dmg.applyPowers(this, targetEnemy);
-            if (isTargeted)
-                dmg.output = (int)(dmg.output * 1.5F);
+            applyPowersToDamage(dmg, targetEnemy);
         }
         if (this.move.baseDamage > -1)
             calculateDamage(this.move.baseDamage);
@@ -333,6 +335,43 @@ public abstract class AbstractCompanion extends AbstractMonster {
         if (tmp < 0.0F)
             tmp = 0.0F;
         this.intentBlock = MathUtils.floor(tmp);
+    }
+
+    protected void applyPowersToDamage(DamageInfo dmg, AbstractCreature target) {
+        dmg.output = dmg.base;
+        dmg.isModified = false;
+        float tmp = dmg.output;
+        for (AbstractPower p : this.powers) {
+            tmp = p.atDamageGive(tmp, dmg.type);
+            if (dmg.base != (int)tmp)
+                dmg.isModified = true;
+        }
+        for (AbstractPower p : target.powers) {
+            if (!(p instanceof VulnerablePower)) {
+                tmp = p.atDamageReceive(tmp, dmg.type);
+                if (dmg.base != (int) tmp)
+                    dmg.isModified = true;
+            }
+        }
+        if (dmg.base != (int)tmp)
+            dmg.isModified = true;
+        for (AbstractPower p : this.powers) {
+            tmp = p.atDamageFinalGive(tmp, dmg.type);
+            if (dmg.base != (int)tmp)
+                dmg.isModified = true;
+        }
+        for (AbstractPower p : target.powers) {
+            tmp = p.atDamageFinalReceive(tmp, dmg.type);
+            if (dmg.base != (int)tmp)
+                dmg.isModified = true;
+        }
+        if (isTargeted && target.hasPower(TargetPower.POWER_ID))
+            tmp = (int)(tmp * 1.5F);
+        if (dmg.base != (int)tmp)
+            dmg.isModified = true;
+        dmg.output = MathUtils.floor(tmp);
+        if (dmg.output < 0)
+            dmg.output = 0;
     }
 
     private Texture getIntentImg() {

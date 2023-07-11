@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import lonelymod.relics.MeatsStomach;
 
 import static lonelymod.LonelyCharacter.Enums.TODO_COLOR;
 import static lonelymod.LonelyMod.*;
@@ -79,7 +80,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(BonesStomach.ID);
+        retVal.add(MeatsStomach.ID);
         return retVal;
     }
 

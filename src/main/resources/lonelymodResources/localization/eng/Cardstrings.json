@@ -290,9 +290,8 @@
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal *Instinct into your draw pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard !M! random cards. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal *Instincts into your draw pile. NL Exhaust."
-
+    "DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal into your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primals into your draw pile. NL Exhaust."
   },
   "${ModID}:Outburst": {
     "NAME": "Outburst",

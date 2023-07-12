@@ -284,5 +284,17 @@
       "Omen's attack move hits #b",
       " times."
     ]
+  },
+  "${ModID}:OutcastPower": {
+    "NAME": "Empower",
+    "DESCRIPTIONS": [
+      "#yCalling the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
+      ", ",
+      "#yAttack",
+      "#yProtect",
+      "#ySpecial",
+      "None",
+      "."
+    ]
   }
 }

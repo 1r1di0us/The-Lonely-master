@@ -1,13 +1,22 @@
 package lonelymod.companions;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.actions.CallDefaultAction;
+import lonelymod.actions.CallProtectAction;
 import lonelymod.actions.SummonBonesAction;
+import lonelymod.powers.CompanionStaminaPower;
+import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OmenPower;
+import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,17 +60,38 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
+        addToBot(new CallProtectAction());
     }
 
     public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
+                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                if (hasPower(CompanionVigorPower.POWER_ID))
+                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
+                if (this.hasPower(makeID("OmenPower"))) {
+                    for (int i = 0; i < this.getPower(makeID("OmenPower")).amount; i++) {
+                        addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                } else {
+                    logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                    break;
+                }
+                if (hasPower(CompanionVigorPower.POWER_ID))
+                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
             case SPECIAL:
+                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
+                addToBot(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
         addToBot(new CallDefaultAction());

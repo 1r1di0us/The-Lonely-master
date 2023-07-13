@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import lonelymod.actions.CallDefaultAction;
 import lonelymod.powers.CompanionDexterityPower;
 import lonelymod.powers.CompanionStaminaPower;
@@ -53,7 +54,7 @@ public class Outcast extends AbstractCompanion {
         addToBot(new ApplyPowerAction(this, this, new OutcastPower(this)));
     }
 
-    public void takeTurn() {
+    public void takeTurn(boolean callDefault) {
         switch (nextMove) {
             case DEFAULT:
                 addToBot(new SFXAction("VO_GREMLINFAT_1C"));
@@ -102,11 +103,14 @@ public class Outcast extends AbstractCompanion {
                 if (consecutiveProtect != 3)
                     consecutiveProtect = 0;
                 break;
+            case NONE:
+                break;
         }
         if (this.hasPower(makeID("OutcastPower"))) {
             ((OutcastPower) this.getPower(makeID("OutcastPower"))).updateDescription(consecutiveAttack, consecutiveProtect, consecutiveSpecial);
         }
-        addToBot(new CallDefaultAction());
+        if (callDefault)
+            addToBot(new CallDefaultAction());
     }
 
     public void callDefault() {
@@ -115,29 +119,41 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void callAttack() {
-        flashIntent();
-        if (consecutiveAttack == 3) {
-            setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true);
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
-            setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base);
+            flashIntent();
+            if (consecutiveAttack == 3) {
+                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true);
+            } else {
+                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base);
+            }
+            createIntent();
         }
-        createIntent();
     }
 
     public void callProtect() {
-        flashIntent();
-        if (consecutiveProtect == 3) {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND);
+            flashIntent();
+            if (consecutiveProtect == 3) {
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
+            } else {
+                setMove(MOVES[2], PROTECT, Intent.DEFEND);
+            }
+            createIntent();
         }
-        createIntent();
     }
 
     public void callSpecial() {
-        flashIntent();
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[3], SPECIAL, Intent.BUFF);
+            createIntent();
+        }
     }
 
     public void updateIntentTip() {
@@ -173,6 +189,11 @@ public class Outcast extends AbstractCompanion {
                     this.intentTip.body = TEXT[63] + SPECIAL_PWR_AMT + TEXT[64] + SPECIAL_PWR_AMT + TEXT[65];
                 }
                 this.intentTip.img = getIntentImg();
+                return;
+            case NONE:
+                this.intentTip.header = "";
+                this.intentTip.body = "";
+                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
                 return;
         }
         this.intentTip.header = "NOT SET";

@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.actions.CallDefaultAction;
 import lonelymod.powers.BonesPower;
@@ -63,7 +64,7 @@ public class Bones extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void takeTurn(boolean callDefault) {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
@@ -95,8 +96,11 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 break;
+            case NONE:
+                break;
         }
-        addToBot(new CallDefaultAction());
+        if (callDefault)
+            addToBot(new CallDefaultAction());
     }
 
     @Override
@@ -109,26 +113,38 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        flashIntent();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base);
-        this.targetEnemy = getTarget();
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base);
+            this.targetEnemy = getTarget();
+            createIntent();
+        }
     }
 
     @Override
     public void callProtect() {
-        flashIntent();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
-        this.intentBaseBlock = protectBlk;
-        applyPowersToBlock();
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
+            this.intentBaseBlock = protectBlk;
+            applyPowersToBlock();
+            createIntent();
+        }
     }
 
     @Override
     public void callSpecial() {
-        flashIntent();
-        setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
+            createIntent();
+        }
     }
 
     @Override
@@ -153,6 +169,11 @@ public class Bones extends AbstractCompanion {
                 this.intentTip.header = TEXT[11];
                 this.intentTip.body = TEXT[12] + SPECIAL_DEBUFF_AMT + TEXT[13] + SPECIAL_DEBUFF_AMT + TEXT[14] + SPECIAL_PWR_AMT + TEXT[15] + SPECIAL_PWR_AMT + TEXT[16];
                 this.intentTip.img = getIntentImg();
+                return;
+            case NONE:
+                this.intentTip.header = "";
+                this.intentTip.body = "";
+                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
                 return;
         }
         this.intentTip.header = "NOT SET";

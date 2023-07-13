@@ -71,6 +71,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte ATTACK = 1;
     public static final byte PROTECT = 2;
     public static final byte SPECIAL = 3;
+    public static final byte NONE = 4;
     private boolean isBlockModified = false;
 
 
@@ -81,12 +82,21 @@ public abstract class AbstractCompanion extends AbstractMonster {
     // move methods:
 
     @Override
-    public abstract void takeTurn();
+    public void takeTurn() {
+        takeTurn(true);
+    }
+
+    public abstract void takeTurn(boolean callDefault);
 
     public abstract void callDefault();
     public abstract void callAttack();
     public abstract void callProtect();
     public abstract void callSpecial();
+    public void callNone() {
+        flashIntent();
+        setMove(NONE, Intent.UNKNOWN);
+        createIntent();
+    }
 
     public abstract void updateIntentTip();
 

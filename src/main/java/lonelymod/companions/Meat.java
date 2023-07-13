@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.actions.CallDefaultAction;
 import lonelymod.powers.CompanionStaminaPower;
@@ -59,7 +60,7 @@ public class Meat extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void takeTurn(boolean callDefault) {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));
@@ -91,8 +92,12 @@ public class Meat extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 if (targetEnemy.hasPower(WeakPower.POWER_ID))
                     addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
+                break;
+            case NONE:
+                break;
         }
-        addToBot(new CallDefaultAction());
+        if (callDefault)
+            addToBot(new CallDefaultAction());
     }
 
     @Override
@@ -103,30 +108,42 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        flashIntent();
-        this.targetEnemy = getTarget();
-        if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 3, true);
-        else
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 2, true);
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            this.targetEnemy = getTarget();
+            if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 3, true);
+            else
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 2, true);
+            createIntent();
+        }
     }
 
     @Override
     public void callProtect() {
-        flashIntent();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND);
-        this.intentBaseBlock = protectBlk;
-        applyPowersToBlock();
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND);
+            this.intentBaseBlock = protectBlk;
+            applyPowersToBlock();
+            createIntent();
+        }
     }
 
     @Override
     public void callSpecial() {
-        flashIntent();
-        setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base);
-        this.targetEnemy = getTarget();
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base);
+            this.targetEnemy = getTarget();
+            createIntent();
+        }
     }
 
     @Override
@@ -151,6 +168,11 @@ public class Meat extends AbstractCompanion {
                 this.intentTip.header = TEXT[30];
                 this.intentTip.body = TEXT[31] + this.intentDmg + TEXT[32] + SPECIAL_DEBUFF_AMT + TEXT[33];
                 this.intentTip.img = getIntentImg();
+                return;
+            case NONE:
+                this.intentTip.header = "";
+                this.intentTip.body = "";
+                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
                 return;
         }
         this.intentTip.header = "NOT SET";

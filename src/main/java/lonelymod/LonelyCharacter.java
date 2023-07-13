@@ -3,12 +3,10 @@ package lonelymod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
-import com.esotericsoftware.spine.AnimationState;
 import lonelymod.cards.Defend;
 import lonelymod.cards.Go;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
-import lonelymod.companions.AbstractCompanion;
 import lonelymod.relics.BonesStomach;
 
 import com.badlogic.gdx.graphics.Color;

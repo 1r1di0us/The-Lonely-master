@@ -82,7 +82,7 @@
 
 
       "Nothing",
-      "Fring intends to do nothing.",
+      "Fring intends to make sad sounds.",
 
       "Spear Jab",
       "Fring intends to attack an enemy for #b",
@@ -100,7 +100,9 @@
       "Fring intends to gain #b",
       " #yStrength and #b",
       " #yDexterity.",
-      " #yDexterity and #yEmpower his other moves."
+      " #yDexterity and #yEmpower his other moves.",
+
+      "I'm not listening!"
     ]
   }
 }

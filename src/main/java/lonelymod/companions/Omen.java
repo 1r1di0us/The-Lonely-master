@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import lonelymod.actions.CallDefaultAction;
 import lonelymod.actions.CallProtectAction;
 import lonelymod.actions.SummonBonesAction;
@@ -63,7 +64,7 @@ public class Omen extends AbstractCompanion {
         addToBot(new CallProtectAction());
     }
 
-    public void takeTurn() {
+    public void takeTurn(boolean callDefault) {
         switch (nextMove) {
             case DEFAULT:
                 addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
@@ -93,8 +94,11 @@ public class Omen extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
                 addToBot(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
+            case NONE:
+                break;
         }
-        addToBot(new CallDefaultAction());
+        if (callDefault)
+            addToBot(new CallDefaultAction());
     }
 
     public void callDefault() {
@@ -104,30 +108,42 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callAttack() {
-        flashIntent();
-        if (this.hasPower(makeID("OmenPower"))) {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true);
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
-            logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
-            return;
+            flashIntent();
+            if (this.hasPower(makeID("OmenPower"))) {
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true);
+            } else {
+                logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                return;
+            }
+            this.targetEnemy = getTarget();
+            createIntent();
         }
-        this.targetEnemy = getTarget();
-        createIntent();
     }
 
     public void callProtect() {
-        flashIntent();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF);
-        this.intentBaseBlock = protectBlk;
-        applyPowersToBlock();
-        this.targetEnemy = getTarget();
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF);
+            this.intentBaseBlock = protectBlk;
+            applyPowersToBlock();
+            this.targetEnemy = getTarget();
+            createIntent();
+        }
     }
 
     public void callSpecial() {
-        flashIntent();
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
-        createIntent();
+        if (nextMove == NONE) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        } else {
+            flashIntent();
+            setMove(MOVES[3], SPECIAL, Intent.BUFF);
+            createIntent();
+        }
     }
 
     public void updateIntentTip() {
@@ -151,6 +167,11 @@ public class Omen extends AbstractCompanion {
                 this.intentTip.header = TEXT[46];
                 this.intentTip.body = TEXT[47] + SPECIAL_STR_AMT + TEXT[48] + SPECIAL_PWR_AMT + TEXT[49];
                 this.intentTip.img = getIntentImg();
+                return;
+            case NONE:
+                this.intentTip.header = "";
+                this.intentTip.body = "";
+                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
                 return;
         }
         this.intentTip.header = "NOT SET";

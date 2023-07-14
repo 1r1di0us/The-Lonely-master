@@ -57,6 +57,7 @@ public class Omen extends AbstractCompanion {
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.defaultDmg));
         this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.block.add(new BlockInfo(this, this.protectBlk));
     }
 
     public void usePreBattleAction() {
@@ -84,8 +85,8 @@ public class Omen extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
@@ -102,7 +103,7 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base);
+        setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
         this.targetEnemy = getTarget();
         createIntent();
     }
@@ -113,7 +114,7 @@ public class Omen extends AbstractCompanion {
         } else {
             flashIntent();
             if (this.hasPower(makeID("OmenPower"))) {
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true);
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true, true);
             } else {
                 logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
                 return;
@@ -128,9 +129,7 @@ public class Omen extends AbstractCompanion {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
             flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF);
-            this.intentBaseBlock = protectBlk;
-            applyPowersToBlock();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
             this.targetEnemy = getTarget();
             createIntent();
         }
@@ -160,7 +159,7 @@ public class Omen extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = TEXT[41];
-                this.intentTip.body = TEXT[42] + this.intentBlock + TEXT[43] + PROTECT_AMT + TEXT[44] + PROTECT_DEBUFF_AMT + TEXT[45];
+                this.intentTip.body = TEXT[42] + this.intentBlk + TEXT[43] + PROTECT_AMT + TEXT[44] + PROTECT_DEBUFF_AMT + TEXT[45];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:

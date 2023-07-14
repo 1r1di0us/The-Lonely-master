@@ -36,7 +36,7 @@ public class Meat extends AbstractCompanion {
 
 
     private static final int DEFAULT_PWR_AMT = 3;
-    private static final int ATTACK_DMG = 6, ATTACK_AMT = 2;
+    private static final int ATTACK_DMG = 6, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
     private static final int PROTECT_BLK = 6, PROTECT_AMT = 3;
     private static final int PROTECT_PWR_AMT = 5;
     private static final int SPECIAL_DMG = 10;
@@ -52,6 +52,7 @@ public class Meat extends AbstractCompanion {
         this.specialDmg = SPECIAL_DMG;
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.damage.add(new DamageInfo(this, this.specialDmg));
+        this.block.add(new BlockInfo(this, this.protectBlk));
     }
 
     @Override
@@ -75,9 +76,9 @@ public class Meat extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -114,9 +115,9 @@ public class Meat extends AbstractCompanion {
             flashIntent();
             this.targetEnemy = getTarget();
             if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 3, true);
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_EMP_AMT, true, true);
             else
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, 2, true);
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
             createIntent();
         }
     }
@@ -127,9 +128,7 @@ public class Meat extends AbstractCompanion {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
             flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND);
-            this.intentBaseBlock = protectBlk;
-            applyPowersToBlock();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, PROTECT_AMT, true, false);
             createIntent();
         }
     }
@@ -140,7 +139,7 @@ public class Meat extends AbstractCompanion {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
             flashIntent();
-            setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base);
+            setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base, true);
             this.targetEnemy = getTarget();
             createIntent();
         }
@@ -161,7 +160,7 @@ public class Meat extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = TEXT[26];
-                this.intentTip.body = TEXT[27] + this.intentBlock + TEXT[28] + PROTECT_AMT + TEXT[29];
+                this.intentTip.body = TEXT[27] + this.intentBlk + TEXT[28] + PROTECT_AMT + TEXT[29];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:

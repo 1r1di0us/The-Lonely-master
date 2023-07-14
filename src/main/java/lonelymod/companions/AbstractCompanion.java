@@ -45,13 +45,16 @@ public abstract class AbstractCompanion extends AbstractMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AbstractCompanion"));
     public static final String[] TEXT = uiStrings.TEXT;
 
+    private static final float INTENT_HB_W = 64.0F * Settings.scale;
+
     private float intentParticleTimer = 0.0F;
     private BobEffect bobEffect = new BobEffect();
     private ArrayList<AbstractGameEffect> intentVfx = new ArrayList<>();
 
     public AbstractCreature targetEnemy;
     public boolean isTargeted;
-    public EnemyMoveInfo move;
+    //public EnemyMoveInfo move;
+    public CompanionMoveInfo move;
 
     private Color nameColor = new Color();
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
@@ -59,12 +62,15 @@ public abstract class AbstractCompanion extends AbstractMonster {
     private float intentAngle = 0.0F;
     public PowerTip intentTip = new PowerTip();
     public Texture intentImg = null;
+    public ArrayList<BlockInfo> block = new ArrayList<>();
     public int intentDmg = -1;
     public int intentBaseDmg = -1;
     public int intentMultiAmt = 0;
     public boolean isMultiDmg = false;
-    public int intentBlock = -1;
-    public int intentBaseBlock = -1;
+    public int intentBlk = -1;
+    public int intentBaseBlk = -1;
+    public int intentMultiBlkAmt = 0;
+    public boolean isMultiBlk = false;
     private Color intentColor = Color.WHITE.cpy();
 
     public static final byte DEFAULT = 0;
@@ -103,6 +109,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     @Override
     public void init() {
         this.getMove();
+        this.healthBarUpdatedEvent();
     }
 
     @Override
@@ -118,15 +125,27 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.intentParticleTimer = 0.5F;
         this.nextMove = this.move.nextMove;
         this.intentBaseDmg = this.move.baseDamage;
+        this.intentBaseBlk = this.move.baseBlock;
         if (this.move.baseDamage > -1) {
             calculateDamage(this.intentBaseDmg);
             if (this.move.isMultiDamage) {
-                this.intentMultiAmt = this.move.multiplier;
+                this.intentMultiAmt = this.move.damageMultiplier;
                 this.isMultiDmg = true;
             } else {
                 this.intentMultiAmt = -1;
                 this.isMultiDmg = false;
             }
+        }
+        if (this.move.baseBlock > -1) {
+            calculateBlock(this.intentBaseBlk);
+            if (this.move.isMultiBlock) {
+                this.intentMultiBlkAmt = this.move.blockMultiplier;
+                this.isMultiBlk = true;
+            } else {
+                this.intentMultiBlkAmt = -1;
+                this.isMultiBlk = false;
+            }
+
         }
         this.intentImg = getIntentImg();
         this.tipIntent = this.intent;
@@ -135,18 +154,17 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateIntentTip();
     }
 
-    @Override
-    public void setMove(String moveName, byte nextMove, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
         this.moveName = moveName;
         if (nextMove != -1) {
             this.moveHistory.add(nextMove);
         }
-        this.move = new EnemyMoveInfo(nextMove, intent, baseDamage, multiplier, isMultiDamage);
+        this.move = new CompanionMoveInfo(nextMove, intent, base, multiplier, isMulti, isAttack);
     }
 
     @Override
     public void setMove(String moveName, byte nextMove, Intent intent) {
-        if (intent == AbstractMonster.Intent.ATTACK || intent == AbstractMonster.Intent.ATTACK_BUFF || intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK_DEBUFF) {
+        if (intent == AbstractMonster.Intent.ATTACK || intent == AbstractMonster.Intent.ATTACK_BUFF || intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEFEND || intent == AbstractMonster.Intent.DEFEND_BUFF || intent == AbstractMonster.Intent.DEFEND_DEBUFF) {
             for(int i = 0; i < 8; ++i) {
                 AbstractDungeon.effectsQueue.add(new TextAboveCreatureEffect(MathUtils.random((float)Settings.WIDTH * 0.25F, (float)Settings.WIDTH * 0.75F), MathUtils.random((float)Settings.HEIGHT * 0.25F, (float)Settings.HEIGHT * 0.75F), "ENEMY MOVE " + moveName + " IS SET INCORRECTLY! REPORT TO DEV", Color.RED.cpy()));
             }
@@ -157,24 +175,20 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.setMove(moveName, nextMove, intent, -1, 0, false);
     }
 
-    @Override
-    public void setMove(byte nextMove, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
-        this.setMove((String)null, nextMove, intent, baseDamage, multiplier, isMultiDamage);
+    public void setMove(byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
+        this.setMove((String)null, nextMove, intent, base, multiplier, isMulti, isAttack);
     }
 
-    @Override
-    public void setMove(String moveName, byte nextMove, Intent intent, int baseDamage) {
-        this.setMove(moveName, nextMove, intent, baseDamage, 0, false);
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, boolean isAttack) {
+        this.setMove(moveName, nextMove, intent, base, 0, false, isAttack);
     }
 
-    @Override
-    public void setMove(byte nextMove, Intent intent, int baseDamage) {
-        this.setMove((String)null, nextMove, intent, baseDamage, 0, false);
+    public void setMove(byte nextMove, Intent intent, int base, boolean isAttack) {
+        this.setMove((String)null, nextMove, intent, base, 0, false, isAttack);
     }
 
-    @Override
     public void setMove(byte nextMove, Intent intent) {
-        this.setMove((String)null, nextMove, intent, -1, 0, false);
+        this.setMove((String)null, nextMove, intent, -1, 0, false, false);
     }
 
     //important update methods:
@@ -269,6 +283,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.intentAlphaTarget = 0.0F;
     }
 
+    public void refreshIntentHbLocation() {
+        this.intentHb.move(this.hb.cX + this.intentOffsetX, this.hb.cY + this.hb_h / 2.0F + INTENT_HB_W / 2.0F);
+    }
+
     //calculate methods
 
     private void calculateDamage(int dmg) {
@@ -279,7 +297,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
             if (!(p instanceof VulnerablePower))
                 tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         }
-
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         if (isTargeted)
             tmp = (int)(tmp * 1.5F);
@@ -293,14 +310,29 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.intentDmg = dmg;
     }
 
+    private void calculateBlock(int blk) {
+        float tmp = blk;
+        for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers) {
+            if (p instanceof ModifyCompanionBlockInterface)
+                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, this);
+        }
+        if (this.intentBaseBlk != MathUtils.floor(tmp))
+            this.isBlockModified = true;
+        if (tmp < 0.0F)
+            tmp = 0.0F;
+        this.intentBlk = MathUtils.floor(tmp);
+    }
+
     @Override
     public void applyPowers() {
-        applyPowersToBlock();
         if (targetEnemy == null) {
             targetEnemy = getTarget();
         }
         for (DamageInfo dmg : this.damage) {
             applyPowersToDamage(dmg, targetEnemy);
+        }
+        for (BlockInfo blk : this.block) {
+            blk.applyPowers(this, AbstractDungeon.player);
         }
         if (this.move.baseDamage > -1)
             calculateDamage(this.move.baseDamage);
@@ -331,20 +363,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
             isTargeted = false;
         }
         return currTarget;
-    }
-
-    protected void applyPowersToBlock() {
-        this.isBlockModified = false;
-        float tmp = this.intentBaseBlock;
-        for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers) {
-            if (p instanceof ModifyCompanionBlockInterface)
-                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, this);
-        }
-        if (this.intentBaseBlock != MathUtils.floor(tmp))
-            this.isBlockModified = true;
-        if (tmp < 0.0F)
-            tmp = 0.0F;
-        this.intentBlock = MathUtils.floor(tmp);
     }
 
     protected void applyPowersToDamage(DamageInfo dmg, AbstractCreature target) {
@@ -507,6 +525,13 @@ public abstract class AbstractCompanion extends AbstractMonster {
                 FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.intentDmg) + "x" + Integer.toString(this.intentMultiAmt), this.intentHb.cX - 30.0F * Settings.scale, this.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             } else {
                 FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.intentDmg), this.intentHb.cX - 30.0F * Settings.scale, this.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+            }
+        }
+        if (this.intent.name().contains("DEFEND")) {
+            if (this.isMultiBlk) {
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.intentBlk) + "x" + Integer.toString(this.intentMultiBlkAmt), this.intentHb.cX - 30.0F * Settings.scale, this.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+            } else {
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.intentBlk), this.intentHb.cX - 30.0F * Settings.scale, this.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             }
         }
     }

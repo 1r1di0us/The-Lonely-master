@@ -48,6 +48,7 @@ public class Outcast extends AbstractCompanion {
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.block.add(new BlockInfo(this, this.protectBlk));
     }
 
     public void usePreBattleAction() {
@@ -76,7 +77,7 @@ public class Outcast extends AbstractCompanion {
                     consecutiveSpecial = 0;
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 if (consecutiveProtect == 3) {
@@ -124,9 +125,9 @@ public class Outcast extends AbstractCompanion {
         } else {
             flashIntent();
             if (consecutiveAttack == 3) {
-                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true);
+                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
             } else {
-                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base);
+                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
             }
             createIntent();
         }
@@ -138,9 +139,9 @@ public class Outcast extends AbstractCompanion {
         } else {
             flashIntent();
             if (consecutiveProtect == 3) {
-                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
             } else {
-                setMove(MOVES[2], PROTECT, Intent.DEFEND);
+                setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
             }
             createIntent();
         }
@@ -175,9 +176,9 @@ public class Outcast extends AbstractCompanion {
             case PROTECT:
                 this.intentTip.header = TEXT[57];
                 if (consecutiveProtect == 3) {
-                    this.intentTip.body = TEXT[58] + this.intentBlock + TEXT[60] + EMP_PROTECT_PWR_AMT + TEXT[61];
+                    this.intentTip.body = TEXT[58] + this.intentBlk + TEXT[60] + EMP_PROTECT_PWR_AMT + TEXT[61];
                 } else {
-                    this.intentTip.body = TEXT[58] + this.intentBlock + TEXT[59];
+                    this.intentTip.body = TEXT[58] + this.intentBlk + TEXT[59];
                 }
                 this.intentTip.img = getIntentImg();
                 return;

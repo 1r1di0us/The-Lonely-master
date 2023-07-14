@@ -56,6 +56,8 @@ public class Bones extends AbstractCompanion {
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.block.add(new BlockInfo(this, this.defaultBlk));
+        this.block.add(new BlockInfo(this, this.protectBlk));
     }
 
     @Override
@@ -67,7 +69,7 @@ public class Bones extends AbstractCompanion {
     public void takeTurn(boolean callDefault) {
         switch (this.nextMove) {
             case DEFAULT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -83,7 +85,7 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlock));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
@@ -105,9 +107,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.DEFEND);
-        this.intentBaseBlock = defaultBlk;
-        applyPowersToBlock();
+        setMove(MOVES[0], DEFAULT, Intent.DEFEND, this.block.get(0).base, false);
         createIntent();
     }
 
@@ -117,7 +117,7 @@ public class Bones extends AbstractCompanion {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
             flashIntent();
-            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base);
+            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
             this.targetEnemy = getTarget();
             createIntent();
         }
@@ -129,9 +129,7 @@ public class Bones extends AbstractCompanion {
             AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
         } else {
             flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF);
-            this.intentBaseBlock = protectBlk;
-            applyPowersToBlock();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
             createIntent();
         }
     }
@@ -152,7 +150,7 @@ public class Bones extends AbstractCompanion {
         switch (nextMove) {
             case DEFAULT:
                 this.intentTip.header = TEXT[0];
-                this.intentTip.body = TEXT[1] + this.intentBlock + TEXT[2];
+                this.intentTip.body = TEXT[1] + this.intentBlk + TEXT[2];
                 this.intentTip.img = ImageMaster.INTENT_DEFEND;
                 return;
             case ATTACK:
@@ -162,7 +160,7 @@ public class Bones extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = TEXT[7];
-                this.intentTip.body = TEXT[8] + this.intentBlock + TEXT[9] + PROTECT_PWR_AMT + TEXT[10];
+                this.intentTip.body = TEXT[8] + this.intentBlk + TEXT[9] + PROTECT_PWR_AMT + TEXT[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:

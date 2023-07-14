@@ -7,7 +7,7 @@
       " #yDexterity."
     ]
   },
-  "${ModID}:FireArrowsPower": {
+  "${ModID}:FireArrowPower": {
     "NAME": "Fire",
     "DESCRIPTIONS": [
       "At the start of the next #b",
@@ -261,6 +261,22 @@
       "Companions will deal 50% more damage to this enemy. They will also prioritize this enemy with their moves. Will last #b",
       " more turn.",
       " more turns."
+    ]
+  },
+  "${ModID}:AttackNextTurnPower": {
+    "NAME": "Attack Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of next turn, #yCall #yAttack.",
+      "At the start of the next #b",
+      " turns, #yCall #yAttack."
+    ]
+  },
+  "${ModID}:HelpPower":  {
+    "NAME": "Help!",
+    "DESCRIPTIONS": [
+      "At the end of your turn, if you have no Block, #yCall #yProtect.",
+      "At the end of your turn for the next #b",
+      " turns, if you have no Block, #yCall #yProtect."
     ]
   },
   "${ModID}:BonesPower": {

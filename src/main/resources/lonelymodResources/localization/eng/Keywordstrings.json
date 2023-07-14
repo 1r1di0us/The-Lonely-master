@@ -101,7 +101,9 @@
       "target",
       "target.",
       "Target",
-      "Target."
+      "Target.",
+      "Targeted",
+      "targeted"
     ],
     "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yMoves."
   },

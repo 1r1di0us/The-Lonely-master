@@ -22,19 +22,20 @@
   },
   "${ModID}:FireArrow": {
     "NAME": "Fire Arrow",
-    "DESCRIPTION": "Deal !D! damage. Enemy takes that much damage at the start of the next 3 turns."
+    "DESCRIPTION": "Deal !D! damage. This enemy takes that much damage at the start of the next 3 turns."
   },
   "${ModID}:Feint": {
     "NAME": "Feint",
     "DESCRIPTION": "Deal !D! damage. If any damage was blocked, apply !M! Vulnerable."
   },
-  "${ModID}:HailOfArrows": {
-    "NAME": "Hail Of Arrows",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Return."
+  "${ModID}:Kill": {
+    "NAME": "Kill!",
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of next turn, lonelymod:Call lonelymod:Attack."
   },
-  "${ModID}:MarkedArrow": {
-    "NAME": "Marked Arrow",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Attack."
+  "${ModID}:Marker": {
+    "NAME": "Marker",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target."
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
@@ -48,23 +49,23 @@
     "NAME": "Plot To Kill",
     "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, gain [E]."
   },
-  "${ModID}:QuickThinking": {
-    "NAME": "Quick Thinking",
-    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, draw !M! cards."
-  },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
     "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !M! additional damage."
+  },
+  "${ModID}:Volley": {
+    "NAME": "Volley",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Return."
   },
   "${ModID}:ALittlePloy": {
     "NAME": "A Little Ploy",
     "DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! card.",
     "UPGRADE_DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
   },
-  "${ModID}:AnimalSavagery": {
-    "NAME": "Animal Savagery",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL After performing the next lonelymod:Ability, lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL After performing the next two lonelymod:Abilities, lonelymod:Call lonelymod:Attack."
+  "${ModID}:ActionPlan": {
+    "NAME": "Action Plan",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] and lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] [E] and lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
@@ -76,10 +77,9 @@
     "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 *Panic *Attack into your draw pile.",
     "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 *Panic *Attack on top of your draw pile."
   },
-  "${ModID}:PrepareForTrouble": {
-    "NAME": "Prepare For Trouble",
-    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Draw !${ModID}:m2! cards. NL lonelymod:Call lonelymod:Protect.",
-    "UPGRADE_DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Draw !${ModID}:m2! cards. NL Gain [E]. NL lonelymod:Call lonelymod:Protect."
+  "${ModID}:Help": {
+    "NAME": "Help!",
+    "DESCRIPTION": "For the next !M! turns, if you have no Block at the end of your turn, lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
@@ -89,8 +89,8 @@
     "NAME": "Occult Practice",
     "DESCRIPTION": "Shuffle !${ModID}:m2! *Wound into your draw pile. NL Gain !M! Strength."
   },
-  "${ModID}:StandYourGround": {
-    "NAME": "Stand Your Ground",
+  "${ModID}:StandStrong": {
+    "NAME": "Stand Strong",
     "DESCRIPTION": "Gain !B! Block. NL lonelymod:Return.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Vigor. NL lonelymod:Return."
   },
@@ -112,9 +112,9 @@
     "NAME": "Impatient Strikes",
     "DESCRIPTION": "Costs 1 less [E] for each lonelymod:Ability you lonelymod:Call this turn. NL Deal !D! damage !M! times."
   },
-  "${ModID}:Kill": {
-    "NAME": "Kill!",
-    "DESCRIPTION": "Deal !D! Damage. NL lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+  "${ModID}:OnTheHunt": {
+    "NAME": "On The Hunt",
+    "DESCRIPTION": "Deal !D! damage. NL If this enemy is lonelymod:Targeted, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",

@@ -10,25 +10,21 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import lonelymod.fields.ReturnField;
 
-public class StandYourGround extends AbstractEasyCard {
-    public final static String ID = makeID("StandYourGround");
+public class StandStrong extends AbstractEasyCard {
+    public final static String ID = makeID("StandStrong");
 
-    public StandYourGround() {
+    public StandStrong() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseBlock = 5;
-        baseMagicNumber = magicNumber = 0;
+        baseBlock = 7;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new VigorPower(p, this.magicNumber)));
-        }
         ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {
-        upgradeMagicNumber(3);
+        upgradeBlock(2);
         uDesc();
     }
 }

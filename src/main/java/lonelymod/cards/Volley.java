@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.fields.ReturnField;
 
-public class HailOfArrows extends AbstractEasyCard {
-    public final static String ID = makeID("HailOfArrows");
+public class Volley extends AbstractEasyCard {
+    public final static String ID = makeID("Volley");
 
-    public HailOfArrows() {
+    public Volley() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
         baseDamage = 6;
         this.isMultiDamage = true;

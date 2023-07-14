@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.orbs.ByrdAttackAbility;
 import lonelymod.orbs.WolfAttackAbility;
 
@@ -23,15 +25,15 @@ public class StrikeTogetherAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
-        if (currOrb instanceof WolfAttackAbility || currOrb instanceof ByrdAttackAbility) { // || currOrb instanceof BearAttackAbility || currOrb instanceof SquirrelAttackAbility
-            if (target != null) {
-                addToTop(new VFXAction(new ClashEffect(target.hb.cX, target.hb.cY), 0.1F));
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            if (CompanionField.currCompanion.get(AbstractDungeon.player).nextMove == AbstractCompanion.ATTACK) {
+                if (target != null) {
+                    addToTop(new VFXAction(new ClashEffect(target.hb.cX, target.hb.cY), 0.1F));
+                    addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, this.amount + this.additionalAmt)));
+                }
+            } else {
+                addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, this.amount), AttackEffect.SLASH_DIAGONAL));
             }
-            addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, this.amount + this.additionalAmt)));
-        }
-        else {
-            addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, this.amount), AttackEffect.SLASH_DIAGONAL));
         }
         this.isDone = true;
     }

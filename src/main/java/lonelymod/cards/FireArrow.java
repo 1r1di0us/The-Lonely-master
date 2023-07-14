@@ -8,19 +8,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.powers.FireArrowsPower;
+import lonelymod.powers.FireArrowPower;
 
 public class FireArrow extends AbstractEasyCard {
     public final static String ID = makeID("FireArrow");
 
     public FireArrow() {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 4;
+        baseDamage = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new FireArrowsPower(m, 3, this.damage)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new FireArrowPower(m, 3, this.damage)));
     }
 
     public void upp() {

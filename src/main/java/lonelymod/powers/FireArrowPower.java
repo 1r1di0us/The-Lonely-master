@@ -18,9 +18,9 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class FireArrowsPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class FireArrowPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
-    public static final String POWER_ID = makeID("FireArrowsPower");
+    public static final String POWER_ID = makeID("FireArrowPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -30,7 +30,7 @@ public class FireArrowsPower extends AbstractEasyPower implements CloneablePower
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public FireArrowsPower(AbstractCreature owner, int amount, int damageAmt) {
+    public FireArrowPower(AbstractCreature owner, int amount, int damageAmt) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, amount);
 
         this.owner = owner;
@@ -53,14 +53,14 @@ public class FireArrowsPower extends AbstractEasyPower implements CloneablePower
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atStartOfTurn() {
         flash();
         if (this.amount > 0) {
-            addToBot((AbstractGameAction)new DamageAction(this.owner, new DamageInfo(this.owner, damageAmt), AbstractGameAction.AttackEffect.FIRE));
+            addToBot(new DamageAction(this.owner, new DamageInfo(this.owner, damageAmt), AbstractGameAction.AttackEffect.FIRE));
             this.amount -= 1;
         }
         if (this.amount == 0)
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override
@@ -74,6 +74,6 @@ public class FireArrowsPower extends AbstractEasyPower implements CloneablePower
 
     @Override
     public AbstractPower makeCopy() {
-        return new FireArrowsPower(this.owner, this.amount, this.damageAmt);
+        return new FireArrowPower(this.owner, this.amount, this.damageAmt);
     }
 }

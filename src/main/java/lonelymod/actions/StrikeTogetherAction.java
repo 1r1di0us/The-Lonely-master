@@ -6,13 +6,11 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
-import lonelymod.orbs.ByrdAttackAbility;
-import lonelymod.orbs.WolfAttackAbility;
+
 
 public class StrikeTogetherAction extends AbstractGameAction {
     int additionalAmt;

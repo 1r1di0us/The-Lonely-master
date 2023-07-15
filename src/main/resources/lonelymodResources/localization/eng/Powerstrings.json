@@ -205,9 +205,8 @@
   "${ModID}:WildFormPower": {
     "NAME": "Wild Form",
     "DESCRIPTIONS": [
-      "At the start of your turn, discard #b",
-      " random card and #yCall #yAttack.",
-      " random cards and #yCall #yAttack."
+      "At the start of your turn, discard 1 random card. Whenever you #yCall a move, it is performed immediately.",
+      "At the start of your turn, choose 1 card to discard. Whenever you #yCall a move, it is performed immediately."
     ]
   },
   "${ModID}:IOUPower": {

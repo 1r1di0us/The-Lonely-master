@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 
 public class Primal extends AbstractEasyCard {
     public final static String ID = makeID("Primal");
@@ -19,7 +20,7 @@ public class Primal extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new CallMoveAction(AbstractCompanion.SPECIAL));
+        AbstractDungeon.actionManager.addToBottom(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {

@@ -53,7 +53,7 @@ public class TargetPower extends AbstractEasyPower implements CloneablePowerInte
     @Override
     public void onInitialApplication() {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-            CompanionField.currCompanion.get(AbstractDungeon.player).targetEnemy = CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+            CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
             CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
         }
     }

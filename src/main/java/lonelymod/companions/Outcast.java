@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import lonelymod.actions.CallMoveAction;
-import lonelymod.powers.CompanionDexterityPower;
-import lonelymod.powers.CompanionStaminaPower;
-import lonelymod.powers.CompanionVigorPower;
-import lonelymod.powers.OutcastPower;
+import lonelymod.powers.*;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -94,7 +91,63 @@ public class Outcast extends AbstractCompanion {
                 if (consecutiveProtect != 3)
                     consecutiveProtect = 0;
                 break;
+            case UNKNOWN:
+                break;
             case NONE:
+                break;
+        }
+        if (this.hasPower(makeID("OutcastPower")))
+            ((OutcastPower) this.getPower(makeID("OutcastPower"))).updateDescription(consecutiveAttack, consecutiveProtect, consecutiveSpecial);
+    }
+
+    public void performTurn(byte move) {
+        switch (move) {
+            case DEFAULT:
+                addToTop(new SFXAction("VO_GREMLINFAT_1C"));
+                break;
+            case ATTACK:
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (consecutiveAttack == 3) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
+                else {
+                    consecutiveAttack++;
+                }
+                if (consecutiveProtect != 3)
+                    consecutiveProtect = 0;
+                if (consecutiveSpecial != 3)
+                    consecutiveSpecial = 0;
+                break;
+            case PROTECT:
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (consecutiveProtect == 3) {
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
+                } else {
+                    consecutiveProtect++;
+                }
+                if (consecutiveAttack != 3)
+                    consecutiveAttack = 0;
+                if (consecutiveSpecial != 3)
+                    consecutiveSpecial = 0;
+                break;
+            case SPECIAL:
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                if (consecutiveSpecial == 3) {
+                    consecutiveProtect = 3;
+                    consecutiveAttack = 3;
+                } else {
+                    consecutiveSpecial++;
+                }
+                if (consecutiveAttack != 3)
+                    consecutiveAttack = 0;
+                if (consecutiveProtect != 3)
+                    consecutiveProtect = 0;
                 break;
         }
         if (this.hasPower(makeID("OutcastPower")))
@@ -103,7 +156,6 @@ public class Outcast extends AbstractCompanion {
 
     public void callDefault() {
         setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-        createIntent();
     }
 
     public void callAttack() {
@@ -174,7 +226,7 @@ public class Outcast extends AbstractCompanion {
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = null;
                 return;
         }
         this.intentTip.header = "NOT SET";

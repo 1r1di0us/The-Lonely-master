@@ -3,9 +3,11 @@ package lonelymod.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.fields.ReturnField;
 import lonelymod.powers.TargetPower;
 
@@ -23,7 +25,7 @@ public class OnTheHunt extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         if (m.hasPower(TargetPower.POWER_ID)) {
-            addToBot(new CallMoveAction(AbstractCompanion.ATTACK));
+            addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
         }
         ReturnField.willReturn.set(this, true);
     }

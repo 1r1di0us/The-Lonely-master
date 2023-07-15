@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.fields.ReturnField;
 
 import static lonelymod.LonelyMod.makeID;
@@ -23,7 +24,7 @@ public class OnGuard extends AbstractEasyCard {
         blck();
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo.getIntentBaseDmg() > 0) {
-                addToBot(new CallMoveAction(AbstractCompanion.PROTECT));
+                addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
             }
         }
         ReturnField.willReturn.set(this, true);

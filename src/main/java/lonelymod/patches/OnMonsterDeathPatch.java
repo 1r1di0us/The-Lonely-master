@@ -2,7 +2,6 @@ package lonelymod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
                 boolean.class
         }
 )
-public class PowerOnMonsterDeathPatch {
+public class OnMonsterDeathPatch {
 
     @SpireInsertPatch(
             locator=Locator.class,
@@ -33,6 +32,9 @@ public class PowerOnMonsterDeathPatch {
             for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers)
                 if (p instanceof BonesPower)
                     ((BonesPower) p).onMonsterDeath(__instance);
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+        }
     }
 
     private static class Locator extends SpireInsertLocator {

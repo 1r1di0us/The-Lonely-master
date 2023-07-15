@@ -5,10 +5,12 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.AttackNextTurnPower;
 
 
@@ -24,7 +26,7 @@ public class Kill extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        addToBot(new CallMoveAction(AbstractCompanion.ATTACK));
+        addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
         if (upgraded)
             addToBot(new ApplyPowerAction(p, p, new AttackNextTurnPower(p, this.magicNumber)));
     }

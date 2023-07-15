@@ -3,7 +3,6 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
+import lonelymod.actions.PerformMoveAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
@@ -69,11 +69,8 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void OnCompanionTurnEnd() {
-        for (int i = 1; i < this.amount; i++) { //attack already happened once
-            compOwner.nextMove = AbstractCompanion.ATTACK;
-            compOwner.targetEnemy = compOwner.getTarget();
-            compOwner.takeTurn();
-            compOwner.applyTurnPowers();
+        for (int i = 0; i < this.amount; i++) { //attack already happened once
+            addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
         }
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }

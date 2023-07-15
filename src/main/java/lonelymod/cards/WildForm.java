@@ -16,17 +16,15 @@ public class WildForm extends AbstractEasyCard {
     public WildForm() {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         //tags.add(CardTags.FORM); NOOOO WHY WOULD YOU TAKE THIS FROM ME!?
-        baseMagicNumber = magicNumber = 3;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WildFormPower(p, 1), 1));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(p, magicNumber), magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WildFormPower(p, 1, this.upgraded), 1));
     }
     
     @Override
     public void upp() {
-        upgradeMagicNumber(1);
+        uDesc();
     }
 }

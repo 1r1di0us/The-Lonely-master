@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.TargetPower;
 
 public class Go extends AbstractEasyCard {
@@ -25,7 +26,7 @@ public class Go extends AbstractEasyCard {
             AbstractMonster targetMonster = AbstractDungeon.getRandomMonster();
             addToBot(new ApplyPowerAction(targetMonster, p, new TargetPower(targetMonster, this.magicNumber, false), this.magicNumber));
         }
-        addToBot(new CallMoveAction(AbstractCompanion.ATTACK));
+        addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {

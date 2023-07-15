@@ -333,7 +333,8 @@
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
-    "DESCRIPTION": "Grant !M! lonelymod:Food. NL At the start of each turn, discard 1 random card and lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "At the start of each turn, discard 1 random card. Whenever you lonelymod:Call a move, it is performed immediately.",
+    "UPGRADE_DESCRIPTION": "At the start of each turn, choose 1 card to discard. Whenever you lonelymod:Call a move, it is performed immediately."
   },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",

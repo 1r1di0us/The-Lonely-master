@@ -1,14 +1,23 @@
 package lonelymod.companions;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.actions.CallMoveAction;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OmenPower;
@@ -51,7 +60,7 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
-        addToBot(new CallMoveAction(PROTECT));
+        addToBot(new CallMoveAction(PROTECT, this));
     }
 
     public void takeTurn() {
@@ -84,15 +93,49 @@ public class Omen extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
                 addToBot(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
+            case UNKNOWN:
+                break;
             case NONE:
+                break;
+        }
+    }
+
+    public void performTurn(byte move) {
+        switch (move) {
+            case DEFAULT:
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                if (hasPower(CompanionVigorPower.POWER_ID))
+                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                break;
+            case ATTACK:
+                if (this.hasPower(makeID("OmenPower"))) {
+                    for (int i = 0; i < this.getPower(makeID("OmenPower")).amount; i++) {
+                        addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                } else {
+                    logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                    break;
+                }
+                if (hasPower(CompanionVigorPower.POWER_ID))
+                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                break;
+            case PROTECT:
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
+                break;
+            case SPECIAL:
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
     }
 
     public void callDefault() {
         setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
-        this.targetEnemy = getTarget();
-        createIntent();
+        getTarget();
     }
 
     public void callAttack() {
@@ -103,14 +146,14 @@ public class Omen extends AbstractCompanion {
             logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
             return;
         }
-        this.targetEnemy = getTarget();
+        getTarget();
         createIntent();
     }
 
     public void callProtect() {
         flashIntent();
         setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
-        this.targetEnemy = getTarget();
+        getTarget();
         createIntent();
     }
 
@@ -150,7 +193,7 @@ public class Omen extends AbstractCompanion {
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = null;
                 return;
         }
         this.intentTip.header = "NOT SET";

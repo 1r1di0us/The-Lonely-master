@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.orbs.ByrdProtectAbility;
-import lonelymod.orbs.WolfProtectAbility;
+
 
 public class RiskyMove extends AbstractEasyCard {
     public final static String ID = makeID("RiskyMove");
@@ -25,10 +24,10 @@ public class RiskyMove extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
-        if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
+        /*if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
             AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.magicNumber));
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(this.magicNumber));
-        }
+        }*/
     }
 
     public void upp() {

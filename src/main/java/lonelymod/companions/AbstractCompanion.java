@@ -28,10 +28,12 @@ import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import lonelymod.CompanionStrings;
 import lonelymod.LonelyMod;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
 import lonelymod.powers.TargetPower;
+import lonelymod.powers.WildFormPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -102,19 +104,26 @@ public abstract class AbstractCompanion extends AbstractMonster {
     // move methods:
 
     public void performTurn() {
+        if (targetEnemy.isDeadOrEscaped()) {
+            getTarget();
+        }
         takeTurn();
-        for (AbstractPower p : this.powers)
-            if (p instanceof OnCompanionTurnEndPowerInterface)
+        for (AbstractPower p : this.powers) {
+            if (p instanceof OnCompanionTurnEndPowerInterface) {
                 ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
-        if (this.hasPower(makeID("WildForm"))) {
-            callDefault();
+            }
+        }
+        if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
+            addToBot(new CallMoveAction(NONE, this));
         } else {
-            callNone();
+            addToBot(new CallMoveAction(DEFAULT, this));
         }
     }
 
     @Override
     public abstract void takeTurn();
+
+    public abstract void performTurn(byte move);
 
     public abstract void callDefault();
     public abstract void callAttack();
@@ -127,8 +136,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
         createIntent();
     }
     public void callNone() {
+        if (nextMove != NONE) {
+            flashIntent();
+        }
         setMove(NONE, Intent.NONE);
-        createIntent();
     }
 
     public abstract void updateIntentTip();
@@ -154,6 +165,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.intentBaseDmg = this.move.baseDamage;
         this.intentBaseBlk = this.move.baseBlock;
         if (this.move.baseDamage > -1) {
+            if (targetEnemy == null)
+                getTarget();
             calculateDamage(this.intentBaseDmg);
             if (this.move.isMultiDamage) {
                 this.intentMultiAmt = this.move.damageMultiplier;
@@ -353,7 +366,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     @Override
     public void applyPowers() {
         if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
-            targetEnemy = getTarget();
+            getTarget();
         }
         for (DamageInfo dmg : this.damage) {
             applyPowersToDamage(dmg, targetEnemy);
@@ -367,12 +380,12 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateIntentTip();
     }
 
-    public AbstractCreature getTarget() {
+    public void getTarget() {
         AbstractMonster currTarget = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
         int targetAmount = 0;
         MonsterGroup targetGroup = new MonsterGroup(currTarget);
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon.hasPower(TargetPower.POWER_ID)) {
+            if (mon.hasPower(TargetPower.POWER_ID) && !mon.isDeadOrEscaped()) {
                 if (targetAmount < mon.getPower(TargetPower.POWER_ID).amount) {
                     targetAmount = mon.getPower(TargetPower.POWER_ID).amount;
                     targetGroup = new MonsterGroup(mon);
@@ -389,7 +402,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         else {
             isTargeted = false;
         }
-        return currTarget;
+        targetEnemy = currTarget;
     }
 
     protected void applyPowersToDamage(DamageInfo dmg, AbstractCreature target) {

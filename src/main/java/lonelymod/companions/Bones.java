@@ -66,8 +66,8 @@ public class Bones extends AbstractCompanion {
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.4F));
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
+                addToBot(new WaitAction(0.4F));
+                addToBot(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                         .cpy()), 0.0F));
@@ -90,7 +90,44 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 break;
+            case UNKNOWN:
+                break;
             case NONE:
+                break;
+        }
+    }
+
+    public void performTurn(byte move) {
+        switch (move) {
+            case DEFAULT:
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                break;
+            case ATTACK:
+                addToTop(new WaitAction(0.4F));
+                addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
+                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
+                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
+                        .cpy()), 0.0F));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                if (hasPower(CompanionVigorPower.POWER_ID))
+                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
+                break;
+            case PROTECT:
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
+                break;
+            case SPECIAL:
+                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                }
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 break;
         }
     }
@@ -98,14 +135,13 @@ public class Bones extends AbstractCompanion {
     @Override
     public void callDefault() {
         setMove(MOVES[0], DEFAULT, Intent.DEFEND, this.block.get(0).base, false);
-        createIntent();
     }
 
     @Override
     public void callAttack() {
         flashIntent();
         setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
-        this.targetEnemy = getTarget();
+        getTarget();
         createIntent();
     }
 
@@ -129,7 +165,7 @@ public class Bones extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0] + this.intentBlk + INTENTS[1];
-                this.intentTip.img = ImageMaster.INTENT_DEFEND;
+                this.intentTip.img = getIntentImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
@@ -154,7 +190,7 @@ public class Bones extends AbstractCompanion {
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = null;
                 return;
         }
         this.intentTip.header = "NOT SET";

@@ -6,8 +6,6 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.localization.*;
-import lonelymod.actions.CompanionAttackAbilityAction;
-import lonelymod.actions.CompanionBasicAbilityAction;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.ImpatientStrikes;
@@ -20,7 +18,6 @@ import lonelymod.relics.AbstractEasyRelic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;

@@ -8,6 +8,7 @@ import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import lonelymod.actions.CompanionTakeTurnAction;
 import lonelymod.fields.CompanionField;
+import lonelymod.powers.WildFormPower;
 
 import java.util.ArrayList;
 

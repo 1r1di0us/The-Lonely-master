@@ -7,11 +7,13 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -48,7 +50,7 @@ public class AttackNextTurnPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new CallMoveAction(AbstractCompanion.ATTACK));
+        addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
         if (amount > 1)
             addToBot(new ReducePowerAction(owner, owner, this, 1));
         else

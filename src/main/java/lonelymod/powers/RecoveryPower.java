@@ -16,8 +16,6 @@ import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
-import lonelymod.orbs.ByrdProtectAbility;
-import lonelymod.orbs.WolfProtectAbility;
 import lonelymod.util.TexLoader;
 
 public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface {
@@ -55,10 +53,10 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
             AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
-            if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
+            /*if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
                 addToBot(new ApplyPowerAction(owner, owner, new EnergizedPower(owner, amount), amount));
                 addToBot(new ApplyPowerAction(owner, owner, new DrawCardNextTurnPower(owner, amount), amount));
-            }
+            }*/
         }
     }
 

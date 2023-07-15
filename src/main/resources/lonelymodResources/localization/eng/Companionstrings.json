@@ -1,74 +1,173 @@
 {
-  "Bones": {
+  "${ModID}:Bones": {
+    "NAME": "Bones",
     "MOVES": [
       "Bark",
       "Bite",
       "Poise",
-      "Howl"
+      "Howl",
+      "Unknown"
     ],
-    "NAME": "Bones"
+    "INTENTS": [
+      "Bones intends to grant you #b",
+      " #yBlock.",
+
+      "Bones intends to attack an enemy for #b",
+      " damage, and then gain #b",
+      " #yStrength",
+
+      "Bones intends to grant you #b",
+      " #yBlock and gain #b",
+      " #yVigor.",
+
+      "Bones intends to apply #b",
+      " #yVulnerable and #b",
+      " #yTarget to ALL enemies, gain #b",
+      " #yStrength, and grant you #b",
+      " #yStrength.",
+
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Meat": {
+  "${ModID}:Meat": {
+    "NAME": "Meat",
     "MOVES": [
       "Stretch",
       "Maul",
       "Body Block",
-      "Eat"
+      "Eat",
+      "Unknown"
     ],
-    "NAME": "Meat"
+    "INTENTS": [
+      "Meat intends to gain #b",
+      " #yVigor and #b",
+      " #yStamina.",
+
+      "Meat intends to attack an enemy for #b",
+      " damage #b",
+      " times. If the target is #yConstricted, Meat will attack #b",
+      " more time.",
+
+      "Meat intends to grant you #b",
+      " #yBlock #b",
+      " times.",
+
+      "Meat intends to attack an enemy for #b",
+      " damage. If the target is #yWeakened, Meat will apply #b",
+      " #yConstricted to an enemy.",
+
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Omen": {
+  "${ModID}:Omen": {
+    "NAME": "Omen",
     "MOVES": [
       "Dive",
       "Shred",
       "Shriek",
-      "Sharpen"
+      "Sharpen",
+      "Unknown"
     ],
-    "NAME": "Omen"
+    "INTENTS": [
+      "Omen intends to attack an enemy for #b",
+      " damage.",
+
+      "Omen intends to attack an enemy for #b",
+      " damage #b",
+      " times.",
+
+      "Omen intends to grant you #b",
+      " #yBlock #b",
+      " times, and apply #b",
+      " #yTarget to an enemy.",
+
+      "Omen intends to gain #b",
+      " #yStrength and empower its #yAttack to hit #b",
+      " more times.",
+
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Outcast": {
+  "#{ModID}:Outcast": {
+    "NAME": "Fring",
     "MOVES": [
       "Nothing",
       "Spear Jab",
       "Hold Ground",
-      "Train Up"
+      "Train Up",
+      "Unknown"
     ],
-    "NAME": "Fring"
+    "INTENTS": [
+      "Fring intends to make sad sounds.",
+
+      "Fring intends to attack an enemy for #b",
+      " damage.",
+      " damage #b",
+      " times.",
+
+      "Fring intends to grant you #b",
+      " #yBlock.",
+      " #yBlock and grant you #b",
+      " #yThorns.",
+
+      "Fring intends to gain #b",
+      " #yStrength and #b",
+      " #yDexterity.",
+      " #yDexterity and #yEmpower his other moves.",
+
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Oracle": {
+  "${ModID}:Oracle": {
+    "NAME": "Sowru",
     "MOVES": [
       "Nothing",
       "Fiery Blast",
       "Peaceful Protest",
-      "Chant"
+      "Chant",
+      "Unknown"
     ],
-    "NAME": "Sowru"
+    "INTENTS": [
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Mechanic": {
+  "${ModID}:Mechanic": {
+    "NAME": "Blert",
     "MOVES": [
       "Nothing",
       "Electrocute",
       "Ice Wall",
-      "Robo Arm"
+      "Robo Arm",
+      "Unknown"
     ],
-    "NAME": "Blert"
+    "INTENTS": [
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Spy": {
+  "${ModID}:Spy": {
+    "NAME": "Dzil",
     "MOVES": [
       "Nothing",
       "Assassinate",
       "Speedy",
-      "Poison Cloud"
+      "Poison Cloud",
+      "Unknown"
     ],
-    "NAME": "Dzil"
+    "INTENTS": [
+      "This Companion's intentions are #yUnknown."
+    ]
   },
-  "Maniac": {
+  "${ModID}:Maniac": {
+    "NAME": "Kharn",
     "MOVES": [
       "Nothing",
       "Harass",
       "Scare",
-      "Empower"
+      "Empower",
+      "Unknown"
     ],
-    "NAME": "Kharn"
+    "INTENTS": [
+      "This Companion's intentions are #yUnknown."
+    ]
   }
 }

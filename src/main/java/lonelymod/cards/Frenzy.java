@@ -1,55 +1,45 @@
 package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
-import static lonelymod.util.Wiz.*;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.defect.TriggerEndOfTurnOrbsAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-//import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-//import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
-import lonelymod.actions.CompanionAttackAbilityAction;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.EasyXCostAction;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
+import lonelymod.powers.FrenzyPower;
 
 public class Frenzy extends AbstractEasyCard {
     public final static String ID = makeID("Frenzy");
 
-    //AbstractOrb oldOrb;
-    boolean wasPlayed;
-
     public Frenzy() {
-        super(ID, -1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        super(ID, -1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 0;
-        baseDamage = 5;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        wasPlayed = true;
-        dmg(m, AttackEffect.SLASH_HORIZONTAL);
-        //oldOrb = p.orbs.get(0);
-        atb(new CompanionAttackAbilityAction()); //why are we using atb all of a sudden?
-        atb(new EasyXCostAction(this, (effect, params) -> {
-            for (int i = 0; i < effect + params[0]; i++) {
-                atb(new TriggerEndOfTurnOrbsAction());
+        addToBot(new CallMoveAction(AbstractCompanion.UNKNOWN));
+        addToBot(new EasyXCostAction(this, (effect, params) -> {
+            if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+                if (upgraded) {
+                    addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new FrenzyPower(CompanionField.currCompanion.get(AbstractDungeon.player), effect + 1)));
+                } else {
+                    addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new FrenzyPower(CompanionField.currCompanion.get(AbstractDungeon.player), effect)));
+                }
+            } else {
+                AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0F, CallMoveAction.TEXT[0], true));
             }
             return true;
-        }, magicNumber));
+        }));
     }
-    
-    //originally this card would channel the old orb after it was done.
-    /*@Override
-    public void onMoveToDiscard() {
-        if (wasPlayed) {
-            AbstractDungeon.actionManager.addToBottom(new ChannelAction(oldOrb));
-            wasPlayed = false;
-        }
-    }*/
 
     public void upp() {
-        upgradeDamage(3);
-        //uDesc();
+        uDesc();
     }
 }

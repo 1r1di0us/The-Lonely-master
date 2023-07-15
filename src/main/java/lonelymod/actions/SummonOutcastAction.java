@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 public class SummonOutcastAction extends AbstractGameAction {
     private static final Logger logger = LogManager.getLogger(SummonOutcastAction.class.getName());
     private AbstractCompanion c;
+    private boolean summon = true;
 
     public SummonOutcastAction() {
         if (Settings.FAST_MODE) {
@@ -23,6 +24,7 @@ public class SummonOutcastAction extends AbstractGameAction {
         this.duration = this.startDuration;
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
+            this.summon = false;
             return;
         }
         this.c = new Outcast(-750, -25);
@@ -31,17 +33,22 @@ public class SummonOutcastAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.duration == this.startDuration) {
-            //this.c.animX = 1200.0F * Settings.xScale;
-            this.c.applyPowers();
+        if (summon) {
+            if (this.duration == this.startDuration) {
+                //this.c.animX = 1200.0F * Settings.xScale;
+                this.c.applyPowers();
+            }
+            tickDuration();
+            if (this.isDone) {
+                //this.c.animX = 0.0F;
+                this.c.showHealthBar();
+                this.c.usePreBattleAction();
+            }
+            // else {
+            //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
+            //}
+        } else {
+            this.isDone = true;
         }
-        tickDuration();
-        if (this.isDone) {
-            //this.c.animX = 0.0F;
-            this.c.showHealthBar();
-            this.c.usePreBattleAction();
-        }// else {
-        //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
-        //}
     }
 }

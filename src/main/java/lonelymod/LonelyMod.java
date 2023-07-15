@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.localization.*;
 import lonelymod.actions.CompanionAttackAbilityAction;
 import lonelymod.actions.CompanionBasicAbilityAction;
@@ -29,7 +30,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -67,6 +71,8 @@ public class LonelyMod implements
     private static final String CARD_ENERGY_L = modID + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = modID + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/LonelyBG.png";
+
+    private static Map<String, CompanionStrings> companionStrings = new HashMap<>();
 
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
@@ -154,22 +160,41 @@ public class LonelyMod implements
                 .cards();
     }
 
+    private static String makeLocPath(Settings.GameLanguage language, String filename) {
+        String ret = "Resources/localization/";
+        switch (language) {
+            default:
+                ret += "eng/";
+                break;
+        }
+        return (modID + ret + filename + ".json");
+    }
+
+    private static String loadJson(String jsonPath)
+    {
+        return Gdx.files.internal(jsonPath).readString(String.valueOf(StandardCharsets.UTF_8));
+    }
 
     @Override
     public void receiveEditStrings() {
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + getLangString() + "/Cardstrings.json");
+        //mainly from https://github.com/kiooeht/Bard/blob/abe81400f0aa8305db8ade09ed26204d40ba2250/src/main/java/com/evacipated/cardcrawl/mod/bard/BardMod.java#L359
+        //and bard/helpers/MelodyManager.loadMelodyStrings
+        Gson gson = new Gson();
+        Type companionType = new TypeToken<Map<String, CompanionStrings>>(){}.getType();
+        Map<String, CompanionStrings> map = gson.fromJson(loadJson(makeLocPath(Settings.language, "Companionstrings")), companionType);
+        companionStrings.putAll(map);
 
-        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
+        BaseMod.loadCustomStringsFile(CardStrings.class, makeLocPath(Settings.language, "Cardstrings"));
 
-        BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, makeLocPath(Settings.language, "Relicstrings"));
 
-        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + getLangString() + "/Charstrings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class, makeLocPath(Settings.language, "Orbstrings"));
 
-        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, makeLocPath(Settings.language, "Charstrings"));
 
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/uistrings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(Settings.language, "Powerstrings"));
 
-        BaseMod.loadCustomStringsFile(MonsterStrings.class, modID + "Resources/localization/" + getLangString() + "/Companionstrings.json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(Settings.language, "uistrings"));
     }
 
     @Override
@@ -183,6 +208,10 @@ public class LonelyMod implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    public static CompanionStrings getCompanionStrings(String companionID) {
+        return companionStrings.get(companionID);
     }
 
     @Override

@@ -9,11 +9,9 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
@@ -23,21 +21,17 @@ import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
+import static lonelymod.LonelyMod.makeID;
 
 public class Meat extends AbstractCompanion {
-    public static final String ID = "Meat";
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Meat");
-    public static final String NAME = monsterStrings.NAME;
-
-    public static final String[] MOVES = monsterStrings.MOVES;
-
+    public static final String ID = makeID("Meat");
     public static final String IMG = makeCompanionPath("Meat.png");
 
 
     private static final int DEFAULT_PWR_AMT = 3;
     private static final int ATTACK_DMG = 6, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
     private static final int PROTECT_BLK = 6, PROTECT_AMT = 3;
-    private static final int PROTECT_PWR_AMT = 5;
+    private static final int PROTECT_PWR_AMT = 5; //we will think about adding this...
     private static final int SPECIAL_DMG = 10;
     private static final int SPECIAL_DEBUFF_AMT = 3;
     private int attackDmg;
@@ -45,7 +39,7 @@ public class Meat extends AbstractCompanion {
     private int specialDmg;
 
     public Meat(float drawX, float drawY) {
-        super(NAME, ID, 0.0F, 0.0F, 400.0F, 300.0F, IMG, drawX, drawY);
+        super("Meat", ID, 0.0F, 0.0F, 400.0F, 300.0F, IMG, drawX, drawY);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.specialDmg = SPECIAL_DMG;
@@ -136,29 +130,34 @@ public class Meat extends AbstractCompanion {
     public void updateIntentTip() {
         switch (nextMove) {
             case DEFAULT:
-                this.intentTip.header = TEXT[17];
-                this.intentTip.body = TEXT[18] + DEFAULT_PWR_AMT + TEXT[19] + DEFAULT_PWR_AMT + TEXT[20];
+                this.intentTip.header = MOVES[0];
+                this.intentTip.body = INTENTS[0] + DEFAULT_PWR_AMT + INTENTS[1] + DEFAULT_PWR_AMT + INTENTS[2];
                 this.intentTip.img = getIntentImg();
                 return;
             case ATTACK:
-                this.intentTip.header = TEXT[21];
-                this.intentTip.body = TEXT[22] + this.intentDmg + TEXT[23] + ATTACK_AMT + TEXT[24] + 1 + TEXT[25];
+                this.intentTip.header = MOVES[1];
+                this.intentTip.body = INTENTS[3] + this.intentDmg + INTENTS[4] + ATTACK_AMT + INTENTS[5] + 1 + INTENTS[6];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
-                this.intentTip.header = TEXT[26];
-                this.intentTip.body = TEXT[27] + this.intentBlk + TEXT[28] + PROTECT_AMT + TEXT[29];
+                this.intentTip.header = MOVES[2];
+                this.intentTip.body = INTENTS[7] + this.intentBlk + INTENTS[8] + PROTECT_AMT + INTENTS[9];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
-                this.intentTip.header = TEXT[30];
-                this.intentTip.body = TEXT[31] + this.intentDmg + TEXT[32] + SPECIAL_DEBUFF_AMT + TEXT[33];
+                this.intentTip.header = MOVES[3];
+                this.intentTip.body = INTENTS[10] + this.intentDmg + INTENTS[11] + SPECIAL_DEBUFF_AMT + INTENTS[12];
+                this.intentTip.img = getIntentImg();
+                return;
+            case UNKNOWN:
+                this.intentTip.header = MOVES[4];
+                this.intentTip.body = INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

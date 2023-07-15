@@ -13,7 +13,7 @@ import lonelymod.fields.CompanionField;
 import static lonelymod.LonelyMod.makeID;
 
 public class CallMoveAction extends AbstractGameAction {
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CallActionMessage"));
+    public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CallActionMessage"));
     public static final String[] TEXT = uiStrings.TEXT;
 
     private AbstractPlayer player;

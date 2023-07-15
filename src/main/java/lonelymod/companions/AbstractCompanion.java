@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.*;
@@ -27,8 +26,11 @@ import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashIntentEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
+import lonelymod.CompanionStrings;
+import lonelymod.LonelyMod;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
+import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
 import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +38,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
 
 public abstract class AbstractCompanion extends AbstractMonster {
@@ -73,6 +76,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public boolean isMultiBlk = false;
     private Color intentColor = Color.WHITE.cpy();
 
+    protected final String ID;
+    protected String NAME;
+    protected String[] MOVES;
+    protected String[] INTENTS;
+
     public static final byte DEFAULT = 0;
     public static final byte ATTACK = 1;
     public static final byte PROTECT = 2;
@@ -84,13 +92,25 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
+        ID = id;
+        CompanionStrings companionStrings = LonelyMod.getCompanionStrings(ID);
+        NAME = companionStrings.NAME;
+        MOVES = companionStrings.MOVES;
+        INTENTS = companionStrings.INTENTS;
     }
 
     // move methods:
 
     @Override
     public void takeTurn() {
-        takeTurn(true);
+        for (AbstractPower p : this.powers)
+            if (p instanceof OnCompanionTurnEndPowerInterface)
+                ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
+        if (this.hasPower(makeID("WildForm"))) {
+            takeTurn(false);
+        } else {
+            takeTurn(true);
+        }
     }
 
     public abstract void takeTurn(boolean callDefault);
@@ -108,10 +128,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public void callNone() {
         setMove(NONE, Intent.NONE);
         createIntent();
-    }
-
-    public void frenzyAction() {
-
     }
 
     public abstract void updateIntentTip();

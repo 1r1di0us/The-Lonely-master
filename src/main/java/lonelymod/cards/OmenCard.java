@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import lonelymod.actions.AutoplayWaitAction;
-import lonelymod.actions.KillCompanionAction;
 import lonelymod.actions.SummonOmenAction;
 
 public class OmenCard extends AbstractEasyCard {
@@ -41,7 +40,6 @@ public class OmenCard extends AbstractEasyCard {
         addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.MAGENTA), 0.0F, true));
         //remove strength, kill current companion, summon omen, make primal instincts, call protect
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
-        addToBot(new KillCompanionAction());
         addToBot(new SummonOmenAction());
         addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));

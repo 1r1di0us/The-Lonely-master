@@ -2,8 +2,10 @@ package lonelymod.actions;
 
 //import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
@@ -22,8 +24,9 @@ public class SummonOmenAction extends AbstractGameAction {
         }
         this.duration = this.startDuration;
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-            logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
-            return;
+            //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, false));
+            //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
+            CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
         this.c = new Omen(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);

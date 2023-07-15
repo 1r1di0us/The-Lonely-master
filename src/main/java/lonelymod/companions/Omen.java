@@ -5,13 +5,10 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.actions.CallMoveAction;
-import lonelymod.actions.SummonBonesAction;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OmenPower;
@@ -24,16 +21,10 @@ import static lonelymod.LonelyMod.makeID;
 
 
 public class Omen extends AbstractCompanion {
-    public static final String ID = "Omen";
-
-    private static final Logger logger = LogManager.getLogger(SummonBonesAction.class.getName());
-
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Omen");
-    public static final String NAME = monsterStrings.NAME;
-
-    public static final String[] MOVES = monsterStrings.MOVES;
-
+    public static final String ID = makeID("Omen");
     public static final String IMG = makeCompanionPath("OmenSmall.png");
+
+    private static final Logger logger = LogManager.getLogger(Omen.class.getName());
 
     private static final int INIT_PASSIVE_AMT = 5;
     private static final int DEFAULT_DMG = 10;
@@ -41,7 +32,7 @@ public class Omen extends AbstractCompanion {
     private static final int PROTECT_BLK = 5;
     private static final int PROTECT_AMT = 2;
     private static final int PROTECT_DEBUFF_AMT = 5;
-    private static final int SPECIAL_STR_AMT = 2;
+    private static final int SPECIAL_STR_AMT = 1;
     private static final int SPECIAL_PWR_AMT = 5;
 
     private int defaultDmg;
@@ -49,7 +40,7 @@ public class Omen extends AbstractCompanion {
     private int protectBlk;
 
     public Omen(float drawX, float drawY) {
-        super(NAME, ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG, drawX, drawY);
+        super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG, drawX, drawY);
         this.defaultDmg = DEFAULT_DMG;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
@@ -134,29 +125,34 @@ public class Omen extends AbstractCompanion {
     public void updateIntentTip() {
         switch (nextMove) {
             case DEFAULT:
-                this.intentTip.header = TEXT[34];
-                this.intentTip.body = TEXT[35] + this.intentDmg + TEXT[36];
+                this.intentTip.header = MOVES[0];
+                this.intentTip.body = INTENTS[0] + this.intentDmg + INTENTS[1];
                 this.intentTip.img = getIntentImg();
                 return;
             case ATTACK:
-                this.intentTip.header = TEXT[37];
-                this.intentTip.body = TEXT[38] + this.intentDmg + TEXT[39] + this.intentMultiAmt + TEXT[40];
+                this.intentTip.header = MOVES[1];
+                this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.intentMultiAmt + INTENTS[4];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
-                this.intentTip.header = TEXT[41];
-                this.intentTip.body = TEXT[42] + this.intentBlk + TEXT[43] + PROTECT_AMT + TEXT[44] + PROTECT_DEBUFF_AMT + TEXT[45];
+                this.intentTip.header = MOVES[2];
+                this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_AMT + INTENTS[7] + PROTECT_DEBUFF_AMT + INTENTS[8];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
-                this.intentTip.header = TEXT[46];
-                this.intentTip.body = TEXT[47] + SPECIAL_STR_AMT + TEXT[48] + SPECIAL_PWR_AMT + TEXT[49];
+                this.intentTip.header = MOVES[3];
+                this.intentTip.body = INTENTS[9] + SPECIAL_STR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11];
+                this.intentTip.img = getIntentImg();
+                return;
+            case UNKNOWN:
+                this.intentTip.header = MOVES[4];
+                this.intentTip.body = INTENTS[12];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

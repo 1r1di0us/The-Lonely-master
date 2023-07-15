@@ -22,7 +22,7 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
     public void update() {
         if (currCompanion != null && currCompanion == CompanionField.currCompanion.get(AbstractDungeon.player)) {
             if (currCompanion.intent != AbstractMonster.Intent.NONE) {
-                addToBot(new ShowMoveNameAction(currCompanion));
+                addToBot(new ShowMoveNameAction(currCompanion, currCompanion.moveName));
                 addToBot(new IntentFlashAction(currCompanion));
             }
             if (!(TipTracker.tips.get("INTENT_TIP")).booleanValue() && AbstractDungeon.player.currentBlock == 0 && (currCompanion.intent == AbstractMonster.Intent.ATTACK || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEBUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_BUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEFEND))

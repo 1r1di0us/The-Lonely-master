@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import lonelymod.actions.CallMoveAction;
@@ -22,13 +20,7 @@ import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
 
 public class Outcast extends AbstractCompanion {
-    public static final String ID = "Outcast";
-
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Outcast");
-    public static final String NAME = monsterStrings.NAME;
-
-    public static final String[] MOVES = monsterStrings.MOVES;
-
+    public static final String ID = makeID("Outcast");
     public static final String IMG = makeCompanionPath("OutcastSmall.png");
 
     private static final int ATTACK_DMG = 6;
@@ -42,7 +34,7 @@ public class Outcast extends AbstractCompanion {
     private int consecutiveAttack = 0, consecutiveProtect = 0, consecutiveSpecial = 0;
 
     public Outcast(float drawX, float drawY) {
-        super(NAME, ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
+        super("Fring", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
@@ -145,41 +137,46 @@ public class Outcast extends AbstractCompanion {
     public void updateIntentTip() {
         switch (nextMove) {
             case DEFAULT:
-                this.intentTip.header = TEXT[50];
-                this.intentTip.body = TEXT[51];
+                this.intentTip.header = MOVES[0];
+                this.intentTip.body = INTENTS[0];
                 this.intentTip.img = getIntentImg();
                 return;
             case ATTACK:
-                this.intentTip.header = TEXT[52];
+                this.intentTip.header = MOVES[1];
                 if (consecutiveAttack == 3) {
-                    this.intentTip.body = TEXT[53] + this.intentDmg + TEXT[55] + this.intentMultiAmt + TEXT[56];
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[3] + this.intentMultiAmt + INTENTS[4];
                 } else {
-                    this.intentTip.body = TEXT[53] + this.intentDmg + TEXT[54];
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
                 }
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
-                this.intentTip.header = TEXT[57];
+                this.intentTip.header = MOVES[2];
                 if (consecutiveProtect == 3) {
-                    this.intentTip.body = TEXT[58] + this.intentBlk + TEXT[60] + EMP_PROTECT_PWR_AMT + TEXT[61];
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[7] + EMP_PROTECT_PWR_AMT + INTENTS[8];
                 } else {
-                    this.intentTip.body = TEXT[58] + this.intentBlk + TEXT[59];
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6];
                 }
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
-                this.intentTip.header = TEXT[62];
+                this.intentTip.header = MOVES[3];
                 if (consecutiveSpecial == 3) {
-                    this.intentTip.body = TEXT[63] + SPECIAL_PWR_AMT + TEXT[64] + SPECIAL_PWR_AMT + TEXT[66];
+                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[12];
                 } else {
-                    this.intentTip.body = TEXT[63] + SPECIAL_PWR_AMT + TEXT[64] + SPECIAL_PWR_AMT + TEXT[65];
+                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11];
                 }
+                this.intentTip.img = getIntentImg();
+                return;
+            case UNKNOWN:
+                this.intentTip.header = MOVES[4];
+                this.intentTip.body = INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

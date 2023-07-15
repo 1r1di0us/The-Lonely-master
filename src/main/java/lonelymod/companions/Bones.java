@@ -9,11 +9,9 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -25,15 +23,10 @@ import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.TargetPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
+import static lonelymod.LonelyMod.makeID;
 
 public class Bones extends AbstractCompanion {
-    public static final String ID = "Bones";
-
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Bones");
-    public static final String NAME = monsterStrings.NAME;
-
-    public static final String[] MOVES = monsterStrings.MOVES;
-
+    public static final String ID = makeID("Bones");
     public static final String IMG = makeCompanionPath("BonesSmall.png");
 
     private static final int DEFAULT_BLK = 3;
@@ -50,7 +43,7 @@ public class Bones extends AbstractCompanion {
 
 
     public Bones(float drawX, float drawY) {
-        super(NAME, ID, 0.0F, 0.0F, 220.0F, 130.0F, IMG, drawX, drawY);
+        super("Bones", ID, 0.0F, 0.0F, 220.0F, 130.0F, IMG, drawX, drawY);
         this.defaultBlk = DEFAULT_BLK;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
@@ -136,29 +129,34 @@ public class Bones extends AbstractCompanion {
     public void updateIntentTip() {
         switch (nextMove) {
             case DEFAULT:
-                this.intentTip.header = TEXT[0];
-                this.intentTip.body = TEXT[1] + this.intentBlk + TEXT[2];
+                this.intentTip.header = MOVES[0];
+                this.intentTip.body = INTENTS[0] + this.intentBlk + INTENTS[1];
                 this.intentTip.img = ImageMaster.INTENT_DEFEND;
                 return;
             case ATTACK:
-                this.intentTip.header = TEXT[3];
-                this.intentTip.body = TEXT[4] + this.intentDmg + TEXT[5] + ATTACK_PWR_AMT + TEXT[6];
+                this.intentTip.header = MOVES[1];
+                this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + ATTACK_PWR_AMT + INTENTS[4];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
-                this.intentTip.header = TEXT[7];
-                this.intentTip.body = TEXT[8] + this.intentBlk + TEXT[9] + PROTECT_PWR_AMT + TEXT[10];
+                this.intentTip.header = MOVES[2];
+                this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_PWR_AMT + INTENTS[7];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
-                this.intentTip.header = TEXT[11];
-                this.intentTip.body = TEXT[12] + SPECIAL_DEBUFF_AMT + TEXT[13] + SPECIAL_DEBUFF_AMT + TEXT[14] + SPECIAL_PWR_AMT + TEXT[15] + SPECIAL_PWR_AMT + TEXT[16];
+                this.intentTip.header = MOVES[3];
+                this.intentTip.body = INTENTS[8] + SPECIAL_DEBUFF_AMT + INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12];
+                this.intentTip.img = getIntentImg();
+                return;
+            case UNKNOWN:
+                this.intentTip.header = MOVES[4];
+                this.intentTip.body = INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
                 this.intentTip.header = "";
                 this.intentTip.body = "";
-                this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
+                this.intentTip.img = getIntentImg();
                 return;
         }
         this.intentTip.header = "NOT SET";

@@ -279,6 +279,13 @@
       " turns, if you have no Block, #yCall #yProtect."
     ]
   },
+  "${ModID}:FrenzyPower":  {
+    "NAME": "Frenzy",
+    "DESCRIPTIONS": [
+      "Your #yCompanion is ignoring all #yCalls. On it's turn, it will use its #yAttack Move #b",
+      " times."
+    ]
+  },
   "${ModID}:BonesPower": {
     "NAME": "Feast",
     "DESCRIPTIONS": [

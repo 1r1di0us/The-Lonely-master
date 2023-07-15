@@ -17,9 +17,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import lonelymod.actions.CallDefaultAction;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
@@ -102,7 +101,7 @@ public class Bones extends AbstractCompanion {
                 break;
         }
         if (callDefault)
-            addToBot(new CallDefaultAction());
+            addToBot(new CallMoveAction(DEFAULT));
     }
 
     @Override
@@ -113,36 +112,24 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
-            this.targetEnemy = getTarget();
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
+        this.targetEnemy = getTarget();
+        createIntent();
     }
 
     @Override
     public void callProtect() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
+        createIntent();
     }
 
     @Override
     public void callSpecial() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
+        createIntent();
     }
 
     @Override

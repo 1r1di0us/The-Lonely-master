@@ -10,7 +10,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
-import lonelymod.actions.CallAttackAction;
+import lonelymod.actions.CallMoveAction;
+import lonelymod.companions.AbstractCompanion;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -47,7 +48,7 @@ public class AttackNextTurnPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new CallAttackAction());
+        addToBot(new CallMoveAction(AbstractCompanion.ATTACK));
         if (amount > 1)
             addToBot(new ReducePowerAction(owner, owner, this, 1));
         else

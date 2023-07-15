@@ -28,6 +28,7 @@ public class OmenCard extends AbstractEasyCard {
         this.exhaust = true;
         AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = new Primal();
+        this.tags.add(Enums.COMPANION);
     }
     
     @Override

@@ -24,7 +24,6 @@ public class MuscleMemory extends AbstractEasyCard {
     
     @Override
     public void upp() {
-        this.isInnate = true;
-        uDesc();
+        upgradeBaseCost(0);
     }
 }

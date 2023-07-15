@@ -77,7 +77,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte ATTACK = 1;
     public static final byte PROTECT = 2;
     public static final byte SPECIAL = 3;
-    public static final byte NONE = 4;
+    public static final byte UNKNOWN = 4;
+    public static final byte NONE = 5;
     private boolean isBlockModified = false;
 
 
@@ -98,10 +99,19 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void callAttack();
     public abstract void callProtect();
     public abstract void callSpecial();
-    public void callNone() {
+
+    public void callUnknown() {
         flashIntent();
-        setMove(NONE, Intent.UNKNOWN);
+        setMove(UNKNOWN, Intent.UNKNOWN);
         createIntent();
+    }
+    public void callNone() {
+        setMove(NONE, Intent.NONE);
+        createIntent();
+    }
+
+    public void frenzyAction() {
+
     }
 
     public abstract void updateIntentTip();
@@ -172,7 +182,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             logger.info("COMPANION MOVE " + moveName + " IS SET INCORRECTLY! REPORT TO DEV");
         }
 
-        this.setMove(moveName, nextMove, intent, -1, 0, false);
+        this.setMove(moveName, nextMove, intent, -1, 0, false, false);
     }
 
     public void setMove(byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
@@ -325,7 +335,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     public void applyPowers() {
-        if (targetEnemy == null) {
+        if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
             targetEnemy = getTarget();
         }
         for (DamageInfo dmg : this.damage) {
@@ -341,7 +351,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public AbstractCreature getTarget() {
-        AbstractMonster currTarget = AbstractDungeon.getRandomMonster();
+        AbstractMonster currTarget = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
         int targetAmount = 0;
         MonsterGroup targetGroup = new MonsterGroup(currTarget);
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {

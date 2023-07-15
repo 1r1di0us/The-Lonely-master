@@ -11,7 +11,9 @@
   },
   "${ModID}:CallActionMessage": {
     "TEXT": [
-      "But nobody came..."
+      "But nobody came...",
+      "I'm not listening!",
+      "That is not a valid action!"
     ]
   },
   "${ModID}:AbstractCompanion": {
@@ -100,9 +102,7 @@
       "Fring intends to gain #b",
       " #yStrength and #b",
       " #yDexterity.",
-      " #yDexterity and #yEmpower his other moves.",
-
-      "I'm not listening!"
+      " #yDexterity and #yEmpower his other moves."
     ]
   }
 }

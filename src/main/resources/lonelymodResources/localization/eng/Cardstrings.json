@@ -161,6 +161,10 @@
     "NAME": "Broken Spirit",
     "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 *Primal *Instinct into your draw pile."
   },
+  "${ModID}:ChasingFantasies":  {
+    "NAME": "Chasing Fantasies",
+    "DESCRIPTION": "lonelymod:Plan !M!. NL lonelymod:Call lonelymod:Attack. NL Shuffle this card into your draw pile."
+  },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
     "DESCRIPTION": "Discard your hand. NL Gain !M! Ritual for each card discarded. NL Exhaust."
@@ -173,6 +177,10 @@
     "NAME": "Keep It Together",
     "DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards.",
     "UPGRADE_DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards. lonelymod:Return."
+  },
+  "${ModID}:OnGuard":  {
+    "NAME": "On Guard",
+    "DESCRIPTION": "Gain !B! Block. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
   },
   "${ModID}:OvercomeWeakness": {
     "NAME": "Overcome Weakness",
@@ -191,10 +199,6 @@
     "NAME": "Pin Down",
     "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable.",
     "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable and !M! lonelymod:Target."
-  },
-  "${ModID}:TacticalMove": {
-    "NAME": "Tactical Move",
-    "DESCRIPTION": "Gain !M! Vigor. NL If the enemy intends to attack, lonelymod:Call lonelymod:Protect. NL Otherwise, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:ThinkOutsideTheBox": {
     "NAME": "Think Outside The Box",
@@ -267,6 +271,10 @@
     "NAME": "Mental Overload",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less [E] for every other card in your hand."
   },
+  "${ModID}:ExponentialForce": {
+    "NAME": "Exponential Force",
+    "DESCRIPTION": "Deal !D! damage. If NOT Fatal, double this card's damage this combat."
+  },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
     "DESCRIPTION": "Ethereal. NL Draw !M! cards. Permanently remove a random card in your hand from your deck. NL Exhaust.",
@@ -303,11 +311,6 @@
     "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
   },
-  "${ModID}:AncientPower": {
-    "NAME": "Ancient Power",
-    "DESCRIPTION": "Ethereal. NL Whenever a card is discarded during your turn, play it and exhaust it.",
-    "UPGRADE_DESCRIPTION": "Whenever a card is discarded during your turn, play it and exhaust it."
-  },
   "${ModID}:Bravery": {
     "NAME": "Bravery",
     "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Strength that turn.",
@@ -320,8 +323,7 @@
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
-    "DESCRIPTION": "Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1."
+    "DESCRIPTION": "Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1."
   },
   "${ModID}:Resolve": {
     "NAME": "Resolve",

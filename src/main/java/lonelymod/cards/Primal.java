@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.actions.CallSpecialAction;
-import lonelymod.actions.CompanionSpecialAbilityAction;
+import lonelymod.actions.CallMoveAction;
+import lonelymod.companions.AbstractCompanion;
 
 public class Primal extends AbstractEasyCard {
     public final static String ID = makeID("Primal");
@@ -15,10 +15,11 @@ public class Primal extends AbstractEasyCard {
     public Primal() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         exhaust = true;
+        this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new CallSpecialAction());
+        AbstractDungeon.actionManager.addToBottom(new CallMoveAction(AbstractCompanion.SPECIAL));
     }
 
     public void upp() {

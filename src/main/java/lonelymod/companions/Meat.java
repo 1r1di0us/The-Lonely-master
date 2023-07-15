@@ -16,9 +16,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import lonelymod.actions.CallDefaultAction;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
@@ -98,7 +97,7 @@ public class Meat extends AbstractCompanion {
                 break;
         }
         if (callDefault)
-            addToBot(new CallDefaultAction());
+            addToBot(new CallMoveAction(DEFAULT));
     }
 
     @Override
@@ -109,40 +108,28 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            this.targetEnemy = getTarget();
-            if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_EMP_AMT, true, true);
-            else
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
-            createIntent();
-        }
+        flashIntent();
+        this.targetEnemy = getTarget();
+        if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_EMP_AMT, true, true);
+        else
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
+        createIntent();
     }
 
     @Override
     public void callProtect() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, PROTECT_AMT, true, false);
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, PROTECT_AMT, true, false);
+        createIntent();
     }
 
     @Override
     public void callSpecial() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base, true);
-            this.targetEnemy = getTarget();
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base, true);
+        this.targetEnemy = getTarget();
+        createIntent();
     }
 
     @Override

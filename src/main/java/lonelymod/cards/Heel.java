@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.actions.CallProtectAction;
+import lonelymod.actions.CallMoveAction;
+import lonelymod.companions.AbstractCompanion;
 
 public class Heel extends AbstractEasyCard {
     public final static String ID = makeID("Heel");
@@ -14,11 +15,12 @@ public class Heel extends AbstractEasyCard {
     public Heel() {
         super(ID, 2, CardType.ATTACK, CardRarity.BASIC, CardTarget.SELF_AND_ENEMY);
         this.baseDamage = 6;
+        this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AttackEffect.BLUNT_LIGHT);
-        addToBot(new CallProtectAction());
+        addToBot(new CallMoveAction(AbstractCompanion.PROTECT));
     }
 
     public void upp() {

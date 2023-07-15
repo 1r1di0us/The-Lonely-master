@@ -10,11 +10,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
-import lonelymod.actions.CallDefaultAction;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.powers.CompanionDexterityPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
@@ -107,11 +105,10 @@ public class Outcast extends AbstractCompanion {
             case NONE:
                 break;
         }
-        if (this.hasPower(makeID("OutcastPower"))) {
+        if (this.hasPower(makeID("OutcastPower")))
             ((OutcastPower) this.getPower(makeID("OutcastPower"))).updateDescription(consecutiveAttack, consecutiveProtect, consecutiveSpecial);
-        }
         if (callDefault)
-            addToBot(new CallDefaultAction());
+            addToBot(new CallMoveAction(DEFAULT));
     }
 
     public void callDefault() {
@@ -120,41 +117,29 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void callAttack() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        flashIntent();
+        if (consecutiveAttack == 3) {
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
         } else {
-            flashIntent();
-            if (consecutiveAttack == 3) {
-                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
-            } else {
-                setMove(MOVES[3], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
-            }
-            createIntent();
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
         }
+        createIntent();
     }
 
     public void callProtect() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        flashIntent();
+        if (consecutiveProtect == 3) {
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
         } else {
-            flashIntent();
-            if (consecutiveProtect == 3) {
-                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-            } else {
-                setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
-            }
-            createIntent();
+            setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
         }
+        createIntent();
     }
 
     public void callSpecial() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[3], SPECIAL, Intent.BUFF);
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+        createIntent();
     }
 
     public void updateIntentTip() {

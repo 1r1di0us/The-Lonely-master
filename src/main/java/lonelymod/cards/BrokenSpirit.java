@@ -22,11 +22,12 @@ public class BrokenSpirit extends AbstractEasyCard {
         AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = (AbstractCard) new Primal();
         this.baseMagicNumber = this.magicNumber = 2;
+        this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FrailPower(p, this.magicNumber, false), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Primal(), 1, true, true));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Primal(), 1, true, true));
         AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
     }
 

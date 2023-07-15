@@ -1,6 +1,7 @@
 package lonelymod.cards;
 
 import basemod.abstracts.CustomCard;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import lonelymod.LonelyCharacter;
 import lonelymod.util.CardArtRoller;
 
@@ -225,5 +226,10 @@ public abstract class AbstractEasyCard extends CustomCard {
 
     protected void upSecondDamage(int x) {
         upgradeSecondDamage(x);
+    }
+
+    public static class Enums {
+        @SpireEnum
+        public static AbstractCard.CardTags COMPANION;
     }
 }

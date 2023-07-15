@@ -10,9 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
-import lonelymod.actions.CallDefaultAction;
-import lonelymod.actions.CallProtectAction;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.SummonBonesAction;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
@@ -62,7 +60,7 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
-        addToBot(new CallProtectAction());
+        addToBot(new CallMoveAction(PROTECT));
     }
 
     public void takeTurn(boolean callDefault) {
@@ -99,7 +97,7 @@ public class Omen extends AbstractCompanion {
                 break;
         }
         if (callDefault)
-            addToBot(new CallDefaultAction());
+            addToBot(new CallMoveAction(DEFAULT));
     }
 
     public void callDefault() {
@@ -109,40 +107,28 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callAttack() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
+        flashIntent();
+        if (this.hasPower(makeID("OmenPower"))) {
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true, true);
         } else {
-            flashIntent();
-            if (this.hasPower(makeID("OmenPower"))) {
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true, true);
-            } else {
-                logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
-                return;
-            }
-            this.targetEnemy = getTarget();
-            createIntent();
+            logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+            return;
         }
+        this.targetEnemy = getTarget();
+        createIntent();
     }
 
     public void callProtect() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
-            this.targetEnemy = getTarget();
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
+        this.targetEnemy = getTarget();
+        createIntent();
     }
 
     public void callSpecial() {
-        if (nextMove == NONE) {
-            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, TEXT[67], false));
-        } else {
-            flashIntent();
-            setMove(MOVES[3], SPECIAL, Intent.BUFF);
-            createIntent();
-        }
+        flashIntent();
+        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+        createIntent();
     }
 
     public void updateIntentTip() {

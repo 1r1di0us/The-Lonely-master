@@ -31,7 +31,7 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
                 } else {
                     TipTracker.neverShowAgain("INTENT_TIP");
                 }
-            currCompanion.takeTurn();
+            currCompanion.performTurn();
             currCompanion.applyTurnPowers();
         }
         this.isDone = true;

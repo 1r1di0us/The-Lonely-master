@@ -45,7 +45,7 @@ public class Outcast extends AbstractCompanion {
         addToBot(new ApplyPowerAction(this, this, new OutcastPower(this)));
     }
 
-    public void takeTurn(boolean callDefault) {
+    public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
                 addToBot(new SFXAction("VO_GREMLINFAT_1C"));
@@ -99,8 +99,6 @@ public class Outcast extends AbstractCompanion {
         }
         if (this.hasPower(makeID("OutcastPower")))
             ((OutcastPower) this.getPower(makeID("OutcastPower"))).updateDescription(consecutiveAttack, consecutiveProtect, consecutiveSpecial);
-        if (callDefault)
-            addToBot(new CallMoveAction(DEFAULT));
     }
 
     public void callDefault() {

@@ -54,7 +54,7 @@ public class Meat extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn(boolean callDefault) {
+    public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));
@@ -90,8 +90,6 @@ public class Meat extends AbstractCompanion {
             case NONE:
                 break;
         }
-        if (callDefault)
-            addToBot(new CallMoveAction(DEFAULT));
     }
 
     @Override

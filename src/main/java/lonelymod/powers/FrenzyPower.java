@@ -72,7 +72,7 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
         for (int i = 1; i < this.amount; i++) { //attack already happened once
             compOwner.nextMove = AbstractCompanion.ATTACK;
             compOwner.targetEnemy = compOwner.getTarget();
-            compOwner.takeTurn(false);
+            compOwner.takeTurn();
             compOwner.applyTurnPowers();
         }
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));

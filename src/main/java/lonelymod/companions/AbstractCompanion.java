@@ -101,19 +101,20 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     // move methods:
 
-    @Override
-    public void takeTurn() {
+    public void performTurn() {
+        takeTurn();
         for (AbstractPower p : this.powers)
             if (p instanceof OnCompanionTurnEndPowerInterface)
                 ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
         if (this.hasPower(makeID("WildForm"))) {
-            takeTurn(false);
+            callDefault();
         } else {
-            takeTurn(true);
+            callNone();
         }
     }
 
-    public abstract void takeTurn(boolean callDefault);
+    @Override
+    public abstract void takeTurn();
 
     public abstract void callDefault();
     public abstract void callAttack();

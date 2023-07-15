@@ -58,7 +58,7 @@ public class Bones extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn(boolean callDefault) {
+    public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
@@ -93,8 +93,6 @@ public class Bones extends AbstractCompanion {
             case NONE:
                 break;
         }
-        if (callDefault)
-            addToBot(new CallMoveAction(DEFAULT));
     }
 
     @Override

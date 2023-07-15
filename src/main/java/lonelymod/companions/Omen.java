@@ -54,7 +54,7 @@ public class Omen extends AbstractCompanion {
         addToBot(new CallMoveAction(PROTECT));
     }
 
-    public void takeTurn(boolean callDefault) {
+    public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
                 addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
@@ -87,8 +87,6 @@ public class Omen extends AbstractCompanion {
             case NONE:
                 break;
         }
-        if (callDefault)
-            addToBot(new CallMoveAction(DEFAULT));
     }
 
     public void callDefault() {

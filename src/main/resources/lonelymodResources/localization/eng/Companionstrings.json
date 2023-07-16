@@ -72,6 +72,19 @@
       " #yConstricted to an enemy.",
 
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage #b",
+      " times, hits one more time if the enemy is #yConstricted.",
+
+      "Grants #b",
+      " #yBlock #b",
+      " times.",
+
+      "Deals #b",
+      " damage. If the enemy is #yWeakened, applies #b",
+      " #yConstricted."
     ]
   },
   "${ModID}:Omen": {
@@ -101,6 +114,20 @@
       " more times.",
 
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage #b",
+      " times.",
+
+      "Grants #b",
+      " #yBlock #b",
+      " times, and applies #b",
+      " #yTarget.",
+
+      "Gains #b",
+      " #yStrength and empowers its #yAttack to hit #b",
+      " more times."
     ]
   },
   "#{ModID}:Outcast": {
@@ -131,6 +158,26 @@
       " #yDexterity and #yEmpower his other moves.",
 
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage.",
+      "Empowered: Deals #b",
+      " damage #b",
+      " times.",
+
+      "Grants #b",
+      " #yBlock.",
+      "Empowered: Grants #b",
+      " #yBlock and Grants #b",
+      " #yThorns.",
+
+      "Gains #b",
+      " #yStrength and #b",
+      " #yDexterity.",
+      "Empowered: Gains #b",
+      " #yStrength and #b",
+      " #yDexterity, and #yEmpowers its other #yMoves."
     ]
   },
   "${ModID}:Oracle": {

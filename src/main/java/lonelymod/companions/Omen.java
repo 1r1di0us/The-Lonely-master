@@ -1,23 +1,14 @@
 package lonelymod.companions;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.actions.CallMoveAction;
-import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OmenPower;
@@ -71,8 +62,8 @@ public class Omen extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
-                if (this.hasPower(makeID("OmenPower"))) {
-                    for (int i = 0; i < this.getPower(makeID("OmenPower")).amount; i++) {
+                if (this.hasPower(OmenPower.POWER_ID)) {
+                    for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
                         addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
                 } else {
@@ -108,8 +99,8 @@ public class Omen extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
-                if (this.hasPower(makeID("OmenPower"))) {
-                    for (int i = 0; i < this.getPower(makeID("OmenPower")).amount; i++) {
+                if (this.hasPower(OmenPower.POWER_ID)) {
+                    for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
                         addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
                 } else {
@@ -141,7 +132,7 @@ public class Omen extends AbstractCompanion {
     public void callAttack() {
         getTarget();
         if (this.hasPower(makeID("OmenPower"))) {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true, true);
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(OmenPower.POWER_ID).amount, true, true);
         } else {
             logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
             return;
@@ -196,26 +187,26 @@ public class Omen extends AbstractCompanion {
     }
 
     public String getKeywordMoveTip(byte move, boolean head) {
-        /*switch (move) {
+        switch (move) {
             case ATTACK:
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(0) + INTENT_TOOLTIPS[1] + ATTACK_PWR_AMT + INTENT_TOOLTIPS[2];
+                    return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(OmenPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(1) + INTENT_TOOLTIPS[4] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_AMT + INTENT_TOOLTIPS[5] + PROTECT_DEBUFF_AMT + INTENT_TOOLTIPS[6];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[6] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10];
+                    return INTENT_TOOLTIPS[7] + SPECIAL_STR_AMT + INTENT_TOOLTIPS[8] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[9];
                 }
-        }*/
+        }
         return "";
     }
 }

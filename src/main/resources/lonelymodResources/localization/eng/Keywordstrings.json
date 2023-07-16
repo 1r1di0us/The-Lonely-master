@@ -39,7 +39,7 @@
     "DESCRIPTION": "Tell your #yCompanion to perform this #yMove at the end of your turn. NL Calling another #yMove will override this #yMove."
   },
   {
-    "PROPER_NAME": "Default Move",
+    "PROPER_NAME": "Default",
     "NAMES": [
       "Default_Move",
       "default_move",
@@ -48,10 +48,10 @@
       "Default",
       "Default Move"
     ],
-    "DESCRIPTION": "This is the weakest #yMove, which is #yCalled at the beginning of your turn."
+    "DESCRIPTION": "Move: The weakest #yMove. NL #yCompanions will default to performing this #yMove on their turn."
   },
   {
-    "PROPER_NAME": "ATTACK MOVE",
+    "PROPER_NAME": "Attack",
     "NAMES": [
       "Attack_Move",
       "attack_move",
@@ -62,10 +62,10 @@
       "attacks",
       "Attacks"
     ],
-    "DESCRIPTION": "A #yMove that focuses on dealing damage to a random enemy."
+    "DESCRIPTION": "Move: Focuses on dealing damage to enemies."
   },
   {
-    "PROPER_NAME": "PROTECT MOVE",
+    "PROPER_NAME": "Protect",
     "NAMES": [
       "Protect_Move",
       "protect_move",
@@ -74,10 +74,10 @@
       "Protect",
       "Protect Move"
     ],
-    "DESCRIPTION": "A #yMove focusing on granting you #yBlock, or weakening a random enemy."
+    "DESCRIPTION": "Move: Focuses on granting you #yBlock or weakening enemies."
   },
   {
-    "PROPER_NAME": "SPECIAL MOVE",
+    "PROPER_NAME": "Special",
     "NAMES": [
       "Special_Move",
       "special_move",
@@ -86,7 +86,7 @@
       "Special",
       "Special Move"
     ],
-    "DESCRIPTION": "The most powerful #yMove. NL Effects vary greatly between #yCompanions."
+    "DESCRIPTION": "Move: The most powerful #yMove. NL Effects vary greatly between #yCompanions."
   },
   {
     "PROPER_NAME": "Food",
@@ -108,7 +108,7 @@
       "Targeted",
       "targeted"
     ],
-    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize targeted creatures with their #yMoves."
+    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize enemies with the most #yTarget."
   },
   {
     "PROPER_NAME": "Return",

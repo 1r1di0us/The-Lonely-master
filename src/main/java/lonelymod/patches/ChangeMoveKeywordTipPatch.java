@@ -1,9 +1,11 @@
 package lonelymod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -13,8 +15,6 @@ import lonelymod.fields.CompanionField;
 import java.util.TreeMap;
 
 public class ChangeMoveKeywordTipPatch {
-    private static final String keyKey = "[hydrologistmod:swap_key]";
-
     @SpirePatch(
             clz = TipHelper.class,
             method = "renderKeywords"
@@ -72,12 +72,16 @@ public class ChangeMoveKeywordTipPatch {
     public static String getKeywordString(Object s) {
         String body = GameDictionary.keywords.get(s);
         String replace;
-        if (body.contains("A #yMove that focuses on dealing damage to a random enemy.")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, false);
-        } else if (body.contains("A #yMove focusing on granting you #yBlock, or weakening a random enemy.")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.PROTECT, false);
-        } else if (body.contains("The most powerful #yMove. NL Effects vary greatly between #yCompanions.")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, false);
+        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
+            if (body.contains("Move: Focuses on dealing damage to enemies.")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, false);
+            } else if (body.contains("Move: Focuses on granting you #yBlock or weakening enemies.")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.PROTECT, false);
+            } else if (body.contains("Move: The most powerful #yMove. NL Effects vary greatly between #yCompanions.")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, false);
+            } else {
+                replace = body;
+            }
         } else {
             replace = body;
         }
@@ -87,12 +91,16 @@ public class ChangeMoveKeywordTipPatch {
     public static String getKeywordHeaderString(Object s) {
         String header = TipHelper.capitalize((String) s);
         String replace;
-        if (header.contains("ATTACK MOVE")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, true);
-        } else if (header.contains("PROTECT MOVE")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.PROTECT, true);
-        } else if (header.contains("SPECIAL MOVE")) {
-            replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, true);
+        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
+            if (header.equals("Attack")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, true);
+            } else if (header.equals("Protect")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.PROTECT, true);
+            } else if (header.equals("Special")) {
+                replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, true);
+            } else {
+                replace = header;
+            }
         } else {
             replace = header;
         }

@@ -51,7 +51,7 @@
     "DESCRIPTION": "This is the weakest #yMove, which is #yCalled at the beginning of your turn."
   },
   {
-    "PROPER_NAME": "Attack Move",
+    "PROPER_NAME": "ATTACK MOVE",
     "NAMES": [
       "Attack_Move",
       "attack_move",
@@ -65,7 +65,7 @@
     "DESCRIPTION": "A #yMove that focuses on dealing damage to a random enemy."
   },
   {
-    "PROPER_NAME": "Protect Move",
+    "PROPER_NAME": "PROTECT MOVE",
     "NAMES": [
       "Protect_Move",
       "protect_move",
@@ -77,7 +77,7 @@
     "DESCRIPTION": "A #yMove focusing on granting you #yBlock, or weakening a random enemy."
   },
   {
-    "PROPER_NAME": "Special Move",
+    "PROPER_NAME": "SPECIAL MOVE",
     "NAMES": [
       "Special_Move",
       "special_move",

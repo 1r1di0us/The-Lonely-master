@@ -197,4 +197,28 @@ public class Meat extends AbstractCompanion {
         this.intentTip.body = "NOT SET";
         this.intentTip.img = ImageMaster.INTENT_UNKNOWN;
     }
+
+    public String getKeywordMoveTip(byte move, boolean head) {
+        /*switch (move) {
+            case ATTACK:
+                if (head) {
+                    return MOVES[1];
+                } else {
+                    return INTENT_TOOLTIPS[0] + this.damage.get(0) + INTENT_TOOLTIPS[1] + ATTACK_PWR_AMT + INTENT_TOOLTIPS[2];
+                }
+            case PROTECT:
+                if (head) {
+                    return MOVES[2];
+                } else {
+                    return INTENT_TOOLTIPS[3] + this.block.get(1) + INTENT_TOOLTIPS[4] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[5];
+                }
+            case SPECIAL:
+                if (head) {
+                    return MOVES[3];
+                } else {
+                    return INTENT_TOOLTIPS[6] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10];
+                }
+        }*/
+        return "";
+    }
 }

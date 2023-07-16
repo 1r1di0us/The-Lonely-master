@@ -27,6 +27,21 @@
       " #yStrength.",
 
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage. Gains #b",
+      " #yStrength.",
+
+      "Grants #b",
+      " #yBlock. Gains #b",
+      " #yVigor.",
+
+      "Applies #b",
+      " #yVulnerable and #b",
+      " #yTarget. Gains #b",
+      " #yStrength and Grants #b",
+      " #yStrength."
     ]
   },
   "${ModID}:Meat": {

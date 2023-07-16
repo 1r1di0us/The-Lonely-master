@@ -82,6 +82,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     protected String NAME;
     protected String[] MOVES;
     protected String[] INTENTS;
+    protected String[] INTENT_TOOLTIPS;
 
     public static final byte DEFAULT = 0;
     public static final byte ATTACK = 1;
@@ -99,6 +100,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         NAME = companionStrings.NAME;
         MOVES = companionStrings.MOVES;
         INTENTS = companionStrings.INTENTS;
+        INTENT_TOOLTIPS = companionStrings.INTENT_TOOLTIPS;
         dialogX = offsetX + hb_w; //I can't find the right place :(
         dialogY = offsetY + hb_h;
     }
@@ -160,6 +162,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public abstract void updateIntentTip();
+
+    public abstract String getKeywordMoveTip(byte move, boolean head);
 
     @Override
     public void init() {

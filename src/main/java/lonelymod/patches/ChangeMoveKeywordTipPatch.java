@@ -79,7 +79,7 @@ public class ChangeMoveKeywordTipPatch {
         } else if (body.contains("The most powerful #yMove. NL Effects vary greatly between #yCompanions.")) {
             replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, false);
         } else {
-            replace = "";
+            replace = body;
         }
         return replace;
     }
@@ -94,7 +94,7 @@ public class ChangeMoveKeywordTipPatch {
         } else if (header.contains("SPECIAL MOVE")) {
             replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.SPECIAL, true);
         } else {
-            replace = "";
+            replace = header;
         }
         return replace;
     }

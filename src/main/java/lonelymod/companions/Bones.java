@@ -198,13 +198,13 @@ public class Bones extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(0) + INTENT_TOOLTIPS[1] + ATTACK_PWR_AMT + INTENT_TOOLTIPS[2];
+                    return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + ATTACK_PWR_AMT + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(1) + INTENT_TOOLTIPS[4] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(1).output + INTENT_TOOLTIPS[4] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[5];
                 }
             case SPECIAL:
                 if (head) {

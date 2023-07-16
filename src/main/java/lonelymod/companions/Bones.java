@@ -61,7 +61,7 @@ public class Bones extends AbstractCompanion {
     public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -77,7 +77,7 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
@@ -100,34 +100,34 @@ public class Bones extends AbstractCompanion {
     public void performTurn(byte move) {
         switch (move) {
             case DEFAULT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
-                addToTop(new WaitAction(0.4F));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
                 addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                         .cpy()), 0.0F));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                addToTop(new WaitAction(0.4F));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
-                addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 break;
             case SPECIAL:
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                    addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                }
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                }
                 break;
         }
     }
@@ -139,24 +139,18 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        flashIntent();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
         getTarget();
-        createIntent();
+        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
     }
 
     @Override
     public void callProtect() {
-        flashIntent();
         setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
-        createIntent();
     }
 
     @Override
     public void callSpecial() {
-        flashIntent();
         setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
-        createIntent();
     }
 
     @Override

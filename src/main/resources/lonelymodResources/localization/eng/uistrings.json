@@ -12,7 +12,7 @@
   "${ModID}:CallActionMessage": {
     "TEXT": [
       "But nobody came...",
-      "I'm not listening!",
+      "My companion is not listening!",
       "That is not a valid action!"
     ]
   },

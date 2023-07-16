@@ -73,9 +73,9 @@ public class Meat extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -101,35 +101,35 @@ public class Meat extends AbstractCompanion {
     public void performTurn(byte move) {
         switch (move) {
             case DEFAULT:
-                addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));
                 addToTop(new ApplyPowerAction(this, this, new CompanionStaminaPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));
+                addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new WaitAction(0.4F));
+                if (targetEnemy.hasPower(WeakPower.POWER_ID))
+                    addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
                 addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                         MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                         .cpy()), 0.0F));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
+                addToTop(new WaitAction(0.4F));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                if (targetEnemy.hasPower(WeakPower.POWER_ID))
-                    addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
                 break;
         }
     }
@@ -141,28 +141,22 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        flashIntent();
         getTarget();
         if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_EMP_AMT, true, true);
         else
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
-        createIntent();
     }
 
     @Override
     public void callProtect() {
-        flashIntent();
         setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, PROTECT_AMT, true, false);
-        createIntent();
     }
 
     @Override
     public void callSpecial() {
-        flashIntent();
-        setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base, true);
         getTarget();
-        createIntent();
+        setMove(MOVES[3], SPECIAL, Intent.ATTACK_DEBUFF, this.damage.get(1).base, true);
     }
 
     @Override

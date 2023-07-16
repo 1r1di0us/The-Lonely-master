@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.fields.CompanionField;
 import lonelymod.powers.WildFormPower;
 
 import static lonelymod.LonelyMod.makeID;
@@ -38,16 +37,16 @@ public class CallMoveAction extends AbstractGameAction {
                 currCompanion.callNone();
             } else if (move == AbstractCompanion.UNKNOWN) {
                 currCompanion.callUnknown();
-            } else if (currCompanion.nextMove == AbstractCompanion.UNKNOWN) {
-                AbstractDungeon.effectList.add(new ThoughtBubble(currCompanion.dialogX, currCompanion.dialogY, 3.0F, TEXT[1], false));
+            } else if (currCompanion.move.nextMove == AbstractCompanion.UNKNOWN) {
+                AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[1], true));
             } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
-                addToTop(new PerformMoveAction(move, currCompanion));
+                addToTop(new WildFormCallMoveAction(move, currCompanion));
             } else if (move == AbstractCompanion.ATTACK) {
-                currCompanion.callAttack();
+                currCompanion.callMainMove(AbstractCompanion.ATTACK, true);
             } else if (move == AbstractCompanion.PROTECT) {
-                currCompanion.callProtect();
+                currCompanion.callMainMove(AbstractCompanion.PROTECT, true);
             } else if (move == AbstractCompanion.SPECIAL) {
-                currCompanion.callSpecial();
+                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true);
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
             }

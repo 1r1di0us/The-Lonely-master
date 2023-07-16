@@ -286,8 +286,8 @@
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
-    "DESCRIPTION": "On your Companion's turn, it ignores your lonelymod:Call and instead lonelymod:Attacks X times.",
-    "UPGRADE_DESCRIPTION": "On your Companion's turn, it ignores your lonelymod:Call and instead lonelymod:Attacks X+1 times."
+    "DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X times this turn",
+    "UPGRADE_DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X+1 times this turn."
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",

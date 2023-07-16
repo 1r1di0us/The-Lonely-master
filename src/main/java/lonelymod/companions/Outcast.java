@@ -64,7 +64,7 @@ public class Outcast extends AbstractCompanion {
                     consecutiveSpecial = 0;
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 if (consecutiveProtect == 3) {
@@ -122,11 +122,11 @@ public class Outcast extends AbstractCompanion {
                     consecutiveSpecial = 0;
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 if (consecutiveProtect == 3) {
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                if (hasPower(CompanionStaminaPower.POWER_ID))
+                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 } else {
                     consecutiveProtect++;
                 }
@@ -136,8 +136,8 @@ public class Outcast extends AbstractCompanion {
                     consecutiveSpecial = 0;
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
                 if (consecutiveSpecial == 3) {
                     consecutiveProtect = 3;
                     consecutiveAttack = 3;
@@ -159,29 +159,24 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void callAttack() {
-        flashIntent();
+        getTarget();
         if (consecutiveAttack == 3) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
         } else {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
         }
-        createIntent();
     }
 
     public void callProtect() {
-        flashIntent();
         if (consecutiveProtect == 3) {
             setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
         } else {
             setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
         }
-        createIntent();
     }
 
     public void callSpecial() {
-        flashIntent();
         setMove(MOVES[3], SPECIAL, Intent.BUFF);
-        createIntent();
     }
 
     public void updateIntentTip() {

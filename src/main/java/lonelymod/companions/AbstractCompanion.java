@@ -99,6 +99,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         NAME = companionStrings.NAME;
         MOVES = companionStrings.MOVES;
         INTENTS = companionStrings.INTENTS;
+        dialogX = offsetX + hb_w; //I can't find the right place :(
+        dialogY = offsetY + hb_h;
     }
 
     // move methods:
@@ -113,11 +115,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
                 ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
             }
         }
-        if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
+        /*if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
             addToBot(new CallMoveAction(NONE, this));
-        } else {
-            addToBot(new CallMoveAction(DEFAULT, this));
-        }
+        } else {*/
+        addToBot(new CallMoveAction(DEFAULT, this));
+        //}
     }
 
     @Override
@@ -126,6 +128,21 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void performTurn(byte move);
 
     public abstract void callDefault();
+    public void callMainMove(byte move, boolean makeIntent) {
+        if (makeIntent) flashIntent();
+        switch (move) {
+            case ATTACK:
+                callAttack();
+                break;
+            case PROTECT:
+                callProtect();
+                break;
+            case SPECIAL:
+                callSpecial();
+                break;
+        }
+        if (makeIntent) createIntent();
+    }
     public abstract void callAttack();
     public abstract void callProtect();
     public abstract void callSpecial();

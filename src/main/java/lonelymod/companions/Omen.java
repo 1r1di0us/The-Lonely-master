@@ -83,8 +83,8 @@ public class Omen extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
@@ -120,8 +120,8 @@ public class Omen extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, intentBlk));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
@@ -134,33 +134,27 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
         getTarget();
+        setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
     }
 
     public void callAttack() {
-        flashIntent();
+        getTarget();
         if (this.hasPower(makeID("OmenPower"))) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(makeID("OmenPower")).amount, true, true);
         } else {
             logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
             return;
         }
-        getTarget();
-        createIntent();
     }
 
     public void callProtect() {
-        flashIntent();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
         getTarget();
-        createIntent();
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
     }
 
     public void callSpecial() {
-        flashIntent();
         setMove(MOVES[3], SPECIAL, Intent.BUFF);
-        createIntent();
     }
 
     public void updateIntentTip() {

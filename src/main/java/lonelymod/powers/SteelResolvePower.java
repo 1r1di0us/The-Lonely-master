@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -17,7 +18,7 @@ import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
 
-public class SteelResolvePower extends AbstractEasyPower implements CloneablePowerInterface {
+public class SteelResolvePower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
     public static final String POWER_ID = makeID("SteelResolvePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

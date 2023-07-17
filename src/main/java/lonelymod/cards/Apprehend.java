@@ -5,7 +5,6 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -23,9 +22,9 @@ public class Apprehend extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new StrengthPower(m, -magicNumber)));
+        addToBot(new ApplyPowerAction(m, p, new StrengthPower(m, -magicNumber)));
         if (m != null && !m.hasPower("Artifact"))
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new GainStrengthPower(m, magicNumber)));
+            addToBot(new ApplyPowerAction(m, p, new GainStrengthPower(m, magicNumber)));
         ReturnField.willReturn.set(this, true);
     }
 

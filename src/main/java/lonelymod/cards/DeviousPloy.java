@@ -7,28 +7,29 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 import lonelymod.actions.PlanAction;
 
-public class PlotToKill extends AbstractEasyCard {
-    public final static String ID = makeID("PlotToKill");
+public class DeviousPloy extends AbstractEasyCard {
+    public final static String ID = makeID("DeviousPloy");
 
-    public PlotToKill() {
+    public DeviousPloy() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 3;
-        baseMagicNumber = magicNumber = 5;
-        baseSecondMagic = secondMagic = 1;
+        baseDamage = 4;
+        baseMagicNumber = magicNumber = 3;
+        baseSecondMagic = secondMagic = 2;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        AbstractDungeon.actionManager.addToBottom(new PlanAction(this.magicNumber, this));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedPower(p, secondMagic), secondMagic));
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        addToBot(new PlanAction(this.magicNumber, this));
+        addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, secondMagic), secondMagic));
     }
 
     public void upp() {
         upgradeDamage(2);
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
     }
 }

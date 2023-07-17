@@ -51,6 +51,15 @@ public class HelpPower extends AbstractEasyPower implements CloneablePowerInterf
     }
 
     @Override
+    public void updateDescription() {
+        if (amount == 1) {
+            description = DESCRIPTIONS[0];
+        } else if (amount > 1) {
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+        }
+    }
+
+    @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer) {
             if (AbstractDungeon.player.currentBlock <= 0)
@@ -59,15 +68,6 @@ public class HelpPower extends AbstractEasyPower implements CloneablePowerInterf
                 addToBot(new ReducePowerAction(owner, owner, this, 1));
             else
                 addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-        }
-    }
-
-    @Override
-    public void updateDescription() {
-        if (amount == 1) {
-            description = DESCRIPTIONS[0];
-        } else if (amount > 1) {
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
     }
 

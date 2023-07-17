@@ -2,26 +2,33 @@ package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.actions.DarkRitualAction;
+import com.megacrit.cardcrawl.powers.RitualPower;
+import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 
 public class DarkRitual extends AbstractEasyCard {
     public final static String ID = makeID("DarkRitual");
 
     public DarkRitual() {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 1;
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 1;
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DarkRitualAction());
+        addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY), 0.5F));
+        addToBot(new LoseHPAction(p, p, this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new RitualPower(p, 1, true)));
     }
 
     public void upp() {
-        upgradeBaseCost(1);
+        this.exhaust = false;
+        uDesc();
     }
 }

@@ -32,6 +32,8 @@ import lonelymod.actions.CallMoveAction;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
+import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.powers.TargetPower;
 import lonelymod.powers.WildFormPower;
 import org.apache.logging.log4j.LogManager;
@@ -112,11 +114,12 @@ public abstract class AbstractCompanion extends AbstractMonster {
             getTarget();
         }
         takeTurn();
-        for (AbstractPower p : this.powers) {
-            if (p instanceof OnCompanionTurnEndPowerInterface) {
+        for (AbstractPower p : AbstractDungeon.player.powers)
+            if (p instanceof TriggerOnPerformMoveInterface)
+                ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
+        for (AbstractPower p : this.powers)
+            if (p instanceof OnCompanionTurnEndPowerInterface)
                 ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
-            }
-        }
         /*if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
             addToBot(new CallMoveAction(NONE, this));
         } else {*/
@@ -132,6 +135,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void callDefault();
     public void callMainMove(byte move, boolean makeIntent) {
         if (makeIntent) flashIntent();
+        for (AbstractPower p : AbstractDungeon.player.powers) {
+            if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move);
+        }
         switch (move) {
             case ATTACK:
                 callAttack();
@@ -145,9 +151,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
         }
         if (makeIntent) createIntent();
     }
-    public abstract void callAttack();
-    public abstract void callProtect();
-    public abstract void callSpecial();
+    protected abstract void callAttack();
+    protected abstract void callProtect();
+    protected abstract void callSpecial();
 
     public void callUnknown() {
         flashIntent();

@@ -4,7 +4,6 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.powers.MultiShotPower;
@@ -19,7 +18,7 @@ public class MultiShot extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new MultiShotPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new MultiShotPower(p, magicNumber), magicNumber));
     }
     
     public void upp() {

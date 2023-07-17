@@ -24,7 +24,6 @@ public class StandStrong extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBlock(2);
-        uDesc();
+        upgradeBlock(3);
     }
 }

@@ -5,6 +5,7 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,7 +14,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
+import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
 public class FetchPower extends AbstractEasyPower implements CloneablePowerInterface {
@@ -48,9 +51,12 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     }
 
     @Override
-    public void onRemove() {
-        flash();
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, owner, new FocusPower(AbstractDungeon.player, this.amount)));
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player)) {
+            flash();
+            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.amount), this.amount));
+        }
+        return damageAmount;
     }
 
     @Override

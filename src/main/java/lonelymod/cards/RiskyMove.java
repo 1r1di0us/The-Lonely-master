@@ -3,13 +3,12 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 
 
 public class RiskyMove extends AbstractEasyCard {
@@ -17,20 +16,18 @@ public class RiskyMove extends AbstractEasyCard {
 
     public RiskyMove() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 12;
-        baseMagicNumber = magicNumber = 1;
+        baseDamage = 15;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
-        /*if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
-            AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.magicNumber));
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(this.magicNumber));
-        }*/
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null && CompanionField.currCompanion.get(AbstractDungeon.player).nextMove == AbstractCompanion.PROTECT) {
+            addToBot(new GainEnergyAction(this.magicNumber));
+        }
     }
 
     public void upp() {
-        upgradeBaseCost(1);
+        upgradeDamage(5);
     }
 }

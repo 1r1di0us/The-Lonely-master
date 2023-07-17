@@ -162,17 +162,5 @@
       "Autoplay."
     ],
     "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
-  },
-  {
-    "PROPER_NAME": "Note",
-    "NAMES": [
-      "NOTE",
-      "NOTE:",
-      "Note",
-      "Note:",
-      "note",
-      "note:"
-    ],
-    "DESCRIPTION": "Because #yCompanions are currently implemented as #yOrbs, and this card may give you cards that generate other non-#yCompanion #yOrbs, this will be unintended gameplay and may have bugs."
   }
 ]

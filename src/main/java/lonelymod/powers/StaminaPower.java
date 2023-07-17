@@ -4,7 +4,6 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -57,7 +56,7 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.SKILL && card.baseBlock >= 0) {
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
     }
 

@@ -2,11 +2,14 @@ package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.StrikeTogetherAction;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
 
 public class StrikeTogether extends AbstractEasyCard {
     public final static String ID = makeID("StrikeTogether");
@@ -19,7 +22,13 @@ public class StrikeTogether extends AbstractEasyCard {
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new StrikeTogetherAction((AbstractCreature) m, this.damage, this.magicNumber));
+        addToBot(new StrikeTogetherAction(m, this.damage, this.magicNumber));
+    }
+
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null && CompanionField.currCompanion.get(AbstractDungeon.player).move.nextMove == AbstractCompanion.ATTACK)
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
     }
 
     @Override

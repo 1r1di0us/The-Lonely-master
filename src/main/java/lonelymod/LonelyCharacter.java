@@ -4,7 +4,7 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
-import lonelymod.cards.Go;
+import lonelymod.cards.Sic;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
 import lonelymod.relics.BonesStomach;
@@ -24,7 +24,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import lonelymod.relics.MeatsStomach;
 
 import static lonelymod.LonelyCharacter.Enums.TODO_COLOR;
 import static lonelymod.LonelyMod.*;
@@ -71,7 +70,7 @@ public class LonelyCharacter extends CustomPlayer {
         for (int i = 0; i < 4; i++) {
             retVal.add(Defend.ID);
         }
-        retVal.add(Go.ID);
+        retVal.add(Sic.ID);
         retVal.add(Heel.ID);
         return retVal;
     }
@@ -134,7 +133,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        AbstractCard GremlinCard = new Go();
+        AbstractCard GremlinCard = new Sic();
         return GremlinCard;
     }
 

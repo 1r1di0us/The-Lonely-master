@@ -20,7 +20,7 @@ public class Kill extends AbstractEasyCard {
     public Kill() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 5;
-        magicNumber = 1;
+        baseMagicNumber = magicNumber = 1;
         this.tags.add(Enums.COMPANION);
     }
 
@@ -32,7 +32,6 @@ public class Kill extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
         uDesc();
     }
 }

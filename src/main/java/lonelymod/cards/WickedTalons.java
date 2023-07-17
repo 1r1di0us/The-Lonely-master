@@ -14,21 +14,21 @@ public class WickedTalons extends AbstractEasyCard {
     public final static String ID = makeID("WickedTalons");
 
     public WickedTalons() {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 4;
         baseMagicNumber = magicNumber = 2;
-        baseSecondMagic = secondMagic = 4;
+        baseSecondMagic = secondMagic = 2;
+        baseThirdMagic = thirdMagic = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int i=0; i<magicNumber; i++) {
-            dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, secondMagic)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, -2)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, -thirdMagic)));
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeDamage(2);
     }
 }

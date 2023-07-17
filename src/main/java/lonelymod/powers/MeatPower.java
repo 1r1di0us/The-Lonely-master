@@ -3,6 +3,7 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class MeatPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class MeatPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
     public static final String POWER_ID = makeID("MeatPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

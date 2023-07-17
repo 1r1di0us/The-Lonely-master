@@ -15,11 +15,11 @@ public class FireArrow extends AbstractEasyCard {
 
     public FireArrow() {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 5;
+        baseDamage = 6;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.FIRE);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new FireArrowPower(m, 3, this.damage)));
     }
 

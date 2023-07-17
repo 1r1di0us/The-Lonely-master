@@ -12,10 +12,10 @@ import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 import lonelymod.powers.TargetPower;
 
-public class Go extends AbstractEasyCard {
-    public final static String ID = makeID("Go");
+public class Sic extends AbstractEasyCard {
+    public final static String ID = makeID("Sic");
 
-    public Go() {
+    public Sic() {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 0;
         this.tags.add(Enums.COMPANION);

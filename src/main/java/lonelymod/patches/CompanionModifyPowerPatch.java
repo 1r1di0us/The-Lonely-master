@@ -14,6 +14,7 @@ public class CompanionModifyPowerPatch {
     public static void Postfix() {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
+            CompanionField.currCompanion.get(AbstractDungeon.player).createIntent();
         }
     }
 }

@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.ShowMoveNameAction;
@@ -19,7 +20,7 @@ import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
-public class WildFormPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class WildFormPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
     public static final String POWER_ID = makeID("WildFormPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

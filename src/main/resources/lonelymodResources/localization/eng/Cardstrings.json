@@ -7,8 +7,8 @@
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
-  "${ModID}:Go": {
-    "NAME": "Go!",
+  "${ModID}:Sic": {
+    "NAME": "Sic!",
     "DESCRIPTION": "lonelymod:Call lonelymod:Attack.",
     "UPGRADE_DESCRIPTION": "Apply !M! lonelymod:Target to a random enemy. NL lonelymod:Call lonelymod:Attack."
   },
@@ -18,15 +18,15 @@
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",
-    "DESCRIPTION": "Deal !D! damage. Enemy loses !M! Strength this turn. lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL The enemy loses !M! Strength this turn. NL lonelymod:Return."
+  },
+  "${ModID}:DeviousPloy": {
+    "NAME": "Devious Ploy",
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, draw !${ModID}:m2! cards."
   },
   "${ModID}:FireArrow": {
     "NAME": "Fire Arrow",
-    "DESCRIPTION": "Deal !D! damage. This enemy takes that much damage at the start of the next 3 turns."
-  },
-  "${ModID}:Feint": {
-    "NAME": "Feint",
-    "DESCRIPTION": "Deal !D! damage. If any damage was blocked, apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
@@ -37,6 +37,10 @@
     "NAME": "Marker",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target."
   },
+  "${ModID}:Overpower": {
+    "NAME": "Overpower",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy does not intend to Attack, apply !M! Weak."
+  },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
     "DESCRIPTION": "Deal !D! damage."
@@ -44,10 +48,6 @@
   "${ModID}:PlottedDemise": {
     "NAME": "Plotted Demise",
     "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, incease its damage by !M!. NL Exhaust."
-  },
-  "${ModID}:PlotToKill": {
-    "NAME": "Plot To Kill",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, gain [E]."
   },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
@@ -57,14 +57,9 @@
     "NAME": "Volley",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Return."
   },
-  "${ModID}:ALittlePloy": {
-    "NAME": "A Little Ploy",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! card.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
-  },
   "${ModID}:ActionPlan": {
     "NAME": "Action Plan",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] and lonelymod:Call lonelymod:Attack.",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E]  and lonelymod:Call lonelymod:Attack.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] [E] and lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Distracted": {
@@ -83,30 +78,31 @@
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Gain !B! Block for each card selected."
+    "DESCRIPTION": "Draw !M! cards. NL Next time you play either card this turn, gain !B! Block."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Shuffle !${ModID}:m2! *Wound into your draw pile. NL Gain !M! Strength."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle !${ModID}:m2! *Wound into your draw pile."
+  },
+  "${ModID}:Overthrow": {
+    "NAME": "Overthrow",
+    "DESCRIPTION": "Gain !B! Block. NL If you have run out of energy, apply !M! Vulnerable."
+  },
+  "${ModID}:PureSkill": {
+    "NAME": "Pure Skill",
+    "DESCRIPTION": "Gain !M! Vigor. NL Gain !${ModID}:m2! lonelymod:Stamina. NL lonelymod:Plan !${ModID}:m3!."
   },
   "${ModID}:StandStrong": {
     "NAME": "Stand Strong",
-    "DESCRIPTION": "Gain !B! Block. NL lonelymod:Return.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Gain !M! Vigor. NL lonelymod:Return."
+    "DESCRIPTION": "Gain !B! Block. NL lonelymod:Return."
   },
-  "${ModID}:Unpredictable": {
-    "NAME": "Unpredictable",
-    "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to attack, apply !M! Weak."
-  },
-  "${ModID}:Suppress": {
-    "NAME": "Suppress",
-    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain !B! Block X+1 times."
+  "${ModID}:Brainstorm": {
+    "NAME": "Brainstorm",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards. NL Exhaust."
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant 1 lonelymod:Food. Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! Damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant 1 lonelymod:Food."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. NL Exhaust."
   },
   "${ModID}:ImpatientStrikes": {
     "NAME": "Impatient Strikes",
@@ -118,7 +114,7 @@
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. Deal !D! damage. Next turn, add a copy of this card to your hand. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. Next turn, add a copy of this card to your hand. lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -130,19 +126,16 @@
   },
   "${ModID}:RiskyMove": {
     "NAME": "Risky Move",
-    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E] and draw !M! card."
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E] [E]."
   },
-  "${ModID}:SpareTheWeak": {
-    "NAME": "Spare The Weak",
-    "DESCRIPTION": "ALL enemy minions flee. NL Deal !D! damage to ALL remaining enemies. NL Exhaust."
-  },
-  "${ModID}:SingleOut": {
-    "NAME": "Single Out",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Gain !B! Block for every enemy in combat."
+  "${ModID}:Suppress": {
+    "NAME": "Suppress",
+    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain !B! Block X+1 times."
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !${ModID}:m2! Strength. NL Lose 2 Dexterity."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !${ModID}:m2! Strength. NL Lose !${ModID}:m3! Dexterity."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -167,11 +160,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Discard your hand. NL Gain !M! Ritual for each card discarded. NL Exhaust."
-  },
-  "${ModID}:DogPile": {
-    "NAME": "Dog Pile",
-    "DESCRIPTION": "During the next !M! turns, whenever you gain Block, lonelymod:Call lonelymod:Protect. NL Gain !B! Block."
+    "DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual."
   },
   "${ModID}:KeepItTogether": {
     "NAME": "Keep It Together",
@@ -200,26 +190,35 @@
     "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable.",
     "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable and !M! lonelymod:Target."
   },
+  "${ModID}:SingleOut": {
+    "NAME": "Single Out",
+    "DESCRIPTION": "Apply !M! lonelymod:Target. NL Gain !B! Block for every enemy in combat."
+  },
   "${ModID}:ThinkOutsideTheBox": {
     "NAME": "Think Outside The Box",
-    "DESCRIPTION": "lonelymod:NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:NOTE: Don't pick this! NL Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
+    "DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lChoose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Choose a card to add into your hand."
     ]
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. NL Start the next turn with !${ModID}:m2! less energy. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !${ModID}:m2! *Dazed into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !${ModID}:m2! *Dazed into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
     "DESCRIPTION": "Ethereal. Gain !B! Block. Gain additional Block equal to ALL enemies' combined Strength. NL lonelymod:Return."
   },
+  "${ModID}:Coordination": {
+    "NAME": "Coordination",
+    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !M! Dexterity."
+  },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",
-    "DESCRIPTION": "Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Status, Curse, or Autoplay card, gain !M! Block."
+    "DESCRIPTION": "Whenever you draw a Curse or Autoplay card, gain !M! Block.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Curse or Autoplay card, gain !M! Block."
   },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
@@ -228,11 +227,7 @@
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
     "DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemy.",
-    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemies"
-  },
-  "${ModID}:Motivation": {
-    "NAME": "Motivation",
-    "DESCRIPTION": "Grant your lonelymod:Companion !M! lonelymod:Food."
+    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemies."
   },
   "${ModID}:PlanB": {
     "NAME": "Plan B",
@@ -258,6 +253,10 @@
       " NL [Deals !D! damage !M! times]"
     ]
   },
+  "${ModID}:Cycle": {
+    "NAME": "Cycle",
+    "DESCRIPTION": "Deal !D! damage. NL All cards that will lonelymod:Return are returned immediately."
+  },
   "${ModID}:FeignWeakness": {
     "NAME": "Feign Weakness",
     "DESCRIPTION": "Deal !D! damage. NL If this deals 1 damage or less, the enemy is stunned next turn. NL Exhaust.",
@@ -269,20 +268,15 @@
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
-    "DESCRIPTION": "Deal !D! damage. If NOT Fatal, double this card's damage this combat."
+    "DESCRIPTION": "Deal !D! damage. NL If NOT Fatal, double this card's damage this combat."
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. NL Draw !M! cards. Permanently remove a random card in your hand from your deck. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Draw !${ModID}:m2! card. Permanently remove a random card in your hand from your deck. NL Exhaust."
-  },
-  "${ModID}:Cycle": {
-    "NAME": "Cycle",
-    "DESCRIPTION": "All cards that will return to your hand next turn are returned immediately."
+    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a random card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "This turn, you cannot be reduced to less than 1 HP. NL Next turn, gain !M! Strength. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -299,7 +293,7 @@
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primal into your draw pile. NL Exhaust.",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. NL Shuffle !${ModID}:m2! *Primal into your draw pile. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primals into your draw pile. NL Exhaust."
   },
   "${ModID}:Outburst": {
@@ -333,8 +327,8 @@
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
-    "DESCRIPTION": "At the start of each turn, discard 1 random card. Whenever you lonelymod:Call a move, it is performed immediately.",
-    "UPGRADE_DESCRIPTION": "At the start of each turn, choose 1 card to discard. Whenever you lonelymod:Call a move, it is performed immediately."
+    "DESCRIPTION": "At the start of your turn, discard 1 random card. Whenever you lonelymod:Call a move, it is performed immediately.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, choose 1 card to discard. Whenever you lonelymod:Call a move, it is performed immediately."
   },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",

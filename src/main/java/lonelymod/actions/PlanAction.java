@@ -5,13 +5,9 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.UpgradeSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
@@ -19,6 +15,8 @@ import lonelymod.cards.Genius;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.Improvise;
 import lonelymod.interfaces.TriggerOnPlanInterface;
+import lonelymod.powers.PlanBPower;
+import lonelymod.powers.ThreeStepsAheadPower;
 
 public class PlanAction extends AbstractGameAction {
     public static final String ID = makeID("PlanAction");
@@ -27,23 +25,17 @@ public class PlanAction extends AbstractGameAction {
 
     private float startingDuration;
     private AbstractEasyCard cardPlayed;
-    private int improviseBlock;
 
     public PlanAction(int numCards) {
-        this(numCards, null, 0);
+        this(numCards, null);
     }
 
     public PlanAction(int numCards, AbstractEasyCard cardPlayed) {
-        this(numCards, cardPlayed, 0);
-    }
-
-    public PlanAction(int numCards, AbstractEasyCard cardPlayed, int improviseBlock) {
         this.amount = numCards;
         this.cardPlayed = cardPlayed;
-        this.improviseBlock = improviseBlock;
-        if (AbstractDungeon.player.hasPower(makeID("ThreeStepsAheadPower"))) {
-            AbstractDungeon.player.getPower(makeID("ThreeStepsAheadPower")).flash();;
-            this.amount += AbstractDungeon.player.getPower(makeID("ThreeStepsAheadPower")).amount;
+        if (AbstractDungeon.player.hasPower(ThreeStepsAheadPower.POWER_ID)) {
+            AbstractDungeon.player.getPower(ThreeStepsAheadPower.POWER_ID).flash();;
+            this.amount += AbstractDungeon.player.getPower(ThreeStepsAheadPower.POWER_ID).amount;
         } 
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.startingDuration = Settings.ACTION_DUR_FAST;
@@ -84,9 +76,7 @@ public class PlanAction extends AbstractGameAction {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 AbstractDungeon.player.discardPile.moveToDeck(c, true);
                 if (cardPlayed != null && cardPlayed instanceof Genius)
-                    AbstractDungeon.actionManager.addToBottom(new UpgradeSpecificCardAction(c));
-                else if (cardPlayed != null && cardPlayed instanceof Improvise)
-                    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, improviseBlock));
+                    addToTop(new UpgradeSpecificCardAction(c));
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
@@ -100,7 +90,6 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractCard c : AbstractDungeon.player.discardPile.group) {}
         //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            //c.triggerOnPlan();
             if (c instanceof TriggerOnPlanInterface) {
                 ((TriggerOnPlanInterface) c).triggerOnPlan();
             }
@@ -110,10 +99,8 @@ public class PlanAction extends AbstractGameAction {
         //}
         
         if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
-                AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
-                AbstractDungeon.actionManager.addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
-                        AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
+            if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID)) {
+                AbstractDungeon.player.getPower(PlanBPower.POWER_ID).onSpecificTrigger();
             }
         }
     }

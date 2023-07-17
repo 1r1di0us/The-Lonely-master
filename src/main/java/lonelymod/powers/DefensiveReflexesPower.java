@@ -53,12 +53,9 @@ public class DefensiveReflexesPower extends AbstractEasyPower implements Cloneab
 
     @Override
     public void onCardDraw(AbstractCard card) {
-        if (card.cost == -2 || AutoplayField.autoplay.get(card)) {
+        if (card.type == AbstractCard.CardType.CURSE || AutoplayField.autoplay.get(card)) {
             addToBot(new GainBlockAction(owner, owner, amount));
         }
-        //else if (AutoplayField.autoplay.get(card)) {
-        //    addToBot(new GainBlockAction(owner, owner, autoplayAmount));
-        //}
     }
 
     @Override

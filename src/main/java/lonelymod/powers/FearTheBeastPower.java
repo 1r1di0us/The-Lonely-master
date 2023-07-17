@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.util.TexLoader;
 
-public class FearTheBeastPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class FearTheBeastPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnCallMoveInterface {
    
     public static final String POWER_ID = makeID("FearTheBeastPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -46,11 +48,9 @@ public class FearTheBeastPower extends AbstractEasyPower implements CloneablePow
         updateDescription();
     }
 
-    @Override
-    public void onChannel(AbstractOrb orb) {
-        /*if (orb instanceof SquirrelAttackAbility || orb instanceof WolfAttackAbility || orb instanceof BearAttackAbility || orb instanceof ByrdAttackAbility) { //|| orb instanceof BearAttackAbility || orb instanceof SquirrelAttackAbility
-            addToBot(new ApplyPowerAction(owner, owner, new StaminaPower(owner, amount), amount));
-        }*/
+    public void triggerOnCallMove(byte move) {
+        if (move == AbstractCompanion.ATTACK)
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.amount)));
     }
 
     @Override

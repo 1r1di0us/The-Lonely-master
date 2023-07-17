@@ -5,6 +5,8 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,9 +18,11 @@ import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.util.TexLoader;
 
-public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnPerformMoveInterface {
    
     public static final String POWER_ID = makeID("RecoveryPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -50,23 +54,19 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (isPlayer) {
-            AbstractOrb currOrb = AbstractDungeon.player.orbs.get(0);
-            /*if (currOrb instanceof WolfProtectAbility || currOrb instanceof ByrdProtectAbility) { // || currOrb instanceof BearProtectAbility || currOrb instanceof SquirrelProtectAbility
-                addToBot(new ApplyPowerAction(owner, owner, new EnergizedPower(owner, amount), amount));
-                addToBot(new ApplyPowerAction(owner, owner, new DrawCardNextTurnPower(owner, amount), amount));
-            }*/
-        }
-    }
-
-    @Override
     public void updateDescription() {
         if (this.amount == 1) {
             description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
         else {
             description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
+        }
+    }
+
+    public void triggerOnPerformMove(byte move) {
+        if (move == AbstractCompanion.PROTECT) {
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new DrawCardNextTurnPower(this.owner, this.amount)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new EnergizedPower(this.owner, this.amount)));
         }
     }
 

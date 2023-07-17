@@ -8,8 +8,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 //import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 //import com.megacrit.cardcrawl.cards.DamageInfo;
 //import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -55,6 +59,12 @@ public class PlanBPower extends AbstractEasyPower implements CloneablePowerInter
             //or maybe it adds vigor?!
     //  }
     //}
+
+    @Override
+    public void onSpecificTrigger() {
+        flash();
+        addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+    }
 
     @Override
     public void updateDescription() {

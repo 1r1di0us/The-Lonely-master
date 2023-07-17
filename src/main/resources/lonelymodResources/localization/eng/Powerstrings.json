@@ -10,18 +10,18 @@
   "${ModID}:FireArrowPower": {
     "NAME": "Fire",
     "DESCRIPTIONS": [
-      "At the start of the next #b",
-      " turn, deal #b",
-      " turns, deal #b",
+      "At the start of its next #b",
+      " turn, takes #b",
+      " turns, takes #b",
       " damage."
     ]
   },
-  "${ModID}:AnimalSavageryPower": {
-    "NAME": "Animal Savagery",
+  "${ModID}:ImprovisePower": {
+    "NAME": "Improvising",
     "DESCRIPTIONS": [
-      "At the start of the next #b",
-      " turn, #yCall #yAttack.",
-      " turns, #yCall #yAttack."
+      "Next time you play *",
+      " this turn, gain #b",
+      " #yBlock."
     ]
   },
   "${ModID}:StaminaPower": {
@@ -35,7 +35,7 @@
     "NAME": "Fetch",
     "DESCRIPTIONS": [
       "The next time your #yCompanion #yAttacks this enemy, grant #b",
-      " #yFood"
+      " #yStrength"
     ]
   },
   "${ModID}:OverflowingQuiverPower": {
@@ -44,14 +44,6 @@
       "At the start of the next turn, create #b",
       " Overflowing Quiver in your hand.",
       " Overflowing Quivers in your hand."
-    ]
-  },
-  "${ModID}:DogPilePower": {
-    "NAME": "Dog Pile",
-    "DESCRIPTIONS": [
-      "During the next #b",
-      " turn, whenever you gain Block, #yCall #yProtect.",
-      " turns, whenever you gain Block, #yCall #yProtect."
     ]
   },
   "${ModID}:PinDownPower": {
@@ -64,17 +56,10 @@
 
     ]
   },
-  "${ModID}:DeenergizedPower": {
-    "NAME": "De-energized",
-    "DESCRIPTIONS": [
-      "Lose #b",
-      " [E] next turn."
-    ]
-  },
   "${ModID}:DefensiveReflexesPower": {
     "NAME": "Defensive Reflexes",
     "DESCRIPTIONS": [
-      "Whenever you draw a Status, Curse, or Autoplay card, gain #b",
+      "Whenever you draw a Curse or Autoplay card, gain #b",
       " Block."
     ]
   },
@@ -88,7 +73,7 @@
   "${ModID}:MultiShotPower": {
     "NAME": "Multi-Shot",
     "DESCRIPTIONS": [
-      "Whenver you play an Attack card, deal #y4 damage to #b",
+      "Whenever you play an Attack card, deal #y4 damage to #b",
       " random enemy.",
       " random enemies."
     ]

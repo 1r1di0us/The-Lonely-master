@@ -22,6 +22,7 @@ public class BlockInfo {
     }
 
     public void applyPowers(AbstractCompanion owner, AbstractCreature target) {
+        this.output = this.base;
         this.isModified = false;
         float tmp = this.output;
         for (AbstractPower p : owner.powers)

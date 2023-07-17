@@ -11,6 +11,7 @@ import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.ImpatientStrikes;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
+import lonelymod.cards.cardvars.ThirdMagicNumber;
 import lonelymod.fields.CompanionField;
 import lonelymod.fields.ReturnField;
 import lonelymod.interfaces.TriggerOnReturnInterface;
@@ -149,6 +150,7 @@ public class LonelyMod implements
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new ThirdMagicNumber());
         new AutoAdd(modID)
                 .packageFilter(AbstractEasyCard.class)
                 .setDefaultSeen(true)

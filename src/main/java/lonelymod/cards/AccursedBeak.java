@@ -16,8 +16,8 @@ public class AccursedBeak extends AbstractEasyCard {
     public final static String ID = makeID("AccursedBeak");
 
     public AccursedBeak() {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-        baseDamage = 15;
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        baseDamage = 5;
         baseMagicNumber = magicNumber = 3;
     }
     
@@ -29,7 +29,6 @@ public class AccursedBeak extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(3);
         upgradeMagicNumber(-1);
     }
 }

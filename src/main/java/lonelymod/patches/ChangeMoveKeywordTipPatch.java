@@ -72,7 +72,7 @@ public class ChangeMoveKeywordTipPatch {
     public static String getKeywordString(Object s) {
         String body = GameDictionary.keywords.get(s);
         String replace;
-        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
+        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard != null && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
             if (body.contains("Move: Focuses on dealing damage to enemies.")) {
                 replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, false);
             } else if (body.contains("Move: Focuses on granting you #yBlock or weakening enemies.")) {
@@ -91,7 +91,7 @@ public class ChangeMoveKeywordTipPatch {
     public static String getKeywordHeaderString(Object s) {
         String header = TipHelper.capitalize((String) s);
         String replace;
-        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
+        if (CardCrawlGame.isInARun() && CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && AbstractDungeon.player.hoveredCard != null && AbstractDungeon.player.hoveredCard.isHoveredInHand(1.0F)) {
             if (header.equals("Attack")) {
                 replace = CompanionField.currCompanion.get(AbstractDungeon.player).getKeywordMoveTip(AbstractCompanion.ATTACK, true);
             } else if (header.equals("Protect")) {

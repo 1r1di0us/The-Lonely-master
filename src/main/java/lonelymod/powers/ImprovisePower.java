@@ -1,23 +1,26 @@
 package lonelymod.powers;
 
-import static lonelymod.LonelyMod.makeID;
-
+import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
-import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class DeenergizedPower extends AbstractEasyPower implements CloneablePowerInterface {
-    public static final String POWER_ID = makeID("DeenergizedPower");
+import java.util.UUID;
+
+import static lonelymod.LonelyMod.makeID;
+
+public class ImprovisePower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+    public static final String POWER_ID = makeID("ImprovisePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -25,16 +28,19 @@ public class DeenergizedPower extends AbstractEasyPower implements CloneablePowe
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public DeenergizedPower(AbstractCreature owner, int energyAmt) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, energyAmt);
+    private AbstractCard c;
+    private UUID bountyUUID;
+
+    public ImprovisePower(AbstractCreature owner, AbstractCard card, int amount) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
 
-        type = PowerType.DEBUFF;
+        type = PowerType.BUFF;
         isTurnBased = true;
-        this.amount = energyAmt;
-        if (this.amount >= 999)
-            this.amount = 999;
+        this.amount = amount;
+        this.c = card;
+        this.bountyUUID = card.uuid;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -47,32 +53,30 @@ public class DeenergizedPower extends AbstractEasyPower implements CloneablePowe
 
         updateDescription();
     }
-  
-    //I have no clue what this is supposed to do...? is this necessary?
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        if (this.amount >= 999)
-        this.amount = 999; 
-    }
-    
+
     @Override
     public void updateDescription() {
-        if (this.amount == 1) {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
-        } else {
-            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
-        } 
+        if (c == null) description = DESCRIPTIONS[0] + "NULL" + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
+        else description = DESCRIPTIONS[0] + this.c.name + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
     }
-    
+
     @Override
-    public void onEnergyRecharge() {
-        flash();
-        AbstractDungeon.player.loseEnergy(this.amount);
-        addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this));
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        if (card.uuid == bountyUUID) {
+            addToBot(new GainBlockAction(this.owner, this.owner, this.amount));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) {
+            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+        }
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new DeenergizedPower(this.owner, this.amount);
+        return new ImprovisePower(this.owner, this.c, this.amount);
     }
 }

@@ -22,8 +22,8 @@ public class PanicAttack extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(p, damage), AttackEffect.BLUNT_LIGHT));
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
+        addToBot(new DamageRandomEnemyAction(new DamageInfo(p, damage), AttackEffect.BLUNT_LIGHT));
+        addToBot(new DrawCardAction(p, magicNumber));
     }
 
     public void upp() {

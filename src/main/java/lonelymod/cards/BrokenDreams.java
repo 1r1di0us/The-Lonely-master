@@ -14,26 +14,24 @@ import lonelymod.actions.AutoplayWaitAction;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 
-public class BrokenWill extends AbstractEasyCard {
-    public final static String ID = makeID("BrokenWill");
+public class BrokenDreams extends AbstractEasyCard {
+    public final static String ID = makeID("BrokenDreams");
 
-    public BrokenWill() {
+    public BrokenDreams() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = (AbstractCard) new FeignWeakness();
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.cardsToPreview = new Dominate();
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WeakPower(p, this.magicNumber, false), this.magicNumber));
-        if (!upgraded)
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new FeignWeakness(), 1, true, true));
-        else if (upgraded)
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new FeignWeakness(), 1, false, true));
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(new Dominate(), 1, false, true));
         AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
         }
 
     public void upp() {
+        upgradeMagicNumber(-1);
         uDesc();
     }
 }

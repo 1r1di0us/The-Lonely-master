@@ -16,7 +16,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class FinalDesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class DEPRECATEDFinalDesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
 
     public static final String POWER_ID = makeID("FinalDesperationPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -28,7 +28,7 @@ public class FinalDesperationPower extends AbstractEasyPower implements Cloneabl
 
     private int turnAmount;
 
-    public FinalDesperationPower(AbstractCreature owner, int amount) {
+    public DEPRECATEDFinalDesperationPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -77,6 +77,6 @@ public class FinalDesperationPower extends AbstractEasyPower implements Cloneabl
 
     @Override
     public AbstractPower makeCopy() {
-        return new FinalDesperationPower(this.owner, this.amount);
+        return new DEPRECATEDFinalDesperationPower(this.owner, this.amount);
     }
 }

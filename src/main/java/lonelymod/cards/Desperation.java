@@ -8,8 +8,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import lonelymod.powers.DEPRECATEDDesperationPower;
+import lonelymod.powers.DEPRECATEDFinalDesperationPower;
 import lonelymod.powers.DesperationPower;
-import lonelymod.powers.FinalDesperationPower;
 
 public class Desperation extends AbstractEasyCard {
     public final static String ID = makeID("Desperation");
@@ -23,10 +24,7 @@ public class Desperation extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DesperationPower(p, magicNumber), magicNumber));
-        if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FinalDesperationPower(p, 1)));
-        }
+        addToBot(new ApplyPowerAction(p, p, new DesperationPower(p, magicNumber, this.upgraded), magicNumber));
     }
     
     @Override

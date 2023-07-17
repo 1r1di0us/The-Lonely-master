@@ -17,7 +17,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class DesperatePower extends AbstractEasyPower implements CloneablePowerInterface {
+public class DEPRECATEDDesperatePower extends AbstractEasyPower implements CloneablePowerInterface {
 
     public static final String POWER_ID = makeID("DesperatePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -27,7 +27,7 @@ public class DesperatePower extends AbstractEasyPower implements CloneablePowerI
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public DesperatePower(AbstractCreature owner) {
+    public DEPRECATEDDesperatePower(AbstractCreature owner) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 1);
 
         this.owner = owner;
@@ -70,7 +70,7 @@ public class DesperatePower extends AbstractEasyPower implements CloneablePowerI
 
     @Override
     public AbstractPower makeCopy() {
-        return new DesperatePower(this.owner);
+        return new DEPRECATEDDesperatePower(this.owner);
     }
     
 }

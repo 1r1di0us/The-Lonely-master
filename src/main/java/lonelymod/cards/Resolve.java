@@ -18,7 +18,7 @@ public class Resolve extends AbstractEasyCard {
 
     public Resolve() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 6;
     }
     
     @Override

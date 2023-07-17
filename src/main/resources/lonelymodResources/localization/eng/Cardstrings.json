@@ -141,18 +141,18 @@
     "NAME": "Genius",
     "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
+  "${ModID}:BrokenDreams": {
+    "NAME": "Broken Dreams",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak. NL Place 1 *Dominate on top of your draw pile."
+  },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable and shuffle 1 *Outburst into your draw pile."
-  },
-  "${ModID}:BrokenWill": {
-    "NAME": "Broken Will",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and shuffle 1 *Feign *Weakness into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak and place 1 *Feign *Weakness on top of your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable. NL Shuffle 1 *Outburst into your draw pile. It costs 0 when drawn."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail and shuffle 1 *Primal *Instinct into your draw pile."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Place 1 *Primal into your discard pile.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Shuffle 1 *Primal into your draw pile."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -257,10 +257,10 @@
     "NAME": "Cycle",
     "DESCRIPTION": "Deal !D! damage. NL All cards that will lonelymod:Return are returned immediately."
   },
-  "${ModID}:FeignWeakness": {
-    "NAME": "Feign Weakness",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals 1 damage or less, the enemy is stunned next turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals 1 damage or less, the enemy gains !M! Weak and is stunned next turn. NL Exhaust."
+  "${ModID}:Dominate": {
+    "NAME": "Dominate",
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, reduce enemy Strength by !${ModID}:m2! this turn.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, reduce enemy Strength by !${ModID}:m2! this turn.}"
   },
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",
@@ -308,8 +308,8 @@
   },
   "${ModID}:Bravery": {
     "NAME": "Bravery",
-    "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Strength that turn.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Strength and !${ModID}:m2! Dexterity that turn."
+    "DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Vigor.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, if a non-minion enemy intends to attack, gain !M! Vigor and !${ModID}:m2! lonelymod:Stamina."
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",

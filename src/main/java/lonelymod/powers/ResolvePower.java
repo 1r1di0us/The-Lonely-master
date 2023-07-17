@@ -26,6 +26,8 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
+    private boolean lostHpThisTurn;
+
     public ResolvePower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
@@ -35,6 +37,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
         isTurnBased = false;
         this.amount = amount;
         this.isPostActionPower = true;
+        lostHpThisTurn = false;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,10 +52,16 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
+    public void atStartOfTurn() {
+        this.lostHpThisTurn = false;
+    }
+
+    @Override
     public int onLoseHp(int damageAmount) {
-        if (damageAmount > 0) {
+        if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            addToBot((AbstractGameAction) new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.amount), this.amount));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.amount), this.amount));
+            lostHpThisTurn = true;
         }
         return damageAmount;
     }

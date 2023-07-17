@@ -18,21 +18,19 @@ public class Bravery extends AbstractEasyCard {
 
     public Bravery() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 4;
+        baseMagicNumber = magicNumber = 5;
         baseSecondMagic = secondMagic = 0;
     }
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BraveryPower(p, magicNumber), magicNumber));
-        if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FoolishBraveryPower(p, secondMagic)));
-        }
+        addToBot(new ApplyPowerAction(p, p, new BraveryPower(p, magicNumber), magicNumber));
+        if (upgraded) addToBot(new ApplyPowerAction(p, p, new FoolishBraveryPower(p, secondMagic)));
     }
     
     @Override
     public void onChoseThisOption() { //this happens when you choose this card when playing Lonely
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true, false));
+        addToBot(new MakeTempCardInDrawPileAction(this, 1, true, true, false));
         setCostToZero = true;
     }
 
@@ -46,7 +44,7 @@ public class Bravery extends AbstractEasyCard {
 
     @Override
     public void upp() {
-        upgradeSecondMagic(2);
+        upgradeSecondMagic(3);
         uDesc();
     }
 }

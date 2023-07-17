@@ -4,18 +4,21 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.AutoplayCardAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.actions.DesperationAction;
 import lonelymod.util.TexLoader;
+
+import java.util.ArrayList;
 
 public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
 
@@ -27,9 +30,9 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private int turnAmount;
+    private boolean upgraded;
 
-    public DesperationPower(AbstractCreature owner, int amount) {
+    public DesperationPower(AbstractCreature owner, int amount, boolean upgraded) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -37,7 +40,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.turnAmount = this.amount;
+        this.upgraded = upgraded;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,22 +55,25 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     }
 
     @Override
-    public void onAfterCardPlayed(AbstractCard usedCard) {
-        if (EnergyPanel.getCurrentEnergy() - usedCard.cost == 0) {
-            if (this.turnAmount > 0) {
-                this.turnAmount--;
-                flash();
-                addToBot(new GainEnergyAction(1));
-                if (!this.owner.hasPower(makeID("DesperatePower"))) {
-                    addToBot(new ApplyPowerAction(this.owner, this.owner, new DesperatePower(this.owner)));
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        for (int i = 0; i < this.amount; i++) {
+            if (!AbstractDungeon.player.hand.isEmpty()) {
+                AbstractDungeon.player.releaseCard();
+                if (upgraded) {
+                    ArrayList<AbstractCard> cardChoices = new ArrayList<>();
+                    AbstractCard cardToAdd;
+                    for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                        cardToAdd = c;
+                        cardChoices.add(cardToAdd);
+                    }
+                    addToTop(new DesperationAction(cardChoices));
+                } else {
+                    AbstractCard cardToPlay = AbstractDungeon.player.hand.getRandomCard(true);
+                    cardToPlay.freeToPlayOnce = true;
+                    addToBot(new NewQueueCardAction(cardToPlay, true, true, true));
                 }
             }
         }
-    }
-
-    @Override
-    public void onEnergyRecharge() {
-        this.turnAmount = this.amount;
     }
 
     @Override
@@ -81,7 +87,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public AbstractPower makeCopy() {
-        return new DesperationPower(this.owner, this.amount);
+        return new DEPRECATEDDesperationPower(this.owner, this.amount);
     }
-    
+
 }

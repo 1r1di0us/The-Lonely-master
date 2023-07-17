@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
@@ -53,8 +54,9 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, this.amount)));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new LoseStrengthPower(AbstractDungeon.player, this.amount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount)));
+                //addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount)));
+                //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseStrengthPower(this.owner, this.amount)));
                 return;
             }
         }

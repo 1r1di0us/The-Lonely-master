@@ -18,19 +18,21 @@ public class BrokenHeart extends AbstractEasyCard {
     public final static String ID = makeID("BrokenHeart");
 
     public BrokenHeart() {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = (AbstractCard) new Outburst();
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.cardsToPreview = new Outburst();
+        this.baseMagicNumber = this.magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new VulnerablePower(p, this.magicNumber, false), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction((AbstractCard) new Outburst(), 1, true, true));
-        AbstractDungeon.actionManager.addToBottom(new AutoplayWaitAction(1.0f));
+        addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.magicNumber, false), this.magicNumber));
+        AbstractCard cardToMake = new Outburst();
+        cardToMake.freeToPlayOnce = true;
+        addToBot(new MakeTempCardInDrawPileAction(cardToMake, 1, true, true));
+        addToBot(new AutoplayWaitAction(1.0f));
     }
 
     public void upp() {
-        upgradeMagicNumber(-1);
+        upgradeBaseCost(0);
     }
 }

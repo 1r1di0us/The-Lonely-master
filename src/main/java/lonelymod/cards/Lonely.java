@@ -25,7 +25,7 @@ public class Lonely extends AbstractEasyCard {
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new VFXAction((AbstractGameEffect) new FastingEffect(p.hb.cX, p.hb.cY, Color.YELLOW)));
+        addToBot(new VFXAction(new FastingEffect(p.hb.cX, p.hb.cY, Color.YELLOW)));
         addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new LonelyAction(upgraded));
     }

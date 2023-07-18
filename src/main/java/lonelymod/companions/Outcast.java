@@ -1,5 +1,6 @@
 package lonelymod.companions;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import lonelymod.actions.CallMoveAction;
 import lonelymod.powers.*;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
@@ -45,7 +45,14 @@ public class Outcast extends AbstractCompanion {
     public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
-                addToBot(new SFXAction("VO_GREMLINFAT_1C"));
+                int roll = MathUtils.random(2);
+                if (roll == 0) {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1A"));
+                } else if (roll == 1) {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1B"));
+                } else {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1C"));
+                }
                 break;
             case ATTACK:
                 addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -103,7 +110,14 @@ public class Outcast extends AbstractCompanion {
     public void performTurn(byte move) {
         switch (move) {
             case DEFAULT:
-                addToTop(new SFXAction("VO_GREMLINFAT_1C"));
+                int roll = MathUtils.random(2);
+                if (roll == 0) {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1A"));
+                } else if (roll == 1) {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1B"));
+                } else {
+                    addToBot(new SFXAction("VO_GREMLINFAT_1C"));
+                }
                 break;
             case ATTACK:
                 addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));

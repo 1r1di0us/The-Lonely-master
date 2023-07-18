@@ -303,5 +303,18 @@
       "None",
       "."
     ]
+  },
+  "${ModID}:OraclePower": {
+    "NAME": "Chant",
+    "DESCRIPTIONS": [
+      "At the start of each turn, gains #b",
+      " #yVigor."
+    ]
+  },
+  "${ModID}:MechanicPower": {
+    "NAME": "Plugged In",
+    "DESCRIPTIONS": [
+      "Whenever you gain #yFocus, gains an equal amount of #yStrength and #yDexterity."
+    ]
   }
 }

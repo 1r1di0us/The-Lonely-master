@@ -17,7 +17,6 @@ public class Fetch extends AbstractEasyCard {
         this.exhaust = true;
         this.baseDamage = 7;
         this.baseMagicNumber = this.magicNumber = 2;
-        this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

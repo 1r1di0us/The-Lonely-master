@@ -135,7 +135,7 @@
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !${ModID}:m2! Strength. NL Lose !${ModID}:m3! Dexterity."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Next turn, gain !${ModID}:m2! Strength and lose !${ModID}:m3! Dexterity."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -161,7 +161,7 @@
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
     "DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual."
+    "UPGRADE_DESCRIPTION": "Innate. NL Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust."
   },
   "${ModID}:KeepItTogether": {
     "NAME": "Keep It Together",

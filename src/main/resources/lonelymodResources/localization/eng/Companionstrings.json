@@ -42,6 +42,11 @@
       " #yTarget. Gains #b",
       " #yStrength and Grants #b",
       " #yStrength."
+    ],
+    "DIALOG": [
+      "Woof!",
+      "Bowow!",
+      "Awooo!"
     ]
   },
   "${ModID}:Meat": {
@@ -85,6 +90,11 @@
       "Deals #b",
       " damage. If the enemy is #yWeakened, applies #b",
       " #yConstricted."
+    ],
+    "DIALOG": [
+      "Grrr...",
+      "ROOOOARRR!",
+      "GROOOAAA!"
     ]
   },
   "${ModID}:Omen": {
@@ -128,6 +138,11 @@
       "Gains #b",
       " #yStrength and empowers its #yAttack to hit #b",
       " more times."
+    ],
+    "DIALOG": [
+      "SQUAK!",
+      "CACAW!",
+      "KRAW!"
     ]
   },
   "#{ModID}:Outcast": {
@@ -178,19 +193,50 @@
       "Empowered: Gains #b",
       " #yStrength and #b",
       " #yDexterity, and #yEmpowers its other #yMoves."
+    ],
+    "DIALOG": [
+      "Don't hurt me!",
+      "Tell me what to do!",
+      "Can I join you?"
     ]
   },
   "${ModID}:Oracle": {
     "NAME": "Sowru",
     "MOVES": [
       "Nothing",
-      "Fiery Blast",
+      "Furious Blast",
       "Peaceful Protest",
       "Chant",
       "Unknown"
     ],
     "INTENTS": [
+      "Sowru intends to make thoughtful sounds.",
+
+      "Sowru intends to attack an enemy for #b",
+      " damage.",
+
+      "Sowru intends to grant you #b",
+      " #yBlock and convince you to enter #yCalm.",
+
+      "Sowru intends to empower her passive #yVigor gain by #b",
+      ".",
+
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage.",
+
+      "Grants #b",
+      " #yBlock and causes you to enter #yCalm.",
+
+      "Empowers its passive #yVigor gain by #b",
+      "."
+    ],
+    "DIALOG": [
+      "I've come to study...",
+      "Show me the way, teacher!",
+      "Peace be with you!"
     ]
   },
   "${ModID}:Mechanic": {
@@ -203,7 +249,33 @@
       "Unknown"
     ],
     "INTENTS": [
+      "Blert intends to make smart sounds.",
+
+      "Blert intends to attack an enemy for #b",
+      " damage, and #yChannel a #yLightning orb.",
+
+      "Blert intends to grand you #b",
+      " #yBlock and #yChannel a #yFrost orb.",
+
+      "Blert intends to power up a Tesla to deal #b",
+      " damage to a random enemy at the start of every turn.",
+
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage and #yChannels 1 #yLightning.",
+
+      "Grants #b",
+      " #yBlock and #yChannels 1 #yFrost.",
+
+      "Empowers it to deal #b",
+      " damage to a random enemy at the start of each turn."
+    ],
+    "DIALOG": [
+      "n...Nice robot...",
+      "d...Do you know h...how to set this u...up?",
+      "uh...c...can i...uhm....oh"
     ]
   },
   "${ModID}:Spy": {
@@ -216,7 +288,41 @@
       "Unknown"
     ],
     "INTENTS": [
+      "Dzil intends to make quiet sounds.",
+
+      "Dzil intends to attack an enemy for #b",
+      " damage.",
+      " damage #b",
+      " times",
+
+      "Dzil intends to grant you #b",
+      " #yBlock this turn, #b",
+      " #yBlock next turn, and gain #b",
+      " #yDexterity",
+
+      "Dzil intends to evenly distribute #b",
+      " #yPoison among all enemies.",
+
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage.",
+      " damage #b",
+      " times.",
+
+      "Grants #b",
+      " #yBlock. Grants #b",
+      " #yBlock next turn. Gains #b",
+      " #yDexterity.",
+
+      "Applies #b",
+      " #yPoison, evenly distributed among all enemies."
+    ],
+    "DIALOG": [
+      "Can I see your knives?",
+      "Lemme at 'em!",
+      "I want to stab them too!"
     ]
   },
   "${ModID}:Maniac": {
@@ -229,7 +335,37 @@
       "Unknown"
     ],
     "INTENTS": [
+      "Kharn intends to make angry noises.",
+
+      "Kharn intends to attack an enemy for #b",
+      " damage #b",
+      " times.",
+
+      "Kharn intends to grant you #b",
+      " #yBlock, and apply #b",
+      " #yVulnerable to an enemy.",
+
+      "Kharn intends to grant you its current #yStrength + #b",
+      ".",
+
       "This Companion's intentions are #yUnknown."
+    ],
+    "INTENT_TOOLTIPS": [
+      "Deals #b",
+      " damage #b",
+      " times.",
+
+      "Grants #b",
+      " #yBlock and applies #b",
+      " #yVulnerable to an enemy.",
+
+      "Grants you its current #yStrength + #b",
+      "."
+    ],
+    "DIALOG": [
+      "GRRAAAUUU!!",
+      "RRRAAAAAGHHH!!",
+      "NNNGYAAAR!!"
     ]
   }
 }

@@ -85,6 +85,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     protected String[] MOVES;
     protected String[] INTENTS;
     protected String[] INTENT_TOOLTIPS;
+    protected String[] DIALOG;
 
     public static final byte DEFAULT = 0;
     public static final byte ATTACK = 1;
@@ -103,6 +104,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         MOVES = companionStrings.MOVES;
         INTENTS = companionStrings.INTENTS;
         INTENT_TOOLTIPS = companionStrings.INTENT_TOOLTIPS;
+        DIALOG = companionStrings.DIALOG;
         dialogX = offsetX + hb_w; //I can't find the right place :(
         dialogY = offsetY + hb_h;
     }

@@ -24,11 +24,11 @@ public class DarkRitual extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY), 0.5F));
         addToBot(new LoseHPAction(p, p, this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new RitualPower(p, 1, true)));
+        addToBot(new ApplyPowerAction(p, p, new RitualPower(p, secondMagic, true)));
     }
 
     public void upp() {
-        this.exhaust = false;
+        this.isInnate = true;
         uDesc();
     }
 }

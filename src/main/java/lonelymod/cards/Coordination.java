@@ -18,8 +18,7 @@ public class Coordination extends AbstractEasyCard {
 
     public Coordination() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
-        this.tags.add(Enums.COMPANION);
+        baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

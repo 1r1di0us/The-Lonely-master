@@ -9,9 +9,13 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import lonelymod.powers.CompanionDexterityPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.SpyPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -20,9 +24,10 @@ public class Spy extends AbstractCompanion {
     public static final String ID = makeID("Spy");
     public static final String IMG = makeCompanionPath("Spy.png");
 
-    private static final int ATTACK_DMG = 10;
-    private static final int PROTECT_BLK = 6;
-    private static final int SPECIAL_PWR_AMT = 5;
+    private static final int ATTACK_DMG = 6;
+    private static final int PROTECT_BLK = 5;
+    private static final int PROTECT_PWR_AMT = 1;
+    private static final int SPECIAL_DEBUFF_AMT = 25;
 
     private int attackDmg;
     private int protectBlk;
@@ -37,7 +42,7 @@ public class Spy extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new Power(this)));
+        addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
     }
 
     @Override
@@ -46,24 +51,37 @@ public class Spy extends AbstractCompanion {
             case DEFAULT:
                 int roll = MathUtils.random(1);
                 if (roll == 0) {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1A"));
+                    addToBot(new SFXAction("VO_GREMLINSPAZZY_1A"));
                 } else {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1B"));
+                    addToBot(new SFXAction("VO_GREMLINSPAZZY_1B"));
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                if (hasPower(SpyPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
+                        addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                }
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(SpyPower.POWER_ID)) {
+                    getPower(SpyPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 break;
             case SPECIAL:
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
+                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    addToBot(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                }
+                int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
+                addToBot(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
                 break;
             case UNKNOWN:
                 break;
@@ -77,24 +95,36 @@ public class Spy extends AbstractCompanion {
             case DEFAULT:
                 int roll = MathUtils.random(1);
                 if (roll == 0) {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1A"));
+                    addToBot(new SFXAction("VO_GREMLINSPAZZY_1A"));
                 } else {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1B"));
+                    addToBot(new SFXAction("VO_GREMLINSPAZZY_1B"));
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                if (hasPower(SpyPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
+                        addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                }
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                break;
+                if (hasPower(SpyPower.POWER_ID)) {
+                    getPower(SpyPower.POWER_ID).onSpecificTrigger();
+                }
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
+                addToTop(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
+                int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
+                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    addToTop(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                }
                 break;
         }
     }
@@ -117,6 +147,7 @@ public class Spy extends AbstractCompanion {
 
     @Override
     public void callSpecial() {
+        getTarget();
         setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
 
@@ -130,22 +161,29 @@ public class Spy extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
+                if (this.hasPower(SpyPower.POWER_ID) && this.getPower(SpyPower.POWER_ID).amount > 1) {
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[3] + this.getPower(SpyPower.POWER_ID).amount + INTENTS[4];
+                } else if (this.hasPower(SpyPower.POWER_ID) && this.getPower(SpyPower.POWER_ID).amount == 1) {
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
+                } else {
+                    //set up incorrectly
+                    this.intentTip.body = "";
+                }
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[3] + this.intentBlk + INTENTS[4];
+                this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + this.intentBlk + INTENTS[7] + PROTECT_PWR_AMT + INTENTS[8];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_PWR_AMT + INTENTS[6] + SPECIAL_PWR_AMT + INTENTS[7];
+                this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[8];
+                this.intentTip.body = INTENTS[11];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -165,19 +203,26 @@ public class Spy extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1];
+                    if (this.hasPower(SpyPower.POWER_ID) && this.getPower(SpyPower.POWER_ID).amount > 1) {
+                        return INTENT_TOOLTIPS[0] + this.intentDmg + INTENT_TOOLTIPS[2] + this.getPower(SpyPower.POWER_ID).amount + INTENT_TOOLTIPS[3];
+                    } else if (this.hasPower(SpyPower.POWER_ID) && this.getPower(SpyPower.POWER_ID).amount == 1) {
+                        return INTENT_TOOLTIPS[0] + this.intentDmg + INTENT_TOOLTIPS[1];
+                    } else {
+                        //set up incorrectly
+                        return "";
+                    }
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[2] + this.block.get(1).output + INTENT_TOOLTIPS[3];
+                    return INTENT_TOOLTIPS[4] + this.block.get(0).output + INTENT_TOOLTIPS[5] + this.block.get(0).output + INTENT_TOOLTIPS[6] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[7];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[5] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[6];
+                    return INTENT_TOOLTIPS[8] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[9];
                 }
         }
         return "";

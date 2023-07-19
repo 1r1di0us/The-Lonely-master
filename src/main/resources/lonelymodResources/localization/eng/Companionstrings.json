@@ -240,7 +240,7 @@
     ]
   },
   "${ModID}:Mechanic": {
-    "NAME": "Blert",
+    "NAME": "Blirt",
     "MOVES": [
       "Nothing",
       "Electrocute",
@@ -257,7 +257,7 @@
       "Blert intends to grand you #b",
       " #yBlock and #yChannel a #yFrost orb.",
 
-      "Blert intends to power up a Tesla to deal #b",
+      "Blert intends to power up a Robo Arm to deal #b",
       " damage to a random enemy at the start of every turn.",
 
       "This Companion's intentions are #yUnknown."

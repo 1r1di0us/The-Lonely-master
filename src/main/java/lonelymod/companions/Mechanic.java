@@ -5,14 +5,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.orbs.Frost;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MechanicPower;
+import lonelymod.powers.RoboArmPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -24,12 +28,13 @@ public class Mechanic extends AbstractCompanion {
     private static final int ATTACK_DMG = 6;
     private static final int PROTECT_BLK = 5;
     private static final int SPECIAL_PWR_AMT = 1;
+    private static final int SPECIAL_DMG_AMT = 5;
 
     private int attackDmg;
     private int protectBlk;
 
     public Mechanic(float drawX, float drawY) {
-        super("Blert", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
+        super("Blirt", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
@@ -53,18 +58,19 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                addToBot(new ChannelAction(new Lightning()));
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                addToBot(new ChannelAction(new Frost()));
                 break;
             case SPECIAL:
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToBot(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
                 break;
             case UNKNOWN:
                 break;
@@ -84,18 +90,19 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                addToTop(new ChannelAction(new Lightning()));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToTop(new ChannelAction(new Frost()));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToTop(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
                 break;
         }
     }
@@ -141,12 +148,12 @@ public class Mechanic extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_PWR_AMT + INTENTS[6] + SPECIAL_PWR_AMT + INTENTS[7];
+                this.intentTip.body = INTENTS[5] + SPECIAL_DMG_AMT + INTENTS[6];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[8];
+                this.intentTip.body = INTENTS[7];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -172,13 +179,13 @@ public class Mechanic extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[2] + this.block.get(1).output + INTENT_TOOLTIPS[3];
+                    return INTENT_TOOLTIPS[2] + this.block.get(0).output + INTENT_TOOLTIPS[3];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[5] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[6];
+                    return INTENT_TOOLTIPS[4] + SPECIAL_DMG_AMT + INTENT_TOOLTIPS[5];
                 }
         }
         return "";

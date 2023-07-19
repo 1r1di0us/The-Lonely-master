@@ -60,7 +60,7 @@ public class Oracle extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ChangeStanceAction("Calm"));
@@ -93,7 +93,7 @@ public class Oracle extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToTop(new ChangeStanceAction("Calm"));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -176,7 +176,7 @@ public class Oracle extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[2] + this.block.get(1).output + INTENT_TOOLTIPS[3];
+                    return INTENT_TOOLTIPS[2] + this.block.get(0).output + INTENT_TOOLTIPS[3];
                 }
             case SPECIAL:
                 if (head) {

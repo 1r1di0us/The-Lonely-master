@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.ManiacPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -20,8 +22,10 @@ public class Maniac extends AbstractCompanion {
     public static final String ID = makeID("Maniac");
     public static final String IMG = makeCompanionPath("Maniac.png");
 
-    private static final int ATTACK_DMG = 10;
-    private static final int PROTECT_BLK = 6;
+    private static final int ATTACK_DMG = 4;
+    private static final int ATTACK_AMT = 2;
+    private static final int PROTECT_BLK = 4;
+    private static final int PROTECT_DEBUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 5;
 
     private int attackDmg;
@@ -37,33 +41,39 @@ public class Maniac extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new Power(this)));
+        addToBot(new ApplyPowerAction(this, this, new ManiacPower(this)));
     }
 
     @Override
     public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
-                int roll = MathUtils.random(1);
+                int roll = MathUtils.random(2);
                 if (roll == 0) {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1A"));
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1A"));
+                } else if (roll == 1) {
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1B"));
                 } else {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1B"));
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1C"));
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                if (this.hasPower(StrengthPower.POWER_ID))
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, (this.getPower(StrengthPower.POWER_ID).amount + SPECIAL_PWR_AMT))));
+                else
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 break;
             case UNKNOWN:
                 break;
@@ -75,26 +85,32 @@ public class Maniac extends AbstractCompanion {
     public void performTurn(byte move) {
         switch (move) {
             case DEFAULT:
-                int roll = MathUtils.random(1);
+                int roll = MathUtils.random(2);
                 if (roll == 0) {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1A"));
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1A"));
+                } else if (roll == 1) {
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1B"));
                 } else {
-                    addToBot(new SFXAction("VO_GREMLINDOPEY_1B"));
+                    addToBot(new SFXAction("VO_GREMLINANGRY_1C"));
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                if (this.hasPower(StrengthPower.POWER_ID))
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, (this.getPower(StrengthPower.POWER_ID).amount + SPECIAL_PWR_AMT))));
+                else
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
     }
@@ -112,6 +128,7 @@ public class Maniac extends AbstractCompanion {
 
     @Override
     public void callProtect() {
+        getTarget();
         setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
     }
 
@@ -130,22 +147,22 @@ public class Maniac extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
+                this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + ATTACK_AMT + INTENTS[3];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[3] + this.intentBlk + INTENTS[4];
+                this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_DEBUFF_AMT + INTENTS[6];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_PWR_AMT + INTENTS[6] + SPECIAL_PWR_AMT + INTENTS[7];
+                this.intentTip.body = INTENTS[7] + SPECIAL_PWR_AMT + INTENTS[8];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[8];
+                this.intentTip.body = INTENTS[9];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -165,19 +182,19 @@ public class Maniac extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1];
+                    return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + ATTACK_AMT + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[2] + this.block.get(1).output + INTENT_TOOLTIPS[3];
+                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_DEBUFF_AMT + INTENT_TOOLTIPS[5];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[5] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[6];
+                    return INTENT_TOOLTIPS[6] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[7];
                 }
         }
         return "";

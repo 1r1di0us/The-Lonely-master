@@ -295,7 +295,7 @@
   "${ModID}:OutcastPower": {
     "NAME": "Empower",
     "DESCRIPTIONS": [
-      "#yCalling the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
+      "#Performing the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
       ", ",
       "#yAttack",
       "#yProtect",
@@ -307,14 +307,37 @@
   "${ModID}:OraclePower": {
     "NAME": "Chant",
     "DESCRIPTIONS": [
-      "At the start of each turn, gains #b",
+      "At the start of each turn, she gains #b",
       " #yVigor."
     ]
   },
   "${ModID}:MechanicPower": {
     "NAME": "Plugged In",
     "DESCRIPTIONS": [
-      "Whenever you gain #yFocus, gains an equal amount of #yStrength and #yDexterity."
+      "Whenever you gain #yFocus, she gains an equal amount of #yStrength and #yDexterity."
+    ]
+  },
+  "${ModID}:RoboArmPower": {
+    "NAME": "Robo Arm",
+    "DESCRIPTIONS": [
+      "At the start of your turn, deal #b",
+      " damage to a random enemy #b",
+      " times."
+    ]
+  },
+  "${ModID}:SpyPower": {
+    "NAME": "Crafty",
+    "DESCRIPTIONS": [
+      "Give him #yShiv cards to empower his next attack! His next attack will hit #b",
+      " time.",
+      " times."
+    ]
+  },
+  "${ModID}:ManiacPower": {
+    "NAME": "Zealous",
+    "DESCRIPTIONS": [
+      "Whenever you lose HP, he gains #b",
+      " #yStrength."
     ]
   }
 }

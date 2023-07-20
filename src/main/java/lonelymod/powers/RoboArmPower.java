@@ -25,8 +25,6 @@ public class RoboArmPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private final int damage = 5;
-
     public RoboArmPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 1);
 
@@ -50,11 +48,7 @@ public class RoboArmPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
-    }
-
-    public void atEndOfRound() {
-        addToBot(new DamageRandomEnemyAction(new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
 
     @Override

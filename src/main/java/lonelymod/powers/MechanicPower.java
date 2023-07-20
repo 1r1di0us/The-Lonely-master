@@ -5,13 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
@@ -48,19 +45,9 @@ public class MechanicPower extends AbstractEasyPower implements CloneablePowerIn
         updateDescription();
     }
 
-    @Override
-    public void onSpecificTrigger() {
-        if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID)) {
-            if (this.owner.hasPower(StrengthPower.POWER_ID))
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount - this.owner.getPower(StrengthPower.POWER_ID).amount))));
-            if (this.owner.hasPower(CompanionDexterityPower.POWER_ID))
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, (AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount - this.owner.getPower(CompanionDexterityPower.POWER_ID).amount))));
-        } else {
-            if (this.owner.hasPower(StrengthPower.POWER_ID))
-                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.owner.getPower(StrengthPower.POWER_ID)));
-            if (this.owner.hasPower(CompanionDexterityPower.POWER_ID))
-                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.owner.getPower(CompanionDexterityPower.POWER_ID)));
-        }
+    public void onGainFocus(int amt) {
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, amt)));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, amt)));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -70,10 +71,12 @@ public class Maniac extends AbstractCompanion {
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                if (this.hasPower(StrengthPower.POWER_ID))
+                if (this.hasPower(StrengthPower.POWER_ID)) {
+                    addToBot(new RemoveSpecificPowerAction(this, this, getPower(StrengthPower.POWER_ID)));
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, (this.getPower(StrengthPower.POWER_ID).amount + SPECIAL_PWR_AMT))));
-                else
+                } else {
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
+                }
                 break;
             case UNKNOWN:
                 break;

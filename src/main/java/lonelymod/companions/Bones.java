@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import lonelymod.actions.CallMoveAction;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;

@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MechanicPower;
@@ -28,7 +27,6 @@ public class Mechanic extends AbstractCompanion {
     private static final int ATTACK_DMG = 6;
     private static final int PROTECT_BLK = 5;
     private static final int SPECIAL_PWR_AMT = 1;
-    private static final int SPECIAL_DMG_AMT = 5;
 
     private int attackDmg;
     private int protectBlk;
@@ -62,12 +60,18 @@ public class Mechanic extends AbstractCompanion {
                 if (hasPower(CompanionVigorPower.POWER_ID))
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ChannelAction(new Lightning()));
+                if (hasPower(RoboArmPower.POWER_ID))
+                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++)
+                        addToBot(new ChannelAction(new Lightning()));
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ChannelAction(new Frost()));
+                if (hasPower(RoboArmPower.POWER_ID))
+                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++)
+                        addToBot(new ChannelAction(new Frost()));
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
@@ -138,22 +142,28 @@ public class Mechanic extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
+                if (hasPower(RoboArmPower.POWER_ID))
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[4];
+                else
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + 1 + INTENTS[3];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[3] + this.intentBlk + INTENTS[4];
+                if (hasPower(RoboArmPower.POWER_ID))
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[8];
+                else
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + 1 + INTENTS[7];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_DMG_AMT + INTENTS[6];
+                this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[7];
+                this.intentTip.body = INTENTS[11];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -173,19 +183,25 @@ public class Mechanic extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1];
+                    if (hasPower(RoboArmPower.POWER_ID))
+                        return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[2];
+                    else
+                        return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + 1 + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[2] + this.block.get(0).output + INTENT_TOOLTIPS[3];
+                    if (hasPower(RoboArmPower.POWER_ID))
+                        return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[5];
+                    else
+                        return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + 1 + INTENT_TOOLTIPS[5];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_DMG_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[6] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[7];
                 }
         }
         return "";

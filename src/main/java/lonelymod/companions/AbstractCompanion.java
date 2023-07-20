@@ -35,14 +35,12 @@ import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
 import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.powers.TargetPower;
-import lonelymod.powers.WildFormPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
 
 public abstract class AbstractCompanion extends AbstractMonster {
@@ -60,7 +58,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public AbstractCreature targetEnemy;
     public boolean isTargeted;
-    //public EnemyMoveInfo move;
     public CompanionMoveInfo move;
 
     private Color nameColor = new Color();
@@ -245,7 +242,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public void setMove(byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
-        this.setMove((String)null, nextMove, intent, base, multiplier, isMulti, isAttack);
+        this.setMove(null, nextMove, intent, base, multiplier, isMulti, isAttack);
     }
 
     public void setMove(String moveName, byte nextMove, Intent intent, int base, boolean isAttack) {
@@ -253,11 +250,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public void setMove(byte nextMove, Intent intent, int base, boolean isAttack) {
-        this.setMove((String)null, nextMove, intent, base, 0, false, isAttack);
+        this.setMove(null, nextMove, intent, base, 0, false, isAttack);
     }
 
     public void setMove(byte nextMove, Intent intent) {
-        this.setMove((String)null, nextMove, intent, -1, 0, false, false);
+        this.setMove(null, nextMove, intent, -1, 0, false, false);
     }
 
     //important update methods:
@@ -277,6 +274,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             this.intentHb.update();
             this.healthHb.update();
             if ((this.hb.hovered || this.intentHb.hovered || this.healthHb.hovered) && !AbstractDungeon.player.isDraggingCard) {
+                //this is normally where MonsterGroup.hoveredMonster would be set so you can target it.
                 CompanionField.hoveredCompanion.set(AbstractDungeon.player, this);
             }
             if (CompanionField.hoveredCompanion.get(AbstractDungeon.player) == null)

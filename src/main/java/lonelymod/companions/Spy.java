@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.tempCards.Shiv;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -226,5 +229,13 @@ public class Spy extends AbstractCompanion {
                 }
         }
         return "";
+    }
+
+    public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
+        if (card instanceof Shiv) {
+            addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
+        } else {
+            return;
+        }
     }
 }

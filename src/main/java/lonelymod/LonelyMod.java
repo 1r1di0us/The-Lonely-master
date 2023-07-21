@@ -156,6 +156,7 @@ public class LonelyMod implements
                 .setDefaultSeen(true)
                 .notPackageFilter("lonelymod.cards.democards.complex")
                 .notPackageFilter("lonelymod.cards.democards.simple")
+                //.notPackageFilter("lonelymod.cards.colorlesssummons")
                 .cards();
     }
 

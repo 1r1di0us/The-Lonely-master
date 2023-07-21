@@ -145,7 +145,7 @@
       "KRAW!"
     ]
   },
-  "#{ModID}:Outcast": {
+  "${ModID}:Outcast": {
     "NAME": "Fring",
     "MOVES": [
       "Nothing",

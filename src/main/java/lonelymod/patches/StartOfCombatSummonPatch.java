@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyMod;
 import lonelymod.actions.SummonOutcastAction;
+import lonelymod.actions.SummonSpyAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.OmenCard;
 
@@ -29,15 +30,17 @@ public class StartOfCombatSummonPatch {
         if (needsCompanion && !(__instance.hasRelic(LonelyMod.makeID("BonesStomach"))) && !(__instance.hasRelic(LonelyMod.makeID("MeatsStomach")))) {
             /*if (__instance instanceof Ironclad) {
                 //summon maniac
-            } else if (__instance instanceof TheSilent) {
+            } else*/
+            if (__instance instanceof TheSilent) {
                 //summon spy
-            } else if (__instance instanceof Defect) {
+                AbstractDungeon.actionManager.addToBottom(new SummonSpyAction());
+            /*} else if (__instance instanceof Defect) {
                 //summon mechanic
             } else if (__instance instanceof Watcher) {
-                //summon oracle
-            } else {*/
-            AbstractDungeon.actionManager.addToBottom(new SummonOutcastAction());
-            //}
+                //summon oracle*/
+            } else {
+                AbstractDungeon.actionManager.addToBottom(new SummonOutcastAction());
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -92,6 +93,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte NONE = 5;
     private boolean isBlockModified = false;
 
+    //in order to target the companion with a card you must add the card to CompanionField.playableCards.get(AbstractDungeon.player) in your summon
+    //then you must Use useTheCard to implement the seperate functionality when the card is played on the companion.
 
     public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -169,6 +172,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void updateIntentTip();
 
     public abstract String getKeywordMoveTip(byte move, boolean head);
+
+    public abstract void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m);
 
     @Override
     public void init() {
@@ -274,7 +279,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
             this.intentHb.update();
             this.healthHb.update();
             if ((this.hb.hovered || this.intentHb.hovered || this.healthHb.hovered) && !AbstractDungeon.player.isDraggingCard) {
-                //this is normally where MonsterGroup.hoveredMonster would be set so you can target it.
                 CompanionField.hoveredCompanion.set(AbstractDungeon.player, this);
             }
             if (CompanionField.hoveredCompanion.get(AbstractDungeon.player) == null)

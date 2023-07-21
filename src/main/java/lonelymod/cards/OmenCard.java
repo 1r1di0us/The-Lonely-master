@@ -39,9 +39,9 @@ public class OmenCard extends AbstractEasyCard {
         addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
         addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.MAGENTA), 0.0F, true));
         //remove strength, kill current companion, summon omen, make primal instincts, call protect
+        addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
         addToBot(new SummonOmenAction());
-        addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
         if (upgraded) {
             addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));

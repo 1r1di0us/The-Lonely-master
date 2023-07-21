@@ -27,8 +27,9 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
     private boolean lostHpThisTurn;
+    private int platedArmorAmount;
 
-    public ResolvePower(AbstractCreature owner, int amount) {
+    public ResolvePower(AbstractCreature owner, int amount, int platedArmorAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -38,6 +39,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
         this.amount = amount;
         this.isPostActionPower = true;
         lostHpThisTurn = false;
+        this.platedArmorAmount = platedArmorAmount * amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -60,7 +62,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.amount), this.amount));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
             lostHpThisTurn = true;
         }
         return damageAmount;
@@ -68,11 +70,11 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + platedArmorAmount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new ResolvePower(this.owner, this.amount);
+        return new ResolvePower(this.owner, this.amount, this.platedArmorAmount);
     }
 }

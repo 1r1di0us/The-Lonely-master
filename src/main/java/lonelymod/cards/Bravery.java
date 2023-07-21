@@ -5,11 +5,10 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.powers.BraveryPower;
-import lonelymod.powers.FoolishBraveryPower;
+import lonelymod.powers.FearlessBraveryPower;
 
 public class Bravery extends AbstractEasyCard {
     public final static String ID = makeID("Bravery");
@@ -24,8 +23,8 @@ public class Bravery extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new BraveryPower(p, magicNumber), magicNumber));
-        if (upgraded) addToBot(new ApplyPowerAction(p, p, new FoolishBraveryPower(p, secondMagic)));
+        if (upgraded) addToBot(new ApplyPowerAction(p, p, new FearlessBraveryPower(p, 1, magicNumber, secondMagic)));
+        else addToBot(new ApplyPowerAction(p, p, new BraveryPower(p, 1, magicNumber), magicNumber));
     }
     
     @Override

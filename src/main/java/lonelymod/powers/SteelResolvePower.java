@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,7 +15,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import lonelymod.LonelyMod;
+import lonelymod.actions.TriggerPlatedArmorAction;
 import lonelymod.util.TexLoader;
 
 
@@ -29,7 +32,9 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
     private boolean lostHpThisTurn;
-    public SteelResolvePower(AbstractCreature owner, int amount) {
+    private int platedArmorAmount;
+
+    public SteelResolvePower(AbstractCreature owner, int amount, int platedArmorAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -38,6 +43,7 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
         isTurnBased = false;
         this.isPostActionPower = true;
         lostHpThisTurn = false;
+        this.platedArmorAmount = platedArmorAmount * amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -60,9 +66,9 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            //triggers plated armor
-            if (AbstractDungeon.player.hasPower("Plated Armor"))
-                addToTop(new GainBlockAction(this.owner, this.owner, AbstractDungeon.player.getPower("Plated Armor").amount));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
+            //"triggers" plated armor
+            addToBot(new TriggerPlatedArmorAction(this.owner));
             lostHpThisTurn = true;
         }
         return damageAmount;
@@ -70,11 +76,11 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0] + this.platedArmorAmount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new SteelResolvePower(this.owner, this.amount);
+        return new SteelResolvePower(this.owner, this.amount, this.platedArmorAmount);
     }
 }

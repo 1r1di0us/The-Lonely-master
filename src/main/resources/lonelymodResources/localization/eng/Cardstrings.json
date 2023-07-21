@@ -330,9 +330,37 @@
     "DESCRIPTION": "At the start of your turn, discard 1 random card. Whenever you lonelymod:Call a move, it is performed immediately.",
     "UPGRADE_DESCRIPTION": "At the start of your turn, choose 1 card to discard. Whenever you lonelymod:Call a move, it is performed immediately."
   },
+  "${ModID}:TheManiac": {
+    "NAME": "The Maniac",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Kharn. NL Exhaust."
+  },
   "${ModID}:TheSpy": {
     "NAME": "The Spy",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon The Spy. NL Exhaust."
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Dzil. NL Exhaust."
+  },
+  "${ModID}:TheMechanic": {
+    "NAME": "The Mechanic",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Blirt. NL Exhaust."
+  },
+  "${ModID}:TheOracle": {
+    "NAME": "The Oracle",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Sowru. NL Exhaust."
+  },
+  "${ModID}:TheOutcast": {
+    "NAME": "The Outcast",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Fring. NL Exhaust."
+  },
+  "${ModID}:TheDryhound": {
+    "NAME": "The Dryhound",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Bones. NL Exhaust."
+  },
+  "${ModID}:TheDrybear": {
+    "NAME": "The Drybear",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Meat. NL Exhaust."
+  },
+  "${ModID}:TheRavyn": {
+    "NAME": "The Ravyn",
+    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon Omen. NL Exhaust."
   },
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",

@@ -16,9 +16,9 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class UtterDesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
 
-    public static final String POWER_ID = makeID("DesperationPower");
+    public static final String POWER_ID = makeID("UtterDesperationPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -26,8 +26,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-
-    public DesperationPower(AbstractCreature owner, int amount) {
+    public UtterDesperationPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -64,7 +63,6 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
                 } else {*/
                 AbstractCard cardToPlay = AbstractDungeon.player.hand.getRandomCard(true);
                 cardToPlay.freeToPlayOnce = true;
-                cardToPlay.exhaust = true;
                 addToBot(new NewQueueCardAction(cardToPlay, true, true, true));
                 //}
             }
@@ -82,7 +80,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public AbstractPower makeCopy() {
-        return new DesperationPower(this.owner, this.amount);
+        return new UtterDesperationPower(this.owner, this.amount);
     }
 
 }

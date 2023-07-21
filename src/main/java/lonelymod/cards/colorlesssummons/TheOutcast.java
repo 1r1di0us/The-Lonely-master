@@ -6,17 +6,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.AutoplayWaitAction;
-import lonelymod.actions.SummonSpyAction;
+import lonelymod.actions.SummonOutcastAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.fields.CompanionField;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class TheSpy extends AbstractEasyCard {
-    public final static String ID = makeID("TheSpy");
+public class TheOutcast extends AbstractEasyCard {
+    public final static String ID = makeID("TheOutcast");
 
 
-    public TheSpy() {
+    public TheOutcast() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
@@ -30,7 +30,7 @@ public class TheSpy extends AbstractEasyCard {
         addToBot(new DrawCardAction(p, magicNumber));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
-        addToBot(new SummonSpyAction());
+        addToBot(new SummonOutcastAction());
     }
 
     public void upp() {

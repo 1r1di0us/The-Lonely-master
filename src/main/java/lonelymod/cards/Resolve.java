@@ -23,10 +23,8 @@ public class Resolve extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ResolvePower(p, magicNumber), magicNumber));
-        if (upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new SteelResolvePower(p, 1)));
-        }
+        if (upgraded) addToBot(new ApplyPowerAction(p, p, new SteelResolvePower(p, 1, this.magicNumber)));
+        else addToBot(new ApplyPowerAction(p, p, new ResolvePower(p, 1, magicNumber)));
     }
     
     @Override

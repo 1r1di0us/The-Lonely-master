@@ -11,17 +11,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class FoolishBraveryPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class FearlessBraveryPower extends AbstractEasyPower implements CloneablePowerInterface {
    
-    public static final String POWER_ID = makeID("FoolishBraveryPower");
+    public static final String POWER_ID = makeID("FearlessBraveryPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -29,7 +27,10 @@ public class FoolishBraveryPower extends AbstractEasyPower implements CloneableP
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    public FoolishBraveryPower(AbstractCreature owner, int amount) {
+    private int vigAmount;
+    private int stamAmount;
+
+    public FearlessBraveryPower(AbstractCreature owner, int amount, int vigAmount, int stamAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -37,6 +38,8 @@ public class FoolishBraveryPower extends AbstractEasyPower implements CloneableP
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.vigAmount = vigAmount * amount;
+        this.stamAmount = stamAmount * amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -54,7 +57,8 @@ public class FoolishBraveryPower extends AbstractEasyPower implements CloneableP
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.amount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.stamAmount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseDexterityPower(this.owner, this.amount)));
                 return;
@@ -64,11 +68,11 @@ public class FoolishBraveryPower extends AbstractEasyPower implements CloneableP
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.vigAmount + DESCRIPTIONS[1] + this.stamAmount + DESCRIPTIONS[2];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new FoolishBraveryPower(this.owner, this.amount);
+        return new FearlessBraveryPower(this.owner, this.amount, this.vigAmount, this.stamAmount);
     }
 }

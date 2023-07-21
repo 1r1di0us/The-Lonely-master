@@ -135,36 +135,31 @@
     "NAME": "Bravery",
     "DESCRIPTIONS": [
       "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
-      " temporary #yStrength."
+      " #yVigor."
     ]
   },
-  "${ModID}:FoolishBraveryPower": {
-    "NAME": "Foolish Bravery",
+  "${ModID}:FearlessBraveryPower": {
+    "NAME": "Fearless Bravery",
     "DESCRIPTIONS": [
       "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
-      " temporary #yDexterity."
+      " #yVigor and #b",
+      " #yStamina."
     ]
   },
   "${ModID}:DesperationPower": {
     "NAME": "Desperation",
     "DESCRIPTIONS": [
-      "The first #b",
-      " time you run out of Energy each turn, gain #y1 Energy, which you can only use on attacks.",
-      " times you run out of Energy each turn, gain #y1 Energy, which you can only use on attacks."
+      "At the end of your turn, play #b",
+      " random card from your hand and #yExhaust it.",
+      " random cards from your hand and #yExhaust it."
     ]
   },
-  "${ModID}:DesperatePower": {
-    "NAME": "Desperate",
+  "${ModID}:UtterDesperationPower": {
+    "NAME": "Utter Desperation",
     "DESCRIPTIONS": [
-      "For the rest of the turn, you can only play attack cards."
-    ]
-  },
-  "${ModID}:FinalDesperationPower": {
-    "NAME": "Final Desperation",
-    "DESCRIPTIONS": [
-      "The first #b",
-      " time you run out of energy each turn, draw #y1 card.",
-      " times you run out of energy each turn, draw #y1 card."
+      "At the end of your turn, play #b",
+      " random card from your hand.",
+      " random cards from your hand."
     ]
   },
   "${ModID}:MuscleMemoryPower": {
@@ -177,14 +172,15 @@
   "${ModID}:ResolvePower": {
     "NAME": "Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose #rHP, gain #b",
+      "Whenever you lose HP, gain #b",
       " #yPlated #yArmor."
     ]
   },
   "${ModID}:SteelResolvePower": {
     "NAME": "Steel Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose #rHP, trigger #yPlated #yArmor"
+      "Whenever you lose HP, gain #b",
+      " #yPlated #yArmor, and trigger #yPlated #yArmor."
     ]
   },
   "${ModID}:WildFormPower": {

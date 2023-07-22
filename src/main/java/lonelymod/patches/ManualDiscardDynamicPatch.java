@@ -22,6 +22,8 @@ import javassist.CtBehavior;
 import javassist.NotFoundException;
 
 //this doesn't matter?
+//nope. its all useless.
+//but I'm keeping it here so I can look back and remember how i did it.
 @SpirePatch( 
                 clz=CardCrawlGame.class,
                 method=SpirePatch.CONSTRUCTOR

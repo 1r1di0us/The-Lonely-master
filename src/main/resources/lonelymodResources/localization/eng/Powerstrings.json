@@ -38,20 +38,10 @@
       " #yStrength"
     ]
   },
-  "${ModID}:OverflowingQuiverPower": {
-    "NAME": "Overflowing Quiver Next Turn",
-    "DESCRIPTIONS": [
-      "At the start of the next turn, create #b",
-      " Overflowing Quiver in your hand.",
-      " Overflowing Quivers in your hand."
-    ]
-  },
   "${ModID}:PinDownPower": {
     "NAME": "Pin Down",
     "DESCRIPTIONS": [
       "This turn, whenever you deal unblocked attack damage to an enemy, apply #b",
-      " #yVulnerable.",
-      " #yVulnerable and #b",
       " #yTarget."
 
     ]
@@ -101,15 +91,6 @@
       " more."
     ]
   },
-  "${ModID}:ShockAndAwePower": {
-    "NAME": "Shock and Awe",
-    "DESCRIPTIONS": [
-      "At the start of the next turn, ",
-      "At the start of the next #b",
-      " turns, ",
-      " will be stunned."
-    ]
-  },
   "${ModID}:DefyDeathPower": {
     "NAME": "Defying Death",
     "DESCRIPTIONS": [
@@ -118,17 +99,11 @@
       " turns."
     ]
   },
-  "${ModID}:OldOmenPower": {
-    "NAME": "Omen",
+  "${ModID}:LonelyPower": {
+    "NAME": "Lonely",
     "DESCRIPTIONS": [
-      "The Ravyn, #yOmen, is now your #yCompanion. #yFeed him and he will #rdestroy your enemies. NL Upon arrival, #yOmen will attempt to protect you. NL #yOmen's attack currently hits #b",
-      " times."
-    ]
-  },
-  "${ModID}:AncientPowerPower": {
-    "NAME": "Ancient Power",
-    "DESCRIPTIONS": [
-      "Whenever a card is discarded during your turn, play it and #yExhaust it."
+      "At the start of next turn, play #y",
+      "."
     ]
   },
   "${ModID}:BraveryPower": {
@@ -188,29 +163,6 @@
     "DESCRIPTIONS": [
       "At the start of your turn, discard 1 random card. Whenever you #yCall a move, it is performed immediately.",
       "At the start of your turn, choose 1 card to discard. Whenever you #yCall a move, it is performed immediately."
-    ]
-  },
-  "${ModID}:IOUPower": {
-    "NAME": "I Owe You",
-    "DESCRIPTIONS": [
-      "I owe you #b",
-      " relics, but I'm too #rlazy right now."
-    ]
-  },
-  "${ModID}:SquirrelPower": {
-    "NAME": "Chip",
-    "DESCRIPTIONS": [
-      "Chip the Squirrel has answered your #yCall and joined you in combat!"
-    ]
-  },
-  "${ModID}:SquirrelDigPower": {
-    "NAME": "Digging",
-    "DESCRIPTIONS": [
-      "Chip is currently digging underground. At the start of next turn, he will pop out and deal #b",
-      " damage #b",
-      " times to ",
-      ".",
-      "Nobody knows what this does."
     ]
   },
   "${ModID}:CompanionVigorPower": {

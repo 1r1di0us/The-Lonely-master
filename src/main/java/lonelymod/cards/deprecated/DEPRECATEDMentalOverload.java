@@ -1,4 +1,4 @@
-package lonelymod.cards;
+package lonelymod.cards.deprecated;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -8,14 +8,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.MentalOverloadAction;
+import lonelymod.cards.AbstractEasyCard;
 import lonelymod.interfaces.TriggerOnHandSizeInterface;
 
-public class MentalOverload extends AbstractEasyCard implements TriggerOnHandSizeInterface {
+public class DEPRECATEDMentalOverload extends AbstractEasyCard implements TriggerOnHandSizeInterface {
     public final static String ID = makeID("MentalOverload");
 
     int baseCost;
 
-    public MentalOverload() {
+    public DEPRECATEDMentalOverload() {
         super(ID, 9, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
         baseCost = this.cost;
         baseDamage = 24;

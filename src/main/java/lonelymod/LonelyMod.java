@@ -5,10 +5,11 @@ import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.localization.*;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.ImpatientStrikes;
+import lonelymod.cards.Strikeout;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.cards.cardvars.ThirdMagicNumber;
@@ -42,9 +43,8 @@ public class LonelyMod implements
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
-        OnPlayerTurnStartSubscriber,
-        OnStartBattleSubscriber,
-        PostBattleSubscriber {
+        PostBattleSubscriber,
+        OnPlayerDamagedSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -156,7 +156,7 @@ public class LonelyMod implements
                 .setDefaultSeen(true)
                 .notPackageFilter("lonelymod.cards.democards.complex")
                 .notPackageFilter("lonelymod.cards.democards.simple")
-                //.notPackageFilter("lonelymod.cards.colorlesssummons")
+                .notPackageFilter("lonelymod.cards.deprecated")
                 .cards();
     }
 
@@ -216,6 +216,7 @@ public class LonelyMod implements
 
     @Override
     public void receiveOnPlayerTurnStartPostDraw() {
+        Strikeout.turnsSinceDamaged++;
         // This makes the return mechanic work:
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (ReturnField.willReturn.get(c)) {
@@ -249,39 +250,19 @@ public class LonelyMod implements
         }
         return false;
     }*/
-    
-    @Override
-    public void receiveOnPlayerTurnStart() {
-        //calls start of turn ability and resets attackCounter (which is used for ImpatientStrikes)
-        ImpatientStrikes.attackCounter = 0;
-        //calls abilities at the start of each turn. I have changed this to be recursive on every ability while we still use orbs.
-        /*if (AbstractDungeon.player.hasPower(makeID("WildFormPower"))) { //if WildForm is active
-            AbstractDungeon.player.getPower(makeID("WildFormPower")).onSpecificTrigger();
-        } else if (AbstractDungeon.player instanceof LonelyCharacter) { //or if this is the lonely
-            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        } else if (AbstractDungeon.player.hasPower(makeID("SquirrelPower"))) { //or if an action is called without any companions, the player gets the squirrel power
-            AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        }*/
-        
-        // normally, orbs only happen if you have prismatic shard, have relevant run modifiers, or are the defect (or lonely as of now)
-        // but if we did the same thing for companions, prismatic shard would just give you 3 metallicize at the start of combat
-        // so instead, chip will always show up if you call an attack by any means, whether thats foreign influence or not.
-        // perhaps we should instead change the base companion to do nothing as its basic ability, and give it a cool passive or something.
-        // I also really like the idea of having the base companion be different for each base character.
-    }
-
-    @Override
-    public void receiveOnBattleStart(AbstractRoom arg0) {
-        //calls the basic ability at the start of combat. Recursive stuff means the companion will be there forever, unless you channel lightning or something.
-        //if (AbstractDungeon.player instanceof LonelyCharacter) {
-        //    AbstractDungeon.actionManager.addToTop(new CompanionBasicAbilityAction());
-        //}
-    }
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
+    }
+
+    @Override
+    public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
+        if (damageInfo.type == DamageInfo.DamageType.NORMAL && i > AbstractDungeon.player.currentBlock) {
+            Strikeout.turnsSinceDamaged = 0;
+        }
+        return i;
     }
 }

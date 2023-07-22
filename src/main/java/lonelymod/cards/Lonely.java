@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayFie
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FastingEffect;
 
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiCardPreview;
@@ -27,7 +26,7 @@ public class Lonely extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new FastingEffect(p.hb.cX, p.hb.cY, Color.YELLOW)));
         addToBot(new AutoplayWaitAction(1.0f));
-        addToBot(new LonelyAction(upgraded));
+        addToBot(new LonelyAction());
     }
     
     public void upp() {

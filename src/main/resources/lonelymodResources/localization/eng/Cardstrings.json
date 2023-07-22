@@ -16,10 +16,6 @@
     "NAME": "Heel!",
     "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Protect."
   },
-  "${ModID}:Apprehend": {
-    "NAME": "Apprehend",
-    "DESCRIPTION": "Deal !D! damage. NL The enemy loses !M! Strength this turn. NL lonelymod:Return."
-  },
   "${ModID}:DeviousPloy": {
     "NAME": "Devious Ploy",
     "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, draw !${ModID}:m2! cards."
@@ -48,6 +44,10 @@
   "${ModID}:PlottedDemise": {
     "NAME": "Plotted Demise",
     "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, incease its damage by !M!. NL Exhaust."
+  },
+  "${ModID}:Siphon": {
+    "NAME": "Siphon",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
   },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
@@ -102,11 +102,7 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. NL Exhaust."
-  },
-  "${ModID}:ImpatientStrikes": {
-    "NAME": "Impatient Strikes",
-    "DESCRIPTION": "Costs 1 less [E] for each lonelymod:Ability you lonelymod:Call this turn. NL Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. Exhaust."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -128,6 +124,10 @@
     "NAME": "Risky Move",
     "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E] [E]."
   },
+  "${ModID}:Strikeout": {
+    "NAME": "Strikeout",
+    "DESCRIPTION": "Costs 1 less [E] for every turn since you last took unblocked attack damage. NL Deal !D! damage !M! times."
+  },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
     "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
@@ -136,10 +136,6 @@
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Next turn, gain !${ModID}:m2! Strength and lose !${ModID}:m3! Dexterity."
-  },
-  "${ModID}:Genius": {
-    "NAME": "Genius",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
@@ -158,37 +154,39 @@
     "NAME": "Chasing Fantasies",
     "DESCRIPTION": "lonelymod:Plan !M!. NL lonelymod:Call lonelymod:Attack. NL Shuffle this card into your draw pile."
   },
+  "${ModID}:ClearThoughts": {
+    "NAME": "Clear Thoughts",
+    "DESCRIPTION": "Draw !M! cards. NL lonelymod:Autoplay card drawn this way will not be Autoplayed."
+  },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
     "DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Innate. NL Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust."
   },
-  "${ModID}:KeepItTogether": {
-    "NAME": "Keep It Together",
-    "DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards.",
-    "UPGRADE_DESCRIPTION": "This card is returned to your hand immediately if another card discards it. NL Draw !M! cards. lonelymod:Return."
+  "${ModID}:Genius": {
+    "NAME": "Genius",
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
   },
   "${ModID}:OnGuard":  {
     "NAME": "On Guard",
     "DESCRIPTION": "Gain !B! Block. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
   },
-  "${ModID}:OvercomeWeakness": {
-    "NAME": "Overcome Weakness",
-    "DESCRIPTION": "Gain !M! Strength and !M! Dexterity for every stack of debuffs you have. NL Exhaust."
+  "${ModID}:Overcome": {
+    "NAME": "Overcome",
+    "DESCRIPTION": "Gain !B! Block for every type of debuff you have."
   },
   "${ModID}:Overreaction": {
     "NAME": "Overreaction",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E] [E]. NL Exhaust."
   },
-  "${ModID}:PartOfThePlan": {
-    "NAME": "Part Of The Plan",
-    "DESCRIPTION": "Gain !B! Block. Whenever you lonelymod:Plan, draw this card from your draw pile."
-  },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! Vulnerable and !M! lonelymod:Target."
+    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! lonelymod:Target."
+  },
+  "${ModID}:Relax": {
+    "NAME": "Relax",
+    "DESCRIPTION": "Remove all your block. For every !M! block removed, gain [E] and draw !${ModID}:m2! card."
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
@@ -245,6 +243,10 @@
     "NAME": "Accursed Beak",
     "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. If you still have Strength, play this card again."
   },
+  "${ModID}:AgainstAllOdds": {
+    "NAME": "Against All Odds",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain 3 energy if ALL enemies intend to attack."
+  },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
     "DESCRIPTION": "Deal the same damage this enemy is attacking you for.",
@@ -261,10 +263,6 @@
     "NAME": "Dominate",
     "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, reduce enemy Strength by !${ModID}:m2! this turn.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, reduce enemy Strength by !${ModID}:m2! this turn.}"
-  },
-  "${ModID}:MentalOverload": {
-    "NAME": "Mental Overload",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less [E] for every other card in your hand."
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
@@ -416,5 +414,17 @@
     "NAME": "Previews and Callbacks",
     "DESCRIPTION": "Shuffle *Smite and *Safety into your draw pile. NL Draw 1 card. NL If it's Colorless, deal !D! damage to ALL enemies.",
     "UPGRADE_DESCRIPTION": "Shuffle *Smite and *Safety into your draw pile. NL Draw 1 card. NL If it's Colorless, deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Apprehend": {
+    "NAME": "Apprehend",
+    "DESCRIPTION": "Deal !D! damage. NL The enemy loses !M! Strength this turn. NL lonelymod:Return."
+  },
+  "${ModID}:PartOfThePlan": {
+    "NAME": "Part Of The Plan",
+    "DESCRIPTION": "Gain !B! Block. Whenever you lonelymod:Plan, draw this card from your draw pile."
+  },
+  "${ModID}:MentalOverload": {
+    "NAME": "Mental Overload",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less [E] for every other card in your hand."
   }
 }

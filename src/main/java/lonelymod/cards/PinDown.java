@@ -22,6 +22,6 @@ public class PinDown extends AbstractEasyCard{
     }
 
     public void upp() {
-        uDesc();
+        upgradeBaseCost(0);
     }
 }

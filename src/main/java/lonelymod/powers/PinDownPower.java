@@ -56,10 +56,7 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             flash();
-            addToBot(new ApplyPowerAction(target, this.owner, new VulnerablePower(target, this.amount, false), this.amount));
-            if (this.upgraded) {
-                addToBot(new ApplyPowerAction(target, this.owner, new LockOnPower(target, this.amount), this.amount));
-            }
+            addToBot(new ApplyPowerAction(target, this.owner, new TargetPower(target, this.amount, false), this.amount));
         }
     }
 

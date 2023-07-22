@@ -12,11 +12,9 @@ import lonelymod.cards.Desperation;
 import lonelymod.cards.Resolve;
 
 public class LonelyAction extends AbstractGameAction {
-    //boolean upgraded;
 
-    public LonelyAction(boolean upgraded) {
+    public LonelyAction() {
         this.actionType = ActionType.SPECIAL;
-        //this.upgraded = upgraded;
     }
 
     @Override
@@ -33,10 +31,7 @@ public class LonelyAction extends AbstractGameAction {
         cardToAdd = new Desperation();
         cardToAdd.cost = 0;
         cardChoices.add(cardToAdd);
-        //if (this.upgraded)
-            //for (AbstractCard c : cardChoices)
-                //c.upgrade();
-        addToTop((AbstractGameAction)new ChooseOneAction(cardChoices));
+        addToTop(new ChooseOneAction(cardChoices));
         //after choosing a card, that card's onChooseAction activates
         this.isDone = true;
     }

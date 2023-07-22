@@ -1,4 +1,4 @@
-package lonelymod.cards;
+package lonelymod.cards.deprecated;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
+import lonelymod.cards.AbstractEasyCard;
 import lonelymod.fields.ReturnField;
 
-public class Apprehend extends AbstractEasyCard {
+public class DEPRECATEDApprehend extends AbstractEasyCard {
     public final static String ID = makeID("Apprehend");
 
-    public Apprehend() {
+    public DEPRECATEDApprehend() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 6;
         baseMagicNumber = magicNumber = 1;

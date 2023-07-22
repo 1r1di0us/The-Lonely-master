@@ -311,8 +311,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "The first time you run out of energy each turn, gain [E] which you can only use on attacks.",
-    "UPGRADE_DESCRIPTION": "The first time you run out of energy each turn, draw 1 card and gain [E] which you can only use on attacks."
+    "DESCRIPTION": "After ending your turn, play a random card from your hand and exhaust it.",
+    "UPGRADE_DESCRIPTION": "After the end of your turn, play a random card from your hand."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
@@ -320,8 +320,8 @@
   },
   "${ModID}:Resolve": {
     "NAME": "Resolve",
-    "DESCRIPTION": "Whenever you lose hp, gain !M! Plated Armor.",
-    "UPGRADE_DESCRIPTION": "Whenever you lose hp, gain !M! Plated Armor and trigger Plated Armor."
+    "DESCRIPTION": "The first time you lost HP each turn, gain !M! Plated Armor.",
+    "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Plated Armor and trigger Plated Armor."
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",

@@ -7,6 +7,7 @@ import basemod.interfaces.*;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.localization.PotionStrings;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.Strikeout;
@@ -191,6 +192,8 @@ public class LonelyMod implements
         BaseMod.loadCustomStringsFile(OrbStrings.class, makeLocPath(Settings.language, "Orbstrings"));
 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, makeLocPath(Settings.language, "Charstrings"));
+
+        BaseMod.loadCustomStringsFile(PotionStrings.class, makeLocPath(Settings.language, "Potionstrings"));
 
         BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(Settings.language, "Powerstrings"));
 

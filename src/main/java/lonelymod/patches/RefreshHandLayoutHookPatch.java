@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import lonelymod.interfaces.TriggerOnHandSizeInterface;
 
 public class RefreshHandLayoutHookPatch {
-    
+
+    //this is for the now deprecated Mental overload
     @SpirePatch(
         clz=CardGroup.class,
         method="refreshHandLayout"

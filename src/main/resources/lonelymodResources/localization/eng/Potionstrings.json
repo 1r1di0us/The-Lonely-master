@@ -1,0 +1,25 @@
+{
+  "${ModID}:CannedMeat": {
+    "NAME": "Canned Meat",
+    "DESCRIPTIONS": [
+      "Grant #b",
+      " #yStrength and #b",
+      " #yDexterity."
+    ]
+  },
+  "${ModID}:WaterFlask": {
+    "NAME": "Water Flask",
+    "DESCRIPTIONS": [
+      "Exhaust all statuses in your deck. NL Draw #b",
+      " card for every status that was in your hand.",
+      " cards for every status that was in your hand."
+    ]
+  },
+  "${ModID}:SpecialSauce": {
+    "NAME": "Special Sauce",
+    "DESCRIPTIONS": [
+      "Your #yCompanion performs its #ySpecial move immediately.",
+      "Your #yCompanion performs its #ySpecial move immediately, #btwice."
+    ]
+  }
+}

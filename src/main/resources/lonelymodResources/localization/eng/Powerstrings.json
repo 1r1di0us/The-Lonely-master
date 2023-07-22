@@ -124,7 +124,7 @@
   "${ModID}:DesperationPower": {
     "NAME": "Desperation",
     "DESCRIPTIONS": [
-      "At the end of your turn, play #b",
+      "After ending your turn, play #b",
       " random card from your hand and #yExhaust it.",
       " random cards from your hand and #yExhaust it."
     ]
@@ -132,7 +132,7 @@
   "${ModID}:UtterDesperationPower": {
     "NAME": "Utter Desperation",
     "DESCRIPTIONS": [
-      "At the end of your turn, play #b",
+      "After ending your turn, play #b",
       " random card from your hand.",
       " random cards from your hand."
     ]
@@ -147,14 +147,14 @@
   "${ModID}:ResolvePower": {
     "NAME": "Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, gain #b",
+      "The first time you lose HP each turn, gain #b",
       " #yPlated #yArmor."
     ]
   },
   "${ModID}:SteelResolvePower": {
     "NAME": "Steel Resolve",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, gain #b",
+      "The first time you lose HP each turn, gain #b",
       " #yPlated #yArmor, and trigger #yPlated #yArmor."
     ]
   },

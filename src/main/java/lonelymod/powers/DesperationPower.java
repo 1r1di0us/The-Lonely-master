@@ -4,8 +4,8 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,9 +14,13 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.actions.PlayCardAction;
+import lonelymod.interfaces.AtEndOfTurnPostEndTurnCardsInterface;
 import lonelymod.util.TexLoader;
 
-public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
+import java.util.Objects;
+
+public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface, AtEndOfTurnPostEndTurnCardsInterface {
 
     public static final String POWER_ID = makeID("DesperationPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -26,6 +30,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
+    private CardGroup previousHand;
 
     public DesperationPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -50,23 +55,31 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        for (int i = 0; i < this.amount; i++) {
+        if (isPlayer) {
             if (!AbstractDungeon.player.hand.isEmpty()) {
-                AbstractDungeon.player.releaseCard();
-                /*if (upgraded) {
-                    ArrayList<AbstractCard> cardChoices = new ArrayList<>();
-                    AbstractCard cardToAdd;
-                    for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                        cardToAdd = c;
-                        cardChoices.add(cardToAdd);
+                previousHand = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (!c.isEthereal) {
+                        previousHand.addToTop(c);
                     }
-                    addToTop(new DesperationAction(cardChoices));
-                } else {*/
-                AbstractCard cardToPlay = AbstractDungeon.player.hand.getRandomCard(true);
-                cardToPlay.freeToPlayOnce = true;
-                cardToPlay.exhaust = true;
-                addToBot(new NewQueueCardAction(cardToPlay, true, true, true));
-                //}
+                }
+            }
+        }
+    }
+
+    @Override
+    public void atEndOfTurnPostEndTurnCards(boolean isPlayer) {
+        if (isPlayer) {
+            for (int i = 0; i < this.amount; i++) {
+                AbstractCard cardToPlay = previousHand.getRandomCard(true);
+                for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+                    if (Objects.equals(cardToPlay.cardID, c.cardID)) {
+                        cardToPlay = c;
+                        break;
+                    }
+                }
+                //cardToPlay.freeToPlayOnce = true;
+                addToBot(new PlayCardAction(AbstractDungeon.player.hand, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
             }
         }
     }

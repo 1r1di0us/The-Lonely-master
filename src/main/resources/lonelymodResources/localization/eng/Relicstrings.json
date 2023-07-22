@@ -7,11 +7,53 @@
     ]
   },
   "${ModID}:MeatsStomach": {
-    "NAME": "MeatsStomach",
+    "NAME": "Meat's Stomach",
     "FLAVOR": "You changed his name to something more fitting.",
     "DESCRIPTIONS": [
       "Replaces ",
       ".[] NL At the start of combat, #ySummon #yMeat."
+    ]
+  },
+  "${ModID}:TreatBox": {
+    "NAME": "Treat Box",
+    "FLAVOR": "Every time you open this, another treat lies within.",
+    "DESCRIPTIONS": [
+      "Whenever a #yCompanion is #ySummoned, Grant it #b",
+      " #yStrength and #b",
+      " #yDexterity."
+    ]
+  },
+  "${ModID}:ShortLeash": {
+    "NAME": "Short Leash",
+    "FLAVOR": "Keep your friends close, and your enemies will be sure to keep their distance.",
+    "DESCRIPTIONS": [
+      "At the start of combat, #yCall #yProtect."
+    ]
+  },
+  "${ModID}:WorldMap": {
+    "NAME": "World Map",
+    "FLAVOR": "\"A well-documented map can do wonders for one's sense of direction.\" - The Architect",
+    "DESCRIPTIONS": [
+      "At the end of your turn, after discarding your cards, #yPlan #b",
+      "."
+    ]
+  },
+  "${ModID}:BookOfTheLaw": {
+    "NAME": "Book of the Law",
+    "FLAVOR": "The laws written in this book are only the laws you have imposed upon yourself.",
+    "DESCRIPTIONS": [
+      "Gain [E] at the start of your turn. At the end of your turn, take #b",
+      " damage for every card still in your hand."
+    ]
+  },
+  "${ModID}:ToyCat": {
+    "NAME": "Toy Cat",
+    "FLAVOR": "It just couldn't stay away...",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose a non-exhausting #yAttack or #ySkill. At the start of each turn, place this card in your hand.",
+      "Choose a card for ",
+      "At the start of each turn, place ",
+      " in your hand."
     ]
   }
 }

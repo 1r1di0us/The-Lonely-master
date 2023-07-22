@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Spy;
 import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.RelicOnSummonInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +38,11 @@ public class SummonSpyAction extends AbstractGameAction {
         this.c.init();
         CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<AbstractCard>());
         CompanionField.playableCards.get(AbstractDungeon.player).add(new Shiv());
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            if (r instanceof RelicOnSummonInterface) {
+                ((RelicOnSummonInterface) r).onSummon(this.c, true);
+            }
+        }
     }
 
     public void update() {

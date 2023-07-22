@@ -9,7 +9,7 @@ public class BonesStomach extends AbstractEasyRelic {
     public static final String ID = makeID("BonesStomach");
 
     public BonesStomach() {
-        super(ID, RelicTier.STARTER, LandingSound.FLAT, LonelyCharacter.Enums.TODO_COLOR);
+        super(ID, RelicTier.STARTER, LandingSound.FLAT, LonelyCharacter.Enums.YELLOW);
     }
 
     @Override

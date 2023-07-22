@@ -12,7 +12,7 @@ public class MeatsStomach extends AbstractEasyRelic {
     public static final String ID = makeID("MeatsStomach");
 
     public MeatsStomach() {
-        super(ID, RelicTier.BOSS, LandingSound.SOLID, LonelyCharacter.Enums.TODO_COLOR);
+        super(ID, RelicTier.BOSS, LandingSound.SOLID, LonelyCharacter.Enums.YELLOW);
         //figured this out from DarkVexon's FishingCharacter
     }    
 

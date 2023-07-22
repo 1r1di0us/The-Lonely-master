@@ -89,7 +89,7 @@ public class LonelyMod implements
     public LonelyMod() {
         BaseMod.subscribe(this);
 
-        BaseMod.addColor(LonelyCharacter.Enums.TODO_COLOR, characterColor,
+        BaseMod.addColor(LonelyCharacter.Enums.YELLOW, characterColor,
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);

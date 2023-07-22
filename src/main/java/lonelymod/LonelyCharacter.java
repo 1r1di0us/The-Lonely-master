@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 
-import static lonelymod.LonelyCharacter.Enums.TODO_COLOR;
+import static lonelymod.LonelyCharacter.Enums.YELLOW;
 import static lonelymod.LonelyMod.*;
 
 import java.util.ArrayList;
@@ -113,7 +113,7 @@ public class LonelyCharacter extends CustomPlayer {
 
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return TODO_COLOR;
+        return YELLOW;
     }
 
     @Override
@@ -187,7 +187,7 @@ public class LonelyCharacter extends CustomPlayer {
         @SpireEnum
         public static AbstractPlayer.PlayerClass THE_LONELY;
         @SpireEnum(name = "yellow")
-        public static AbstractCard.CardColor TODO_COLOR;
+        public static AbstractCard.CardColor YELLOW;
         @SpireEnum(name = "yellow")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;

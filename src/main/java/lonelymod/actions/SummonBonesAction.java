@@ -2,11 +2,16 @@ package lonelymod.actions;
 
 //import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Bones;
 import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.RelicOnSummonInterface;
+import lonelymod.relics.TreatBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +35,11 @@ public class SummonBonesAction extends AbstractGameAction {
         this.c = new Bones(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            if (r instanceof RelicOnSummonInterface) {
+                ((RelicOnSummonInterface) r).onSummon(this.c, true);
+            }
+        }
     }
 
     public void update() {

@@ -5,10 +5,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.RelicOnSummonInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +18,7 @@ public class SummonOmenAction extends AbstractGameAction {
     private static final Logger logger = LogManager.getLogger(SummonOmenAction.class.getName());
     private AbstractCompanion c;
 
-    public SummonOmenAction() {
+    public SummonOmenAction(boolean onBattleStart) {
         if (Settings.FAST_MODE) {
             this.startDuration = Settings.ACTION_DUR_FAST;
         } else {
@@ -31,6 +33,11 @@ public class SummonOmenAction extends AbstractGameAction {
         this.c = new Omen(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            if (r instanceof RelicOnSummonInterface) {
+                ((RelicOnSummonInterface) r).onSummon(this.c, onBattleStart);
+            }
+        }
     }
 
     public void update() {

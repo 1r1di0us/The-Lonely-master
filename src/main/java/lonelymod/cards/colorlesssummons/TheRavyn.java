@@ -30,7 +30,7 @@ public class TheRavyn extends AbstractEasyCard {
         addToBot(new DrawCardAction(p, magicNumber));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
-        addToBot(new SummonOmenAction());
+        addToBot(new SummonOmenAction(true));
     }
 
     public void upp() {

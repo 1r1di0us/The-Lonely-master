@@ -4,9 +4,11 @@ package lonelymod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Oracle;
 import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.RelicOnSummonInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +32,11 @@ public class SummonOracleAction extends AbstractGameAction {
         this.c = new Oracle(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
+        for (AbstractRelic r : AbstractDungeon.player.relics) {
+            if (r instanceof RelicOnSummonInterface) {
+                ((RelicOnSummonInterface) r).onSummon(this.c, true);
+            }
+        }
     }
 
     public void update() {

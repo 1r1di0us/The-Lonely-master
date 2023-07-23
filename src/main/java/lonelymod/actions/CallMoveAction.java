@@ -42,11 +42,11 @@ public class CallMoveAction extends AbstractGameAction {
             } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
                 addToTop(new WildFormCallMoveAction(move, currCompanion));
             } else if (move == AbstractCompanion.ATTACK) {
-                currCompanion.callMainMove(AbstractCompanion.ATTACK, true);
+                currCompanion.callMainMove(AbstractCompanion.ATTACK, true, true);
             } else if (move == AbstractCompanion.PROTECT) {
-                currCompanion.callMainMove(AbstractCompanion.PROTECT, true);
+                currCompanion.callMainMove(AbstractCompanion.PROTECT, true, true);
             } else if (move == AbstractCompanion.SPECIAL) {
-                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true);
+                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true, true);
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
             }

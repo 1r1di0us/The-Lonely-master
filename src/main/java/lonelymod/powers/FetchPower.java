@@ -5,6 +5,7 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -55,15 +56,14 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
         if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player)) {
             flash();
             addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.amount), this.amount));
+            addToBot(new RemoveSpecificPowerAction(this.owner, CompanionField.currCompanion.get(AbstractDungeon.player), this));
         }
         return damageAmount;
     }
 
     @Override
     public void updateDescription() {
-        if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
-        }
+        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
 
     @Override

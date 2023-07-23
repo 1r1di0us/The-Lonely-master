@@ -20,7 +20,7 @@ public class SpecialSauce extends AbstractPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
 
     public SpecialSauce() {
-        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.RARE, PotionSize.EYE, AbstractPotion.PotionColor.STRENGTH);
+        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.RARE, PotionSize.S, PotionColor.ANCIENT);
         this.isThrown = false;
     }
 

@@ -35,7 +35,7 @@
     "NAME": "Fetch",
     "DESCRIPTIONS": [
       "The next time your #yCompanion #yAttacks this enemy, grant #b",
-      " #yStrength"
+      " #yStrength."
     ]
   },
   "${ModID}:PinDownPower": {
@@ -243,7 +243,7 @@
   "${ModID}:OutcastPower": {
     "NAME": "Empower",
     "DESCRIPTIONS": [
-      "#Performing the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
+      "#yPerforming the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
       ", ",
       "#yAttack",
       "#yProtect",

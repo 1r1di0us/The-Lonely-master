@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,7 +17,7 @@ public class RiskyMove extends AbstractEasyCard {
 
     public RiskyMove() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 15;
+        baseDamage = 14;
         baseMagicNumber = magicNumber = 2;
     }
 
@@ -27,7 +28,14 @@ public class RiskyMove extends AbstractEasyCard {
         }
     }
 
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null && CompanionField.currCompanion.get(AbstractDungeon.player).nextMove == AbstractCompanion.PROTECT) {
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
+    }
+
     public void upp() {
-        upgradeDamage(5);
+        upgradeDamage(4);
     }
 }

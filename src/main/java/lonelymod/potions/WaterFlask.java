@@ -25,7 +25,7 @@ public class WaterFlask extends AbstractPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
 
     public WaterFlask() {
-        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.UNCOMMON, PotionSize.SPHERE, PotionColor.BLUE);
+        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.UNCOMMON, PotionSize.EYE, PotionColor.BLUE);
         this.isThrown = false;
     }
 

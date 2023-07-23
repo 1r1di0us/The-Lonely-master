@@ -82,7 +82,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle !${ModID}:m2! *Wound into your draw pile."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
   },
   "${ModID}:Overthrow": {
     "NAME": "Overthrow",
@@ -156,7 +156,7 @@
   },
   "${ModID}:ClearThoughts": {
     "NAME": "Clear Thoughts",
-    "DESCRIPTION": "Draw !M! cards. NL lonelymod:Autoplay card drawn this way will not be Autoplayed."
+    "DESCRIPTION": "Draw !M! cards. NL lonelymod:Autoplay cards drawn this way will not be Autoplayed."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -195,15 +195,15 @@
   "${ModID}:ThinkOutsideTheBox": {
     "NAME": "Think Outside The Box",
     "DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lChoose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Choose a card to add into your hand."
     ]
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !${ModID}:m2! *Dazed into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !${ModID}:m2! *Dazed into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle a *Dazed into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle a *Dazed into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -320,7 +320,7 @@
   },
   "${ModID}:Resolve": {
     "NAME": "Resolve",
-    "DESCRIPTION": "The first time you lost HP each turn, gain !M! Plated Armor.",
+    "DESCRIPTION": "The first time you lose HP each turn, gain !M! Plated Armor.",
     "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Plated Armor and trigger Plated Armor."
   },
   "${ModID}:WildForm": {

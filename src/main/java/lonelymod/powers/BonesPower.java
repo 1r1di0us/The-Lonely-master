@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
@@ -54,7 +55,7 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
     }
 
     public void onMonsterDeath(AbstractMonster m) {
-        if (m.currentHealth == 0 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+        if (m.currentHealth == 0 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead() && !m.hasPower(MinionPower.POWER_ID)) {
             addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, StrengthAmt), StrengthAmt));
             addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, DexAmt), DexAmt));
         }

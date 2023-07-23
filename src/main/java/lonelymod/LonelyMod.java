@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.localization.PotionStrings;
+import com.megacrit.cardcrawl.potions.*;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.cards.Strikeout;
@@ -17,6 +18,9 @@ import lonelymod.cards.cardvars.ThirdMagicNumber;
 import lonelymod.fields.CompanionField;
 import lonelymod.fields.ReturnField;
 import lonelymod.interfaces.TriggerOnReturnInterface;
+import lonelymod.potions.CannedMeat;
+import lonelymod.potions.SpecialSauce;
+import lonelymod.potions.WaterFlask;
 import lonelymod.relics.AbstractEasyRelic;
 
 import com.badlogic.gdx.Gdx;
@@ -45,7 +49,9 @@ public class LonelyMod implements
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         PostBattleSubscriber,
-        OnPlayerDamagedSubscriber {
+        OnStartBattleSubscriber,
+        OnPlayerDamagedSubscriber,
+        PostInitializeSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -177,6 +183,18 @@ public class LonelyMod implements
     }
 
     @Override
+    public void receivePostInitialize() {
+        receiveEditPotions();
+    }
+
+    public void receiveEditPotions() {
+        BaseMod.addPotion(CannedMeat.class, BaseMod.getPotionLiquidColor(SmokeBomb.POTION_ID), BaseMod.getPotionHybridColor(SmokeBomb.POTION_ID), BaseMod.getPotionSpotsColor(SmokeBomb.POTION_ID), CannedMeat.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
+        BaseMod.addPotion(WaterFlask.class, BaseMod.getPotionLiquidColor(BlockPotion.POTION_ID), BaseMod.getPotionHybridColor(BlockPotion.POTION_ID), BaseMod.getPotionSpotsColor(BloodPotion.POTION_ID), WaterFlask.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
+        BaseMod.addPotion(SpecialSauce.class, BaseMod.getPotionLiquidColor(AncientPotion.POTION_ID), BaseMod.getPotionHybridColor(AncientPotion.POTION_ID), BaseMod.getPotionSpotsColor(StrengthPotion.POTION_ID), SpecialSauce.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
+
+    }
+
+    @Override
     public void receiveEditStrings() {
         //mainly from https://github.com/kiooeht/Bard/blob/abe81400f0aa8305db8ade09ed26204d40ba2250/src/main/java/com/evacipated/cardcrawl/mod/bard/BardMod.java#L359
         //and bard/helpers/MelodyManager.loadMelodyStrings
@@ -219,7 +237,8 @@ public class LonelyMod implements
 
     @Override
     public void receiveOnPlayerTurnStartPostDraw() {
-        Strikeout.turnsSinceDamaged++;
+        if (Strikeout.battleStart) Strikeout.battleStart = false;
+        else Strikeout.turnsSinceDamaged++;
         // This makes the return mechanic work:
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (ReturnField.willReturn.get(c)) {
@@ -267,5 +286,11 @@ public class LonelyMod implements
             Strikeout.turnsSinceDamaged = 0;
         }
         return i;
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        Strikeout.turnsSinceDamaged = 0;
+        Strikeout.battleStart = true;
     }
 }

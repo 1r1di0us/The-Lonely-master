@@ -10,6 +10,7 @@ public class Strikeout extends AbstractEasyCard {
     public final static String ID = makeID("Strikeout");
 
     public static int turnsSinceDamaged = 0;
+    public static boolean battleStart = false;
 
     public Strikeout() {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);

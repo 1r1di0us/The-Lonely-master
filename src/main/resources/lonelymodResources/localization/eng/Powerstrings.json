@@ -43,7 +43,6 @@
     "DESCRIPTIONS": [
       "This turn, whenever you deal unblocked attack damage to an enemy, apply #b",
       " #yTarget."
-
     ]
   },
   "${ModID}:DefensiveReflexesPower": {

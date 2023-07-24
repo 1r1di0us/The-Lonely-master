@@ -1,6 +1,7 @@
 package lonelymod.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -21,8 +22,11 @@ public class CompanionDexterityPower extends AbstractEasyPower implements Clonea
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/CompanionDexterity84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/CompanionDexterity32.png");
+
+//    public static TextureAtlas.AtlasRegion tex32 = new TextureAtlas(Gdx.files.internal("powers/powers.atlas")).findRegion("48/dexterity");
+//    public static TextureAtlas.AtlasRegion tex84 = new TextureAtlas(Gdx.files.internal("powers/powers.atlas")).findRegion("128/dexterity");
 
     public CompanionDexterityPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

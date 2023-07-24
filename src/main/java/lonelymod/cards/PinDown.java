@@ -18,7 +18,7 @@ public class PinDown extends AbstractEasyCard{
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new PinDownPower(p, this.magicNumber, this.upgraded), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new PinDownPower(p, this.magicNumber), this.magicNumber));
     }
 
     public void upp() {

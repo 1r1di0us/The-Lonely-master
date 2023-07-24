@@ -11,8 +11,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LockOnPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
@@ -28,9 +26,8 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
 
-    private boolean upgraded;
 
-    public PinDownPower(AbstractCreature owner, int amount, boolean upgraded) {
+    public PinDownPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -38,7 +35,6 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.upgraded = upgraded;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -67,16 +63,11 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     
     @Override
     public void updateDescription() {
-        if (!this.upgraded) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        }
-        else {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
-        }
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new PinDownPower(this.owner, this.amount, this.upgraded);
+        return new PinDownPower(this.owner, this.amount);
     }
 }

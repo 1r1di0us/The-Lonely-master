@@ -29,8 +29,8 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
 
     private boolean upgraded;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/WildForm84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/WildForm32.png");
 
     public WildFormPower(AbstractCreature owner, int amount, boolean upgraded) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

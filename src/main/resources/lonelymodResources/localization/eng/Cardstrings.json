@@ -287,7 +287,7 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "lonelymod:Autoplay. Choose 1 of *Bravery, *Desperation, *Resolve to shuffle into your draw pile. It costs 0 when drawn."
+    "DESCRIPTION": "lonelymod:Autoplay. Choose 1 card to play at the start of next turn: *Bravery, *Desperation, *Resolve."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",

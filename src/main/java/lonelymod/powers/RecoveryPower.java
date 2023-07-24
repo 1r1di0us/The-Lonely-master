@@ -5,13 +5,9 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
@@ -29,8 +25,8 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Recovery84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Recovery32.png");
 
     public RecoveryPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
@@ -24,8 +23,8 @@ public class FearTheBeastPower extends AbstractEasyPower implements CloneablePow
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FearTheBeast84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FearTheBeast32.png");
 
     public FearTheBeastPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

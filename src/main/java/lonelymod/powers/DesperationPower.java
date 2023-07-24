@@ -27,8 +27,8 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Desperation84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Desperation32.png");
 
     private CardGroup previousHand;
 

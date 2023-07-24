@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -27,8 +26,8 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch32.png");
 
     public FetchPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, amount);

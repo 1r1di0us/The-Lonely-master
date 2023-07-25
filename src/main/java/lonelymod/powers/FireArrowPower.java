@@ -28,8 +28,8 @@ public class FireArrowPower extends AbstractEasyPower implements CloneablePowerI
 
     private int damageAmt;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FireArrow84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FireArrow32.png");
 
     public FireArrowPower(AbstractCreature owner, int amount, int damageAmt) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, amount);

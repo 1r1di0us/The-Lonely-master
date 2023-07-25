@@ -45,13 +45,13 @@
     "NAME": "Plotted Demise",
     "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, incease its damage by !M!. NL Exhaust."
   },
-  "${ModID}:Siphon": {
-    "NAME": "Siphon",
-    "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
-  },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
     "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !M! additional damage."
+  },
+  "${ModID}:TagTeam": {
+    "NAME": "Tag Team",
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E]."
   },
   "${ModID}:Volley": {
     "NAME": "Volley",
@@ -120,9 +120,9 @@
     "NAME": "Relentless Onslaught",
     "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
   },
-  "${ModID}:RiskyMove": {
-    "NAME": "Risky Move",
-    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E] [E]."
+  "${ModID}:Siphon": {
+    "NAME": "Siphon",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
   },
   "${ModID}:Strikeout": {
     "NAME": "Strikeout",

@@ -17,8 +17,9 @@ public class Coordination extends AbstractEasyCard {
     public final static String ID = makeID("Coordination");
 
     public Coordination() {
-        super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 3;
+        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        baseMagicNumber = magicNumber = 1;
+        baseSecondMagic = secondMagic = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -31,5 +32,6 @@ public class Coordination extends AbstractEasyCard {
     
     public void upp() {
         upgradeMagicNumber(1);
+        upgradeSecondMagic(1);
     }
 }

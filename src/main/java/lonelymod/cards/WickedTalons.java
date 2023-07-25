@@ -24,7 +24,7 @@ public class WickedTalons extends AbstractEasyCard {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new ApplyPowerAction(p, p, new GainStrengthPower(p, secondMagic)));
-        addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, -thirdMagic)));
+        addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, thirdMagic)));
     }
 
     public void upp() {

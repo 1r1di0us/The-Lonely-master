@@ -186,7 +186,7 @@
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
-    "DESCRIPTION": "Remove all your block. For every !M! block removed, gain [E] and draw !${ModID}:m2! card."
+    "DESCRIPTION": "Remove all your Block. For every !M! Block removed, gain [E] and draw !${ModID}:m2! card."
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",

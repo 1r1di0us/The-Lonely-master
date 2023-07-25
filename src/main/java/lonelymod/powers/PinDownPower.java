@@ -23,8 +23,8 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "PinDown84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "PinDown32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/PinDown84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/PinDown32.png");
 
 
     public PinDownPower(AbstractCreature owner, int amount) {
@@ -57,8 +57,8 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
-    public void atEndOfRound() {
-        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
     
     @Override

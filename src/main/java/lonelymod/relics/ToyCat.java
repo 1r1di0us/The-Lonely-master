@@ -13,7 +13,7 @@ import lonelymod.fields.InToyCatField;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class ToyCat extends AbstractEasyRelic {
+public class ToyCat {} /*extends AbstractEasyRelic {
     public static final String ID = makeID("ToyCat");
 
     private boolean cardSelected = true;
@@ -24,7 +24,11 @@ public class ToyCat extends AbstractEasyRelic {
         super(ID, RelicTier.SHOP, LandingSound.MAGICAL, LonelyCharacter.Enums.YELLOW);
     }
 
-    public static AbstractCard getCard() {
+    public AbstractCard getCard() {
+        return this.card.makeCopy();
+    }
+
+    public static AbstractCard getCardCopy() {
         return cardCopy.makeCopy();
     }
 
@@ -91,4 +95,4 @@ public class ToyCat extends AbstractEasyRelic {
         }
         return false;
     }
-}
+}*/

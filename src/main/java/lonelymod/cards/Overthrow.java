@@ -15,7 +15,7 @@ public class Overthrow extends AbstractEasyCard {
     public Overthrow() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseBlock = 6;
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

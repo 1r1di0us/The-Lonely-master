@@ -15,7 +15,7 @@ public class Cycle extends AbstractEasyCard {
     public final static String ID = makeID("Cycle");
 
     public Cycle() {
-        super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
         baseDamage = 3;
     }
 

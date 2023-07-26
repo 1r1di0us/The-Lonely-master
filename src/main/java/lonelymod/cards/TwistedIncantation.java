@@ -32,6 +32,6 @@ public class TwistedIncantation extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        uDesc();
     }
 }

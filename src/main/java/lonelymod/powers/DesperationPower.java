@@ -69,7 +69,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void atEndOfTurnPostEndTurnCards(boolean isPlayer) {
-        if (isPlayer) {
+        if (isPlayer && !previousHand.isEmpty()) {
             for (int i = 0; i < this.amount; i++) {
                 AbstractCard cardToPlay = previousHand.getRandomCard(true);
                 for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
@@ -79,7 +79,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
                     }
                 }
                 //cardToPlay.freeToPlayOnce = true;
-                addToBot(new PlayCardAction(AbstractDungeon.player.hand, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
+                addToBot(new PlayCardAction(AbstractDungeon.player.discardPile, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
             }
         }
     }

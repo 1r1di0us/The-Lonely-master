@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import lonelymod.cards.ExponentialForce;
 
 import java.util.UUID;
 
@@ -34,7 +33,7 @@ public class ExponentialForceAction extends AbstractGameAction {
             this.target.damage(this.info);
             if (!((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead && !this.target.hasPower("Minion"))) {
                 for (AbstractCard c : GetAllInBattleInstances.get(this.uuid)) {
-                    c.baseDamage += this.amount;
+                    c.baseDamage += c.baseDamage;
                     if (c.baseDamage < 0)
                         c.baseDamage = 0;
                 }

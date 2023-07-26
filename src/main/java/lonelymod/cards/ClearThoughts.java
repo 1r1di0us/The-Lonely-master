@@ -14,18 +14,16 @@ public class ClearThoughts extends AbstractEasyCard {
 
     public ClearThoughts() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DrawCardAction(p, this.magicNumber));
         for (int i=0; i < this.magicNumber; i++) {
             if (AutoplayField.autoplay.get(p.drawPile.getNCardFromTop(i))) {
                 AutoplayField.autoplay.set(p.drawPile.getNCardFromTop(i), false);
+                addToBot(new SetAutoplayAction(p.drawPile.getNCardFromTop(i)));
             }
-        }
-        addToBot(new DrawCardAction(p, this.magicNumber));
-        for (int i=0; i < this.magicNumber; i++) {
-            addToBot(new SetAutoplayAction(p.drawPile.getNCardFromTop(i)));
         }
     }
 

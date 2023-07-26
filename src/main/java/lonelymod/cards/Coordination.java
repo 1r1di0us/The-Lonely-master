@@ -25,7 +25,7 @@ public class Coordination extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber)));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
-            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new CompanionDexterityPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.magicNumber)));
+            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new CompanionDexterityPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.secondMagic)));
         else
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, CallMoveAction.TEXT[0], true));
     }

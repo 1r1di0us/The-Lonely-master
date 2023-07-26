@@ -56,7 +56,8 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + cardToPlay.name + DESCRIPTIONS[1];
+        if (cardToPlay == null) description = DESCRIPTIONS[2];
+        else description = DESCRIPTIONS[0] + cardToPlay.name + DESCRIPTIONS[1];
     }
 
     @Override

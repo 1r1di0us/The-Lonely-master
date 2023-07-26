@@ -211,7 +211,7 @@
   },
   "${ModID}:Coordination": {
     "NAME": "Coordination",
-    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !M! Dexterity."
+    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
   },
   "${ModID}:DefensiveReflexes": {
     "NAME": "Defensive Reflexes",

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.powers.CompanionDexterityPower;
@@ -73,7 +74,7 @@ public class Spy extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnBlockPower(AbstractDungeon.player, this.block.get(0).output)));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
@@ -116,7 +117,7 @@ public class Spy extends AbstractCompanion {
                 }
             case PROTECT:
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnBlockPower(AbstractDungeon.player, this.block.get(0).output)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
@@ -140,7 +141,10 @@ public class Spy extends AbstractCompanion {
     @Override
     public void callAttack() {
         getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+        if (hasPower(SpyPower.POWER_ID) && getPower(SpyPower.POWER_ID).amount > 1)
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, getPower(SpyPower.POWER_ID).amount, true, true);
+        else
+            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
     }
 
     @Override
@@ -234,8 +238,11 @@ public class Spy extends AbstractCompanion {
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         if (card instanceof Shiv) {
             addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
-        } else {
-            return;
+            if (this.nextMove == ATTACK) {
+                flashIntent();
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, getPower(SpyPower.POWER_ID).amount, true, true);
+                createIntent();
+            }
         }
     }
 }

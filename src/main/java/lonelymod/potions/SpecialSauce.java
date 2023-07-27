@@ -2,6 +2,7 @@ package lonelymod.potions;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -21,6 +22,7 @@ public class SpecialSauce extends AbstractPotion {
 
     public SpecialSauce() {
         super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.RARE, PotionSize.S, PotionColor.ANCIENT);
+        this.labOutlineColor = Settings.LIGHT_YELLOW_COLOR;
         this.isThrown = false;
     }
 

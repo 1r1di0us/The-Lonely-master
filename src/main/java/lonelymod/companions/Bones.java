@@ -32,9 +32,9 @@ public class Bones extends AbstractCompanion {
 
     private static final int DEFAULT_BLK = 3;
     private static final int ATTACK_DMG = 8;
-    private static final int ATTACK_PWR_AMT = 1;
-    private static final int PROTECT_BLK = 6;
-    private static final int PROTECT_PWR_AMT = 5;
+    private static final int ATTACK_PWR_AMT = 2;
+    private static final int PROTECT_BLK = 8;
+    private static final int PROTECT_PWR_AMT = 4;
     private static final int SPECIAL_DEBUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 3;
 

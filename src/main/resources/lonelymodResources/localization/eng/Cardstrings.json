@@ -102,7 +102,8 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -169,7 +170,7 @@
   },
   "${ModID}:OnGuard":  {
     "NAME": "On Guard",
-    "DESCRIPTION": "Gain !B! Block. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
+    "DESCRIPTION": "Gain !M! Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
   },
   "${ModID}:Overcome": {
     "NAME": "Overcome",
@@ -220,7 +221,7 @@
   },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
-    "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! lonelymod:Stamina."
+    "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! Block."
   },
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
@@ -233,7 +234,7 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect Ability, Gain [E] and draw !M! card next turn."
+    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect Ability, Draw !M! more cards and gain [E] [E] next turn."
   },
   "${ModID}:ThreeStepsAhead": {
     "NAME": "Three Steps Ahead",

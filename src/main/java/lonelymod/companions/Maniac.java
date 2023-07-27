@@ -28,7 +28,7 @@ public class Maniac extends AbstractCompanion {
 
     private static final int ATTACK_DMG = 4;
     private static final int ATTACK_AMT = 2;
-    private static final int PROTECT_BLK = 4;
+    private static final int PROTECT_BLK = 5;
     private static final int PROTECT_DEBUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 5;
 
@@ -129,7 +129,7 @@ public class Maniac extends AbstractCompanion {
     @Override
     public void callAttack() {
         getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
     }
 
     @Override

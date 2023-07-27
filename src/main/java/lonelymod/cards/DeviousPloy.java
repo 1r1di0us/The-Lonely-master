@@ -17,8 +17,8 @@ public class DeviousPloy extends AbstractEasyCard {
 
     public DeviousPloy() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 4;
-        baseMagicNumber = magicNumber = 3;
+        baseDamage = 6;
+        baseMagicNumber = magicNumber = 2;
         baseSecondMagic = secondMagic = 2;
     }
     

@@ -14,7 +14,7 @@ public class GrandScheme extends AbstractEasyCard {
 
     public GrandScheme() {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 15;
+        baseMagicNumber = magicNumber = 20;
     }
     
     @Override
@@ -24,6 +24,6 @@ public class GrandScheme extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(5);
+        upgradeMagicNumber(8);
     }
 }

@@ -350,7 +350,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
         if (this.intentImg != null) {
             AbstractDungeon.effectList.add(new FlashIntentEffect(this.intentImg, this));
         }
-
         this.intentAlphaTarget = 0.0F;
     }
 

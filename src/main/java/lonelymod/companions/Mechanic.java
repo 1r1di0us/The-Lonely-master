@@ -28,7 +28,7 @@ public class Mechanic extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("Mechanic.png");
 
     private static final int ATTACK_DMG = 6;
-    private static final int PROTECT_BLK = 5;
+    private static final int PROTECT_BLK = 6;
     private static final int SPECIAL_PWR_AMT = 1;
 
     private int attackDmg;
@@ -122,7 +122,7 @@ public class Mechanic extends AbstractCompanion {
     @Override
     public void callAttack() {
         getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
     }
 
     @Override

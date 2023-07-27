@@ -4,7 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -49,7 +49,7 @@ public class FearTheBeastPower extends AbstractEasyPower implements CloneablePow
 
     public void triggerOnCallMove(byte move) {
         if (move == AbstractCompanion.ATTACK)
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.amount)));
+            addToBot(new GainBlockAction(this.owner, this.owner, this.amount));
     }
 
     @Override

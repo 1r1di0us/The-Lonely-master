@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import lonelymod.LonelyCharacter;
 import lonelymod.actions.WaterFlaskAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
@@ -26,6 +28,7 @@ public class WaterFlask extends AbstractPotion {
 
     public WaterFlask() {
         super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.UNCOMMON, PotionSize.EYE, PotionColor.BLUE);
+        this.labOutlineColor = Settings.LIGHT_YELLOW_COLOR;
         this.isThrown = false;
     }
 

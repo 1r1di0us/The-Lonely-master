@@ -18,7 +18,7 @@ public class OnTheHunt extends AbstractEasyCard {
 
     public OnTheHunt() {
         super(ID, 1, AbstractCard.CardType.ATTACK, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
-        baseDamage = 6;
+        baseDamage = 7;
         this.tags.add(Enums.COMPANION);
     }
 

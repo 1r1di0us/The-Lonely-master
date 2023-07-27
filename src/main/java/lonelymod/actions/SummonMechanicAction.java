@@ -29,7 +29,7 @@ public class SummonMechanicAction extends AbstractGameAction {
             this.summon = false;
             return;
         }
-        this.c = new Mechanic(750, -25);
+        this.c = new Mechanic(-750, -25);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         for (AbstractRelic r : AbstractDungeon.player.relics) {

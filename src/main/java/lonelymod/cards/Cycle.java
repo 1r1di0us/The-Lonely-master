@@ -16,7 +16,7 @@ public class Cycle extends AbstractEasyCard {
 
     public Cycle() {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 3;
+        baseDamage = 6;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

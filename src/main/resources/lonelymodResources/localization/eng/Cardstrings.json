@@ -102,8 +102,7 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength. Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -170,7 +169,7 @@
   },
   "${ModID}:OnGuard":  {
     "NAME": "On Guard",
-    "DESCRIPTION": "Gain !M! Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
   },
   "${ModID}:Overcome": {
     "NAME": "Overcome",

@@ -14,8 +14,7 @@ public class Fetch extends AbstractEasyCard {
 
     public Fetch() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        this.exhaust = true;
-        this.baseDamage = 10;
+        this.baseDamage = 7;
         this.baseMagicNumber = this.magicNumber = 1;
     }
 
@@ -25,7 +24,6 @@ public class Fetch extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.exhaust = false;
-        uDesc();
+        upgradeDamage(3);
     }
 }

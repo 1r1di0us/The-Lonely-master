@@ -4,6 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -71,6 +72,7 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
     public void OnCompanionTurnEnd() {
         for (int i = 0; i < this.amount; i++) { //attack already happened once
             addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
+            addToBot(new WaitAction(0.1F));
         }
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }

@@ -72,7 +72,9 @@
       "protect",
       "protect move",
       "Protect",
-      "Protect Move"
+      "Protect Move",
+      "Protects",
+      "protects"
     ],
     "DESCRIPTION": "Move: Focuses on granting you #yBlock or weakening enemies."
   },

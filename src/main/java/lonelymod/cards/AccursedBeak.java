@@ -18,7 +18,7 @@ public class AccursedBeak extends AbstractEasyCard {
     public AccursedBeak() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseDamage = 5;
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 2;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -29,6 +29,6 @@ public class AccursedBeak extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(-1);
+        upgradeDamage(3);
     }
 }

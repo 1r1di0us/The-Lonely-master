@@ -29,5 +29,6 @@ public class Overreaction extends AbstractEasyCard {
     public void upp() {
         upgradeBlock(2);
         upgradeSecondMagic(1);
+        uDesc();
     }
 }

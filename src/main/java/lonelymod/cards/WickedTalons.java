@@ -14,17 +14,16 @@ public class WickedTalons extends AbstractEasyCard {
 
     public WickedTalons() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 5;
-        baseMagicNumber = magicNumber = 2;
+        baseDamage = 6;
+        baseMagicNumber = magicNumber = 4;
         baseSecondMagic = secondMagic = 2;
-        baseThirdMagic = thirdMagic = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        addToBot(new ApplyPowerAction(p, p, new GainStrengthPower(p, secondMagic)));
-        addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, thirdMagic)));
+        addToBot(new ApplyPowerAction(p, p, new GainStrengthPower(p, magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, secondMagic)));
     }
 
     public void upp() {

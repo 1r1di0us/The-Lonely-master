@@ -13,8 +13,9 @@ public class GrandScheme extends AbstractEasyCard {
     public final static String ID = makeID("GrandScheme");
 
     public GrandScheme() {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 20;
+        this.isInnate = true;
     }
     
     @Override

@@ -5,8 +5,7 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +18,7 @@ public class OccultPractice extends AbstractEasyCard {
 
     public OccultPractice() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 4;
+        baseMagicNumber = magicNumber = 7;
         baseSecondMagic = secondMagic = 1;
         this.cardsToPreview = new Wound();
     }
@@ -28,11 +27,11 @@ public class OccultPractice extends AbstractEasyCard {
         addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLUE, p.hb.cX, p.hb.cY), 0.33F));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber));
-        addToBot(new MakeTempCardInDrawPileAction(new Wound(), this.secondMagic, true, false, false));
+        addToBot(new MakeTempCardInHandAction(new Wound(), this.secondMagic));
     }
     
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(3);
     }
 }

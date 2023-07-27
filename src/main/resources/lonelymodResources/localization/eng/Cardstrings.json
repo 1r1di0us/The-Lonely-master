@@ -33,9 +33,9 @@
     "NAME": "Marker",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target."
   },
-  "${ModID}:Overpower": {
-    "NAME": "Overpower",
-    "DESCRIPTION": "Deal !D! damage. NL If the enemy does not intend to Attack, apply !M! Weak."
+  "${ModID}:Overthrow": {
+    "NAME": "Overthrow",
+    "DESCRIPTION": "Deal !D! Damage. NL If you have run out of energy, apply !M! Vulnerable."
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
@@ -82,11 +82,11 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Add a *Wound to your hand."
   },
-  "${ModID}:Overthrow": {
-    "NAME": "Overthrow",
-    "DESCRIPTION": "Gain !B! Block. NL If you have run out of energy, apply !M! Vulnerable."
+  "${ModID}:Overpower": {
+    "NAME": "Overpower",
+    "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to Attack, apply !M! Weak."
   },
   "${ModID}:PureSkill": {
     "NAME": "Pure Skill",
@@ -102,11 +102,11 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, it gains !M! Strength."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
-    "DESCRIPTION": "Deal !D! damage. NL If this enemy is lonelymod:Targeted, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has lonelymod:Target, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
@@ -135,7 +135,7 @@
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Next turn, gain !${ModID}:m2! Strength and lose !${ModID}:m3! Dexterity."
+    "DESCRIPTION": "Deal !D! damage twice. NL Next turn, gain !${ModID}:m2! Strength and lose !${ModID}:m3! Dexterity."
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
@@ -143,11 +143,11 @@
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable. NL Shuffle 1 *Outburst into your draw pile. It costs 0 when drawn."
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable. NL Add a free *Outburst to your hand."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Place 1 *Primal into your discard pile.",
+    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Add a *Primal to your discard pile.",
     "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Shuffle 1 *Primal into your draw pile."
   },
   "${ModID}:ChasingFantasies":  {
@@ -233,7 +233,7 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion performs their lonelymod:Protect Ability, Draw !M! more cards and gain [E] [E] next turn."
+    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, Draw !M! more cards and gain [E] [E] next turn."
   },
   "${ModID}:ThreeStepsAhead": {
     "NAME": "Three Steps Ahead",
@@ -245,7 +245,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain 3 energy if ALL enemies intend to attack."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain [E] [E] [E] if ALL enemies intend to attack."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
@@ -262,7 +262,7 @@
   "${ModID}:Dominate": {
     "NAME": "Dominate",
     "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, reduce enemy Strength by !${ModID}:m2! this turn.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, reduce enemy Strength by !${ModID}:m2! this turn.}"
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, reduce enemy Strength by !${ModID}:m2! this turn."
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
@@ -274,7 +274,7 @@
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -283,7 +283,7 @@
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
-    "DESCRIPTION": "Discard your draw pile. NL lonelymod:Plan !M!."
+    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!."
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",

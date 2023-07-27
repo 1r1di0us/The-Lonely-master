@@ -13,13 +13,13 @@ public class Overpower extends AbstractEasyCard {
     public final static String ID = makeID("Overpower");
 
     public Overpower() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 7;
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+        baseBlock = 6;
         baseMagicNumber = magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        blck();
         if (m != null && !(m.getIntentBaseDmg() >= 0)) {
             addToBot(new OverpowerAction(this.magicNumber, m));
         }
@@ -36,7 +36,7 @@ public class Overpower extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeBlock(2);
         upgradeMagicNumber(1);
     }
 }

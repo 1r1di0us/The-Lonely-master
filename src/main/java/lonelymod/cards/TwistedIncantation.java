@@ -17,8 +17,8 @@ public class TwistedIncantation extends AbstractEasyCard {
 
     public TwistedIncantation() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
-        baseSecondMagic = secondMagic = 1;
+        baseMagicNumber = magicNumber = 2;
+        baseSecondMagic = secondMagic = 2;
         this.isEthereal = true;
     }
 

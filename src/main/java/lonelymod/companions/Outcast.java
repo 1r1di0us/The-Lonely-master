@@ -58,14 +58,15 @@ public class Outcast extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 if (consecutiveAttack == 3) {
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 else {
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     consecutiveAttack++;
                 }
                 if (consecutiveProtect != 3)

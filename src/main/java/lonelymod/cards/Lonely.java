@@ -18,7 +18,6 @@ public class Lonely extends AbstractEasyCard {
     
     public Lonely() {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        AutoplayField.autoplay.set(this, true);
         //MultiCardPreview looks ugly as heck, but I'll use it anyway.
         MultiCardPreview.add(this, new Bravery(), new Resolve(), new Desperation());
     }

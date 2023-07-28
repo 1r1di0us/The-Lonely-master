@@ -14,8 +14,8 @@ public class FireArrow extends AbstractEasyCard {
     public final static String ID = makeID("FireArrow");
 
     public FireArrow() {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 6;
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        baseDamage = 8;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

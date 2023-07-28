@@ -25,7 +25,7 @@ public class CompanionTakeTurnPatch {
     public static void Insert(AbstractRoom __instance) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             if (!__instance.skipMonsterTurn) {
-                AbstractDungeon.actionManager.addToBottom(new CompanionTakeTurnAction());
+                AbstractDungeon.actionManager.addToBottom(new CompanionTakeTurnAction(true));
             }
         }
     }

@@ -86,7 +86,7 @@ public class Mechanic extends AbstractCompanion {
         }
     }
 
-    public void performTurn(byte move) {
+    public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
                 int roll = MathUtils.random(1);

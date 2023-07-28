@@ -111,7 +111,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     // move methods:
 
-    public void performTurn() {
+    public void performTurn(boolean callDefault) {
         if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
             getTarget();
         }
@@ -125,18 +125,19 @@ public abstract class AbstractCompanion extends AbstractMonster {
         /*if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
             addToBot(new CallMoveAction(NONE, this));
         } else {*/
-        addToBot(new CallMoveAction(DEFAULT, this));
+        if (callDefault)
+            addToBot(new CallMoveAction(DEFAULT, this));
         //}
     }
 
     @Override
     public abstract void takeTurn();
 
-    public abstract void performTurn(byte move);
+    public abstract void performMove(byte move);
 
     public abstract void callDefault();
-    public void callMainMove(byte move, boolean makeIntent, boolean triggerPowers) {
-        if (makeIntent) flashIntent();
+    public void callMainMove(byte move, boolean flashIntent, boolean makeIntent, boolean triggerPowers) {
+        if (flashIntent) flashIntent();
         if (triggerPowers)
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move);
@@ -725,6 +726,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     * */
 
     //useless methods I have destroyed:
+
+    @Override
+    public void damage(DamageInfo info) {}
     @Override
     public void heal(int amount) {}
 

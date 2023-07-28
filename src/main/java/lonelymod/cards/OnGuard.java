@@ -32,6 +32,16 @@ public class OnGuard extends AbstractEasyCard {
         ReturnField.willReturn.set(this, true);
     }
 
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (!m.isDeadOrEscaped() && (m.getIntentBaseDmg() > 0)) {
+                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+                break;
+            }
+        }
+    }
+
     public void upp() {
         upgradeMagicNumber(2);
     }

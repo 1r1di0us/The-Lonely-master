@@ -20,7 +20,6 @@ public class BrokenHeart extends AbstractEasyCard {
 
     public BrokenHeart() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = new Outburst();
         this.baseMagicNumber = this.magicNumber = 2;
     }
@@ -34,6 +33,6 @@ public class BrokenHeart extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeMagicNumber(-1);
     }
 }

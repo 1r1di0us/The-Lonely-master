@@ -14,15 +14,15 @@ public class WaterFlaskAction extends AbstractGameAction {
     }
 
     public void update() {
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c.type.equals(AbstractCard.CardType.STATUS)) {
+                addToTop(new DrawCardAction(this.potency));
+                addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
+            }
+        }
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             if (c.type.equals(AbstractCard.CardType.STATUS)) {
                 addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.drawPile));
-            }
-        }
-        for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.type.equals(AbstractCard.CardType.STATUS)) {
-                addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
-                addToTop(new DrawCardAction(this.potency));
             }
         }
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {

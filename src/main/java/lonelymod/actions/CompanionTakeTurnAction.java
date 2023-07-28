@@ -12,18 +12,20 @@ import lonelymod.fields.CompanionField;
 public class CompanionTakeTurnAction extends AbstractGameAction {
 
     AbstractCompanion currCompanion;
+    private boolean callDefault;
 
-    public CompanionTakeTurnAction() {
+    public CompanionTakeTurnAction(boolean callDefault) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             currCompanion = CompanionField.currCompanion.get(AbstractDungeon.player);
         }
+        this.callDefault = callDefault;
     }
     @Override
     public void update() {
         if (currCompanion != null && currCompanion == CompanionField.currCompanion.get(AbstractDungeon.player)) {
             if (currCompanion.intent != AbstractMonster.Intent.NONE) {
-                addToBot(new ShowMoveNameAction(currCompanion, currCompanion.moveName));
-                addToBot(new IntentFlashAction(currCompanion));
+                addToTop(new IntentFlashAction(currCompanion));
+                addToTop(new ShowMoveNameAction(currCompanion, currCompanion.moveName));
             }
             if (!(TipTracker.tips.get("INTENT_TIP")).booleanValue() && AbstractDungeon.player.currentBlock == 0 && (currCompanion.intent == AbstractMonster.Intent.ATTACK || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEBUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_BUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEFEND))
                 if (AbstractDungeon.floorNum <= 5) {
@@ -31,7 +33,7 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
                 } else {
                     TipTracker.neverShowAgain("INTENT_TIP");
                 }
-            currCompanion.performTurn();
+            currCompanion.performTurn(callDefault);
             currCompanion.applyTurnPowers();
         }
         this.isDone = true;

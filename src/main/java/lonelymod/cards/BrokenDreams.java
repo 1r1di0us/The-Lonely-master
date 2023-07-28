@@ -19,9 +19,8 @@ public class BrokenDreams extends AbstractEasyCard {
 
     public BrokenDreams() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = new Dominate();
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

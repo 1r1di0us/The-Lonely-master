@@ -54,7 +54,7 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
-        addToBot(new CallMoveAction(PROTECT, this));
+        addToBot(new CallMoveAction(SPECIAL, this));
     }
 
     public void takeTurn() {
@@ -94,7 +94,7 @@ public class Omen extends AbstractCompanion {
         }
     }
 
-    public void performTurn(byte move) {
+    public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
                 addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
@@ -195,7 +195,10 @@ public class Omen extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(OmenPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
+                    if (hasPower(OmenPower.POWER_ID))
+                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(OmenPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
+                    else
+                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + 5 + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {

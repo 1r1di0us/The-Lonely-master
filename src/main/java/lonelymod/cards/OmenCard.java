@@ -9,13 +9,18 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import lonelymod.actions.AutoplayWaitAction;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.SummonOmenAction;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.companions.Omen;
+import lonelymod.fields.CompanionField;
 
 public class OmenCard extends AbstractEasyCard {
     public final static String ID = makeID("Omen");
@@ -23,10 +28,9 @@ public class OmenCard extends AbstractEasyCard {
     public OmenCard() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         this.baseMagicNumber = magicNumber = 5;
-        this.baseSecondMagic = secondMagic = 1;
+        //this.baseSecondMagic = secondMagic = 1;
         this.exhaust = true;
-        AutoplayField.autoplay.set(this, true);
-        this.cardsToPreview = new Primal();
+        //this.cardsToPreview = new Primal();
         this.tags.add(Enums.COMPANION);
     }
     
@@ -41,15 +45,20 @@ public class OmenCard extends AbstractEasyCard {
         //remove strength, kill current companion, summon omen, make primal instincts, call protect
         addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
-        addToBot(new SummonOmenAction(false));
-        addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
-        if (upgraded) {
-            addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Omen) {
+            addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
+        } else {
+            addToBot(new SummonOmenAction(false));
         }
+        //addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
+        //if (upgraded) {
+        //    addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
+        //}
     }
 
     public void upp() {
-        upgradeSecondMagic(1);
-        uDesc();
+        //upgradeSecondMagic(1);
+        //uDesc();
+        upgradeMagicNumber(-2);
     }
 }

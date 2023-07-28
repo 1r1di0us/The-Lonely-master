@@ -111,7 +111,7 @@ public class Outcast extends AbstractCompanion {
             ((OutcastPower) this.getPower(makeID("OutcastPower"))).updateDescription(consecutiveAttack, consecutiveProtect, consecutiveSpecial);
     }
 
-    public void performTurn(byte move) {
+    public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
                 int roll = MathUtils.random(2);

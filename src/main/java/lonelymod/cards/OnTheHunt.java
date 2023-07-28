@@ -30,6 +30,16 @@ public class OnTheHunt extends AbstractEasyCard {
         ReturnField.willReturn.set(this, true);
     }
 
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (!m.isDeadOrEscaped() && (m.hasPower(TargetPower.POWER_ID))) {
+                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+                break;
+            }
+        }
+    }
+
     public void upp() {
         upgradeDamage(3);
     }

@@ -16,7 +16,6 @@ public class Forgetful extends AbstractEasyCard {
 
     public Forgetful() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = new PanicAttack();
     }
 

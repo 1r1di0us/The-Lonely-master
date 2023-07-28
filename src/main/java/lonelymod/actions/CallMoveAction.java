@@ -1,7 +1,6 @@
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -34,19 +33,21 @@ public class CallMoveAction extends AbstractGameAction {
             if (move == AbstractCompanion.DEFAULT) {
                 currCompanion.callDefault();
             } else if (move == AbstractCompanion.NONE) {
-                currCompanion.callNone();
+                currCompanion.callNone(); //this is currently unused but I'll keep it around
             } else if (move == AbstractCompanion.UNKNOWN) {
                 currCompanion.callUnknown();
             } else if (currCompanion.move.nextMove == AbstractCompanion.UNKNOWN) {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[1], true));
             } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
-                addToTop(new WildFormCallMoveAction(move, currCompanion));
+                AbstractDungeon.player.getPower(WildFormPower.POWER_ID).flash();
+                addToTop(new WildFormCallMoveAction(move, currCompanion)); //this happens second, need to perform last move before you call this move.
+                addToTop(new CompanionTakeTurnAction(false)); //this happens first.
             } else if (move == AbstractCompanion.ATTACK) {
-                currCompanion.callMainMove(AbstractCompanion.ATTACK, true, true);
+                currCompanion.callMainMove(AbstractCompanion.ATTACK, true, true,true);
             } else if (move == AbstractCompanion.PROTECT) {
-                currCompanion.callMainMove(AbstractCompanion.PROTECT, true, true);
+                currCompanion.callMainMove(AbstractCompanion.PROTECT, true, true, true);
             } else if (move == AbstractCompanion.SPECIAL) {
-                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true, true);
+                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true, true, true);
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
             }

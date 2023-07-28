@@ -13,7 +13,7 @@ public class MultiShot extends AbstractEasyCard {
 
     public MultiShot() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
+        baseMagicNumber = magicNumber = 1;
         baseSecondMagic = secondMagic = 4; //unnecessary except for card strings
     }
 
@@ -23,5 +23,6 @@ public class MultiShot extends AbstractEasyCard {
     
     public void upp() {
         upgradeMagicNumber(1);
+        uDesc();
     }
 }

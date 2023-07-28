@@ -14,7 +14,7 @@ public class Overthrow extends AbstractEasyCard {
     public final static String ID = makeID("Overthrow");
 
     public Overthrow() {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 8;
         baseMagicNumber = magicNumber = 2;
     }

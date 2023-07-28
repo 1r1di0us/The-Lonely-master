@@ -15,7 +15,6 @@ public class Distracted extends AbstractEasyCard {
 
     public Distracted() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        AutoplayField.autoplay.set(this, true);
         this.cardsToPreview = new Overreaction();
     }
 

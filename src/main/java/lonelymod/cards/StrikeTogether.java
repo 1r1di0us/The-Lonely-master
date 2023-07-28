@@ -16,8 +16,8 @@ public class StrikeTogether extends AbstractEasyCard {
 
     public StrikeTogether() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 4;
-        baseMagicNumber = magicNumber = 8;
+        baseDamage = 5;
+        baseMagicNumber = magicNumber = 10;
         tags.add(CardTags.STRIKE);
     }
     
@@ -33,18 +33,18 @@ public class StrikeTogether extends AbstractEasyCard {
 
     @Override
     public void applyPowers() {
-        this.baseDamage += 4 + this.timesUpgraded * 2;
+        this.baseDamage += 5 + this.timesUpgraded * 3;
         this.baseMagicNumber = this.baseDamage;
         super.applyPowers();
         this.magicNumber = this.damage;
         this.isMagicNumberModified = this.isDamageModified;
-        this.baseDamage -= 4 + this.timesUpgraded * 2;
+        this.baseDamage -= 5 + this.timesUpgraded * 3;
         super.applyPowers();
     }
 
     public void upp() {
         upgradeDamage(2);
-        this.baseMagicNumber = this.baseDamage + 4 + this.timesUpgraded * 2;
+        this.baseMagicNumber = this.baseDamage + 5 + this.timesUpgraded * 3;
         this.upgradedMagicNumber = this.upgradedDamage;
     }
 }

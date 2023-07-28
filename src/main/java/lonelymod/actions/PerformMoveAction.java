@@ -16,7 +16,7 @@ public class PerformMoveAction extends AbstractGameAction {
     public void update() {
         currCompanion.nextMove = move;
         currCompanion.flashIntent();
-        currCompanion.performTurn(move);
+        currCompanion.performMove(move);
         currCompanion.applyTurnPowers();
         this.isDone = true;
     }

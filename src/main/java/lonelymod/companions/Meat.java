@@ -100,7 +100,7 @@ public class Meat extends AbstractCompanion {
         }
     }
 
-    public void performTurn(byte move) {
+    public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
                 addToTop(new ApplyPowerAction(this, this, new CompanionStaminaPower(this, DEFAULT_PWR_AMT), DEFAULT_PWR_AMT));

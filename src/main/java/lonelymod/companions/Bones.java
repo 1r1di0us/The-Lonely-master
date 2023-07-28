@@ -98,7 +98,7 @@ public class Bones extends AbstractCompanion {
         }
     }
 
-    public void performTurn(byte move) {
+    public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));

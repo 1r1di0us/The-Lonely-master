@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,7 +26,7 @@ public class DeviousPloy extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new PlanAction(this.magicNumber, this));
-        addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, secondMagic), secondMagic));
+        addToBot(new DrawCardAction(this.secondMagic));
     }
 
     public void upp() {

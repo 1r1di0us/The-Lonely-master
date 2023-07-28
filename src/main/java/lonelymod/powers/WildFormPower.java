@@ -54,26 +54,25 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
         updateDescription();
     }
 
-    @Override
+    /*@Override
     public void onInitialApplication() {
         if (CompanionField.currCompanion.get(AbstractDungeon.player).nextMove != AbstractCompanion.DEFAULT) {
             addToBot(new ShowMoveNameAction(CompanionField.currCompanion.get(AbstractDungeon.player), CompanionField.currCompanion.get(AbstractDungeon.player).moveName));
             addToBot(new IntentFlashAction(CompanionField.currCompanion.get(AbstractDungeon.player)));
-            CompanionField.currCompanion.get(AbstractDungeon.player).performTurn();
             CompanionField.currCompanion.get(AbstractDungeon.player).applyTurnPowers();
             CompanionField.currCompanion.get(AbstractDungeon.player).callDefault();
         }
         //CompanionField.currCompanion.get(AbstractDungeon.player).nextMove = AbstractCompanion.NONE;
     }
-
+*/
     @Override
     public void atStartOfTurnPostDraw() {
-        flash();
+        /*flash();
         if (upgraded) {
             addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, false));
         } else {
             addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, true));
-        }
+        }*/
     }
 
     @Override

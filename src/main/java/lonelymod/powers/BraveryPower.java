@@ -39,7 +39,7 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.vigAmount = vigAmount * amount;
+        this.vigAmount = vigAmount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -57,7 +57,7 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseStrengthPower(this.owner, this.amount)));
                 return;

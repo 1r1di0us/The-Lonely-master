@@ -18,11 +18,7 @@
   },
   "${ModID}:DeviousPloy": {
     "NAME": "Devious Ploy",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, draw !${ModID}:m2! cards."
-  },
-  "${ModID}:FireArrow": {
-    "NAME": "Fire Arrow",
-    "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
@@ -43,7 +39,11 @@
   },
   "${ModID}:PlottedDemise": {
     "NAME": "Plotted Demise",
-    "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, incease its damage by !M!. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Whenever this card is drawn, increase its damage by !M!. NL Exhaust."
+  },
+  "${ModID}:Siphon": {
+    "NAME": "Siphon",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
   },
   "${ModID}:StrikeTogether": {
     "NAME": "Strike Together",
@@ -64,13 +64,13 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Shuffle 1 *Overreaction into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Place 1 *Overreaction on top of your draw pile."
+    "DESCRIPTION": "Shuffle 1 *Overreaction into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Place 1 *Overreaction on top of your draw pile."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and shuffle 1 *Panic *Attack into your draw pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Discard 1 random card and place 1 *Panic *Attack on top of your draw pile."
+    "DESCRIPTION": "Discard 1 random card and shuffle 1 *Panic *Attack into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Discard 1 random card and place 1 *Panic *Attack on top of your draw pile."
   },
   "${ModID}:Help": {
     "NAME": "Help!",
@@ -98,11 +98,15 @@
   },
   "${ModID}:Brainstorm": {
     "NAME": "Brainstorm",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Discard your hand. NL lonelymod:Plan !M!."
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
     "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, it gains !M! Strength."
+  },
+  "${ModID}:FireArrow": {
+    "NAME": "Fire Arrow",
+    "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -120,10 +124,6 @@
     "NAME": "Relentless Onslaught",
     "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
   },
-  "${ModID}:Siphon": {
-    "NAME": "Siphon",
-    "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
-  },
   "${ModID}:Strikeout": {
     "NAME": "Strikeout",
     "DESCRIPTION": "Costs 1 less [E] for every turn since you last took unblocked attack damage. NL Deal !D! damage !M! times."
@@ -135,20 +135,20 @@
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
-    "DESCRIPTION": "Deal !D! damage twice. NL Next turn, gain !${ModID}:m2! Strength and lose !${ModID}:m3! Dexterity."
+    "DESCRIPTION": "Deal !D! damage twice. NL Gain !M! Strength and lose !${ModID}:m2! Dexterity."
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Weak. NL Place 1 *Dominate on top of your draw pile."
+    "DESCRIPTION": "Place a *Dominate on top of your draw pile. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Vulnerable. NL Add a free *Outburst to your hand."
+    "DESCRIPTION": "Add a free *Outburst to your hand. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Add a *Primal to your discard pile.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Gain !M! Frail. NL Shuffle 1 *Primal into your draw pile."
+    "DESCRIPTION": "Shuffle a *Primal into your draw pile. NL Gain !M! Frail.",
+    "UPGRADE_DESCRIPTION": "Place a *Primal on top of your draw pile. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -156,7 +156,7 @@
   },
   "${ModID}:ClearThoughts": {
     "NAME": "Clear Thoughts",
-    "DESCRIPTION": "Draw !M! cards. NL lonelymod:Autoplay cards drawn this way will not be Autoplayed."
+    "DESCRIPTION": "Draw !M! cards. This needs to be replaced."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -171,10 +171,6 @@
     "NAME": "On Guard",
     "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
   },
-  "${ModID}:Overcome": {
-    "NAME": "Overcome",
-    "DESCRIPTION": "Gain !B! Block for every type of debuff you have."
-  },
   "${ModID}:Overreaction": {
     "NAME": "Overreaction",
     "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
@@ -183,6 +179,10 @@
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
     "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! lonelymod:Target."
+  },
+  "${ModID}:Preside": {
+    "NAME": "Preside",
+    "DESCRIPTION": "Gain !B! Block. At the start of the next !M! turns, gain that much Block."
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
@@ -202,8 +202,8 @@
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle a *Dazed into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle a *Dazed into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !M! *Dazed into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !M! *Dazed into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -213,19 +213,19 @@
     "NAME": "Coordination",
     "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
   },
-  "${ModID}:DefensiveReflexes": {
-    "NAME": "Defensive Reflexes",
-    "DESCRIPTION": "Whenever you draw a Curse or Autoplay card, gain !M! Block.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you draw a Curse or Autoplay card, gain !M! Block."
-  },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
     "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! Block."
   },
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
-    "DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemy.",
-    "UPGRADE_DESCRIPTION": "Whenever you play an attack card, deal !${ModID}:m2! damage to !M! random enemies."
+    "DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemies.",
+    "UPGRADE_DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemies."
+  },
+  "${ModID}:OvercomeWeakness": {
+    "NAME": "Overcome Weakness",
+    "DESCRIPTION": "At the start of your turn, gain !M! Block for every debuff you have.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! Block for every debuff you have."
   },
   "${ModID}:PlanB": {
     "NAME": "Plan B",
@@ -245,7 +245,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain [E] [E] [E] if ALL enemies intend to attack."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, Gain [E] [E] [E]."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
@@ -270,7 +270,7 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a random card in your hand from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a RANDOM card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
@@ -283,16 +283,16 @@
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
-    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!."
+    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!."
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "lonelymod:Autoplay. Choose 1 card to play at the start of next turn: *Bravery, *Desperation, *Resolve."
+    "DESCRIPTION": "Choose 1 card to play at the start of next turn: *Bravery, *Desperation, *Resolve."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. NL Shuffle !${ModID}:m2! *Primal into your draw pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Autoplay. NL Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. Shuffle !${ModID}:m2! *Primals into your draw pile. NL Exhaust."
+    "DESCRIPTION": "Lose !M! Strength. NL lonelymod:Summon lonelymod:Omen. NL If Omen is already summoned, lonelymod:Call lonelymod:Special. Exhaust."
   },
   "${ModID}:Outburst": {
     "NAME": "Outburst",
@@ -325,8 +325,8 @@
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
-    "DESCRIPTION": "At the start of your turn, discard 1 random card. Whenever you lonelymod:Call a move, it is performed immediately.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, choose 1 card to discard. Whenever you lonelymod:Call a move, it is performed immediately."
+    "DESCRIPTION": "Ethereal. NL Whenever you lonelymod:Call a move, perform the previous move.",
+    "UPGRADE_DESCRIPTION": "Whenever you lonelymod:Call a move, perform the previous move."
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",

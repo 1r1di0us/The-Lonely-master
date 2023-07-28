@@ -38,8 +38,8 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.vigAmount = vigAmount * amount;
-        this.stamAmount = stamAmount * amount;
+        this.vigAmount = vigAmount;
+        this.stamAmount = stamAmount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -57,8 +57,8 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount)));
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.stamAmount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.stamAmount * this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseDexterityPower(this.owner, this.amount)));
                 return;

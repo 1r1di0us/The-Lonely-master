@@ -14,6 +14,7 @@ public class WildForm extends AbstractEasyCard {
 
     public WildForm() {
         super(ID, 3, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        this.isEthereal = true;
         //tags.add(CardTags.FORM); NOOOO WHY WOULD YOU TAKE THIS FROM ME!?
     }
 
@@ -24,6 +25,7 @@ public class WildForm extends AbstractEasyCard {
     
     @Override
     public void upp() {
+        this.isEthereal = false;
         uDesc();
     }
 }

@@ -78,7 +78,7 @@
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "Gain !B! Block. Draw !M! card. NL Next time you play the drawn card this turn, gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Next time you play the drawn card this turn, gain !B! Block."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",

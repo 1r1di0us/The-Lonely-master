@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.*;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.Strikeout;
+import lonelymod.cards.ImpatientStrikes;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.cards.cardvars.ThirdMagicNumber;
@@ -49,9 +49,8 @@ public class LonelyMod implements
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         PostBattleSubscriber,
-        OnStartBattleSubscriber,
-        OnPlayerDamagedSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        OnPlayerTurnStartSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -237,8 +236,6 @@ public class LonelyMod implements
 
     @Override
     public void receiveOnPlayerTurnStartPostDraw() {
-        if (Strikeout.battleStart) Strikeout.battleStart = false;
-        else Strikeout.turnsSinceDamaged++;
         // This makes the return mechanic work:
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (ReturnField.willReturn.get(c)) {
@@ -281,16 +278,7 @@ public class LonelyMod implements
     }
 
     @Override
-    public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
-        if (damageInfo.type == DamageInfo.DamageType.NORMAL && i > AbstractDungeon.player.currentBlock) {
-            Strikeout.turnsSinceDamaged = 0;
-        }
-        return i;
-    }
-
-    @Override
-    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        Strikeout.turnsSinceDamaged = 0;
-        Strikeout.battleStart = true;
+    public void receiveOnPlayerTurnStart() {
+        ImpatientStrikes.movesCalledThisTurn = 0;
     }
 }

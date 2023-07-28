@@ -14,7 +14,7 @@ public class FearTheBeast extends AbstractEasyCard {
 
     public FearTheBeast() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 6;
         this.tags.add(Enums.COMPANION);
     }
 
@@ -23,6 +23,6 @@ public class FearTheBeast extends AbstractEasyCard {
     }
     
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(3);
     }
 }

@@ -7,15 +7,6 @@
       " #yDexterity."
     ]
   },
-  "${ModID}:FireArrowPower": {
-    "NAME": "Fire",
-    "DESCRIPTIONS": [
-      "At the start of its next #b",
-      " turn, takes #b",
-      " turns, takes #b",
-      " damage."
-    ]
-  },
   "${ModID}:ImprovisePower": {
     "NAME": "Improvising",
     "DESCRIPTIONS": [
@@ -36,6 +27,15 @@
     "DESCRIPTIONS": [
       "The next time your #yCompanion #yAttacks this enemy, grant #b",
       " #yStrength."
+    ]
+  },
+  "${ModID}:FieryArrowPower": {
+    "NAME": "Fire",
+    "DESCRIPTIONS": [
+      "At the start of its next #b",
+      " turn, takes #b",
+      " turns, takes #b",
+      " damage."
     ]
   },
   "${ModID}:PinDownPower": {
@@ -79,7 +79,7 @@
   "${ModID}:OvercomeWeaknessPower": {
     "NAME": "Overcome Weakness",
     "DESCRIPTIONS": [
-      "At the start of your turn, Gain #b",
+      "At the end of your turn, Gain #b",
       " #yBlock for every debuff you have."
     ]
   },

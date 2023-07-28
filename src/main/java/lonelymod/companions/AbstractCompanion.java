@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import lonelymod.CompanionStrings;
 import lonelymod.LonelyMod;
 import lonelymod.actions.CallMoveAction;
+import lonelymod.cards.ImpatientStrikes;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
@@ -138,9 +139,13 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void callDefault();
     public void callMainMove(byte move, boolean flashIntent, boolean makeIntent, boolean triggerPowers) {
         if (flashIntent) flashIntent();
-        if (triggerPowers)
+        if (triggerPowers) {
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move);
+            ImpatientStrikes.movesCalledThisTurn++;
+            for (AbstractCard c : AbstractDungeon.player.hand.group)
+                if (c instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move);
+        }
         switch (move) {
             case ATTACK:
                 callAttack();

@@ -18,7 +18,7 @@ public class ActionPlan extends AbstractEasyCard {
 
     public ActionPlan() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 2;
         //magic Numbers will start out at -1 sometimes if you just say baseMagicNumber = #
         this.tags.add(Enums.COMPANION);
     }

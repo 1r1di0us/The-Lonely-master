@@ -19,19 +19,19 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class FireArrowPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class FieryArrowPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
-    public static final String POWER_ID = makeID("FireArrowPower");
+    public static final String POWER_ID = makeID("FieryArrowPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private int damageAmt;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FireArrow84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FireArrow32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FieryArrow84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FieryArrow32.png");
 
-    public FireArrowPower(AbstractCreature owner, int amount, int damageAmt) {
+    public FieryArrowPower(AbstractCreature owner, int amount, int damageAmt) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, amount);
 
         this.owner = owner;
@@ -75,6 +75,6 @@ public class FireArrowPower extends AbstractEasyPower implements CloneablePowerI
 
     @Override
     public AbstractPower makeCopy() {
-        return new FireArrowPower(this.owner, this.amount, this.damageAmt);
+        return new FieryArrowPower(this.owner, this.amount, this.damageAmt);
     }
 }

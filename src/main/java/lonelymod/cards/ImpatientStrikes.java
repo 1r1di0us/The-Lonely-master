@@ -5,16 +5,16 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 
-public class Strikeout extends AbstractEasyCard {
-    public final static String ID = makeID("Strikeout");
+public class ImpatientStrikes extends AbstractEasyCard implements TriggerOnCallMoveInterface {
+    public final static String ID = makeID("ImpatientStrikes");
 
-    public static int turnsSinceDamaged = 0;
-    public static boolean battleStart = false;
+    public static int movesCalledThisTurn = 0;
 
-    public Strikeout() {
+    public ImpatientStrikes() {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 6;
+        baseDamage = 8;
         baseMagicNumber = magicNumber = 3;
         tags.add(CardTags.STRIKE);
     }
@@ -28,10 +28,18 @@ public class Strikeout extends AbstractEasyCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if (turnsSinceDamaged >= 3)
+        if (movesCalledThisTurn >= 3)
             setCostForTurn(0);
         else
-            setCostForTurn(this.cost - turnsSinceDamaged);
+            setCostForTurn(this.cost - movesCalledThisTurn);
+    }
+
+    @Override
+    public void triggerOnCallMove(byte move) {
+        if (movesCalledThisTurn >= 3)
+            setCostForTurn(0);
+        else
+            setCostForTurn(this.cost - movesCalledThisTurn);
     }
 
     public void upp() {

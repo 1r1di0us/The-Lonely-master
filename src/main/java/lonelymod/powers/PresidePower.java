@@ -3,6 +3,7 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -18,7 +19,7 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class PresidePower extends AbstractEasyPower implements CloneablePowerInterface {
+public class PresidePower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
     public static final String POWER_ID = makeID("PresidePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

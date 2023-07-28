@@ -3,7 +3,6 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -14,8 +13,7 @@ public class Overreaction extends AbstractEasyCard {
     public Overreaction() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 6;
-        baseMagicNumber = magicNumber = 1;
-        baseSecondMagic = secondMagic = 1;
+        baseMagicNumber = magicNumber = 2;
         exhaust = true;
         isEthereal = true;
     }
@@ -23,12 +21,10 @@ public class Overreaction extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(secondMagic));
     }
 
     public void upp() {
         upgradeBlock(2);
-        upgradeSecondMagic(1);
-        uDesc();
+        upgradeMagicNumber(1);
     }
 }

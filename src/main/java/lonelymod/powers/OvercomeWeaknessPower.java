@@ -46,15 +46,17 @@ public class OvercomeWeaknessPower extends AbstractEasyPower implements Cloneabl
     }
 
     @Override
-    public void atStartOfTurn() {
-        int blockTotal = 0;
-        for (AbstractPower p : this.owner.powers) {
-            if (p.type == PowerType.DEBUFF) {
-                blockTotal += this.amount;
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) {
+            int blockTotal = 0;
+            for (AbstractPower p : this.owner.powers) {
+                if (p.type == PowerType.DEBUFF) {
+                    blockTotal += this.amount;
+                }
             }
-        }
-        if (blockTotal > 0) {
-            addToBot(new GainBlockAction(this.owner, blockTotal));
+            if (blockTotal > 0) {
+                addToBot(new GainBlockAction(this.owner, blockTotal));
+            }
         }
     }
 

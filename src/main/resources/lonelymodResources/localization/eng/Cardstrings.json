@@ -59,8 +59,8 @@
   },
   "${ModID}:ActionPlan": {
     "NAME": "Action Plan",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E]  and lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] [E] and lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] [E] and lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] [E] [E] and lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
@@ -78,7 +78,7 @@
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "Draw !M! cards. NL Next time you play either card this turn, gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block. Draw !M! card. NL Next time you play the drawn card this turn, gain !B! Block."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
@@ -104,9 +104,13 @@
     "NAME": "Fetch!",
     "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, it gains !M! Strength."
   },
-  "${ModID}:FireArrow": {
-    "NAME": "Fire Arrow",
+  "${ModID}:FieryArrow": {
+    "NAME": "Fiery Arrow",
     "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
+  },
+  "${ModID}:ImpatientStrikes": {
+    "NAME": "Impatient Strikes",
+    "DESCRIPTION": "Costs 1 less [E] for every lonelymod:Move you called this turn. NL Deal !D! damage !M! times."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -118,15 +122,12 @@
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Draw !M! cards. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Gain [E] [E]. NL Exhaust."
   },
   "${ModID}:RelentlessOnslaught": {
     "NAME": "Relentless Onslaught",
     "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
-  },
-  "${ModID}:Strikeout": {
-    "NAME": "Strikeout",
-    "DESCRIPTION": "Costs 1 less [E] for every turn since you last took unblocked attack damage. NL Deal !D! damage !M! times."
   },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
@@ -173,8 +174,7 @@
   },
   "${ModID}:Overreaction": {
     "NAME": "Overreaction",
-    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E]. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! card. NL Gain [E] [E]. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Gain !B! Block. NL Draw !M! cards. NL Exhaust."
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
@@ -202,8 +202,8 @@
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !M! *Dazed into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Shuffle !M! *Dazed into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Shuffle a *Dazed into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Shuffle a *Dazed into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -224,8 +224,8 @@
   },
   "${ModID}:OvercomeWeakness": {
     "NAME": "Overcome Weakness",
-    "DESCRIPTION": "At the start of your turn, gain !M! Block for every debuff you have.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! Block for every debuff you have."
+    "DESCRIPTION": "At the end of your turn, gain !M! Block for every debuff you have.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the end of your turn, gain !M! Block for every debuff you have."
   },
   "${ModID}:PlanB": {
     "NAME": "Plan B",

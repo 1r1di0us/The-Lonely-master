@@ -24,7 +24,7 @@ public class Outcast extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("OutcastSmall.png");
 
     private static final int ATTACK_DMG = 8;
-    private static final int EMP_ATTACK_AMT = 2;
+    private static final int EMP_ATTACK_AMT = 3;
     private static final int PROTECT_BLK = 6;
     private static final int EMP_PROTECT_PWR_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 2;
@@ -59,15 +59,17 @@ public class Outcast extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (consecutiveAttack == 3) {
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                    for (int i = 0; i < EMP_ATTACK_AMT; i++)
+                        addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 else {
                     addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     consecutiveAttack++;
+                    if (consecutiveAttack == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveProtect != 3)
                     consecutiveProtect = 0;
@@ -82,6 +84,9 @@ public class Outcast extends AbstractCompanion {
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
                 } else {
                     consecutiveProtect++;
+                    if (consecutiveProtect == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveAttack != 3)
                     consecutiveAttack = 0;
@@ -96,6 +101,9 @@ public class Outcast extends AbstractCompanion {
                     consecutiveAttack = 3;
                 } else {
                     consecutiveSpecial++;
+                    if (consecutiveSpecial == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveAttack != 3)
                     consecutiveAttack = 0;
@@ -133,6 +141,9 @@ public class Outcast extends AbstractCompanion {
                 }
                 else {
                     consecutiveAttack++;
+                    if (consecutiveAttack == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveProtect != 3)
                     consecutiveProtect = 0;
@@ -147,6 +158,9 @@ public class Outcast extends AbstractCompanion {
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 } else {
                     consecutiveProtect++;
+                    if (consecutiveProtect == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveAttack != 3)
                     consecutiveAttack = 0;
@@ -161,6 +175,9 @@ public class Outcast extends AbstractCompanion {
                     consecutiveAttack = 3;
                 } else {
                     consecutiveSpecial++;
+                    if (consecutiveSpecial == 3 && hasPower(OutcastPower.POWER_ID)) {
+                        getPower(OutcastPower.POWER_ID).flash();
+                    }
                 }
                 if (consecutiveAttack != 3)
                     consecutiveAttack = 0;

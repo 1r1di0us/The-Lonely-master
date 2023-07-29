@@ -412,6 +412,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         }
         if (this.move.baseDamage > -1)
             calculateDamage(this.move.baseDamage);
+        if (this.move.baseBlock > -1)
+            calculateBlock(this.move.baseBlock);
         this.intentImg = getIntentImg();
         updateIntentTip();
     }

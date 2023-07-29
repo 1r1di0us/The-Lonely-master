@@ -3,10 +3,8 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,7 +13,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
-import lonelymod.actions.AutoplayWaitAction;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.SummonOmenAction;
 import lonelymod.companions.AbstractCompanion;
@@ -28,9 +25,7 @@ public class OmenCard extends AbstractEasyCard {
     public OmenCard() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         this.baseMagicNumber = magicNumber = 5;
-        //this.baseSecondMagic = secondMagic = 1;
         this.exhaust = true;
-        //this.cardsToPreview = new Primal();
         this.tags.add(Enums.COMPANION);
     }
     
@@ -43,22 +38,15 @@ public class OmenCard extends AbstractEasyCard {
         addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
         addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.MAGENTA), 0.0F, true));
         //remove strength, kill current companion, summon omen, make primal instincts, call protect
-        addToBot(new AutoplayWaitAction(1.0f));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Omen) {
             addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
         } else {
             addToBot(new SummonOmenAction(false));
         }
-        //addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
-        //if (upgraded) {
-        //    addToBot(new MakeTempCardInDrawPileAction( new Primal(), 1, true, true));
-        //}
     }
 
     public void upp() {
-        //upgradeSecondMagic(1);
-        //uDesc();
         upgradeMagicNumber(-2);
     }
 }

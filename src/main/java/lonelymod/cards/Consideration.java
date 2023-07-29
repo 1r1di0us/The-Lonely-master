@@ -11,10 +11,10 @@ import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
 
-public class ClearThoughts extends AbstractEasyCard {
-    public final static String ID = makeID("ClearThoughts");
+public class Consideration extends AbstractEasyCard {
+    public final static String ID = makeID("Consideration");
 
-    public ClearThoughts() {
+    public Consideration() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 2;
     }

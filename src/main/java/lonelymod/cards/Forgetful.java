@@ -7,10 +7,6 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.actions.AutoplayWaitAction;
-
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
-
 public class Forgetful extends AbstractEasyCard {
     public final static String ID = makeID("Forgetful");
 
@@ -24,9 +20,7 @@ public class Forgetful extends AbstractEasyCard {
         if (!upgraded)
             addToBot(new MakeTempCardInDrawPileAction(new PanicAttack(), 1, true, true));
         else if (upgraded)
-            addToBot(new MakeTempCardInDrawPileAction(new PanicAttack(), 1, false, true));
-        addToBot(new AutoplayWaitAction(1.0f));
-
+            addToBot(new MakeTempCardInDrawPileAction(new PanicAttack(), 1, false, false));
     }
 
     public void upp() {

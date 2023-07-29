@@ -13,7 +13,7 @@ public class PinDown extends AbstractEasyCard{
     public final static String ID = makeID("PinDown");
 
     public PinDown() {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
     }
 
@@ -22,6 +22,6 @@ public class PinDown extends AbstractEasyCard{
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeBaseCost(0);
     }
 }

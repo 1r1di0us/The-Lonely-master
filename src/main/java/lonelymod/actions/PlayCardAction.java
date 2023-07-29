@@ -18,7 +18,7 @@ public class PlayCardAction extends AbstractGameAction {
     public PlayCardAction(CardGroup group, AbstractCard card, AbstractCreature target, boolean exhausts) {
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = AbstractGameAction.ActionType.WAIT;
-        this.source = (AbstractCreature)AbstractDungeon.player;
+        this.source = AbstractDungeon.player;
         this.group = group;
         this.cardToPlay = card;
         this.target = target;
@@ -44,12 +44,12 @@ public class PlayCardAction extends AbstractGameAction {
                 cardToPlay.drawScale = 0.12F;
                 cardToPlay.targetDrawScale = 0.75F;
                 cardToPlay.applyPowers();
-                addToTop((AbstractGameAction)new NewQueueCardAction(cardToPlay, this.target, false, true));
-                addToTop((AbstractGameAction)new UnlimboAction(cardToPlay));
+                addToTop(new NewQueueCardAction(cardToPlay, this.target, false, true));
+                addToTop(new UnlimboAction(cardToPlay));
                 if (!Settings.FAST_MODE) {
-                    addToTop((AbstractGameAction)new WaitAction(Settings.ACTION_DUR_MED));
+                    addToTop(new WaitAction(Settings.ACTION_DUR_MED));
                 } else {
-                    addToTop((AbstractGameAction)new WaitAction(Settings.ACTION_DUR_FASTER));
+                    addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
                 }
             }
             this.isDone = true;

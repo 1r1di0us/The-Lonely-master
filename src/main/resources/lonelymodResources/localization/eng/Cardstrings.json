@@ -64,13 +64,13 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Shuffle 1 *Overreaction into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Place 1 *Overreaction on top of your draw pile."
+    "DESCRIPTION": "Put an *Overreaction on top of your draw pile.",
+    "UPGRADE_DESCRIPTION": "Add an *Overreaction into your hand."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Discard 1 random card and shuffle 1 *Panic *Attack into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Discard 1 random card and place 1 *Panic *Attack on top of your draw pile."
+    "DESCRIPTION": "Discard 1 random card and shuffle a *Panic *Attack into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Discard 1 random card and put a *Panic *Attack on top of your draw pile."
   },
   "${ModID}:Help": {
     "NAME": "Help!",
@@ -140,7 +140,7 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Place a *Dominate on top of your draw pile. NL Gain !M! Weak."
+    "DESCRIPTION": "Put a *Dominate on top of your draw pile. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
@@ -149,15 +149,15 @@
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
     "DESCRIPTION": "Shuffle a *Primal into your draw pile. NL Gain !M! Frail.",
-    "UPGRADE_DESCRIPTION": "Place a *Primal on top of your draw pile. NL Gain !M! Frail."
+    "UPGRADE_DESCRIPTION": "Put a *Primal on top of your draw pile. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
     "DESCRIPTION": "lonelymod:Plan !M!. NL lonelymod:Call lonelymod:Attack. NL Shuffle this card into your draw pile."
   },
-  "${ModID}:ClearThoughts": {
-    "NAME": "Clear Thoughts",
-    "DESCRIPTION": "Draw !M! cards. This needs to be replaced."
+  "${ModID}:Consideration": {
+    "NAME": "Consideration",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -178,7 +178,7 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy this turn, Apply !M! lonelymod:Target."
+    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Weak, and Vulnerable."
   },
   "${ModID}:Preside": {
     "NAME": "Preside",
@@ -209,10 +209,6 @@
     "NAME": "Unwavering",
     "DESCRIPTION": "Ethereal. Gain !B! Block. Gain additional Block equal to ALL enemies' combined Strength. NL lonelymod:Return."
   },
-  "${ModID}:Coordination": {
-    "NAME": "Coordination",
-    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
-  },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
     "DESCRIPTION": "Whenever you lonelymod:Call lonelymod:Attack, gain !M! Block."
@@ -233,7 +229,11 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, Draw !M! more cards and gain [E] [E] next turn."
+    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, Draw !M! cards."
+  },
+  "${ModID}:Teamwork": {
+    "NAME": "Teamwork",
+    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
   },
   "${ModID}:ThreeStepsAhead": {
     "NAME": "Three Steps Ahead",
@@ -245,7 +245,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, Gain [E] [E] [E]."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, NL Gain [E] [E] [E]."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",
@@ -283,12 +283,11 @@
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
-    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!."
+    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!. NL Exhaust."
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "Choose 1 card to play at the start of next turn: *Bravery, *Desperation, *Resolve."
+    "DESCRIPTION": "Choose a card to play at the start of next turn: *Bravery, *Desperation, *Resolve."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",

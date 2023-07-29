@@ -26,7 +26,6 @@ public class GrandScheme extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.exhaust = false;
-        uDesc();
+        upgradeMagicNumber(8);
     }
 }

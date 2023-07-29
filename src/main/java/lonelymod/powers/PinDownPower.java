@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
@@ -53,6 +55,9 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             flash();
             addToBot(new ApplyPowerAction(target, this.owner, new TargetPower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new WeakPower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new VulnerablePower(target, this.amount, false), this.amount));
+
         }
     }
 

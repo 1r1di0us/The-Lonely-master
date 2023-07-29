@@ -41,8 +41,8 @@
   "${ModID}:PinDownPower": {
     "NAME": "Pin Down",
     "DESCRIPTIONS": [
-      "This turn, whenever you deal unblocked attack damage to an enemy, apply #b",
-      " #yTarget."
+      "This turn, whenever you deal unblocked damage, apply #b",
+      " #yTarget, #yWeak, and #yVulnerable."
     ]
   },
   "${ModID}:PresidePower": {
@@ -93,10 +93,9 @@
   "${ModID}:RecoveryPower": {
     "NAME": "Recovery",
     "DESCRIPTIONS": [
-      "Whenever your Companion Protects, gain #b",
-      " Energy and draw #b",
-      " Card next turn.",
-      " Cards next turn."
+      "Whenever your Companion Protects, draw #b",
+      " Card.",
+      " Cards."
     ]
   },
   "${ModID}:ThreeStepsAheadPower": {

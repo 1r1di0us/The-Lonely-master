@@ -13,10 +13,10 @@ import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionDexterityPower;
 
 
-public class Coordination extends AbstractEasyCard {
-    public final static String ID = makeID("Coordination");
+public class Teamwork extends AbstractEasyCard {
+    public final static String ID = makeID("Teamwork");
 
-    public Coordination() {
+    public Teamwork() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
         baseSecondMagic = secondMagic = 2;

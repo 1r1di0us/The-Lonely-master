@@ -16,7 +16,7 @@ public class ChasingFantasies extends AbstractEasyCard {
 
     public ChasingFantasies() {
         super(ID, 1, AbstractCard.CardType.SKILL, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 4;
         this.shuffleBackIntoDrawPile = true;
         this.tags.add(Enums.COMPANION);
     }

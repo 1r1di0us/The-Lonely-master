@@ -153,7 +153,7 @@
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL lonelymod:Call lonelymod:Attack. NL Shuffle this card into your draw pile."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Attack. NL lonelymod:Plan !M!. NL Shuffle this card into your draw pile."
   },
   "${ModID}:Consideration": {
     "NAME": "Consideration",

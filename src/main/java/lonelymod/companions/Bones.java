@@ -31,7 +31,7 @@ public class Bones extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("BonesSmall.png");
 
     private static final int DEFAULT_BLK = 3;
-    private static final int ATTACK_DMG = 8;
+    private static final int ATTACK_DMG = 10;
     private static final int ATTACK_PWR_AMT = 2;
     private static final int PROTECT_BLK = 8;
     private static final int PROTECT_PWR_AMT = 4;

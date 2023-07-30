@@ -258,13 +258,8 @@
   "${ModID}:OutcastPower": {
     "NAME": "Empower",
     "DESCRIPTIONS": [
-      "#yPerforming the same move 3 times in a row Empowers that move for the rest of combat. Empowered Moves: ",
-      ", ",
-      "#yAttack",
-      "#yProtect",
-      "#ySpecial",
-      "None",
-      "."
+      "Every third move that you #yCall will be #yEmpowered, gaining bonus effects.",
+      "NL THE CURRENT MOVE IS EMPOWERED!"
     ]
   },
   "${ModID}:OraclePower": {
@@ -296,7 +291,7 @@
     ]
   },
   "${ModID}:ManiacPower": {
-    "NAME": "Zealous",
+    "NAME": "Fervor",
     "DESCRIPTIONS": [
       "Whenever you lose HP, he gains #b",
       " #yStrength."

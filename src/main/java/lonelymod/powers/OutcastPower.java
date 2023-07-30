@@ -4,6 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -13,7 +14,7 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class OutcastPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class OutcastPower extends AbstractEasyPower implements CloneablePowerInterface {
     public static final String POWER_ID = makeID("OutcastPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -22,10 +23,11 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast32.png");
 
-    public OutcastPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 1);
+    public OutcastPower(AbstractCreature owner, int amount) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
+        this.amount = amount;
 
         type = AbstractPower.PowerType.BUFF;
         isTurnBased = false;
@@ -44,44 +46,19 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        if (amount == 3)
+            description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
+        else
+            description = DESCRIPTIONS[0];
     }
 
-    public void updateDescription(int conAttack, int conProtect, int conSpecial) {
-        //probably an easier way of doing this but i don't care.
-        if (conAttack == 3) {
-            if (conProtect == 3) {
-                if (conSpecial == 3) {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[1] + DESCRIPTIONS[3] + DESCRIPTIONS[1] + DESCRIPTIONS[4] + DESCRIPTIONS[6];
-                } else {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[1] + DESCRIPTIONS[3] + DESCRIPTIONS[6];
-                }
-            } else {
-                if (conSpecial == 3) {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[1] + DESCRIPTIONS[4] + DESCRIPTIONS[6];
-                } else {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[2] + DESCRIPTIONS[6];
-                }
-            }
-        } else {
-            if (conProtect == 3) {
-               if (conSpecial == 3) {
-                   description = DESCRIPTIONS[0] + DESCRIPTIONS[3] + DESCRIPTIONS[1] + DESCRIPTIONS[4] + DESCRIPTIONS[6];
-               } else {
-                   description = DESCRIPTIONS[0] + DESCRIPTIONS[3] + DESCRIPTIONS[6];
-               }
-            } else {
-                if (conSpecial == 3) {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[4] + DESCRIPTIONS[6];
-                } else {
-                    description = DESCRIPTIONS[0] + DESCRIPTIONS[5] + DESCRIPTIONS[6];
-                }
-            }
-        }
+    @Override
+    public void onSpecificTrigger() {
+        addToBot(new ReducePowerAction(this.owner, this.owner, this, 2));
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new OutcastPower(this.owner);
+        return new OutcastPower(this.owner, this.amount);
     }
 }

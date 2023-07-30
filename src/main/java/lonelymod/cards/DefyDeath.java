@@ -17,7 +17,7 @@ public class DefyDeath extends AbstractEasyCard {
     public DefyDeath() {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 5;
-        baseSecondMagic = secondMagic = 6;
+        baseSecondMagic = secondMagic = 7;
         this.exhaust = true;
         this.tags.add(AbstractCard.CardTags.HEALING);
     }

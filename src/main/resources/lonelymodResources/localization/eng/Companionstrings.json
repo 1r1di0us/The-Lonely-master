@@ -164,13 +164,16 @@
 
       "Fring intends to grant you #b",
       " #yBlock.",
-      " #yBlock and grant you #b",
+      " #yBlock #b",
+      " times and grant you #b",
       " #yThorns.",
 
       "Fring intends to gain #b",
       " #yStrength and #b",
       " #yDexterity.",
-      " #yDexterity and #yEmpower his other moves.",
+      " #yDexterity and also grant you #b",
+      " #yStrength and #b",
+      " #yDexterity.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -184,7 +187,8 @@
       "Grants #b",
       " #yBlock.",
       "Empowered: Grants #b",
-      " #yBlock and Grants #b",
+      " #yBlock #b",
+      " time and grants #b",
       " #yThorns.",
 
       "Gains #b",
@@ -192,7 +196,9 @@
       " #yDexterity.",
       "Empowered: Gains #b",
       " #yStrength and #b",
-      " #yDexterity, and #yEmpowers its other #yMoves."
+      " #yDexterity, and also Grants you #b",
+      " #yStrength and #b",
+      " #yDexterity."
     ],
     "DIALOG": [
       "Don't hurt me!",

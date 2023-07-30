@@ -82,7 +82,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Add a *Wound to your hand."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
@@ -202,8 +202,8 @@
   },
   "${ModID}:TwistedIncantation": {
     "NAME": "Twisted Incantation",
-    "DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Shuffle a *Dazed into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Shuffle a *Dazed into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Put a *Dazed into your discard pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength this turn. Put a *Dazed into your discard pile. NL lonelymod:Return."
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
@@ -229,7 +229,7 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, Draw !M! cards."
+    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, draw !M! cards."
   },
   "${ModID}:Teamwork": {
     "NAME": "Teamwork",
@@ -245,7 +245,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, NL Gain [E] [E] [E]."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, NL gain [E] [E] [E]."
   },
   "${ModID}:Counterattack": {
     "NAME": "Counterattack",

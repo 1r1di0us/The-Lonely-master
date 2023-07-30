@@ -27,7 +27,7 @@ public class Oracle extends AbstractCompanion {
 
     private static final int ATTACK_DMG = 10;
     private static final int PROTECT_BLK = 6;
-    public static final int SPECIAL_PWR_AMT = 5;
+    public static final int SPECIAL_PWR_AMT = 10;
 
     private int attackDmg;
     private int protectBlk;

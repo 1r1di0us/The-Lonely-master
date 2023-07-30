@@ -11,7 +11,7 @@ public class ExponentialForce extends AbstractEasyCard {
     public final static String ID = makeID("ExponentialForce");
     public ExponentialForce() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-        this.baseDamage = 7;
+        this.baseDamage = 10;
     }
 
     @Override

@@ -25,15 +25,15 @@ public class Outcast extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("OutcastSmall.png");
 
     private static final int ATTACK_DMG = 8;
-    private static final int EMP_ATTACK_AMT = 3;
+    private static final int EMP_ATTACK_AMT = 2;
     private static final int PROTECT_BLK = 6;
-    private static final int EMP_PROTECT_AMT = 2;
-    private static final int EMP_PROTECT_PWR_AMT = 3;
+    private static final int EMP_PROTECT_PWR_AMT = 5;
     private static final int SPECIAL_PWR_AMT = 3;
+    private static final int EMP_SPECIAL_PWR_AMT = 2;
 
     private int attackDmg;
     private int protectBlk;
-    private int consecutiveMove = 1;
+    private int consecutiveMove = 3;
 
     public Outcast(float drawX, float drawY) {
         super("Fring", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
@@ -44,7 +44,7 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1)));
+        addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 3, true)));
     }
 
     public void takeTurn() {
@@ -70,13 +70,9 @@ public class Outcast extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                if (consecutiveMove == 3) {
-                    for (int i = 0; i < EMP_PROTECT_AMT; i++)
-                        addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                if (consecutiveMove == 3)
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
-                } else {
-                    addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                }
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -84,8 +80,8 @@ public class Outcast extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT)));
                 if (consecutiveMove == 3) {
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, SPECIAL_PWR_AMT)));
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, SPECIAL_PWR_AMT)));
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                 }
                 break;
             case UNKNOWN:
@@ -119,20 +115,16 @@ public class Outcast extends AbstractCompanion {
                     getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
-                if (consecutiveMove == 3) {
+                if (consecutiveMove == 3)
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
-                    for (int i = 0; i < EMP_PROTECT_AMT; i++)
-                        addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                } else {
-                    addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                }
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (consecutiveMove == 3) {
-                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, SPECIAL_PWR_AMT)));
-                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, SPECIAL_PWR_AMT)));
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                 }
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
@@ -153,7 +145,7 @@ public class Outcast extends AbstractCompanion {
             }
             consecutiveMove = 1;
         } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1)));
+            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
         }
         if (consecutiveMove == 3) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
@@ -170,7 +162,7 @@ public class Outcast extends AbstractCompanion {
             }
             consecutiveMove = 1;
         } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1)));
+            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
         }
         if (consecutiveMove == 3) {
             setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
@@ -187,7 +179,7 @@ public class Outcast extends AbstractCompanion {
             }
             consecutiveMove = 1;
         } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1)));
+            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
         }
         setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
@@ -211,7 +203,7 @@ public class Outcast extends AbstractCompanion {
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 if (consecutiveMove == 3) {
-                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[7] + EMP_PROTECT_AMT + INTENTS[8] + EMP_PROTECT_PWR_AMT + INTENTS[9];
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[7] + EMP_PROTECT_PWR_AMT + INTENTS[8];
                 } else {
                     this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6];
                 }
@@ -220,15 +212,15 @@ public class Outcast extends AbstractCompanion {
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 if (consecutiveMove == 3) {
-                    this.intentTip.body = INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[13] + SPECIAL_PWR_AMT + INTENTS[14] + SPECIAL_PWR_AMT + INTENTS[15];
+                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[12] + EMP_SPECIAL_PWR_AMT + INTENTS[13] + EMP_SPECIAL_PWR_AMT + INTENTS[14];
                 } else {
-                    this.intentTip.body = INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12];
+                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11];
                 }
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[16];
+                this.intentTip.body = INTENTS[15];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -255,15 +247,15 @@ public class Outcast extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    if (consecutiveMove == 3) return INTENT_TOOLTIPS[7] + this.block.get(0).output + INTENT_TOOLTIPS[8] + EMP_PROTECT_AMT + INTENT_TOOLTIPS[9] + EMP_PROTECT_PWR_AMT + INTENT_TOOLTIPS[10];
+                    if (consecutiveMove == 3) return INTENT_TOOLTIPS[7] + this.block.get(0).output + INTENT_TOOLTIPS[8] + EMP_PROTECT_PWR_AMT + INTENT_TOOLTIPS[9];
                     else return INTENT_TOOLTIPS[5] + this.block.get(0).output + INTENT_TOOLTIPS[6];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    if (consecutiveMove == 3) return INTENT_TOOLTIPS[14] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[15] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[16] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[17] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[18];
-                    else return INTENT_TOOLTIPS[11] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[12] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[13];
+                    if (consecutiveMove == 3) return INTENT_TOOLTIPS[13] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[14] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[15] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[16] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[17];
+                    else return INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[12];
                 }
         }
         return "";

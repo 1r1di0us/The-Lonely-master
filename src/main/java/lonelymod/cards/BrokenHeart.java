@@ -3,7 +3,7 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,10 +22,10 @@ public class BrokenHeart extends AbstractEasyCard {
         addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.magicNumber, false), this.magicNumber));
         AbstractCard cardToMake = new Outburst();
         cardToMake.freeToPlayOnce = true;
-        addToBot(new MakeTempCardInHandAction(cardToMake, 1));
+        addToBot(new MakeTempCardInDrawPileAction(cardToMake, 1, false, true));
     }
 
     public void upp() {
-        upgradeMagicNumber(-1);
+        upgradeBaseCost(0);
     }
 }

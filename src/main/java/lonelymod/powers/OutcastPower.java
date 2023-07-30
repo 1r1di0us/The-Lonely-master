@@ -23,11 +23,14 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast32.png");
 
-    public OutcastPower(AbstractCreature owner, int amount) {
+    private boolean startOfBattle = false;
+
+    public OutcastPower(AbstractCreature owner, int amount, boolean startOfBattle) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
         this.amount = amount;
+        this.startOfBattle = startOfBattle;
 
         type = AbstractPower.PowerType.BUFF;
         isTurnBased = false;
@@ -46,7 +49,7 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        if (amount == 3)
+        if (amount == 3 && !startOfBattle)
             description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
         else
             description = DESCRIPTIONS[0];
@@ -59,6 +62,6 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public AbstractPower makeCopy() {
-        return new OutcastPower(this.owner, this.amount);
+        return new OutcastPower(this.owner, this.amount, this.startOfBattle);
     }
 }

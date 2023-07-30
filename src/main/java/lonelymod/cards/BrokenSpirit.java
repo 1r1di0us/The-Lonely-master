@@ -14,17 +14,16 @@ public class BrokenSpirit extends AbstractEasyCard {
     public BrokenSpirit() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Primal();
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new FrailPower(p, this.magicNumber, false), this.magicNumber));
-        if (!upgraded) addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, true, true));
-        else addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, false, true));
+        addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, false, true));
     }
 
     public void upp() {
-        uDesc();
+        upgradeMagicNumber(-1);
     }
 }

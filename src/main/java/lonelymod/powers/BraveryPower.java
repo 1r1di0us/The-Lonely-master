@@ -67,7 +67,7 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.vigAmount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.vigAmount * this.amount + DESCRIPTIONS[1];
     }
 
     @Override

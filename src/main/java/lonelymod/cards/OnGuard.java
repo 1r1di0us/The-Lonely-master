@@ -24,11 +24,14 @@ public class OnGuard extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new StaminaPower(p, magicNumber), magicNumber));
+        boolean callMove = false;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo.getIntentBaseDmg() > 0) {
-                addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
+                callMove = true;
             }
         }
+        if (callMove)
+            addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
         ReturnField.willReturn.set(this, true);
     }
 

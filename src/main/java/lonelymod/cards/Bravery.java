@@ -25,7 +25,7 @@ public class Bravery extends AbstractEasyCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (upgraded) addToBot(new ApplyPowerAction(p, p, new FearlessBraveryPower(p, 1, magicNumber, secondMagic)));
-        else addToBot(new ApplyPowerAction(p, p, new BraveryPower(p, 1, magicNumber), magicNumber));
+        else addToBot(new ApplyPowerAction(p, p, new BraveryPower(p, 1, magicNumber)));
     }
     
     @Override

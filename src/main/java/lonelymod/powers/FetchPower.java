@@ -29,6 +29,8 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch32.png");
 
+    private int strAmount;
+
     public FetchPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, amount);
 
@@ -37,6 +39,7 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
         type = PowerType.DEBUFF;
         isTurnBased = false;
         this.amount = amount;
+        this.strAmount = amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -54,7 +57,8 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player)) {
             flash();
-            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.amount), this.amount));
+            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.strAmount), this.strAmount));
+            this.strAmount = 0;
             addToBot(new RemoveSpecificPowerAction(this.owner, CompanionField.currCompanion.get(AbstractDungeon.player), this));
         }
         return damageAmount;

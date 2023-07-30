@@ -140,16 +140,16 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Put a *Dominate on top of your draw pile. NL Gain !M! Weak."
+    "DESCRIPTION": "Put a *Dominate on top of your draw pile. NL Gain !M! Weak.",
+    "UPGRADE_DESCRIPTION": "Add a *Dominate to your hand. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "Add a free *Outburst to your hand. NL Gain !M! Vulnerable."
+    "DESCRIPTION": "Put an *Outburst on top of your draw pile. NL It costs 0 when drawn. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "Shuffle a *Primal into your draw pile. NL Gain !M! Frail.",
-    "UPGRADE_DESCRIPTION": "Put a *Primal on top of your draw pile. NL Gain !M! Frail."
+    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -310,8 +310,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "After ending your turn, play a random card from your hand and exhaust it.",
-    "UPGRADE_DESCRIPTION": "After the end of your turn, play a random card from your hand."
+    "DESCRIPTION": "At the end of your turn, play a random card from your discard pile and exhaust it.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random card from your discard pile."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",

@@ -68,7 +68,7 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.vigAmount + DESCRIPTIONS[1] + this.stamAmount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + this.vigAmount * this.amount + DESCRIPTIONS[1] + this.stamAmount * this.amount + DESCRIPTIONS[2];
     }
 
     @Override

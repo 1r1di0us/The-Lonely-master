@@ -20,7 +20,7 @@ import lonelymod.util.TexLoader;
 
 import java.util.Objects;
 
-public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface, AtEndOfTurnPostEndTurnCardsInterface {
+public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
 
     public static final String POWER_ID = makeID("DesperationPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -29,8 +29,6 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Desperation84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Desperation32.png");
-
-    private CardGroup previousHand;
 
     public DesperationPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -56,30 +54,11 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer) {
-            if (!AbstractDungeon.player.hand.isEmpty()) {
-                previousHand = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                    if (!c.isEthereal) {
-                        previousHand.addToTop(c);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public void atEndOfTurnPostEndTurnCards(boolean isPlayer) {
-        if (isPlayer && !previousHand.isEmpty()) {
             for (int i = 0; i < this.amount; i++) {
-                AbstractCard cardToPlay = previousHand.getRandomCard(true);
-                for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-                    if (Objects.equals(cardToPlay.cardID, c.cardID)) {
-                        cardToPlay = c;
-                        break;
-                    }
+                if (!AbstractDungeon.player.discardPile.isEmpty()) {
+                    AbstractCard cardToPlay = AbstractDungeon.player.discardPile.getRandomCard(true);
+                    addToBot(new PlayCardAction(AbstractDungeon.player.discardPile, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
                 }
-                //cardToPlay.freeToPlayOnce = true;
-                addToBot(new PlayCardAction(AbstractDungeon.player.discardPile, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
             }
         }
     }

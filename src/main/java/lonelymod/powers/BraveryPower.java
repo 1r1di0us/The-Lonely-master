@@ -56,7 +56,7 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
     @Override
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseStrengthPower(this.owner, this.amount)));

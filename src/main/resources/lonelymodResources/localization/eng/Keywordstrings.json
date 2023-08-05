@@ -91,16 +91,6 @@
     "DESCRIPTION": "Move: The most powerful #yMove. NL Effects vary greatly between #yCompanions."
   },
   {
-    "PROPER_NAME": "Food",
-    "NAMES": [
-      "food",
-      "food.",
-      "Food",
-      "Food."
-    ],
-    "DESCRIPTION": "Given to #yCompanions, acting as both Strength and Dexterity for the companion. NL Does not transfer to new #yCompanions."
-  },
-  {
     "PROPER_NAME": "Target",
     "NAMES": [
       "target",
@@ -131,7 +121,11 @@
     "NAMES": [
       "plan",
       "Plan",
-      "PLAN"
+      "PLAN",
+      "Planned",
+      "planned",
+      "PLANNED",
+      "Planned,"
     ],
     "DESCRIPTION": "Look at the top X cards on your discard pile. NL You may choose any of them to shuffle into your draw pile."
   },

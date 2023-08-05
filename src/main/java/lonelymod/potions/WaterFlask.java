@@ -25,6 +25,7 @@ public class WaterFlask extends AbstractPotion {
     public static final String POTION_ID = makeID("WaterFlask");
 
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
+    private static final int drawAmount = 2;
 
     public WaterFlask() {
         super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.UNCOMMON, PotionSize.EYE, PotionColor.BLUE);
@@ -34,11 +35,7 @@ public class WaterFlask extends AbstractPotion {
 
     public void initializeData() {
         this.potency = getPotency();
-        if (this.potency > 1) {
-            this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[2];
-        } else {
-            this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1];
-        }
+        this.description = potionStrings.DESCRIPTIONS[0] + (drawAmount * this.potency) + potionStrings.DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
         this.tips.add(new PowerTip(
@@ -48,7 +45,7 @@ public class WaterFlask extends AbstractPotion {
     }
 
     public void use(AbstractCreature target) {
-        addToBot(new WaterFlaskAction(this.potency));
+        addToBot(new WaterFlaskAction(drawAmount * this.potency));
     }
 
     public int getPotency(int ascensionLevel) {

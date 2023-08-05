@@ -7,8 +7,27 @@
       " #yDexterity."
     ]
   },
-  "${ModID}:ImprovisePower": {
-    "NAME": "Improvising",
+  "${ModID}:AddCardToHandPower": {
+    "NAME": " Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of next turn, add a #y",
+      " to your hand.",
+      "At the start of next turn, add #b",
+      " #y",
+      "s to your hand.",
+      "At the start of next turn, add an unknown card to your hand."
+    ]
+  },
+  "${ModID}:DeenergizedPower": {
+    "NAME": "De-energized",
+    "DESCRIPTIONS": [
+      "Draw #b1 less card next turn.",
+      "Draw #b1 less card for #b",
+      " turns."
+    ]
+  },
+  "${ModID}:AdaptPower": {
+    "NAME": "Adapting",
     "DESCRIPTIONS": [
       "Next time you play *",
       " this turn, gain #b",
@@ -54,13 +73,6 @@
       " #yBlock."
     ]
   },
-  "${ModID}:DefensiveReflexesPower": {
-    "NAME": "Defensive Reflexes",
-    "DESCRIPTIONS": [
-      "Whenever you draw a Curse or Autoplay card, gain #b",
-      " Block."
-    ]
-  },
   "${ModID}:FearTheBeastPower": {
     "NAME": "Fear The Beast",
     "DESCRIPTIONS": [
@@ -76,8 +88,8 @@
       " random enemies."
     ]
   },
-  "${ModID}:OvercomeWeaknessPower": {
-    "NAME": "Overcome Weakness",
+  "${ModID}:OvercomePower": {
+    "NAME": "Overcome",
     "DESCRIPTIONS": [
       "At the end of your turn, Gain #b",
       " #yBlock for every debuff you have."
@@ -124,14 +136,14 @@
   "${ModID}:BraveryPower": {
     "NAME": "Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
+      "At the start of your turn, if any enemy intends to attack, Gain #b",
       " #yVigor."
     ]
   },
   "${ModID}:FearlessBraveryPower": {
     "NAME": "Fearless Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any non-minion enemy intends to attack, Gain #b",
+      "At the start of your turn, if any enemy intends to attack, Gain #b",
       " #yVigor and #b",
       " #yStamina."
     ]
@@ -176,8 +188,7 @@
   "${ModID}:WildFormPower": {
     "NAME": "Wild Form",
     "DESCRIPTIONS": [
-      "At the start of your turn, discard 1 random card. Whenever you #yCall a move, perform the previous move.",
-      "At the start of your turn, choose 1 card to discard. Whenever you #yCall a move, perform the previous move."
+      "Whenever you #yCall a move, perform the previous move."
     ]
   },
   "${ModID}:CompanionVigorPower": {
@@ -236,7 +247,7 @@
   "${ModID}:BonesPower": {
     "NAME": "Feast",
     "DESCRIPTIONS": [
-      "Whenever a non-minion enemy dies, #yBones gains #b",
+      "Whenever an enemy dies, #yBones gains #b",
       " #yStrength and #b",
       " #yDexterity."
     ]

@@ -15,7 +15,7 @@ public class Lonely extends AbstractEasyCard {
     public static final String ID = makeID("Lonely");
     
     public Lonely() {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         //MultiCardPreview looks ugly as heck, but I'll use it anyway.
         MultiCardPreview.add(this, new Bravery(), new Resolve(), new Desperation());
     }
@@ -26,6 +26,6 @@ public class Lonely extends AbstractEasyCard {
     }
     
     public void upp() {
-        upgradeBaseCost(1);
+        upgradeBaseCost(2);
     }
 }

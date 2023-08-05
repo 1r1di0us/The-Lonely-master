@@ -13,8 +13,8 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class OvercomeWeaknessPower extends AbstractEasyPower implements CloneablePowerInterface {
-    public static final String POWER_ID = makeID("OvercomeWeaknessPower");
+public class OvercomePower extends AbstractEasyPower implements CloneablePowerInterface {
+    public static final String POWER_ID = makeID("OvercomePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -24,7 +24,7 @@ public class OvercomeWeaknessPower extends AbstractEasyPower implements Cloneabl
 
     //private int autoplayAmount;
 
-    public OvercomeWeaknessPower(AbstractCreature owner, int amount) {
+    public OvercomePower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -67,6 +67,6 @@ public class OvercomeWeaknessPower extends AbstractEasyPower implements Cloneabl
 
     @Override
     public AbstractPower makeCopy() {
-        return new OvercomeWeaknessPower(this.owner, this.amount);
+        return new OvercomePower(this.owner, this.amount);
     }
 }

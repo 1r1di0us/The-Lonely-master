@@ -12,7 +12,7 @@ public class Overreaction extends AbstractEasyCard {
 
     public Overreaction() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = 7;
+        baseBlock = 8;
         baseMagicNumber = magicNumber = 2;
         exhaust = true;
         isEthereal = true;

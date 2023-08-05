@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import lonelymod.powers.ImprovisePower;
+import lonelymod.powers.AdaptPower;
 
-public class ImproviseFollowUpAction extends AbstractGameAction {
+public class AdaptFollowUpAction extends AbstractGameAction {
     private int blockAmount;
 
-    public ImproviseFollowUpAction(int blockAmount) {
+    public AdaptFollowUpAction(int blockAmount) {
         this.blockAmount = blockAmount;
     }
     public void update() {
@@ -19,7 +19,7 @@ public class ImproviseFollowUpAction extends AbstractGameAction {
         tickDuration();
         if (this.isDone)
             for (AbstractCard c : DrawCardAction.drawnCards) {
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ImprovisePower(AbstractDungeon.player, c, blockAmount)));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new AdaptPower(AbstractDungeon.player, c, blockAmount)));
             }
     }
 }

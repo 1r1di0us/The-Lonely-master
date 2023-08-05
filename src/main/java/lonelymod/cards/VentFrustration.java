@@ -7,16 +7,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.interfaces.TriggerOnCallMoveInterface;
 
-public class ImpatientStrikes extends AbstractEasyCard implements TriggerOnCallMoveInterface {
-    public final static String ID = makeID("ImpatientStrikes");
+public class VentFrustration extends AbstractEasyCard implements TriggerOnCallMoveInterface {
+    public final static String ID = makeID("VentFrustration");
 
     public static int movesCalledThisTurn = 0;
 
-    public ImpatientStrikes() {
+    public VentFrustration() {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseDamage = 8;
         baseMagicNumber = magicNumber = 3;
-        tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -25,6 +25,7 @@ public class CannedMeat extends AbstractPotion {
     public static final String POTION_ID = makeID("CannedMeat");
 
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
+    private static int powerAmount = 2;
 
     public CannedMeat() {
         super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.COMMON, PotionSize.JAR, AbstractPotion.PotionColor.STRENGTH);
@@ -34,7 +35,7 @@ public class CannedMeat extends AbstractPotion {
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1] + this.potency + potionStrings.DESCRIPTIONS[2];
+        this.description = potionStrings.DESCRIPTIONS[0] + (powerAmount * this.potency) + potionStrings.DESCRIPTIONS[1] + (powerAmount * this.potency) + potionStrings.DESCRIPTIONS[2];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
         this.tips.add(new PowerTip(
@@ -53,8 +54,8 @@ public class CannedMeat extends AbstractPotion {
         } else {
             AbstractCompanion companion = CompanionField.currCompanion.get(AbstractDungeon.player);
             if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
-                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new StrengthPower(companion, this.potency), this.potency));
-                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new CompanionDexterityPower(companion, this.potency), this.potency));
+                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new StrengthPower(companion, powerAmount * this.potency), powerAmount * this.potency));
+                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new CompanionDexterityPower(companion, powerAmount * this.potency), powerAmount * this.potency));
             }
         }
     }

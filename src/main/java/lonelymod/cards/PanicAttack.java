@@ -3,8 +3,9 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -14,21 +15,19 @@ public class PanicAttack extends AbstractEasyCard {
     public PanicAttack() {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
         baseDamage = 8;
-        baseMagicNumber = magicNumber = 1;
-        baseSecondMagic = secondMagic = 1;
+        baseMagicNumber = magicNumber = 2;
         exhaust = true;
         isEthereal = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AttackEffect.BLUNT_LIGHT);
-        addToBot(new DrawCardAction(p, magicNumber));
-        addToBot(new GainEnergyAction(secondMagic));
+        addToBot(new DamageRandomEnemyAction(new DamageInfo(p, this.damage, damageTypeForTurn), AttackEffect.BLUNT_LIGHT));
+        addToBot(new GainEnergyAction(magicNumber));
     }
 
     public void upp() {
         upgradeDamage(2);
-        upgradeSecondMagic(1);
+        upgradeMagicNumber(1);
         uDesc();
     }
 }

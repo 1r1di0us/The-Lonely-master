@@ -7,20 +7,22 @@ import com.megacrit.cardcrawl.actions.defect.GashAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import lonelymod.interfaces.TriggerOnPlanInterface;
 
-public class PlottedDemise extends AbstractEasyCard {
-    public final static String ID = makeID("PlottedDemise");
+public class PlannedAssault extends AbstractEasyCard implements TriggerOnPlanInterface {
+    public final static String ID = makeID("PlannedAssault");
 
-    public PlottedDemise() {
+    public PlannedAssault() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 2;
-        baseMagicNumber = magicNumber = 5;
+        baseDamage = 8;
+        baseMagicNumber = magicNumber = 10;
         this.exhaust = true;
     }
     
     @Override
-    public void triggerWhenDrawn() {
-        AbstractDungeon.actionManager.addToBottom(new GashAction(this, magicNumber));
+    public void triggerOnPlan(boolean thisCardPlanned) {
+        if (thisCardPlanned)
+            AbstractDungeon.actionManager.addToBottom(new GashAction(this, magicNumber));
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -28,6 +30,7 @@ public class PlottedDemise extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(3);
+        upgradeDamage(2);
+        upgradeMagicNumber(5);
     }
 }

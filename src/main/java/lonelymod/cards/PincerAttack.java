@@ -11,14 +11,13 @@ import lonelymod.actions.StrikeTogetherAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
-public class StrikeTogether extends AbstractEasyCard {
-    public final static String ID = makeID("StrikeTogether");
+public class PincerAttack extends AbstractEasyCard {
+    public final static String ID = makeID("PincerAttack");
 
-    public StrikeTogether() {
+    public PincerAttack() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 5;
-        baseMagicNumber = magicNumber = 10;
-        tags.add(CardTags.STRIKE);
+        baseDamage = 8;
+        baseMagicNumber = magicNumber = 8;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -33,18 +32,16 @@ public class StrikeTogether extends AbstractEasyCard {
 
     @Override
     public void applyPowers() {
-        this.baseDamage += 5 + this.timesUpgraded * 3;
         this.baseMagicNumber = this.baseDamage;
         super.applyPowers();
         this.magicNumber = this.damage;
         this.isMagicNumberModified = this.isDamageModified;
-        this.baseDamage -= 5 + this.timesUpgraded * 3;
         super.applyPowers();
     }
 
     public void upp() {
         upgradeDamage(2);
-        this.baseMagicNumber = this.baseDamage + 5 + this.timesUpgraded * 3;
+        this.baseMagicNumber = this.baseDamage;
         this.upgradedMagicNumber = this.upgradedDamage;
     }
 }

@@ -12,13 +12,14 @@ import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
 
-public class TagTeam extends AbstractEasyCard {
-    public final static String ID = makeID("TagTeam");
+public class StrikeTeam extends AbstractEasyCard {
+    public final static String ID = makeID("StrikeTeam");
 
-    public TagTeam() {
+    public StrikeTeam() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 8;
         baseMagicNumber = magicNumber = 1;
+        tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

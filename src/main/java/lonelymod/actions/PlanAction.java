@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 
 import lonelymod.cards.Genius;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.Improvise;
 import lonelymod.interfaces.TriggerOnPlanInterface;
 import lonelymod.powers.PlanBPower;
 import lonelymod.powers.ThreeStepsAheadPower;
@@ -74,15 +73,17 @@ public class PlanAction extends AbstractGameAction {
             AbstractDungeon.gridSelectScreen.open(tmpGroup, this.amount, true, TEXT[0]);
         } else if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+                if (c instanceof TriggerOnPlanInterface) {
+                    ((TriggerOnPlanInterface) c).triggerOnPlan(true);
+                }
                 AbstractDungeon.player.discardPile.moveToDeck(c, true);
                 if (cardPlayed != null && cardPlayed instanceof Genius)
                     addToTop(new UpgradeSpecificCardAction(c));
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
-
-        tickDuration();
         triggerPlanActions();
+        tickDuration();
     }
 
     private void triggerPlanActions() {
@@ -91,7 +92,7 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             if (c instanceof TriggerOnPlanInterface) {
-                ((TriggerOnPlanInterface) c).triggerOnPlan();
+                ((TriggerOnPlanInterface) c).triggerOnPlan(false);
             }
         }
         //for (AbstractPower p : AbstractDungeon.player.powers) {

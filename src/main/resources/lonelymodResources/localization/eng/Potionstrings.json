@@ -11,8 +11,7 @@
     "NAME": "Water Flask",
     "DESCRIPTIONS": [
       "Exhaust all statuses in your deck. NL Draw #b",
-      " card for every status that was in your hand.",
-      " cards for every status that was in your hand."
+      " cards."
     ]
   },
   "${ModID}:SpecialSauce": {

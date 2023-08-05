@@ -4,7 +4,7 @@
         "Choose any number of cards to shuffle into your Draw Pile."
     ]
   },
-  "${ModID}:CounterattackMessage": {
+  "${ModID}:CounterstrikeMessage": {
     "TEXT": [
       "This enemy is not attacking you!"
     ]

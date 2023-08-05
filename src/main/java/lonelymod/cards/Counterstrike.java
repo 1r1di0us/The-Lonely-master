@@ -2,29 +2,28 @@ package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.relics.StrikeDummy;
 
-public class Counterattack extends AbstractEasyCard {
-    public final static String ID = makeID("Counterattack");
-    private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(makeID("CounterattackMessage"));
+public class Counterstrike extends AbstractEasyCard {
+    public final static String ID = makeID("Counterstrike");
+    private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(makeID("CounterstrikeMessage"));
     public static final String[] TEXT = uistring.TEXT;
 
-    //public static final Logger logger = LogManager.getLogger(Counterattack.class.getName());
-
-    public Counterattack() {
+    public Counterstrike() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        baseDamage = 0;
         baseMagicNumber = magicNumber = 0;
+        tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -69,9 +68,8 @@ public class Counterattack extends AbstractEasyCard {
     public void calculateCardDamage(AbstractMonster mo) {
         if (mo.getIntentBaseDmg() >= 0 && !mo.isDeadOrEscaped()) {
             this.baseDamage = mo.getIntentDmg();
-            this.baseMagicNumber = this.magicNumber = (int)ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
+            this.baseMagicNumber = this.magicNumber = ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
             super.calculateCardDamage(mo);
-            //logger.info("Counterattack: " + this.damage + ", " + this.magicNumber + ".");
             if (this.magicNumber <= 1) { //mo is attacking once
                 this.baseMagicNumber = this.magicNumber = 1;
                 this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
@@ -83,14 +81,26 @@ public class Counterattack extends AbstractEasyCard {
             }
         }
     }
+
+    @Override
+    public void initializeDescription() {
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
+            if (this.rawDescription == cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0]) {
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
+            } else if (this.rawDescription == cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1]) {
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
+            } else {
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
+            }
+        }
+        super.initializeDescription();
+    }
     
     @Override
     public void applyPowers() {
         super.applyPowers();
 
         if (!cardStrings.DESCRIPTION.equals(this.rawDescription)) {
-            //this.baseDamage = -1;
-            //this.baseMagicNumber = this.magicNumber = 0;
             this.rawDescription = cardStrings.DESCRIPTION;
             initializeDescription();
         }

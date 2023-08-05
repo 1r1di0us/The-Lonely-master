@@ -1,5 +1,5 @@
 package lonelymod.interfaces;
 
 public interface TriggerOnPlanInterface {
-    void triggerOnPlan();
+    void triggerOnPlan(boolean thisCardPlanned);
 }

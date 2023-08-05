@@ -19,7 +19,7 @@ public class Dominate extends AbstractEasyCard {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseDamage = 0;
         baseMagicNumber = magicNumber = 0;
-        baseSecondMagic = secondMagic = 10;
+        baseSecondMagic = secondMagic = 12;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import java.util.ArrayList;
 
-public class ThinkOutsideTheBoxAction extends AbstractGameAction {
+public class ImproviseAction extends AbstractGameAction {
     private boolean retrieveCard = false;
     //this whole thing was copied from foreignInfluenceAction, and then I changed attack->skill so yeah
     private boolean upgraded;
     
-    public ThinkOutsideTheBoxAction(boolean upgraded) {
+    public ImproviseAction(boolean upgraded) {
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;
         this.upgraded = upgraded;

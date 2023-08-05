@@ -77,11 +77,7 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
 
     @Override
     public void updateDescription() {
-        if (this.amount == 1) {
-            description = DESCRIPTIONS[0];
-        } else if (this.amount > 1) {
-            description = DESCRIPTIONS[1];
-        }
+        description = DESCRIPTIONS[0];
     }
 
     @Override

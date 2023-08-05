@@ -5,13 +5,12 @@ import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.google.gson.reflect.TypeToken;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.*;
 import lonelymod.actions.ReturnToHandAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.ImpatientStrikes;
+import lonelymod.cards.VentFrustration;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.cards.cardvars.ThirdMagicNumber;
@@ -279,6 +278,6 @@ public class LonelyMod implements
 
     @Override
     public void receiveOnPlayerTurnStart() {
-        ImpatientStrikes.movesCalledThisTurn = 0;
+        VentFrustration.movesCalledThisTurn = 0;
     }
 }

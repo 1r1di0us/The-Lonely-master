@@ -21,7 +21,7 @@ public class Overthrow extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        if (EnergyPanel.totalCount - this.cost == 0) {
+        if ((!this.freeToPlayOnce && EnergyPanel.totalCount - this.costForTurn == 0) || (this.freeToPlayOnce && EnergyPanel.totalCount == 0)) {
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
         }
     }
@@ -29,9 +29,10 @@ public class Overthrow extends AbstractEasyCard {
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (EnergyPanel.totalCount - this.cost == 0)
+        if ((!this.freeToPlayOnce && EnergyPanel.totalCount - this.costForTurn == 0) || (this.freeToPlayOnce && EnergyPanel.totalCount == 0)) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-      }
+        }
+    }
     
     public void upp() {
         upgradeDamage(2);

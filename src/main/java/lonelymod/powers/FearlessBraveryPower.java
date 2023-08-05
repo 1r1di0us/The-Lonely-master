@@ -56,7 +56,7 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
     @Override
     public void atStartOfTurnPostDraw() {
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!m.isDeadOrEscaped() && !m.hasPower("Minion") && m.getIntentBaseDmg() >= 0) {
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.stamAmount * this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount)));

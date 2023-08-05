@@ -18,14 +18,16 @@ public class ActionPlan extends AbstractEasyCard {
 
     public ActionPlan() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
+        baseBlock = 8;
+        baseMagicNumber = magicNumber = 0;
         //magic Numbers will start out at -1 sometimes if you just say baseMagicNumber = #
         this.tags.add(Enums.COMPANION);
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
         addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, this.magicNumber))); //might need my own energized power in the future
+        if (upgraded) addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, this.magicNumber))); //might need my own energized power in the future
         addToBot(new ApplyPowerAction(p, p, new AttackNextTurnPower(p, 1)));
     }
 

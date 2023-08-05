@@ -30,7 +30,7 @@ import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import lonelymod.CompanionStrings;
 import lonelymod.LonelyMod;
 import lonelymod.actions.CallMoveAction;
-import lonelymod.cards.ImpatientStrikes;
+import lonelymod.cards.VentFrustration;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
@@ -114,7 +114,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public void performTurn(boolean callDefault) {
         if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
-            getTarget();
+            callNone(); //I have no clue if this solves anything, but this used to call getTarget();
         }
         takeTurn();
         for (AbstractPower p : AbstractDungeon.player.powers)
@@ -142,7 +142,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         if (triggerPowers) {
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move);
-            ImpatientStrikes.movesCalledThisTurn++;
+            VentFrustration.movesCalledThisTurn++;
             for (AbstractCard c : AbstractDungeon.player.hand.group)
                 if (c instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move);
         }
@@ -401,16 +401,16 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     public void applyPowers() {
-        if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
-            getTarget();
-        }
-        for (DamageInfo dmg : this.damage) {
-            applyPowersToDamage(dmg, targetEnemy);
+        //used to call getTarget() if targetEnemy is null or dead or escaped.
+        if (targetEnemy != null || targetEnemy.isDeadOrEscaped()) {
+            for (DamageInfo dmg : this.damage) {
+                applyPowersToDamage(dmg, targetEnemy);
+            }
         }
         for (BlockInfo blk : this.block) {
             blk.applyPowers(this, AbstractDungeon.player);
         }
-        if (this.move.baseDamage > -1)
+        if (this.move.baseDamage > -1 && targetEnemy != null && !targetEnemy.isDeadOrEscaped())
             calculateDamage(this.move.baseDamage);
         if (this.move.baseBlock > -1)
             calculateBlock(this.move.baseBlock);
@@ -440,7 +440,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
         else {
             isTargeted = false;
         }
-        targetEnemy = currTarget;
+        if (currTarget.isDeadOrEscaped()) {
+            targetEnemy = null;
+        } else {
+            targetEnemy = currTarget;
+        }
     }
 
     protected void applyPowersToDamage(DamageInfo dmg, AbstractCreature target) {

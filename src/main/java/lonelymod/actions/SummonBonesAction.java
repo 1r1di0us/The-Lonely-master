@@ -32,7 +32,7 @@ public class SummonBonesAction extends AbstractGameAction {
             this.summon = false;
             return;
         }
-        this.c = new Bones(-750, -25);
+        this.c = new Bones(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         for (AbstractRelic r : AbstractDungeon.player.relics) {

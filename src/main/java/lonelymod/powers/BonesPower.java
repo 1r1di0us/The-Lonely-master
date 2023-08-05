@@ -55,7 +55,7 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
     }
 
     public void onMonsterDeath(AbstractMonster m) {
-        if (m.currentHealth == 0 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead() && !m.hasPower(MinionPower.POWER_ID)) {
+        if (m.currentHealth == 0 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, StrengthAmt), StrengthAmt));
             addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, DexAmt), DexAmt));
         }

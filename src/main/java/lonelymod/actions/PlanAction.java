@@ -24,7 +24,7 @@ public class PlanAction extends AbstractGameAction {
 
     private float startingDuration;
     private AbstractEasyCard cardPlayed;
-    private int numCardsChosen;
+    private int numCardsChosen = 0;
 
     public PlanAction(int numCards) {
         this(numCards, null);

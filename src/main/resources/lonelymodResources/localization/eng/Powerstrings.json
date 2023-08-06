@@ -10,10 +10,9 @@
   "${ModID}:AddCardToHandPower": {
     "NAME": " Next Turn",
     "DESCRIPTIONS": [
-      "At the start of next turn, add a #y",
-      " to your hand.",
       "At the start of next turn, add #b",
       " #y",
+      " to your hand.",
       "s to your hand.",
       "At the start of next turn, add an unknown card to your hand."
     ]
@@ -21,8 +20,8 @@
   "${ModID}:DeenergizedPower": {
     "NAME": "De-energized",
     "DESCRIPTIONS": [
-      "Draw #b1 less card next turn.",
-      "Draw #b1 less card for #b",
+      "Gain #b1 less energy next turn.",
+      "Gain #b1 less energy for #b",
       " turns."
     ]
   },

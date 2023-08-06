@@ -54,34 +54,39 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
-        addToBot(new CallMoveAction(SPECIAL, this));
+        //addToBot(new CallMoveAction(SPECIAL, this));
     }
 
     public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case ATTACK:
-                if (this.hasPower(OmenPower.POWER_ID)) {
-                    for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
-                        addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (this.hasPower(OmenPower.POWER_ID)) {
+                        for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
+                            addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        }
+                    } else {
+                        logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                        break;
                     }
-                } else {
-                    logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
-                    break;
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
+                    addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
@@ -97,28 +102,33 @@ public class Omen extends AbstractCompanion {
     public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case ATTACK:
-                if (this.hasPower(OmenPower.POWER_ID)) {
-                    for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
-                        addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (this.hasPower(OmenPower.POWER_ID)) {
+                        for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
+                            addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        }
+                    } else {
+                        logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                        break;
                     }
-                } else {
-                    logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
-                    break;
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
+                    addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
-                addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));

@@ -68,12 +68,12 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Ethereal. Next turn, gain !M! less energy and add an *Overreaction to your hand.",
+    "DESCRIPTION": "Ethereal. NL Next turn, gain !M! less energy and add an *Overreaction to your hand.",
     "UPGRADE_DESCRIPTION": "Next turn, gain !M! less energy and add an *Overreaction to your hand."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Next turn, draw !M! less card and add a *Panic *Attack to your hand. Exhaust.",
+    "DESCRIPTION": "Next turn, draw !M! less card and add a *Panic *Attack to your hand. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Next turn, draw !M! less card and add a *Panic *Attack to your hand."
   },
   "${ModID}:Help": {
@@ -245,7 +245,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, NL gain [E] [E] [E]."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, gain NL [E] [E] [E]."
   },
   "${ModID}:Counterstrike": {
     "NAME": "Counterstrike",
@@ -292,7 +292,7 @@
   },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL If Omen is already summoned, lonelymod:Call lonelymod:Special. NL Lose !M! Strength. Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL lonelymod:Call lonelymod:Special. NL Lose !M! Strength. Exhaust."
   },
   "${ModID}:Outburst": {
     "NAME": "Outburst",
@@ -311,8 +311,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "At the end of your turn, play a random card from your discard pile and exhaust it.",
-    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random card from your discard pile."
+    "DESCRIPTION": "At the end of your turn, play !M! random card from your discard pile.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play !M! card from the top of your discard pile."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",

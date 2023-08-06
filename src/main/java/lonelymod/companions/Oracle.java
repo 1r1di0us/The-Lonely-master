@@ -58,9 +58,11 @@ public class Oracle extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
@@ -90,9 +92,11 @@ public class Oracle extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
                 addToTop(new ChangeStanceAction("Calm"));

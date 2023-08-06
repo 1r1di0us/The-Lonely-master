@@ -55,7 +55,7 @@ public class UtterDesperationPower extends AbstractEasyPower implements Cloneabl
         if (isPlayer) {
             for (int i = 0; i < this.amount; i++) {
                 if (!AbstractDungeon.player.discardPile.isEmpty()) {
-                    AbstractCard cardToPlay = AbstractDungeon.player.discardPile.getRandomCard(true);
+                    AbstractCard cardToPlay = AbstractDungeon.player.discardPile.getTopCard();
                     addToBot(new PlayCardAction(AbstractDungeon.player.discardPile, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), false));
                 }
             }

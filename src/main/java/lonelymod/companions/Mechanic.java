@@ -59,9 +59,11 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 addToBot(new ChannelAction(new Lightning()));
                 if (hasPower(RoboArmPower.POWER_ID))
                     for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++)
@@ -98,9 +100,11 @@ public class Mechanic extends AbstractCompanion {
                 break;
             case ATTACK:
                 addToTop(new ChannelAction(new Lightning()));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
                 addToTop(new ChannelAction(new Frost()));

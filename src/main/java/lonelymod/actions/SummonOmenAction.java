@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 public class SummonOmenAction extends AbstractGameAction {
     private static final Logger logger = LogManager.getLogger(SummonOmenAction.class.getName());
     private AbstractCompanion c;
+    private boolean alreadySummoned = false;
 
     public SummonOmenAction(boolean onBattleStart) {
         if (Settings.FAST_MODE) {
@@ -26,6 +27,10 @@ public class SummonOmenAction extends AbstractGameAction {
         }
         this.duration = this.startDuration;
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Omen) {
+                alreadySummoned = true;
+                return;
+            }
             //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, false));
             //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
@@ -41,17 +46,21 @@ public class SummonOmenAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.duration == this.startDuration) {
-            //this.c.animX = 1200.0F * Settings.xScale;
-            this.c.applyPowers();
+        if (!alreadySummoned) {
+            if (this.duration == this.startDuration) {
+                //this.c.animX = 1200.0F * Settings.xScale;
+                this.c.applyPowers();
+            }
+            tickDuration();
+            if (this.isDone) {
+                //this.c.animX = 0.0F;
+                this.c.showHealthBar();
+                this.c.usePreBattleAction();
+            }// else {
+            //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
+            //}
+        } else {
+            this.isDone = true;
         }
-        tickDuration();
-        if (this.isDone) {
-            //this.c.animX = 0.0F;
-            this.c.showHealthBar();
-            this.c.usePreBattleAction();
-        }// else {
-        //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
-        //}
     }
 }

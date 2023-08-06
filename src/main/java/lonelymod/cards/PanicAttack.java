@@ -13,7 +13,7 @@ public class PanicAttack extends AbstractEasyCard {
     public final static String ID = makeID("PanicAttack");
 
     public PanicAttack() {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
+        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF);
         baseDamage = 8;
         baseMagicNumber = magicNumber = 2;
         exhaust = true;

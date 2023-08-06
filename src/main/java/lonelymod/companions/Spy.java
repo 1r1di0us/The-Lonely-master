@@ -61,15 +61,17 @@ public class Spy extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                if (hasPower(SpyPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
-                        addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(SpyPower.POWER_ID)) {
+                        for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
+                            addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        }
                     }
-                }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                if (hasPower(SpyPower.POWER_ID)) {
-                    getPower(SpyPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(SpyPower.POWER_ID)) {
+                        getPower(SpyPower.POWER_ID).onSpecificTrigger();
+                    }
                 }
                 break;
             case PROTECT:
@@ -80,12 +82,14 @@ public class Spy extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 break;
             case SPECIAL:
-                int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    addToBot(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
+                    for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                        addToBot(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                    }
+                    int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
+                    addToBot(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
                 }
-                int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
-                addToBot(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
                 break;
             case UNKNOWN:
                 break;
@@ -105,16 +109,19 @@ public class Spy extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                if (hasPower(SpyPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
-                        addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(SpyPower.POWER_ID)) {
+                        for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
+                            addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        }
+                    }
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(SpyPower.POWER_ID)) {
+                        getPower(SpyPower.POWER_ID).onSpecificTrigger();
                     }
                 }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                if (hasPower(SpyPower.POWER_ID)) {
-                    getPower(SpyPower.POWER_ID).onSpecificTrigger();
-                }
+                break;
             case PROTECT:
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnBlockPower(AbstractDungeon.player, this.block.get(0).output)));
@@ -123,11 +130,13 @@ public class Spy extends AbstractCompanion {
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
-                addToTop(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
-                int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    addToTop(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
+                    addToTop(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
+                    int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
+                    for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                        addToTop(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
+                    }
                 }
                 break;
         }

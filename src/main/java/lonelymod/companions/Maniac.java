@@ -62,14 +62,17 @@ public class Maniac extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                addToBot(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
+                    addToBot(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -101,13 +104,16 @@ public class Maniac extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
-                addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
+                    addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();

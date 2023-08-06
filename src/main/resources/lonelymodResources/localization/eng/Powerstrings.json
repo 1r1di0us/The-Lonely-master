@@ -152,16 +152,16 @@
     "NAME": "Desperation",
     "DESCRIPTIONS": [
       "At the end of your turn, play #b",
-      " random card from your discard pile and #yExhaust it.",
-      " random cards from your discard pile and #yExhaust it."
+      " random card from your discard pile.",
+      " random cards from your discard pile."
     ]
   },
   "${ModID}:UtterDesperationPower": {
     "NAME": "Utter Desperation",
     "DESCRIPTIONS": [
       "At the end of your turn, play #b",
-      " random card from your discard pile.",
-      " random cards from your discard pile."
+      " card from the top of your discard pile",
+      " cards from the top of your discard pile."
     ]
   },
   "${ModID}:MuscleMemoryPower": {

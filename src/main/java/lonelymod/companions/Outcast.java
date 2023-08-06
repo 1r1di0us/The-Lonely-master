@@ -60,14 +60,16 @@ public class Outcast extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                if (consecutiveMove == 3) {
-                    for (int i = 0; i < EMP_ATTACK_AMT; i++)
-                        addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                } else {
-                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (consecutiveMove == 3) {
+                        for (int i = 0; i < EMP_ATTACK_AMT; i++)
+                            addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                    } else {
+                        addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
@@ -104,15 +106,17 @@ public class Outcast extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                if (consecutiveMove == 3) {
-                    for (int i = 0; i < EMP_ATTACK_AMT; i++)
-                        addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                } else {
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    if (consecutiveMove == 3) {
+                        for (int i = 0; i < EMP_ATTACK_AMT; i++)
+                            addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    } else {
+                        addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
                 if (consecutiveMove == 3)

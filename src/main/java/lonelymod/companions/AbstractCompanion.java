@@ -113,8 +113,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     // move methods:
 
     public void performTurn(boolean callDefault) {
-        if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
-            callNone(); //I have no clue if this solves anything, but this used to call getTarget();
+        if (callDefault) AbstractDungeon.actionManager.turnHasEnded = true; // this way vulnerable and target don't immediately go down if the companion applies them
+        if (!(targetEnemy != null && !targetEnemy.isDeadOrEscaped())) {
+            getTarget(); //I have no clue if this solves anything, but this used to call getTarget();
         }
         takeTurn();
         for (AbstractPower p : AbstractDungeon.player.powers)
@@ -402,7 +403,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     @Override
     public void applyPowers() {
         //used to call getTarget() if targetEnemy is null or dead or escaped.
-        if (targetEnemy != null || targetEnemy.isDeadOrEscaped()) {
+        if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
             for (DamageInfo dmg : this.damage) {
                 applyPowersToDamage(dmg, targetEnemy);
             }
@@ -440,10 +441,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
         else {
             isTargeted = false;
         }
-        if (currTarget.isDeadOrEscaped()) {
-            targetEnemy = null;
-        } else {
+        if (currTarget != null && !currTarget.isDeadOrEscaped()) {
             targetEnemy = currTarget;
+        } else {
+            targetEnemy = null;
         }
     }
 

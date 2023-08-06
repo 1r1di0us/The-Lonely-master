@@ -27,7 +27,7 @@ public class SingleOut extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBlock(1);
+        upgradeBlock(2);
         upgradeMagicNumber(1);
     }
 }

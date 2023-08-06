@@ -67,14 +67,16 @@ public class Bones extends AbstractCompanion {
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
-                addToBot(new WaitAction(0.4F));
-                addToBot(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
-                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
-                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
-                        .cpy()), 0.0F));
-                addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) { //have to check ABSOLUTELY EVERYWHERE IN CASE ITS AWAKENED ONE
+                    addToBot(new WaitAction(0.4F));
+                    addToBot(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
+                            MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
+                            MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
+                            .cpy()), 0.0F));
+                    addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
@@ -85,8 +87,10 @@ public class Bones extends AbstractCompanion {
                 break;
             case SPECIAL:
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    addToBot(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                    addToBot(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    if (mo != null && !mo.isDeadOrEscaped()) {
+                        addToBot(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                        addToBot(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    }
                 }
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
@@ -107,14 +111,16 @@ public class Bones extends AbstractCompanion {
                 break;
             case ATTACK:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
-                addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
-                addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
-                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
-                        MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
-                        .cpy()), 0.0F));
-                addToTop(new WaitAction(0.4F));
-                if (hasPower(CompanionVigorPower.POWER_ID))
-                    getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                    addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
+                            MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
+                            MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
+                            .cpy()), 0.0F));
+                    addToTop(new WaitAction(0.4F));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                }
                 break;
             case PROTECT:
                 addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
@@ -126,8 +132,10 @@ public class Bones extends AbstractCompanion {
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                    addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    if (mo != null && !mo.isDeadOrEscaped()) {
+                        addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                        addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                    }
                 }
                 break;
         }

@@ -23,6 +23,6 @@ public class Volley extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(3);
     }
 }

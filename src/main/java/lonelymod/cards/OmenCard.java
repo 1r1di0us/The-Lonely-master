@@ -39,11 +39,8 @@ public class OmenCard extends AbstractEasyCard {
         addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.MAGENTA), 0.0F, true));
         //remove strength, kill current companion, summon omen, make primal instincts, call protect
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
-        if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Omen) {
-            addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        } else {
-            addToBot(new SummonOmenAction(false));
-        }
+        addToBot(new SummonOmenAction(false));
+        addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {

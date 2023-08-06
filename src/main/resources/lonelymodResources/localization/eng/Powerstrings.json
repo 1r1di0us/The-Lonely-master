@@ -98,8 +98,8 @@
   "${ModID}:PlanBPower": {
     "NAME": "Plan B",
     "DESCRIPTIONS": [
-      "Whenever you #yPlan, but don't choose any cards, Deal #b",
-      " damage to a random enemy."
+      "Whenever you #yPlan, deal #b",
+      " damage to a random enemy for each card you didn't select."
     ]
   },
   "${ModID}:RecoveryPower": {
@@ -262,8 +262,9 @@
   "${ModID}:OmenPower": {
     "NAME": "Claws",
     "DESCRIPTIONS": [
-      "Omen's attack move hits #b",
-      " times."
+      "Omen's attack move will hit #b",
+      " times. Increases by #b",
+      " at the start of your turn."
     ]
   },
   "${ModID}:OutcastPower": {

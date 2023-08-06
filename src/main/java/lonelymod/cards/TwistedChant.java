@@ -16,7 +16,7 @@ public class TwistedChant extends AbstractEasyCard {
 
     public TwistedChant() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 3;
         baseSecondMagic = secondMagic = 1;
         this.isEthereal = true;
     }
@@ -25,12 +25,10 @@ public class TwistedChant extends AbstractEasyCard {
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber));
         addToBot(new MakeTempCardInDiscardAction(new Dazed(), this.secondMagic));
-        if (upgraded) {
-            ReturnField.willReturn.set(this, true);
-        }
+        ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {
-        uDesc();
+        upgradeMagicNumber(2);
     }
 }

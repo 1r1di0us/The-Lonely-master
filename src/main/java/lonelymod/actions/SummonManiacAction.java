@@ -29,7 +29,7 @@ public class SummonManiacAction extends AbstractGameAction {
             this.summon = false;
             return;
         }
-        this.c = new Maniac(-750, -25);
+        this.c = new Maniac(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         for (AbstractRelic r : AbstractDungeon.player.relics) {

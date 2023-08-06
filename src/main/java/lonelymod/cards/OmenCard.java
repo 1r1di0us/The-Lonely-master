@@ -24,7 +24,7 @@ public class OmenCard extends AbstractEasyCard {
 
     public OmenCard() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        this.baseMagicNumber = magicNumber = 5;
+        this.baseMagicNumber = magicNumber = 4;
         this.exhaust = true;
         this.tags.add(Enums.COMPANION);
     }

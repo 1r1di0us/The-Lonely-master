@@ -3,6 +3,7 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,6 +21,8 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen32.png");
+
+    public static final int INCREASE_AMT = 2;
 
     public OmenPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
@@ -43,8 +46,13 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
     }
 
     @Override
+    public void atEndOfRound() {
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new OmenPower(this.owner, INCREASE_AMT)));
+    }
+
+    @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + INCREASE_AMT + DESCRIPTIONS[2];
     }
 
     @Override

@@ -26,7 +26,7 @@ public class Oracle extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("Oracle.png");
 
     private static final int ATTACK_DMG = 10;
-    private static final int PROTECT_BLK = 6;
+    private static final int PROTECT_BLK = 8;
     public static final int SPECIAL_PWR_AMT = 10;
 
     private int attackDmg;

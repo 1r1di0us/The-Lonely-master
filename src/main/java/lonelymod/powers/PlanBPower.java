@@ -56,10 +56,9 @@ public class PlanBPower extends AbstractEasyPower implements CloneablePowerInter
     //  }
     //}
 
-    @Override
-    public void onSpecificTrigger() {
+    public void onPlan(int numCardsNotChosen) {
         flash();
-        addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+        addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, this.amount * numCardsNotChosen, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
     }
 
     @Override

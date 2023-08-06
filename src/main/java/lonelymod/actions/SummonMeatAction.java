@@ -29,7 +29,7 @@ public class SummonMeatAction extends AbstractGameAction {
             this.summon = false;
             return;
         }
-        this.c = new Meat(-750, -25);
+        this.c = new Meat(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         for (AbstractRelic r : AbstractDungeon.player.relics) {

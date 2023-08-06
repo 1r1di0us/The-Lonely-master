@@ -120,8 +120,7 @@
       " #yTarget to an enemy.",
 
       "Omen intends to gain #b",
-      " #yStrength and empower its #yAttack to hit #b",
-      " more times.",
+      " #yStrength.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -136,8 +135,7 @@
       " #yTarget.",
 
       "Gains #b",
-      " #yStrength and empowers its #yAttack to hit #b",
-      " more times."
+      " #yStrength."
     ],
     "DIALOG": [
       "SQUAK!",
@@ -341,7 +339,7 @@
       "Nothing",
       "Harass",
       "Scare",
-      "Empower",
+      "Sacrifice",
       "Unknown"
     ],
     "INTENTS": [

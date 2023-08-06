@@ -35,7 +35,7 @@ public class SummonOmenAction extends AbstractGameAction {
             //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
-        this.c = new Omen(-750, -25);
+        this.c = new Omen(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         for (AbstractRelic r : AbstractDungeon.player.relics) {

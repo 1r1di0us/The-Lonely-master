@@ -29,7 +29,7 @@ public class Spy extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("Spy.png");
 
     private static final int ATTACK_DMG = 6;
-    private static final int PROTECT_BLK = 5;
+    private static final int PROTECT_BLK = 6;
     private static final int PROTECT_PWR_AMT = 1;
     private static final int SPECIAL_DEBUFF_AMT = 25;
 

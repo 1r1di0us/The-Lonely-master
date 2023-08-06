@@ -32,11 +32,10 @@ public class Omen extends AbstractCompanion {
     private static final int INIT_PASSIVE_AMT = 5;
     private static final int DEFAULT_DMG = 10;
     private static final int ATTACK_DMG = 1;
-    private static final int PROTECT_BLK = 5;
+    private static final int PROTECT_BLK = 8;
     private static final int PROTECT_AMT = 2;
     private static final int PROTECT_DEBUFF_AMT = 5;
-    private static final int SPECIAL_STR_AMT = 1;
-    private static final int SPECIAL_PWR_AMT = 5;
+    private static final int SPECIAL_STR_AMT = 2;
 
     private int defaultDmg;
     private int attackDmg;
@@ -54,7 +53,6 @@ public class Omen extends AbstractCompanion {
 
     public void usePreBattleAction() {
         addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
-        //addToBot(new CallMoveAction(SPECIAL, this));
     }
 
     public void takeTurn() {
@@ -90,7 +88,6 @@ public class Omen extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
-                addToBot(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
             case UNKNOWN:
                 break;
@@ -132,7 +129,6 @@ public class Omen extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
-                addToTop(new ApplyPowerAction(this, this, new OmenPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
     }
@@ -180,12 +176,12 @@ public class Omen extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[9] + SPECIAL_STR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11];
+                this.intentTip.body = INTENTS[9] + SPECIAL_STR_AMT + INTENTS[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[12];
+                this.intentTip.body = INTENTS[11];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -220,7 +216,7 @@ public class Omen extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[7] + SPECIAL_STR_AMT + INTENT_TOOLTIPS[8] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[9];
+                    return INTENT_TOOLTIPS[7] + SPECIAL_STR_AMT + INTENT_TOOLTIPS[8];
                 }
         }
         return "";

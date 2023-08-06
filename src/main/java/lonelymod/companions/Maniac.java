@@ -28,7 +28,7 @@ public class Maniac extends AbstractCompanion {
 
     private static final int ATTACK_DMG = 4;
     private static final int ATTACK_AMT = 2;
-    private static final int PROTECT_BLK = 5;
+    private static final int PROTECT_BLK = 6;
     private static final int PROTECT_DEBUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 5;
 

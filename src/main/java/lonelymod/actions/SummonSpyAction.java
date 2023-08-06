@@ -33,7 +33,7 @@ public class SummonSpyAction extends AbstractGameAction {
             this.summon = false;
             return;
         }
-        this.c = new Spy(-750, -25);
+        this.c = new Spy(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
         this.c.init();
         CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<AbstractCard>());

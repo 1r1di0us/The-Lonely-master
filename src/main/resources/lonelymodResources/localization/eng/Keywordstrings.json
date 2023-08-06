@@ -9,15 +9,6 @@
     "DESCRIPTION": "This #yCompanion joins the battle. NL Any #yCompanion already in the fight will be replaced."
   },
   {
-    "PROPER_NAME": "Omen",
-    "NAMES": [
-      "Omen",
-      "omen",
-      "OMEN"
-    ],
-    "DESCRIPTION": "A powerful creature, able to #rdestroy all who oppose you. Use its #ySpecial #yMove to greatly enhance its #yAttack."
-  },
-  {
     "PROPER_NAME": "Companion Move",
     "NAMES": [
       "Companion_Move",
@@ -158,5 +149,92 @@
       "Autoplay."
     ],
     "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
+  },
+  {
+    "PROPER_NAME": "Bones",
+    "NAMES": [
+      "Bones",
+      "bones",
+      "BONES"
+    ],
+    "DESCRIPTION": "A loyal companion, with an insatiable appetite. Has many ways of improving its #yAttack #yMove."
+  },
+  {
+    "PROPER_NAME": "Meat",
+    "NAMES": [
+      "Meat",
+      "meat",
+      "MEAT"
+    ],
+    "DESCRIPTION": "An immense beast, a formidable defense. It has lost neither its loyalty nor its appetite."
+  },
+  {
+    "PROPER_NAME": "Omen",
+    "NAMES": [
+      "Omen",
+      "omen",
+      "OMEN"
+    ],
+    "DESCRIPTION": "A powerful creature, able to #rdestroy all who oppose you. Grant it #yStrength, and watch its #yAttack shred through your foes."
+  },
+  {
+    "PROPER_NAME": "Fring",
+    "NAMES": [
+      "Fring",
+      "fring",
+      "FRING",
+      "Outcast",
+      "outcast",
+      "OUTCAST"
+    ],
+    "DESCRIPTION": "A sad gremlin with nothing but a spear. Give him your attention, and he can become a mighty warrior."
+  },
+  {
+    "PROPER_NAME": "Sowru",
+    "NAMES": [
+      "Sowru",
+      "sowru",
+      "SOWRU",
+      "Oracle",
+      "oracle",
+      "ORACLE"
+    ],
+    "DESCRIPTION": "A patient gremlin who eagerly awaits your command to attack. Her #yProtect #yMove will cause you to #yEnter #yCalm."
+  },
+  {
+    "PROPER_NAME": "Blirt",
+    "NAMES": [
+      "Blirt",
+      "blirt",
+      "BLIRT",
+      "Mechanic",
+      "mechanic",
+      "MECHANIC"
+    ],
+    "DESCRIPTION": "A tinkering gremlin who loves all kinds of automatons. Her #yMoves are mainly focused on channeling orbs for you."
+  },
+  {
+    "PROPER_NAME": "Dzil",
+    "NAMES": [
+      "Dzil",
+      "dzil",
+      "DZIL",
+      "Spy",
+      "spy",
+      "SPY"
+    ],
+    "DESCRIPTION": "A cunning gremlin who loves killing things quietly. Play your #yShiv cards on him to improve his next #yAttack."
+  },
+  {
+    "PROPER_NAME": "Kharn",
+    "NAMES": [
+      "Kharn",
+      "kharn",
+      "KHARN",
+      "Maniac",
+      "maniac",
+      "MANIAC"
+    ],
+    "DESCRIPTION": "A mostly insane gremlin, he has recognized your demonic powers and worships you for them. Gains #yStrength whenever you lose HP."
   }
 ]

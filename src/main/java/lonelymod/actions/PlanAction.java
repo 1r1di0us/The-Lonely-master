@@ -24,6 +24,7 @@ public class PlanAction extends AbstractGameAction {
 
     private float startingDuration;
     private AbstractEasyCard cardPlayed;
+    private int numCardsChosen;
 
     public PlanAction(int numCards) {
         this(numCards, null);
@@ -79,6 +80,7 @@ public class PlanAction extends AbstractGameAction {
                 AbstractDungeon.player.discardPile.moveToDeck(c, true);
                 if (cardPlayed != null && cardPlayed instanceof Genius)
                     addToTop(new UpgradeSpecificCardAction(c));
+                numCardsChosen++;
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
@@ -98,11 +100,13 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractPower p : AbstractDungeon.player.powers) {
         //  p.postPlan(selectedCards.size());
         //}
-        
-        if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID)) {
-                AbstractDungeon.player.getPower(PlanBPower.POWER_ID).onSpecificTrigger();
-            }
+        if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID) && this.amount - numCardsChosen > 0) {
+            ((PlanBPower) AbstractDungeon.player.getPower(PlanBPower.POWER_ID)).onPlan(this.amount - numCardsChosen);
         }
+/*        if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+            if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID)) {
+                AbstractDungeon.player.getPower(PlanBPower.POWER_ID).onPlan();
+            }
+        }*/
     }
 }

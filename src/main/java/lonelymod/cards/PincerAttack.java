@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.actions.StrikeTogetherAction;
+import lonelymod.actions.PincerAttackAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
@@ -17,11 +17,11 @@ public class PincerAttack extends AbstractEasyCard {
     public PincerAttack() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 8;
-        baseMagicNumber = magicNumber = 8;
+        //baseMagicNumber = magicNumber = 8;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new StrikeTogetherAction(m, this.damage, this.magicNumber));
+        addToBot(new PincerAttackAction(m, this.damage));
     }
 
     public void triggerOnGlowCheck() {
@@ -30,7 +30,7 @@ public class PincerAttack extends AbstractEasyCard {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
     }
 
-    @Override
+    /*@Override
     public void applyPowers() {
         this.baseMagicNumber = this.baseDamage;
         super.applyPowers();
@@ -38,10 +38,10 @@ public class PincerAttack extends AbstractEasyCard {
         this.isMagicNumberModified = this.isDamageModified;
         super.applyPowers();
     }
-
+*/
     public void upp() {
         upgradeDamage(2);
-        this.baseMagicNumber = this.baseDamage;
-        this.upgradedMagicNumber = this.upgradedDamage;
+        //this.baseMagicNumber = this.baseDamage;
+        //this.upgradedMagicNumber = this.upgradedDamage;
     }
 }

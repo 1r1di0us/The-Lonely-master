@@ -39,7 +39,7 @@
   },
   "${ModID}:PincerAttack": {
     "NAME": "Pincer Attack",
-    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !M! additional damage."
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !D! damage again."
   },
   "${ModID}:PlannedAssault": {
     "NAME": "Planned Assault",
@@ -140,8 +140,8 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Shuffle !{ModID}:m2! *Dominate into your draw pile. NL Gain !M! Weak.",
-    "UPGRADE_DESCRIPTION": "Shuffle !{ModID}:m2! *Dominates into your draw pile. NL Gain !M! Weak."
+    "DESCRIPTION": "Shuffle !${ModID}:m2! *Dominate into your draw pile. NL Gain !M! Weak.",
+    "UPGRADE_DESCRIPTION": "Shuffle !${ModID}:m2! *Dominates into your draw pile. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",

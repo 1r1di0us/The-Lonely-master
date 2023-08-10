@@ -15,7 +15,7 @@ public class AgainstAllOddsAction extends AbstractGameAction {
     public void update() {
         boolean GainEnergy = true;
         for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
-            if (!(m != null && m.getIntentBaseDmg() >= 0))
+            if (m != null && !m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0)
                 GainEnergy = false;
         if (GainEnergy)
             addToTop(new GainEnergyAction(this.amount));

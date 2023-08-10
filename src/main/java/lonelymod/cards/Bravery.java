@@ -46,7 +46,7 @@ public class Bravery extends AbstractEasyCard {
 
     @Override
     public void upp() {
-        upgradeSecondMagic(6);
+        upgradeSecondMagic(1);
         uDesc();
     }
 }

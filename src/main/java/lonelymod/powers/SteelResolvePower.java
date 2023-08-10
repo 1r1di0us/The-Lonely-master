@@ -25,8 +25,8 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ExampleTwoAmountPower32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/SteelResolve84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/SteelResolve32.png");
 
     private boolean lostHpThisTurn;
     private int platedArmorAmount;
@@ -63,9 +63,9 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
             //"triggers" plated armor
-            addToBot(new TriggerPlatedArmorAction(this.owner));
+            addToTop(new TriggerPlatedArmorAction(this.owner));
+            addToTop(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
             lostHpThisTurn = true;
         }
         return damageAmount;

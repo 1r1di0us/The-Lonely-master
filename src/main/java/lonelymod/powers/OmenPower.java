@@ -22,7 +22,7 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen32.png");
 
-    public static final int INCREASE_AMT = 2;
+    public static final int INCREASE_AMT = 1;
 
     public OmenPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

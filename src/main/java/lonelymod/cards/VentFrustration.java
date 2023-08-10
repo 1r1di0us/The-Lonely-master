@@ -14,7 +14,7 @@ public class VentFrustration extends AbstractEasyCard implements TriggerOnCallMo
 
     public VentFrustration() {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 8;
+        baseDamage = 7;
         baseMagicNumber = magicNumber = 3;
     }
 
@@ -27,18 +27,18 @@ public class VentFrustration extends AbstractEasyCard implements TriggerOnCallMo
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if (movesCalledThisTurn >= 3)
-            setCostForTurn(0);
-        else
-            setCostForTurn(this.cost - movesCalledThisTurn);
+        setCostForTurn(this.cost - movesCalledThisTurn);
+    }
+
+    public void atTurnStart() {
+        movesCalledThisTurn = 0;
+        resetAttributes();
+        applyPowers();
     }
 
     @Override
     public void triggerOnCallMove(byte move) {
-        if (movesCalledThisTurn >= 3)
-            setCostForTurn(0);
-        else
-            setCostForTurn(this.cost - movesCalledThisTurn);
+        setCostForTurn(this.costForTurn - 1);
     }
 
     public void upp() {

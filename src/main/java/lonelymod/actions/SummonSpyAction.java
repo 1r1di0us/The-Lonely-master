@@ -38,11 +38,6 @@ public class SummonSpyAction extends AbstractGameAction {
         this.c.init();
         CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<AbstractCard>());
         CompanionField.playableCards.get(AbstractDungeon.player).add(new Shiv());
-        for (AbstractRelic r : AbstractDungeon.player.relics) {
-            if (r instanceof RelicOnSummonInterface) {
-                ((RelicOnSummonInterface) r).onSummon(this.c, true);
-            }
-        }
     }
 
     public void update() {
@@ -56,6 +51,11 @@ public class SummonSpyAction extends AbstractGameAction {
                 //this.c.animX = 0.0F;
                 this.c.showHealthBar();
                 this.c.usePreBattleAction();
+                for (AbstractRelic r : AbstractDungeon.player.relics) {
+                    if (r instanceof RelicOnSummonInterface) {
+                        ((RelicOnSummonInterface) r).onSummon(this.c, true);
+                    }
+                }
             }
             // else {
             //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);

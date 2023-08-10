@@ -24,7 +24,7 @@ public class PlanAction extends AbstractGameAction {
 
     private float startingDuration;
     private AbstractEasyCard cardPlayed;
-    private int numCardsChosen = 0;
+    private int numCardsSelected = 0;
 
     public PlanAction(int numCards) {
         this(numCards, null);
@@ -80,19 +80,20 @@ public class PlanAction extends AbstractGameAction {
                 AbstractDungeon.player.discardPile.moveToDeck(c, true);
                 if (cardPlayed != null && cardPlayed instanceof Genius)
                     addToTop(new UpgradeSpecificCardAction(c));
-                numCardsChosen++;
             }
+            numCardsSelected = AbstractDungeon.gridSelectScreen.selectedCards.size();
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
-        triggerPlanActions();
         tickDuration();
+        if (this.isDone)
+            triggerPlanActions();
     }
 
     private void triggerPlanActions() {
         //for (AbstractCard c : AbstractDungeon.player.drawPile.group) {}
         //for (AbstractCard c : AbstractDungeon.player.discardPile.group) {}
         //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) { //this was for now Deprecated Part of the Plan, which is drawn when you plan
             if (c instanceof TriggerOnPlanInterface) {
                 ((TriggerOnPlanInterface) c).triggerOnPlan(false);
             }
@@ -100,8 +101,8 @@ public class PlanAction extends AbstractGameAction {
         //for (AbstractPower p : AbstractDungeon.player.powers) {
         //  p.postPlan(selectedCards.size());
         //}
-        if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID) && this.amount - numCardsChosen > 0) {
-            ((PlanBPower) AbstractDungeon.player.getPower(PlanBPower.POWER_ID)).onPlan(this.amount - numCardsChosen);
+        if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID) && this.amount - numCardsSelected > 0) {
+            ((PlanBPower) AbstractDungeon.player.getPower(PlanBPower.POWER_ID)).onPlan(this.amount - numCardsSelected);
         }
 /*        if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID)) {

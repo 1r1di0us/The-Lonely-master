@@ -48,8 +48,7 @@ public class LonelyMod implements
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         PostBattleSubscriber,
-        PostInitializeSubscriber,
-        OnPlayerTurnStartSubscriber {
+        PostInitializeSubscriber {
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -274,10 +273,5 @@ public class LonelyMod implements
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
-    }
-
-    @Override
-    public void receiveOnPlayerTurnStart() {
-        VentFrustration.movesCalledThisTurn = 0;
     }
 }

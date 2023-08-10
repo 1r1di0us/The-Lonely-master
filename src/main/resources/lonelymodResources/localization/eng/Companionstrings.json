@@ -17,7 +17,8 @@
       " #yStrength",
 
       "Bones intends to grant you #b",
-      " #yBlock and gain #b",
+      " #yBlock #b",
+      " times, and gain #b",
       " #yVigor.",
 
       "Bones intends to apply #b",
@@ -34,7 +35,8 @@
       " #yStrength.",
 
       "Grants #b",
-      " #yBlock. Gains #b",
+      " #yBlock #b",
+      " times. Gains #b",
       " #yVigor.",
 
       "Applies #b",

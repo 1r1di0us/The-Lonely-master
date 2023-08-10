@@ -44,7 +44,7 @@ public class Mechanic extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new MechanicPower(this)));
+        addToTop(new ApplyPowerAction(this, this, new MechanicPower(this)));
     }
 
     @Override

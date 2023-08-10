@@ -33,7 +33,8 @@ public class Bones extends AbstractCompanion {
     private static final int DEFAULT_BLK = 3;
     private static final int ATTACK_DMG = 10;
     private static final int ATTACK_PWR_AMT = 2;
-    private static final int PROTECT_BLK = 8;
+    private static final int PROTECT_BLK = 4;
+    private static final int PROTECT_AMT = 2;
     private static final int PROTECT_PWR_AMT = 4;
     private static final int SPECIAL_DEBUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 3;
@@ -55,7 +56,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new BonesPower(this), 1));
+        addToTop(new ApplyPowerAction(this, this, new BonesPower(this), 1));
     }
 
     @Override
@@ -80,6 +81,7 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
+                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
@@ -125,6 +127,7 @@ public class Bones extends AbstractCompanion {
             case PROTECT:
                 addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -154,7 +157,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callProtect() {
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
     }
 
     @Override
@@ -177,17 +180,17 @@ public class Bones extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_PWR_AMT + INTENTS[7];
+                this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_AMT + INTENTS[7] + PROTECT_PWR_AMT + INTENTS[8];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[8] + SPECIAL_DEBUFF_AMT + INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12];
+                this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_DEBUFF_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12] + SPECIAL_PWR_AMT + INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[13];
+                this.intentTip.body = INTENTS[14];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -213,13 +216,13 @@ public class Bones extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(1).output + INTENT_TOOLTIPS[4] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(1).output + INTENT_TOOLTIPS[4] + PROTECT_AMT + INTENT_TOOLTIPS[5] + PROTECT_PWR_AMT + INTENT_TOOLTIPS[6];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[6] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10];
+                    return INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11];
                 }
         }
         return "";

@@ -28,7 +28,7 @@ public class AgainstAllOdds extends AbstractEasyCard {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         boolean glow = true;
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!(!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0)) {
+            if (m != null && !m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
                 glow = false;
             }
         }

@@ -5,8 +5,8 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import lonelymod.powers.AddCardToHandPower;
+import lonelymod.powers.NewDrawReductionPower;
 
 public class Forgetful extends AbstractEasyCard {
     public final static String ID = makeID("Forgetful");
@@ -19,7 +19,7 @@ public class Forgetful extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new DrawReductionPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new NewDrawReductionPower(p, this.magicNumber, false)));
         addToBot(new ApplyPowerAction(p, p, new AddCardToHandPower(p, 1, new PanicAttack(), false)));
     }
 

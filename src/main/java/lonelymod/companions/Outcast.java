@@ -44,7 +44,7 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 3, true)));
+        addToTop(new ApplyPowerAction(this, this, new OutcastPower(this, 3, true)));
     }
 
     public void takeTurn() {

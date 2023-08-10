@@ -3,7 +3,6 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,7 +22,7 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast32.png");
 
-    private boolean startOfBattle = false;
+    private boolean startOfBattle;
 
     public OutcastPower(AbstractCreature owner, int amount, boolean startOfBattle) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
@@ -49,7 +48,7 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        if (amount == 3 && !startOfBattle)
+        if (amount >= 3 && !startOfBattle)
             description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
         else
             description = DESCRIPTIONS[0];
@@ -57,7 +56,7 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void onSpecificTrigger() {
-        addToBot(new ReducePowerAction(this.owner, this.owner, this, 2));
+        addToBot(new ReducePowerAction(this.owner, this.owner, this, this.amount-1));
     }
 
     @Override

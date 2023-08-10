@@ -52,7 +52,7 @@ public class Omen extends AbstractCompanion {
     }
 
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
+        addToTop(new ApplyPowerAction(this, this, new OmenPower(this, INIT_PASSIVE_AMT), INIT_PASSIVE_AMT));
     }
 
     public void takeTurn() {

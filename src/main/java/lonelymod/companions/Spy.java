@@ -46,7 +46,7 @@ public class Spy extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
+        addToTop(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
     }
 
     @Override

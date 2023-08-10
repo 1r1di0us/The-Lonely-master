@@ -56,7 +56,7 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new MeatPower(this), 1));
+        addToTop(new ApplyPowerAction(this, this, new MeatPower(this), 1));
     }
 
     @Override

@@ -42,8 +42,8 @@ public class Oracle extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new OraclePower(this, 5)));
-        addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, 5)));
+        addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, 5)));
+        addToTop(new ApplyPowerAction(this, this, new OraclePower(this, 5)));
     }
 
     @Override

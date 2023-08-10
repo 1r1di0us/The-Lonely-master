@@ -100,6 +100,10 @@
     "NAME": "Brainstorm",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Discard your hand. NL lonelymod:Plan !M!."
   },
+  "${ModID}:EndlessOnslaught": {
+    "NAME": "Endless Onslaught",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
+  },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
     "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, it gains !M! Strength."
@@ -107,10 +111,6 @@
   "${ModID}:FieryArrow": {
     "NAME": "Fiery Arrow",
     "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
-  },
-  "${ModID}:VentFrustration": {
-    "NAME": "Vent Frustration",
-    "DESCRIPTION": "Costs 1 less [E] for every lonelymod:Move you called this turn. NL Deal !D! damage !M! times."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -125,14 +125,14 @@
     "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Gain [E] [E]. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Gain [E] [E] [E]. NL Exhaust."
   },
-  "${ModID}:EndlessOnslaught": {
-    "NAME": "Endless Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
-  },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
     "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain !B! Block X+1 times."
+  },
+  "${ModID}:VentFrustration": {
+    "NAME": "Vent Frustration",
+    "DESCRIPTION": "Costs 1 less [E] for every lonelymod:Move you called this turn. NL Deal !D! damage !M! times."
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
@@ -140,16 +140,16 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Shuffle !${ModID}:m2! *Dominate into your draw pile. NL Gain !M! Weak.",
-    "UPGRADE_DESCRIPTION": "Shuffle !${ModID}:m2! *Dominates into your draw pile. NL Gain !M! Weak."
+    "DESCRIPTION": "Shuffle a *Dominate into your draw pile. NL Gain !${ModID}:m2! lonelymod:Stamina. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "Next turn, add a free *Outburst to your hand. NL Gain !M! Vulnerable."
+    "DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E]. NL Gain !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E] [E]. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "Add a *Primal to your hand. NL Gain !M! Frail."
+    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Grant !${ModID}:m2! Vigor. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -161,8 +161,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Lose !M! HP. NL Gain !${ModID}:m2! Ritual. NL Exhaust."
+    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -274,7 +274,7 @@
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -306,12 +306,12 @@
   "${ModID}:Bravery": {
     "NAME": "Bravery",
     "DESCRIPTION": "At the start of your turn, if any enemy intends to attack, gain !M! Vigor.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, if any enemy intends to attack, gain !M! Vigor and !${ModID}:m2! lonelymod:Stamina."
+    "UPGRADE_DESCRIPTION": "At the start of your turn, if any enemy intends to attack, gain !M! Vigor and draw !${ModID}:m2! card."
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "At the end of your turn, play !M! random card from your discard pile.",
-    "UPGRADE_DESCRIPTION": "At the end of your turn, play !M! card from the top of your discard pile."
+    "DESCRIPTION": "At the end of your turn, play and exhaust a random, non-ethereal card from your hand.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random, non-ethereal card from your hand."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",

@@ -12,7 +12,7 @@ public class Overcome extends AbstractEasyCard {
 
     public Overcome() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 8;
+        this.baseMagicNumber = this.magicNumber = 6;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

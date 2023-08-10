@@ -15,7 +15,7 @@ public class FieryArrow extends AbstractEasyCard {
 
     public FieryArrow() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 8;
+        baseDamage = 10;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class DrawReductionPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class NewDrawReductionPower extends AbstractEasyPower implements CloneablePowerInterface {
     public static final String POWER_ID = "Draw Reduction";
 
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("Draw Reduction");
@@ -19,7 +19,7 @@ public class DrawReductionPower extends AbstractEasyPower implements CloneablePo
 
     private boolean justApplied;
 
-    public DrawReductionPower(AbstractCreature owner, int amount, boolean isSourceMonster) {
+    public NewDrawReductionPower(AbstractCreature owner, int amount, boolean isSourceMonster) {
         super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, true, owner, amount);
         this.name = NAME;
         this.ID = "Draw Reduction";
@@ -57,6 +57,6 @@ public class DrawReductionPower extends AbstractEasyPower implements CloneablePo
     }
 
     public AbstractPower makeCopy() {
-        return new DrawReductionPower(this.owner, this.amount, this.justApplied);
+        return new NewDrawReductionPower(this.owner, this.amount, this.justApplied);
     }
 }

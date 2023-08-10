@@ -14,9 +14,9 @@ public class WickedTalons extends AbstractEasyCard {
 
     public WickedTalons() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 6;
-        baseMagicNumber = magicNumber = 3;
-        baseSecondMagic = secondMagic = 2;
+        baseDamage = 8;
+        baseMagicNumber = magicNumber = 2;
+        baseSecondMagic = secondMagic = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

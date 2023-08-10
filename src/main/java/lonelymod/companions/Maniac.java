@@ -45,7 +45,7 @@ public class Maniac extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new ApplyPowerAction(this, this, new ManiacPower(this)));
+        addToTop(new ApplyPowerAction(this, this, new ManiacPower(this)));
     }
 
     @Override

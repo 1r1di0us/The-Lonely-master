@@ -5,6 +5,7 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,9 +29,9 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FearlessBravery32.png");
 
     private int vigAmount;
-    private int stamAmount;
+    private int drawAmount;
 
-    public FearlessBraveryPower(AbstractCreature owner, int amount, int vigAmount, int stamAmount) {
+    public FearlessBraveryPower(AbstractCreature owner, int amount, int vigAmount, int drawAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -39,7 +40,7 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
         isTurnBased = true;
         this.amount = amount;
         this.vigAmount = vigAmount;
-        this.stamAmount = stamAmount;
+        this.drawAmount = drawAmount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -58,7 +59,7 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.stamAmount * this.amount)));
+                addToBot(new DrawCardAction(this.owner, this.drawAmount * this.amount));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount)));
                 //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseDexterityPower(this.owner, this.amount)));
                 return;
@@ -68,11 +69,11 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.vigAmount * this.amount + DESCRIPTIONS[1] + this.stamAmount * this.amount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + this.vigAmount * this.amount + DESCRIPTIONS[1] + this.drawAmount * this.amount + DESCRIPTIONS[2];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new FearlessBraveryPower(this.owner, this.amount, this.vigAmount, this.stamAmount);
+        return new FearlessBraveryPower(this.owner, this.amount, this.vigAmount, this.drawAmount);
     }
 }

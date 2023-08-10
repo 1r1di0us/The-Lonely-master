@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,19 +17,19 @@ public class DarkRitual extends AbstractEasyCard {
 
     public DarkRitual() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY), 0.5F));
-        addToBot(new LoseHPAction(p, p, this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new RitualPower(p, secondMagic, true)));
+/*        addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY), 0.5F));
+        addToBot(new LoseHPAction(p, p, this.magicNumber));*/ //rest in peace super cool effect
+        addToBot(new ApplyPowerAction(p, p, new RitualPower(p, magicNumber, true)));
+        addToBot(new ExhaustAction(1, true, false, false));
     }
 
     public void upp() {
-        this.isInnate = true;
+        this.exhaust = false;
         uDesc();
     }
 }

@@ -143,24 +143,24 @@
     "NAME": "Fearless Bravery",
     "DESCRIPTIONS": [
       "At the start of your turn, if any enemy intends to attack, Gain #b",
-      " #yVigor and #b",
-      " #yStamina."
+      " #yVigor and draw #b",
+      " card."
     ]
   },
   "${ModID}:DesperationPower": {
     "NAME": "Desperation",
     "DESCRIPTIONS": [
-      "At the end of your turn, play #b",
-      " random card from your discard pile.",
-      " random cards from your discard pile."
+      "At the end of your turn, play and exhaust #b",
+      " random, non-ethereal card from your hand",
+      " random, non-ethereal cards from your hand."
     ]
   },
   "${ModID}:UtterDesperationPower": {
     "NAME": "Utter Desperation",
     "DESCRIPTIONS": [
       "At the end of your turn, play #b",
-      " card from the top of your discard pile",
-      " cards from the top of your discard pile."
+      " random, non-ethereal card from your hand",
+      " random, non-ethereal cards from your hand."
     ]
   },
   "${ModID}:MuscleMemoryPower": {

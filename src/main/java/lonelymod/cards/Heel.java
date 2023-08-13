@@ -16,7 +16,7 @@ public class Heel extends AbstractEasyCard {
 
     public Heel() {
         super(ID, 2, CardType.ATTACK, CardRarity.BASIC, CardTarget.SELF_AND_ENEMY);
-        this.baseDamage = 7;
+        this.baseDamage = 9;
         this.tags.add(Enums.COMPANION);
     }
 

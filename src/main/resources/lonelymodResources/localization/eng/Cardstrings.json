@@ -18,12 +18,11 @@
   },
   "${ModID}:DeviousPloy": {
     "NAME": "Devious Ploy",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Draw !${ModID}:m2! cards."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Plan !M!. NL Next turn, Gain [E]."
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of next turn, lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of the next !M! turns, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Marker": {
     "NAME": "Marker",
@@ -60,7 +59,7 @@
   "${ModID}:ActionPlan": {
     "NAME": "Action Plan",
     "DESCRIPTION": "Gain !B! Block and lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block and lonelymod:Call lonelymod:Protect. NL Next turn, gain [E] and lonelymod:Call lonelymod:Attack."
+    "UPGRADE_DESCRIPTION": "Gain !B! Block and lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack and draw !M! card."
   },
   "${ModID}:Adapt": {
     "NAME": "Adapt",
@@ -68,7 +67,7 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Ethereal. NL Next turn, gain !M! less energy and add an *Overreaction to your hand.",
+    "DESCRIPTION": "Next turn, gain !M! less energy and add an *Overreaction to your hand. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Next turn, gain !M! less energy and add an *Overreaction to your hand."
   },
   "${ModID}:Forgetful": {
@@ -98,7 +97,7 @@
   },
   "${ModID}:Brainstorm": {
     "NAME": "Brainstorm",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Discard your hand. NL lonelymod:Plan !M!."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Choose a card in your discard pile to lonelymod:Return."
   },
   "${ModID}:EndlessOnslaught": {
     "NAME": "Endless Onslaught",
@@ -228,14 +227,14 @@
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
-    "DESCRIPTION": "Whenever your lonelymod:Companion lonelymod:Protects, draw !M! cards."
+    "DESCRIPTION": "Whenever you lonelymod:Call a lonelymod:Move while your lonelymod:Companion intends to lonelymod:Protect, gain [E]."
   },
   "${ModID}:Teamwork": {
     "NAME": "Teamwork",
     "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
   },
-  "${ModID}:ThreeStepsAhead": {
-    "NAME": "Three Steps Ahead",
+  "${ModID}:TwoStepsAhead": {
+    "NAME": "Two Steps Ahead",
     "DESCRIPTION": "Whenever you lonelymod:Plan, lonelymod:Plan !M! more."
   },
   "${ModID}:AccursedBeak": {
@@ -287,7 +286,7 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve."
+    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve. NL Exhaust."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",

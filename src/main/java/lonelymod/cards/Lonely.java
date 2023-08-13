@@ -18,6 +18,7 @@ public class Lonely extends AbstractEasyCard {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         //MultiCardPreview looks ugly as heck, but I'll use it anyway.
         MultiCardPreview.add(this, new Bravery(), new Resolve(), new Desperation());
+        this.exhaust = true;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

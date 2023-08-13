@@ -49,9 +49,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     private static final Logger logger = LogManager.getLogger(AbstractMonster.class.getName());
 
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AbstractCompanion"));
-    public static final String[] TEXT = uiStrings.TEXT;
-
     private static final float INTENT_HB_W = 64.0F * Settings.scale;
 
     private float intentParticleTimer = 0.0F;
@@ -142,10 +139,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
         if (flashIntent) flashIntent();
         if (triggerPowers) {
             for (AbstractPower p : AbstractDungeon.player.powers)
-                if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move);
+                if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, this.nextMove);
             VentFrustration.movesCalledThisTurn++;
             for (AbstractCard c : AbstractDungeon.player.hand.group)
-                if (c instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move);
+                if (c instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move, this.nextMove);
         }
         switch (move) {
             case ATTACK:

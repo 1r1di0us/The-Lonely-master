@@ -1,7 +1,14 @@
 {
   "${ModID}:PlanAction": {
     "TEXT": [
-        "Choose any number of cards to shuffle into your Draw Pile."
+        "Choose any number of Cards to Shuffle into your Draw Pile."
+    ]
+  },
+  "${ModID}:BrainstormAction": {
+    "TEXT": [
+      "Choose a Card to Return Next Turn.",
+      "Choose ",
+      " Cards to Return Next Turn."
     ]
   },
   "${ModID}:CounterstrikeMessage": {
@@ -14,10 +21,6 @@
       "But nobody came...",
       "My companion is not listening!",
       "That is not a valid action!"
-    ]
-  },
-  "${ModID}:AbstractCompanion": {
-    "TEXT": [
     ]
   }
 }

@@ -14,7 +14,7 @@ public class Distracted extends AbstractEasyCard {
     public Distracted() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 1;
-        this.isEthereal = true;
+        this.exhaust = true;
         this.cardsToPreview = new Overreaction();
     }
 
@@ -24,7 +24,7 @@ public class Distracted extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.isEthereal = false;
+        this.exhaust = false;
         uDesc();
     }
 }

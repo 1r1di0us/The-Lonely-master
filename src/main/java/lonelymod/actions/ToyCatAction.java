@@ -1,3 +1,4 @@
+/*
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -19,7 +20,8 @@ public class ToyCatAction extends AbstractGameAction {
 
     public void update() {
         //i've probably sorely mistaken how this should work.
-        /*if (card == null) {
+        */
+/*if (card == null) {
             if (p.hasRelic(ToyCat.ID)) {
                 this.card = ToyCat.getCard();
                 p.masterDeck.addToRandomSpot(this.card);
@@ -28,7 +30,8 @@ public class ToyCatAction extends AbstractGameAction {
             } else {
                 this.isDone = true;
             }
-        }*/
+        }*//*
+
         for (AbstractCard c : p.drawPile.group) {
             if (c.uuid == card.uuid) {
                 p.drawPile.moveToHand(card);
@@ -72,12 +75,15 @@ public class ToyCatAction extends AbstractGameAction {
                 }
             }
         }
-        /*if (!this.isDone) {
+        */
+/*if (!this.isDone) {
             //hopefully this doesn't happen
             this.card = ToyCat.getCard();
             p.masterDeck.addToRandomSpot(this.card);
             p.hand.addToBottom(this.card);
             this.isDone = true;
-        }*/
+        }*//*
+
     }
 }
+*/

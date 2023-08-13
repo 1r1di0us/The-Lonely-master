@@ -37,7 +37,7 @@ public class VentFrustration extends AbstractEasyCard implements TriggerOnCallMo
     }
 
     @Override
-    public void triggerOnCallMove(byte move) {
+    public void triggerOnCallMove(byte move, byte prevMove) {
         setCostForTurn(this.costForTurn - 1);
     }
 

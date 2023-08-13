@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -16,10 +17,11 @@ import com.megacrit.cardcrawl.powers.EnergizedPower;
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.util.TexLoader;
 
-public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnPerformMoveInterface {
+public class RecoveryPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnCallMoveInterface {
    
     public static final String POWER_ID = makeID("RecoveryPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -52,19 +54,12 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
 
     @Override
     public void updateDescription() {
-        if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        }
-        else {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
-        }
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
-    public void triggerOnPerformMove(byte move) {
-        if (move == AbstractCompanion.PROTECT) {
-            addToBot(new DrawCardAction(this.owner, this.amount));
-//            addToBot(new ApplyPowerAction(this.owner, this.owner, new DrawCardNextTurnPower(this.owner, this.amount)));
-//            addToBot(new ApplyPowerAction(this.owner, this.owner, new EnergizedPower(this.owner, this.amount)));
+    public void triggerOnCallMove(byte move, byte prevMove) {
+        if (prevMove == AbstractCompanion.PROTECT) {
+            addToBot(new GainEnergyAction(this.amount));
         }
     }
 

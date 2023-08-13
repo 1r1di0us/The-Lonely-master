@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.powers.ThreeStepsAheadPower;
 
-public class ThreeStepsAhead extends AbstractEasyCard {
-    public final static String ID = makeID("ThreeStepsAhead");
+public class TwoStepsAhead extends AbstractEasyCard {
+    public final static String ID = makeID("TwoStepsAhead");
 
-    public ThreeStepsAhead() {
+    public TwoStepsAhead() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -22,6 +22,6 @@ public class ThreeStepsAhead extends AbstractEasyCard {
     }
     
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeMagicNumber(1);
     }
 }

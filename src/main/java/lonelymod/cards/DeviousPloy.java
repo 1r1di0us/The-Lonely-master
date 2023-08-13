@@ -18,19 +18,19 @@ public class DeviousPloy extends AbstractEasyCard {
 
     public DeviousPloy() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 5;
+        baseDamage = 7;
         baseMagicNumber = magicNumber = 2;
-        baseSecondMagic = secondMagic = 2;
+        baseSecondMagic = secondMagic = 1;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new PlanAction(this.magicNumber, this));
-        addToBot(new DrawCardAction(this.secondMagic));
+        addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, this.secondMagic)));
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(3);
         upgradeMagicNumber(1);
     }
 }

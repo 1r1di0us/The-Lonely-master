@@ -2,5 +2,5 @@ package lonelymod.interfaces;
 
 public interface TriggerOnCallMoveInterface {
 
-    void triggerOnCallMove(byte move);
+    void triggerOnCallMove(byte move, byte prevMove);
 }

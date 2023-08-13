@@ -20,7 +20,7 @@ public class WildForm extends AbstractEasyCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WildFormPower(p, 1, this.upgraded), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WildFormPower(p, -1, this.upgraded), -1));
     }
     
     @Override

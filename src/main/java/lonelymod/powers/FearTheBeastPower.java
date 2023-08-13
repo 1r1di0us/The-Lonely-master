@@ -47,7 +47,7 @@ public class FearTheBeastPower extends AbstractEasyPower implements CloneablePow
         updateDescription();
     }
 
-    public void triggerOnCallMove(byte move) {
+    public void triggerOnCallMove(byte move, byte prevMove) {
         if (move == AbstractCompanion.ATTACK)
             addToBot(new GainBlockAction(this.owner, this.owner, this.amount));
     }

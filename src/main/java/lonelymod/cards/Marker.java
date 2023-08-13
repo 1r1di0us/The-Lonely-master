@@ -23,7 +23,7 @@ public class Marker extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(3);
         upgradeMagicNumber(1);
     }
 }

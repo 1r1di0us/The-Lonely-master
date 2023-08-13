@@ -25,6 +25,13 @@
       " turns."
     ]
   },
+  "${ModID}:GainStrengthBuffPower": {
+    "NAME": "Gain Strength",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b",
+      " #yStrength."
+    ]
+  },
   "${ModID}:AdaptPower": {
     "NAME": "Adapting",
     "DESCRIPTIONS": [
@@ -104,13 +111,12 @@
   "${ModID}:RecoveryPower": {
     "NAME": "Recovery",
     "DESCRIPTIONS": [
-      "Whenever your Companion Protects, draw #b",
-      " Card.",
-      " Cards."
+      "Whenever you #yCall a #yMove while your #yCompanion intends to #yProtect, gain ",
+      " Energy."
     ]
   },
-  "${ModID}:ThreeStepsAheadPower": {
-    "NAME": "Three Steps Ahead",
+  "${ModID}:TwoStepsAheadPower": {
+    "NAME": "Two Steps Ahead",
     "DESCRIPTIONS": [
       "Whenever you #yPlan, #yPlan #b",
       " more."

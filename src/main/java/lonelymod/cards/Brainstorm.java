@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import lonelymod.actions.BrainstormAction;
 import lonelymod.actions.PlanAction;
 
 public class Brainstorm extends AbstractEasyCard {
@@ -15,18 +16,17 @@ public class Brainstorm extends AbstractEasyCard {
 
     public Brainstorm() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 12;
+        baseDamage = 13;
         this.isMultiDamage = true;
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AttackEffect.LIGHTNING);
-        addToBot(new DiscardAction(p, p, p.hand.size(), true));
-        addToBot(new PlanAction(this.magicNumber));
+        addToBot(new BrainstormAction(this.magicNumber));
     }
 
     public void upp() {
-        upgradeDamage(3);
+        upgradeDamage(4);
     }
 }

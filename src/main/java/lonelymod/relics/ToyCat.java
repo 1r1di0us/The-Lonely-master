@@ -1,3 +1,4 @@
+/*
 package lonelymod.relics;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,12 +14,13 @@ import lonelymod.fields.InToyCatField;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class ToyCat {} /*extends AbstractEasyRelic {
+public class ToyCat extends AbstractEasyRelic { //Bottle relics have a special boolean in the saveFile, i have no clue how to do that
     public static final String ID = makeID("ToyCat");
 
     private boolean cardSelected = true;
     public AbstractCard card = null;
-    private static AbstractCard cardCopy = null;
+    public Class<? extends AbstractCard> cardClass = null;
+    public int timesUpgraded = 0;
 
     public ToyCat() {
         super(ID, RelicTier.SHOP, LandingSound.MAGICAL, LonelyCharacter.Enums.YELLOW);
@@ -26,10 +28,6 @@ public class ToyCat {} /*extends AbstractEasyRelic {
 
     public AbstractCard getCard() {
         return this.card.makeCopy();
-    }
-
-    public static AbstractCard getCardCopy() {
-        return cardCopy.makeCopy();
     }
 
     public void onEquip() {
@@ -65,7 +63,8 @@ public class ToyCat {} /*extends AbstractEasyRelic {
                 !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             this.cardSelected = true;
             this.card = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            this.cardCopy = card.makeStatEquivalentCopy();
+            this.cardClass = card.getClass();
+            this.timesUpgraded = card.timesUpgraded;
             InToyCatField.inToyCat.set(this.card, true);
             (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -95,4 +94,5 @@ public class ToyCat {} /*extends AbstractEasyRelic {
         }
         return false;
     }
-}*/
+}
+*/

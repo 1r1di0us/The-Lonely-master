@@ -14,7 +14,7 @@ public class Recovery extends AbstractEasyCard {
 
     public Recovery() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
+        baseMagicNumber = magicNumber = 1;
         this.tags.add(Enums.COMPANION);
     }
 
@@ -23,6 +23,6 @@ public class Recovery extends AbstractEasyCard {
     }
     
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeBaseCost(0);
     }
 }

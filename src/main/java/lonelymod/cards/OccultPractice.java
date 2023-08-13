@@ -33,6 +33,6 @@ public class OccultPractice extends AbstractEasyCard {
     
 
     public void upp() {
-        upgradeMagicNumber(3);
+        upgradeMagicNumber(2);
     }
 }

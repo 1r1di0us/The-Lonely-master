@@ -18,20 +18,19 @@ public class Kill extends AbstractEasyCard {
     public final static String ID = makeID("Kill");
 
     public Kill() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 7;
-        baseMagicNumber = magicNumber = 1;
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        baseDamage = 10;
+        baseMagicNumber = magicNumber = 2;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        if (upgraded)
-            addToBot(new ApplyPowerAction(p, p, new AttackNextTurnPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new AttackNextTurnPower(p, this.magicNumber)));
     }
 
     public void upp() {
-        uDesc();
+        upgradeDamage(5);
     }
 }

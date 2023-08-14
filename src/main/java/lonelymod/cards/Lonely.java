@@ -27,6 +27,7 @@ public class Lonely extends AbstractEasyCard {
     }
     
     public void upp() {
-        upgradeBaseCost(2);
+        this.exhaust = false;
+        uDesc();
     }
 }

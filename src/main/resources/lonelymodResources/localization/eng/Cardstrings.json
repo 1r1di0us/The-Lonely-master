@@ -286,7 +286,8 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve. NL Exhaust."
+    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",

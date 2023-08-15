@@ -148,7 +148,7 @@
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Grant !${ModID}:m2! Vigor. NL Gain !M! Frail."
+    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Gain !${ModID}:m2! Block. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -165,7 +165,8 @@
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Draw !${ModID}:m2! card.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Draw !${ModID}:m2! cards."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",

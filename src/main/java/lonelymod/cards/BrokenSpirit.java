@@ -19,21 +19,22 @@ public class BrokenSpirit extends AbstractEasyCard {
     public BrokenSpirit() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Primal();
+        baseBlock = 9;
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 5;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, false, true));
-        if (CompanionField.currCompanion.get(p) != null)
+        blck();
+        /*if (CompanionField.currCompanion.get(p) != null)
             addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(p), p, new CompanionVigorPower(CompanionField.currCompanion.get(p), this.secondMagic)));
         else
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, CallMoveAction.TEXT[0], true));
-        addToBot(new ApplyPowerAction(p, p, new FrailPower(p, this.magicNumber, false), this.magicNumber));
+*/        addToBot(new ApplyPowerAction(p, p, new FrailPower(p, this.magicNumber, false), this.magicNumber));
     }
 
     public void upp() {
-        upgradeMagicNumber(-1);
+        upgradeBlock(3);
     }
 }

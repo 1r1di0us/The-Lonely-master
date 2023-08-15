@@ -13,7 +13,8 @@ public class Genius extends AbstractEasyCard {
 
     public Genius() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 3;
+        baseSecondMagic = secondMagic = 1;
     }
     
     @Override
@@ -23,5 +24,7 @@ public class Genius extends AbstractEasyCard {
 
     public void upp() {
         upgradeMagicNumber(2);
+        upgradeSecondMagic(1);
+        uDesc();
     }
 }

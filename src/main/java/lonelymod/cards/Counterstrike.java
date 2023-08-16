@@ -72,11 +72,19 @@ public class Counterstrike extends AbstractEasyCard {
             super.calculateCardDamage(mo);
             if (this.magicNumber <= 1) { //mo is attacking once
                 this.baseMagicNumber = this.magicNumber = 1;
-                this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+                if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
+                    this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
+                } else {
+                    this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+                }
                 this.initializeDescription();
             }
             else if (this.magicNumber >= 2) { //mo is attacking many times
-                this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1];
+                if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
+                    this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[1];
+                } else {
+                    this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1];
+                }
                 this.initializeDescription();
             }
         }
@@ -85,11 +93,9 @@ public class Counterstrike extends AbstractEasyCard {
     @Override
     public void initializeDescription() {
         if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
-            if (this.rawDescription == cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0]) {
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
-            } else if (this.rawDescription == cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1]) {
-                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
-            } else {
+            if (this.rawDescription == "") {
+                this.rawDescription = "";
+            } else if (this.rawDescription == cardStrings.DESCRIPTION) {
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
             }
         }

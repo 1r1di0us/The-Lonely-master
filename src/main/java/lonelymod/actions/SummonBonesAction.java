@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Bones;
+import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
 import lonelymod.relics.TreatBox;
@@ -18,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class SummonBonesAction extends AbstractGameAction {
     private static final Logger logger = LogManager.getLogger(SummonBonesAction.class.getName());
     private AbstractCompanion c;
-    private boolean summon = true;
+    private boolean alreadySummoned = false;
 
     public SummonBonesAction() {
         if (Settings.FAST_MODE) {
@@ -28,9 +29,13 @@ public class SummonBonesAction extends AbstractGameAction {
         }
         this.duration = this.startDuration;
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-            logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
-            this.summon = false;
-            return;
+            if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Bones) {
+                alreadySummoned = true;
+                return;
+            }
+            //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, false));
+            //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
+            CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
         this.c = new Bones(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
@@ -38,7 +43,7 @@ public class SummonBonesAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.summon) {
+        if (!this.alreadySummoned) {
             if (this.duration == this.startDuration) {
                 //this.c.animX = 1200.0F * Settings.xScale;
                 this.c.applyPowers();

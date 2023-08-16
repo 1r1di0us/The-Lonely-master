@@ -6,7 +6,7 @@
       "Summon",
       "SUMMON"
     ],
-    "DESCRIPTION": "This #yCompanion joins the battle. NL Any #yCompanion already in the fight will be replaced."
+    "DESCRIPTION": "Replaces the current #yCompanion with a new one. While you have a card that can Call a #yMove in your deck, a #yCompanion will be automatically summoned at the start of combat."
   },
   {
     "PROPER_NAME": "Companion Move",

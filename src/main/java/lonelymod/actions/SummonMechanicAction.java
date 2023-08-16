@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Mechanic;
+import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class SummonMechanicAction extends AbstractGameAction {
     private static final Logger logger = LogManager.getLogger(SummonMechanicAction.class.getName());
     private AbstractCompanion c;
-    private boolean summon = true;
+    private boolean alreadySummoned = false;
 
     public SummonMechanicAction() {
         if (Settings.FAST_MODE) {
@@ -25,9 +26,13 @@ public class SummonMechanicAction extends AbstractGameAction {
         }
         this.duration = this.startDuration;
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-            logger.info("INCORRECTLY ATTEMPTED TO SUMMON COMPANION.");
-            this.summon = false;
-            return;
+            if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Mechanic) {
+                alreadySummoned = true;
+                return;
+            }
+            //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, false));
+            //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
+            CompanionField.currCompanion.set(AbstractDungeon.player, null);
         }
         this.c = new Mechanic(-750, -40);
         CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
@@ -35,7 +40,7 @@ public class SummonMechanicAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (summon) {
+        if (this.alreadySummoned) {
             if (this.duration == this.startDuration) {
                 //this.c.animX = 1200.0F * Settings.xScale;
                 this.c.applyPowers();

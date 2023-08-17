@@ -19,6 +19,6 @@ public class PerfectShot extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(3);
+        upgradeDamage(4);
     }
 }

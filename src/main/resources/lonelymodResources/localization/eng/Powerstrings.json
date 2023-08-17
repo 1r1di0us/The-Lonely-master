@@ -104,8 +104,8 @@
   "${ModID}:PlanBPower": {
     "NAME": "Plan B",
     "DESCRIPTIONS": [
-      "Whenever you #yPlan, deal #b",
-      " damage to a random enemy for each card you didn't select."
+      "Whenever you #yPlan, gain #b",
+      " #yVigor for each card you didn't select."
     ]
   },
   "${ModID}:RecoveryPower": {

@@ -23,11 +23,13 @@ public class Abandon extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(p, magicNumber));
+        if (magicNumber > 0)
+            addToBot(new DrawCardAction(p, magicNumber));
         addToBot(new AbandonAction());
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeMagicNumber(-1);
+        uDesc();
     }
 }

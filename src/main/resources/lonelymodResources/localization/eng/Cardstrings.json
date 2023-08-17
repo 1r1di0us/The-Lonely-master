@@ -178,7 +178,7 @@
   },
   "${ModID}:OnGuard":  {
     "NAME": "On Guard",
-    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return"
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return."
   },
   "${ModID}:Overreaction": {
     "NAME": "Overreaction",
@@ -224,7 +224,7 @@
   },
   "${ModID}:PlanB": {
     "NAME": "Plan B",
-    "DESCRIPTION": "Whenever you lonelymod:Plan, deal !M! damage to a random enemy for every card you didn't select."
+    "DESCRIPTION": "Whenever you lonelymod:Plan, gain !M! Vigor for every card you didn't select."
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
@@ -270,7 +270,8 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a RANDOM card in your hand from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a RANDOM card in your hand from your deck. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Permanently remove a RANDOM card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",

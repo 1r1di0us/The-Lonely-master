@@ -2,6 +2,7 @@ package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +20,8 @@ public class Genius extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new PlanAction(this.magicNumber, this));
+        addToBot(new PlanAction(this.magicNumber, this));
+        addToBot(new DrawCardAction(this.secondMagic));
     }
 
     public void upp() {

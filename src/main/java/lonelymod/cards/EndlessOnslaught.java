@@ -15,7 +15,7 @@ public class EndlessOnslaught extends AbstractEasyCard {
 
     public EndlessOnslaught() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 4;
+        baseDamage = 5;
         baseMagicNumber = magicNumber = 2;
     }
 

@@ -302,7 +302,7 @@
   "${ModID}:SpyPower": {
     "NAME": "Crafty",
     "DESCRIPTIONS": [
-      "Give him #yShiv cards to empower his next attack! His next attack will hit #b",
+      "Give him #yShiv cards to empower his Attack #yMove. His Attack #yMove will hit #b",
       " time.",
       " times."
     ]

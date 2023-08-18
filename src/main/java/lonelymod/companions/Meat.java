@@ -34,11 +34,11 @@ public class Meat extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("Meat.png");
 
 
-    private static final int DEFAULT_PWR_AMT = 3;
-    private static final int ATTACK_DMG = 6, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
+    private static final int DEFAULT_PWR_AMT = 2;
+    private static final int ATTACK_DMG = 7, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
     private static final int PROTECT_BLK = 6, PROTECT_AMT = 3;
-    private static final int PROTECT_PWR_AMT = 5; //we will think about adding this...
-    private static final int SPECIAL_DMG = 10;
+    private static final int PROTECT_PWR_AMT = 5; //Was thinking of causing protect to increase constricted on constricted targets.
+    private static final int SPECIAL_DMG = 20;
     private static final int SPECIAL_DEBUFF_AMT = 3;
     private int attackDmg;
     private int protectBlk;

@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
 import lonelymod.actions.*;
 import lonelymod.cards.AbstractEasyCard;
@@ -40,8 +41,12 @@ public class StartOfCombatSummonPatch {
             } else if (__instance instanceof Watcher) {
                 //summon oracle
                 AbstractDungeon.actionManager.addToBottom(new SummonOracleAction());
-            } else {
+            } else if (__instance instanceof LonelyCharacter) {
+                //summon outcast
                 AbstractDungeon.actionManager.addToBottom(new SummonOutcastAction());
+            } else {
+                //default = maniac
+                AbstractDungeon.actionManager.addToBottom(new SummonManiacAction());
             }
         }
     }

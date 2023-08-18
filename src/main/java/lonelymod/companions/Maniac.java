@@ -26,10 +26,10 @@ public class Maniac extends AbstractCompanion {
     public static final String ID = makeID("Maniac");
     public static final String IMG = makeCompanionPath("Maniac.png");
 
-    private static final int ATTACK_DMG = 4;
+    private static final int ATTACK_DMG = 5;
     private static final int ATTACK_AMT = 2;
-    private static final int PROTECT_BLK = 6;
-    private static final int PROTECT_DEBUFF_AMT = 3;
+    private static final int PROTECT_BLK = 8;
+    private static final int PROTECT_BUFF_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 5;
 
     private int attackDmg;
@@ -71,8 +71,7 @@ public class Maniac extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
-                    addToBot(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
+                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -112,8 +111,7 @@ public class Maniac extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
-                    addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(CompanionStaminaPower.POWER_ID))
                     getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
@@ -164,7 +162,7 @@ public class Maniac extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_DEBUFF_AMT + INTENTS[6];
+                this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_BUFF_AMT + INTENTS[6];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
@@ -200,7 +198,7 @@ public class Maniac extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_DEBUFF_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_BUFF_AMT + INTENT_TOOLTIPS[5];
                 }
             case SPECIAL:
                 if (head) {

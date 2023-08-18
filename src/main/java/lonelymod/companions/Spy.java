@@ -69,9 +69,6 @@ public class Spy extends AbstractCompanion {
                     }
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                    if (hasPower(SpyPower.POWER_ID)) {
-                        getPower(SpyPower.POWER_ID).onSpecificTrigger();
-                    }
                 }
                 break;
             case PROTECT:
@@ -117,9 +114,6 @@ public class Spy extends AbstractCompanion {
                     }
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                    if (hasPower(SpyPower.POWER_ID)) {
-                        getPower(SpyPower.POWER_ID).onSpecificTrigger();
-                    }
                 }
                 break;
             case PROTECT:

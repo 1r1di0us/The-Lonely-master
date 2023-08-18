@@ -24,12 +24,12 @@ public class Outcast extends AbstractCompanion {
     public static final String ID = makeID("Outcast");
     public static final String IMG = makeCompanionPath("OutcastSmall.png");
 
-    private static final int ATTACK_DMG = 8;
+    private static final int ATTACK_DMG = 10;
     private static final int EMP_ATTACK_AMT = 2;
-    private static final int PROTECT_BLK = 6;
+    private static final int PROTECT_BLK = 8;
     private static final int EMP_PROTECT_PWR_AMT = 5;
     private static final int SPECIAL_PWR_AMT = 3;
-    private static final int EMP_SPECIAL_PWR_AMT = 2;
+    private static final int EMP_SPECIAL_PWR_AMT = 3;
 
     private int attackDmg;
     private int protectBlk;

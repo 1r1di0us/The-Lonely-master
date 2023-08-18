@@ -45,12 +45,6 @@ public class SpyPower extends AbstractEasyPower implements CloneablePowerInterfa
     }
 
     @Override
-    public void onSpecificTrigger() {
-        if (this.amount > 1)
-            addToBot(new ReducePowerAction(this.owner, this.owner, this, this.amount - 1));
-    }
-
-    @Override
     public void updateDescription() {
         if (amount == 1) {
             description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];

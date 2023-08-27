@@ -19,12 +19,13 @@ public class Resolve extends AbstractEasyCard {
 
     public Resolve() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 2;
+        baseSecondMagic = secondMagic = 0;
     }
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded) addToBot(new ApplyPowerAction(p, p, new SteelResolvePower(p, 1, this.magicNumber)));
+        if (upgraded) addToBot(new ApplyPowerAction(p, p, new SteelResolvePower(p, 1, this.magicNumber, this.secondMagic)));
         else addToBot(new ApplyPowerAction(p, p, new ResolvePower(p, 1, magicNumber)));
     }
     
@@ -46,6 +47,7 @@ public class Resolve extends AbstractEasyCard {
     
     @Override
     public void upp() {
+        upgradeSecondMagic(4);
         uDesc();
     }
 }

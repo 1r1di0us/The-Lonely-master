@@ -31,8 +31,7 @@ public class StartOfCombatSummonPatch {
             if (__instance instanceof Ironclad) {
                 //summon maniac
                 AbstractDungeon.actionManager.addToBottom(new SummonManiacAction());
-            } else
-            if (__instance instanceof TheSilent) {
+            } else if (__instance instanceof TheSilent) {
                 //summon spy
                 AbstractDungeon.actionManager.addToBottom(new SummonSpyAction());
             } else if (__instance instanceof Defect) {

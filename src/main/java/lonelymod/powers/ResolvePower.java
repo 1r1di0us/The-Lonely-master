@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
@@ -26,9 +26,9 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Resolve32.png");
 
     private boolean lostHpThisTurn;
-    private int platedArmorAmount;
+    private int dexAmount;
 
-    public ResolvePower(AbstractCreature owner, int amount, int platedArmorAmount) {
+    public ResolvePower(AbstractCreature owner, int amount, int dexAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -38,7 +38,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
         this.amount = amount;
         this.isPostActionPower = true;
         lostHpThisTurn = false;
-        this.platedArmorAmount = platedArmorAmount * amount;
+        this.dexAmount = dexAmount * amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -61,7 +61,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.dexAmount)));
             lostHpThisTurn = true;
         }
         return damageAmount;
@@ -69,11 +69,11 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + platedArmorAmount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + dexAmount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new ResolvePower(this.owner, this.amount, this.platedArmorAmount);
+        return new ResolvePower(this.owner, this.amount, this.dexAmount);
     }
 }

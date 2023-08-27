@@ -114,14 +114,14 @@ public class Bones extends AbstractCompanion {
             case ATTACK:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
                     addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToTop(new WaitAction(0.4F));
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:

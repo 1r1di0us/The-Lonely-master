@@ -107,6 +107,8 @@ public class Outcast extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     if (consecutiveMove == 3) {
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
@@ -114,8 +116,6 @@ public class Outcast extends AbstractCompanion {
                     } else {
                         addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:

@@ -14,6 +14,10 @@ public class AbandonAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        if (AbstractDungeon.player.hand.isEmpty()) {
+            this.isDone = true;
+            return;
+        }
         CardGroup TEMP = new CardGroup(AbstractDungeon.player.hand.getPurgeableCards(), CardGroupType.UNSPECIFIED);
         CardGroup REALTEMP = new CardGroup(TEMP, CardGroupType.UNSPECIFIED);
         for (AbstractCard c : TEMP.group) {

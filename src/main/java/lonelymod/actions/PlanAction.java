@@ -15,7 +15,7 @@ import lonelymod.cards.Genius;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.interfaces.TriggerOnPlanInterface;
 import lonelymod.powers.PlanBPower;
-import lonelymod.powers.ThreeStepsAheadPower;
+import lonelymod.powers.TwoStepsAheadPower;
 
 public class PlanAction extends AbstractGameAction {
     public static final String ID = makeID("PlanAction");
@@ -33,9 +33,9 @@ public class PlanAction extends AbstractGameAction {
     public PlanAction(int numCards, AbstractEasyCard cardPlayed) {
         this.amount = numCards;
         this.cardPlayed = cardPlayed;
-        if (AbstractDungeon.player.hasPower(ThreeStepsAheadPower.POWER_ID)) {
-            AbstractDungeon.player.getPower(ThreeStepsAheadPower.POWER_ID).flash();;
-            this.amount += AbstractDungeon.player.getPower(ThreeStepsAheadPower.POWER_ID).amount;
+        if (AbstractDungeon.player.hasPower(TwoStepsAheadPower.POWER_ID)) {
+            AbstractDungeon.player.getPower(TwoStepsAheadPower.POWER_ID).flash();;
+            this.amount += AbstractDungeon.player.getPower(TwoStepsAheadPower.POWER_ID).amount;
         } 
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.startingDuration = Settings.ACTION_DUR_FAST;

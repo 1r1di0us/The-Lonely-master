@@ -112,9 +112,9 @@ public class Mechanic extends AbstractCompanion {
             case ATTACK:
                 addToTop(new ChannelAction(new Lightning()));
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
                 }
                 if (hasPower(RoboArmPower.POWER_ID)) {
                     for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {

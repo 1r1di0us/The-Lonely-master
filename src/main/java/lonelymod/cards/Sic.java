@@ -30,7 +30,7 @@ public class Sic extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
         uDesc();
     }
 }

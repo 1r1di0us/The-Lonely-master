@@ -56,6 +56,7 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == CardType.ATTACK) {
+            flash();
             for (int i = 0; i < this.amount; i++) {
                 addToBot(new DamageRandomEnemyAction(new DamageInfo(owner, damage, DamageType.THORNS), AttackEffect.SLASH_DIAGONAL));
             }

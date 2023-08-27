@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.powers.ThreeStepsAheadPower;
+import lonelymod.powers.TwoStepsAheadPower;
 
 public class TwoStepsAhead extends AbstractEasyCard {
     public final static String ID = makeID("TwoStepsAhead");
@@ -18,7 +18,7 @@ public class TwoStepsAhead extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThreeStepsAheadPower(p, magicNumber), magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TwoStepsAheadPower(p, magicNumber), magicNumber));
     }
     
     public void upp() {

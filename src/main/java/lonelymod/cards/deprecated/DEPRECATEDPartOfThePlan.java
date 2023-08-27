@@ -30,7 +30,6 @@ public class DEPRECATEDPartOfThePlan extends AbstractEasyCard implements Trigger
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
         upgradeBlock(1);
     }
 }

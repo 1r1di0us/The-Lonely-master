@@ -35,11 +35,11 @@ public class Meat extends AbstractCompanion {
 
 
     private static final int DEFAULT_PWR_AMT = 2;
-    private static final int ATTACK_DMG = 7, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
-    private static final int PROTECT_BLK = 6, PROTECT_AMT = 3;
+    private static final int ATTACK_DMG = 8, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
+    private static final int PROTECT_BLK = 5, PROTECT_AMT = 3;
     private static final int PROTECT_PWR_AMT = 5; //Was thinking of causing protect to increase constricted on constricted targets.
     private static final int SPECIAL_DMG = 20;
-    private static final int SPECIAL_DEBUFF_AMT = 3;
+    private static final int SPECIAL_DEBUFF_AMT = 25;
     private int attackDmg;
     private int protectBlk;
     private int specialDmg;
@@ -112,12 +112,12 @@ public class Meat extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (targetEnemy.hasPower(ConstrictedPower.POWER_ID))
                         addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:
@@ -129,6 +129,8 @@ public class Meat extends AbstractCompanion {
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (targetEnemy.hasPower(WeakPower.POWER_ID))
                         addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
@@ -137,8 +139,6 @@ public class Meat extends AbstractCompanion {
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToTop(new WaitAction(0.4F));
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
         }

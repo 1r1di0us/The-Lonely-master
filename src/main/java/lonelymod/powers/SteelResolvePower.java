@@ -12,9 +12,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import lonelymod.LonelyMod;
-import lonelymod.actions.TriggerPlatedArmorAction;
 import lonelymod.util.TexLoader;
 
 
@@ -29,9 +29,11 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/SteelResolve32.png");
 
     private boolean lostHpThisTurn;
+
+    private int dexAmount;
     private int platedArmorAmount;
 
-    public SteelResolvePower(AbstractCreature owner, int amount, int platedArmorAmount) {
+    public SteelResolvePower(AbstractCreature owner, int amount, int dexAmount, int platedArmorAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -40,6 +42,7 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
         isTurnBased = false;
         this.isPostActionPower = true;
         lostHpThisTurn = false;
+        this.dexAmount = dexAmount * amount;
         this.platedArmorAmount = platedArmorAmount * amount;
 
         if (tex84 != null) {
@@ -63,8 +66,7 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
     public int onLoseHp(int damageAmount) {
         if (damageAmount > 0 && !lostHpThisTurn) {
             flash();
-            //"triggers" plated armor
-            addToTop(new TriggerPlatedArmorAction(this.owner));
+            addToTop(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.dexAmount)));
             addToTop(new ApplyPowerAction(this.owner, this.owner, new PlatedArmorPower(this.owner, this.platedArmorAmount)));
             lostHpThisTurn = true;
         }
@@ -73,11 +75,11 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.platedArmorAmount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.dexAmount + DESCRIPTIONS[1] + this.platedArmorAmount + DESCRIPTIONS[2];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new SteelResolvePower(this.owner, this.amount, this.platedArmorAmount);
+        return new SteelResolvePower(this.owner, this.amount, this.dexAmount, this.platedArmorAmount);
     }
 }

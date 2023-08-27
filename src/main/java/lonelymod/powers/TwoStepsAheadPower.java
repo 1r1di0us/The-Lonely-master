@@ -13,17 +13,17 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class ThreeStepsAheadPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class TwoStepsAheadPower extends AbstractEasyPower implements CloneablePowerInterface {
    
-    public static final String POWER_ID = makeID("ThreeStepsAheadPower");
+    public static final String POWER_ID = makeID("TwoStepsAheadPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ThreeStepsAhead84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/ThreeStepsAhead32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/TwoStepsAhead84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/TwoStepsAhead32.png");
 
-    public ThreeStepsAheadPower(AbstractCreature owner, int amount) {
+    public TwoStepsAheadPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -56,6 +56,6 @@ public class ThreeStepsAheadPower extends AbstractEasyPower implements Cloneable
 
     @Override
     public AbstractPower makeCopy() {
-        return new ThreeStepsAheadPower(this.owner, this.amount);
+        return new TwoStepsAheadPower(this.owner, this.amount);
     }
 }

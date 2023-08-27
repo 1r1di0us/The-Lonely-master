@@ -100,13 +100,15 @@ public class Omen extends AbstractCompanion {
         switch (move) {
             case DEFAULT:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 }
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (this.hasPower(OmenPower.POWER_ID)) {
                         for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
                             addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -115,8 +117,6 @@ public class Omen extends AbstractCompanion {
                         logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
                         break;
                     }
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:
@@ -150,7 +150,7 @@ public class Omen extends AbstractCompanion {
 
     public void callProtect() {
         getTarget();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, PROTECT_AMT, true, false);
     }
 
     public void callSpecial() {

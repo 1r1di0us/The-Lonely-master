@@ -21,7 +21,7 @@ public class Overthrow extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        if ((!this.freeToPlayOnce && EnergyPanel.totalCount - this.costForTurn == 0) || (this.freeToPlayOnce && EnergyPanel.totalCount == 0)) {
+        if ((!this.freeToPlayOnce && EnergyPanel.totalCount - this.costForTurn <= 0) || (this.freeToPlayOnce && EnergyPanel.totalCount <= 0)) {
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
         }
     }

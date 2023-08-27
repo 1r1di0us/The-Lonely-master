@@ -29,6 +29,7 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Fetch32.png");
 
+    private boolean isUsed = false;
     private int strAmount;
 
     public FetchPower(AbstractCreature owner, int amount) {
@@ -55,10 +56,10 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player)) {
+        if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player) && !this.isUsed) {
             flash();
             addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.strAmount), this.strAmount));
-            this.strAmount = 0;
+            this.isUsed = true;
             addToBot(new RemoveSpecificPowerAction(this.owner, CompanionField.currCompanion.get(AbstractDungeon.player), this));
         }
         return damageAmount;

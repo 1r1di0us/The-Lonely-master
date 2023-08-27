@@ -253,9 +253,9 @@
       "Unknown"
     ],
     "INTENTS": [
-      "Blert intends to make smart sounds.",
+      "Blirt intends to make smart sounds.",
 
-      "Blert intends to attack an enemy for #b",
+      "Blirt intends to attack an enemy for #b",
       " damage",
       " #b",
       " times",
@@ -263,7 +263,7 @@
       " #yLightning orb.",
       " #yLightning orbs",
 
-      "Blert intends to grand you #b",
+      "Blirt intends to grand you #b",
       " #yBlock",
       " #b",
       " times",
@@ -271,7 +271,7 @@
       " #yFrost orb.",
       " #yFrost orbs.",
 
-      "Blert intends to increase the number of times her main #yMoves are performed by #b",
+      "Blirt intends to increase the number of times her main #yMoves are performed by #b",
       ".",
 
       "This Companion's intentions are #yUnknown."

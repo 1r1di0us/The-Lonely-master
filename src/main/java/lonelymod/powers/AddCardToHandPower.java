@@ -61,6 +61,17 @@ public class AddCardToHandPower extends AbstractEasyPower implements CloneablePo
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
+    public void stackPower(int stackAmount, AbstractCard newCardToAdd) {
+        if (newCardToAdd.getClass().equals(cardToAdd.getClass())) {
+            this.fontScale = 8.0F;
+            this.amount += stackAmount;
+        }
+    }
+
+    public AbstractCard getCardToAdd() {
+        return cardToAdd;
+    }
+
     @Override
     public void updateDescription() {
         if (cardToAdd == null) {

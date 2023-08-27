@@ -18,26 +18,14 @@ public class OnTheHunt extends AbstractEasyCard {
 
     public OnTheHunt() {
         super(ID, 1, AbstractCard.CardType.ATTACK, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
-        baseDamage = 9;
+        baseDamage = 6;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        if (m.hasPower(TargetPower.POWER_ID)) {
-            addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        }
+        addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
         ReturnField.willReturn.set(this, true);
-    }
-
-    public void triggerOnGlowCheck() {
-        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!m.isDeadOrEscaped() && (m.hasPower(TargetPower.POWER_ID))) {
-                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-                break;
-            }
-        }
     }
 
     public void upp() {

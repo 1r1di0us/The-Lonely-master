@@ -17,7 +17,7 @@ public class BrokenDreams extends AbstractEasyCard {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Dominate();
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 8;
+        this.baseSecondMagic = this.secondMagic = 9;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -27,6 +27,6 @@ public class BrokenDreams extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeSecondMagic(3);
     }
 }

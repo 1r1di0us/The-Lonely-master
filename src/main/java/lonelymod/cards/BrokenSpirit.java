@@ -20,7 +20,7 @@ public class BrokenSpirit extends AbstractEasyCard {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Primal();
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 4;
+        this.baseSecondMagic = this.secondMagic = 5;
         this.tags.add(Enums.COMPANION);
     }
 
@@ -34,6 +34,6 @@ public class BrokenSpirit extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeSecondMagic(2);
+        upgradeBaseCost(0);
     }
 }

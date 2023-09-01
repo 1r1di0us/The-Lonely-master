@@ -3,6 +3,7 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,16 +18,16 @@ public class BrokenDreams extends AbstractEasyCard {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Dominate();
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 2;
+        this.baseSecondMagic = this.secondMagic = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new MakeTempCardInDrawPileAction(new Dominate(), 1, true, true));
-        addToBot(new ApplyPowerAction(p, p, new StaminaPower(p, this.secondMagic)));
+        addToBot(new DrawCardAction(p, this.secondMagic));
         addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.magicNumber, false), this.magicNumber));
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeSecondMagic(1);
     }
 }

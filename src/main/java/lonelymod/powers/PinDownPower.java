@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -53,12 +51,12 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.ATTACK) {
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        if (damageAmount - target.currentBlock > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             flash();
-            addToBot(new ApplyPowerAction(action.target, this.owner, new TargetPower(action.target, this.amount, false), this.amount));
-            addToBot(new ApplyPowerAction(action.target, this.owner, new WeakPower(action.target, this.amount, false), this.amount));
-            addToBot(new ApplyPowerAction(action.target, this.owner, new VulnerablePower(action.target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new TargetPower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new WeakPower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new VulnerablePower(target, this.amount, false), this.amount));
         }
     }
 

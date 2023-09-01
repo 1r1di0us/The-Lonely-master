@@ -26,7 +26,7 @@ public class MechanicPower extends AbstractEasyPower implements CloneablePowerIn
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Mechanic32.png");
 
     public MechanicPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 1);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
 
         this.owner = owner;
 

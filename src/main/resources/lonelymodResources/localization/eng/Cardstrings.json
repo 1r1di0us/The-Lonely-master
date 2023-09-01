@@ -139,7 +139,7 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Shuffle a *Dominate into your draw pile. NL Gain !${ModID}:m2! lonelymod:Stamina. NL Gain !M! Weak."
+    "DESCRIPTION": "Shuffle a *Dominate into your draw pile. NL Draw !${ModID}:m2! cards. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
@@ -165,8 +165,7 @@
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Draw !${ModID}:m2! card.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Draw !${ModID}:m2! cards."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Gain !${ModID}:m2! lonelymod:Stamina."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
@@ -186,7 +185,7 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you play an Attack card this turn, apply !M! lonelymod:Target, Weak, and Vulnerable."
+    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Weak, and Vulnerable."
   },
   "${ModID}:Preside": {
     "NAME": "Preside",
@@ -244,7 +243,7 @@
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If ALL enemies intend to attack, gain NL [E] [E] [E]."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL If you have !${ModID}:m2! HP or less, gain [E] [E] [E]."
   },
   "${ModID}:Counterstrike": {
     "NAME": "Counterstrike",

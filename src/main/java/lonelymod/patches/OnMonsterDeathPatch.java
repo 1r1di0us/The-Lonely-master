@@ -1,3 +1,4 @@
+/*
 package lonelymod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -45,3 +46,4 @@ public class OnMonsterDeathPatch {
         }
     }
 }
+*/

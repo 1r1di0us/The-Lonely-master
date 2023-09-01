@@ -36,8 +36,10 @@ public class Bones extends AbstractCompanion {
     private static final int PROTECT_BLK = 4;
     private static final int PROTECT_AMT = 2;
     private static final int PROTECT_PWR_AMT = 4;
-    private static final int SPECIAL_DEBUFF_AMT = 3;
+    private static final int SPECIAL_SELF_PWR_AMT = 5;
     private static final int SPECIAL_PWR_AMT = 3;
+    private static final int SPECIAL_DEBUFF_AMT = 3;
+
 
     private int defaultBlk;
     private int attackDmg;
@@ -56,7 +58,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToTop(new ApplyPowerAction(this, this, new BonesPower(this), 1));
+        addToTop(new ApplyPowerAction(this, this, new BonesPower(this), -1));
     }
 
     @Override
@@ -94,7 +96,7 @@ public class Bones extends AbstractCompanion {
                         addToBot(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
                     }
                 }
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_SELF_PWR_AMT), SPECIAL_SELF_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 break;
             case UNKNOWN:
@@ -133,7 +135,7 @@ public class Bones extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_SELF_PWR_AMT), SPECIAL_SELF_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                     if (mo != null && !mo.isDeadOrEscaped()) {
                         addToTop(new ApplyPowerAction(mo, this, new TargetPower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
@@ -151,17 +153,26 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
+        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+            getPower(BonesPower.POWER_ID).onSpecificTrigger();
+        }
         getTarget();
         setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
     }
 
     @Override
     public void callProtect() {
+        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+            getPower(BonesPower.POWER_ID).onSpecificTrigger();
+        }
         setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
     }
 
     @Override
     public void callSpecial() {
+        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+            getPower(BonesPower.POWER_ID).onSpecificTrigger();
+        }
         setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
     }
 
@@ -185,7 +196,7 @@ public class Bones extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_DEBUFF_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12] + SPECIAL_PWR_AMT + INTENTS[13];
+                this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_DEBUFF_AMT + INTENTS[11] + SPECIAL_SELF_PWR_AMT + INTENTS[12] + SPECIAL_PWR_AMT + INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
@@ -222,7 +233,7 @@ public class Bones extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11];
+                    return INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[9] + SPECIAL_SELF_PWR_AMT + INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11];
                 }
         }
         return "";

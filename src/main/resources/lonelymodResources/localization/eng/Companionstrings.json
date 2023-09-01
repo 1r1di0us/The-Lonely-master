@@ -75,8 +75,7 @@
       " times.",
 
       "Meat intends to attack an enemy for #b",
-      " damage. If the target is #yWeakened, Meat will apply #b",
-      " #yConstricted to an enemy.",
+      " damage. If the target is #yWeakened, Meat will apply #yConstricted equal to the damage dealt.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -90,8 +89,7 @@
       " times.",
 
       "Deals #b",
-      " damage. If the enemy is #yWeakened, applies #b",
-      " #yConstricted."
+      " damage. If the enemy is #yWeakened, applies #yConstricted equal to the damage dealt."
     ],
     "DIALOG": [
       "Grrr...",

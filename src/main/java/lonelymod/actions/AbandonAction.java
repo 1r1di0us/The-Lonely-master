@@ -14,7 +14,7 @@ public class AbandonAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (AbstractDungeon.player.hand.isEmpty()) {
+        if (AbstractDungeon.player.hand.getPurgeableCards().isEmpty()) {
             this.isDone = true;
             return;
         }

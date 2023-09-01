@@ -109,7 +109,6 @@ public class Outcast extends AbstractCompanion {
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
-                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     if (consecutiveMove == 3) {
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
                             addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));

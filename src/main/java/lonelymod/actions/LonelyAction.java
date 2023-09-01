@@ -25,10 +25,10 @@ public class LonelyAction extends AbstractGameAction {
         cardToAdd = new Bravery();
         cardToAdd.cost = 0;
         cardChoices.add(cardToAdd);
-        cardToAdd = new Resolve();
+        cardToAdd = new Desperation();
         cardToAdd.cost = 0;
         cardChoices.add(cardToAdd);
-        cardToAdd = new Desperation();
+        cardToAdd = new Resolve();
         cardToAdd.cost = 0;
         cardChoices.add(cardToAdd);
         addToTop(new ChooseOneAction(cardChoices));

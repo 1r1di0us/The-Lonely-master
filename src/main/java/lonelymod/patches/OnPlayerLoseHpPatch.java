@@ -12,7 +12,7 @@ import lonelymod.powers.ManiacPower;
 )
 public class OnPlayerLoseHpPatch {
     public static void Postfix(AbstractPlayer __instance, DamageInfo info) {
-        if (info.output > 0) {
+        if (info.output - __instance.currentBlock > 0) {
             if (CompanionField.currCompanion.get(__instance) != null && CompanionField.currCompanion.get(__instance).hasPower(ManiacPower.POWER_ID)) {
                 CompanionField.currCompanion.get(__instance).getPower(ManiacPower.POWER_ID).onSpecificTrigger();
             }

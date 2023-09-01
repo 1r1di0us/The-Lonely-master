@@ -38,8 +38,7 @@ public class Meat extends AbstractCompanion {
     private static final int ATTACK_DMG = 8, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
     private static final int PROTECT_BLK = 5, PROTECT_AMT = 3;
     private static final int PROTECT_PWR_AMT = 5; //Was thinking of causing protect to increase constricted on constricted targets.
-    private static final int SPECIAL_DMG = 20;
-    private static final int SPECIAL_DEBUFF_AMT = 25;
+    private static final int SPECIAL_DMG = 25;
     private int attackDmg;
     private int protectBlk;
     private int specialDmg;
@@ -56,7 +55,7 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToTop(new ApplyPowerAction(this, this, new MeatPower(this), 1));
+        addToTop(new ApplyPowerAction(this, this, new MeatPower(this), -1));
     }
 
     @Override
@@ -94,7 +93,7 @@ public class Meat extends AbstractCompanion {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                     if (targetEnemy.hasPower(WeakPower.POWER_ID))
-                        addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
+                        addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, this.damage.get(1).output), this.damage.get(1).output));
                 }
                 break;
             case UNKNOWN:
@@ -132,7 +131,7 @@ public class Meat extends AbstractCompanion {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (targetEnemy.hasPower(WeakPower.POWER_ID))
-                        addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, SPECIAL_DEBUFF_AMT), SPECIAL_DEBUFF_AMT));
+                        addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, this.damage.get(1).output), this.damage.get(1).output));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
                     addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
@@ -189,12 +188,12 @@ public class Meat extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[10] + this.intentDmg + INTENTS[11] + SPECIAL_DEBUFF_AMT + INTENTS[12];
+                this.intentTip.body = INTENTS[10] + this.intentDmg + INTENTS[11];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[13];
+                this.intentTip.body = INTENTS[12];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -226,7 +225,7 @@ public class Meat extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[6] + this.damage.get(1).output + INTENT_TOOLTIPS[7] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[8];
+                    return INTENT_TOOLTIPS[6] + this.damage.get(1).output + INTENT_TOOLTIPS[7];
                 }
         }
         return "";

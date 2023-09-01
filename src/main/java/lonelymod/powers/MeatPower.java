@@ -37,7 +37,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     public AbstractCreature creature;
 
     public MeatPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 1);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
 
         this.owner = owner;
 
@@ -78,7 +78,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + WeakAmt + DESCRIPTIONS[1];
     }
 
     @Override

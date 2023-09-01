@@ -256,6 +256,11 @@ public class LonelyMod implements
         //Do this with the external method if you want it to draw BEFORE drawing the first 5 cards:
         //AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
         //AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
+
+        //Just in case for when target runs out on Omen, but its default move has already been called so yeah.
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+        }
     }
 
     /*an external method in case you want it

@@ -7,17 +7,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class AgainstAllOddsAction extends AbstractGameAction {
 
-    public AgainstAllOddsAction(int energyAmt) {
+    private int damageCap;
+
+    public AgainstAllOddsAction(int energyAmt, int damageCap) {
         this.actionType = AbstractGameAction.ActionType.WAIT;
         this.amount = energyAmt;
+        this.damageCap = damageCap;
     }
 
     public void update() {
-        boolean GainEnergy = true;
-        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters)
-            if (m != null && !m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0)
-                GainEnergy = false;
-        if (GainEnergy)
+        if (AbstractDungeon.player.currentHealth <= damageCap)
             addToTop(new GainEnergyAction(this.amount));
         this.isDone = true;
     }

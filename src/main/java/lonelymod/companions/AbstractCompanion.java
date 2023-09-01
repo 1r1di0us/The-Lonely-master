@@ -367,9 +367,11 @@ public abstract class AbstractCompanion extends AbstractMonster {
         float tmp = dmg;
         for (AbstractPower p : this.powers)
             tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
-        for (AbstractPower p : targetEnemy.powers) {
-            if (!(p instanceof VulnerablePower))
-                tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        if (targetEnemy != null) {
+            for (AbstractPower p : targetEnemy.powers) {
+                if (!(p instanceof VulnerablePower))
+                    tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+            }
         }
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         if (isTargeted)

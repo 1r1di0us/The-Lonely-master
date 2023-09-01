@@ -30,6 +30,7 @@ public class DefyDeath extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(1); upgradeSecondMagic(1);
+        upgradeMagicNumber(1);
+        upgradeSecondMagic(1);
     }
 }

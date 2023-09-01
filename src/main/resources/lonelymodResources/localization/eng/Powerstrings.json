@@ -253,7 +253,7 @@
   "${ModID}:BonesPower": {
     "NAME": "Excited",
     "DESCRIPTIONS": [
-      "Whenever you #yCall a #yMove while #yBones intends to use its #yAttack, #yProtect, or #ySpecial #yMove, #yBones gains #b",
+      "Whenever you #yCall a #yMove while Bones intends to use its #yAttack, #yProtect, or #ySpecial #yMove, Bones gains #b",
       " #yVigor and #b",
       " #yStamina."
     ]

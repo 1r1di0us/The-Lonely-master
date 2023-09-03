@@ -60,7 +60,7 @@ public class PlanBPower extends AbstractEasyPower implements CloneablePowerInter
 
     public void onPlan(int numCardsNotChosen) {
         flash();
-        addToTop(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * numCardsNotChosen), numCardsNotChosen));
+        addToTop(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * numCardsNotChosen), this.amount * numCardsNotChosen));
     }
 
     @Override

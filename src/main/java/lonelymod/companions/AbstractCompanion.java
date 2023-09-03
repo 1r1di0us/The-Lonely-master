@@ -378,8 +378,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
             tmp = (int)(tmp * 1.5F);
         for (AbstractPower p : this.powers)
             tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
-        for (AbstractPower p : targetEnemy.powers)
-            tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+        if (targetEnemy != null) {
+            for (AbstractPower p : targetEnemy.powers)
+                tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+        }
         dmg = MathUtils.floor(tmp);
         if (dmg < 0)
             dmg = 0;

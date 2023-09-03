@@ -26,7 +26,7 @@ public class OnGuard extends AbstractEasyCard {
         addToBot(new ApplyPowerAction(p, p, new StaminaPower(p, magicNumber), magicNumber));
         boolean callMove = false;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo.getIntentBaseDmg() > 0) {
+            if (!mo.isDeadOrEscaped() && mo.getIntentBaseDmg() > 0) {
                 callMove = true;
             }
         }

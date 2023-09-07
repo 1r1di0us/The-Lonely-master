@@ -1,6 +1,7 @@
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -47,15 +48,14 @@ public class OutburstAction extends AbstractGameAction {
         c.exhaust = true;
         AbstractDungeon.player.discardPile.group.remove(c);
         (AbstractDungeon.getCurrRoom()).souls.remove(c);
-        addToBot((AbstractGameAction)new NewQueueCardAction(c, true, false, true));
+        addToBot(new NewQueueCardAction(c, true, false, true));
         for (int i = 0; i < this.playAmt - 1; i++) {
             AbstractCard tmp = c.makeStatEquivalentCopy();
             tmp.purgeOnUse = true;
-            addToBot((AbstractGameAction)new NewQueueCardAction(tmp, true, false, true));
+            addToBot(new NewQueueCardAction(tmp, true, false, true));
         }
         AbstractDungeon.player.hand.refreshHandLayout();
         this.isDone = true;
-        return;
     } else {
         if (this.duration == this.startDuration) {
             if (this.player.discardPile.isEmpty()) {
@@ -78,11 +78,11 @@ public class OutburstAction extends AbstractGameAction {
             c.exhaust = true;
             AbstractDungeon.player.discardPile.group.remove(c);
             (AbstractDungeon.getCurrRoom()).souls.remove(c);
-            addToBot((AbstractGameAction)new NewQueueCardAction(c, true, false, true));
+            addToBot(new NewQueueCardAction(c, true, false, true));
             for (int i = 0; i < this.playAmt - 1; i++) {
                 AbstractCard tmp = c.makeStatEquivalentCopy();
                 tmp.purgeOnUse = true;
-                addToBot((AbstractGameAction)new NewQueueCardAction(tmp, true, false, true));
+                addToBot(new NewQueueCardAction(tmp, true, false, true));
             } 
         } 
         AbstractDungeon.gridSelectScreen.selectedCards.clear();

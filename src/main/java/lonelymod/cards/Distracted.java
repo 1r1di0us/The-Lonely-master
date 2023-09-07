@@ -7,24 +7,25 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.powers.AddCardToHandPower;
 import lonelymod.powers.DeenergizedPower;
+import lonelymod.powers.StaminaPower;
 
 public class Distracted extends AbstractEasyCard {
     public final static String ID = makeID("Distracted");
 
     public Distracted() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 1;
-        this.exhaust = true;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseSecondMagic = this.secondMagic = 1;
         this.cardsToPreview = new Overreaction();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new DeenergizedPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new StaminaPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new DeenergizedPower(p, this.secondMagic)));
         addToBot(new ApplyPowerAction(p, p, new AddCardToHandPower(p, 1, new Overreaction(), false)));
     }
 
     public void upp() {
-        this.exhaust = false;
-        uDesc();
+        upgradeMagicNumber(3);
     }
 }

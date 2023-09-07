@@ -14,7 +14,7 @@ public class Overpower extends AbstractEasyCard {
 
     public Overpower() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
-        baseBlock = 6;
+        baseBlock = 8;
         baseMagicNumber = magicNumber = 3;
     }
 

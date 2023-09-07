@@ -53,7 +53,7 @@ public class SummonOmenAction extends AbstractGameAction {
                 this.c.usePreBattleAction();
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     if (r instanceof RelicOnSummonInterface) {
-                        ((RelicOnSummonInterface) r).onSummon(this.c, true);
+                        ((RelicOnSummonInterface) r).onSummon(this.c, false);
                     }
                 }
             }// else {

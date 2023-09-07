@@ -20,7 +20,7 @@ public class Fetch extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AttackEffect.BLUNT_LIGHT);
-        addToBot(new ApplyPowerAction(m, p, new FetchPower(m, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(m, p, new FetchPower(m, this.magicNumber)));
     }
 
     public void upp() {

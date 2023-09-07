@@ -31,7 +31,7 @@ public class Bones extends AbstractCompanion {
     public static final String IMG = makeCompanionPath("BonesSmall.png");
 
     private static final int DEFAULT_BLK = 3;
-    private static final int ATTACK_DMG = 12;
+    private static final int ATTACK_DMG = 10;
     private static final int ATTACK_PWR_AMT = 2;
     private static final int PROTECT_BLK = 4;
     private static final int PROTECT_AMT = 2;
@@ -153,7 +153,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+        if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
         }
         getTarget();
@@ -162,7 +162,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callProtect() {
-        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+        if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
         }
         setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
@@ -170,7 +170,7 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callSpecial() {
-        if ((this.nextMove == ATTACK || this.nextMove == PROTECT || this.nextMove == SPECIAL) && hasPower(BonesPower.POWER_ID)) {
+        if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
         }
         setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);

@@ -13,16 +13,15 @@ public class MultiShot extends AbstractEasyCard {
 
     public MultiShot() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
-        baseSecondMagic = secondMagic = 4; //unnecessary except for card strings
+        baseMagicNumber = magicNumber = 2;
+        baseSecondMagic = secondMagic = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new MultiShotPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new MultiShotPower(p, magicNumber, secondMagic), magicNumber));
     }
     
     public void upp() {
         upgradeMagicNumber(1);
-        uDesc();
     }
 }

@@ -47,7 +47,7 @@ public class Resolve extends AbstractEasyCard {
     
     @Override
     public void upp() {
-        upgradeSecondMagic(4);
+        upgradeSecondMagic(3);
         uDesc();
     }
 }

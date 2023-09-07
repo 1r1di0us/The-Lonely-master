@@ -18,7 +18,7 @@ public class OnGuard extends AbstractEasyCard {
 
     public OnGuard() {
         super(ID, 1, AbstractCard.CardType.SKILL, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 4;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.tags.add(Enums.COMPANION);
     }
 

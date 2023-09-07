@@ -1,5 +1,6 @@
 package lonelymod.powers;
 
+import basemod.ReflectionHacks;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -36,6 +37,8 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     public AbstractCreature creature;
 
+    public boolean firstUselessTrigger = true; //ApplyTurnMeatPowerPatch is too confusing for me. All i know is that it gets called too many times.
+
     public MeatPower(AbstractCreature owner) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
 
@@ -59,6 +62,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public void duringTurn() {
+        firstUselessTrigger = true;
         this.turnHp = AbstractDungeon.player.currentHealth;
         this.attackingMons.clear();
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
@@ -70,10 +74,24 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public void onSpecificTrigger() {
-        if (AbstractDungeon.player.currentHealth >= this.turnHp && creature instanceof AbstractMonster && this.attackingMons.contains((AbstractMonster) creature))
-            addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));
-        if (AbstractDungeon.player.currentHealth != this.turnHp)
-            this.turnHp = AbstractDungeon.player.currentHealth;
+        if (firstUselessTrigger) {
+            firstUselessTrigger = false;
+        }
+        else {
+            if (creature instanceof AbstractMonster) {
+                int multiAmt = ReflectionHacks.getPrivate(creature, AbstractMonster.class, "intentMultimt");
+                if (multiAmt > 1) {
+                    if (AbstractDungeon.player.currentBlock >= ((AbstractMonster) creature).getIntentDmg() * multiAmt && this.attackingMons.contains((AbstractMonster) creature))
+                        addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));
+                }
+                else {
+                    if (AbstractDungeon.player.currentBlock >= ((AbstractMonster) creature).getIntentDmg() && this.attackingMons.contains((AbstractMonster) creature))
+                        addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));
+                }
+            }
+/*            if (AbstractDungeon.player.currentHealth != this.turnHp)
+                this.turnHp = AbstractDungeon.player.currentHealth;*/
+        }
     }
 
     @Override

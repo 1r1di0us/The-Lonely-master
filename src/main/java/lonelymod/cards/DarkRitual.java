@@ -18,7 +18,6 @@ public class DarkRitual extends AbstractEasyCard {
     public DarkRitual() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 1;
-        this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -29,7 +28,7 @@ public class DarkRitual extends AbstractEasyCard {
     }
 
     public void upp() {
-        this.exhaust = false;
+        this.isInnate = true;
         uDesc();
     }
 }

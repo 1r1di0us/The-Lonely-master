@@ -36,13 +36,13 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
     private static final int StamAmt = 1;
 
     public BonesPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 0);
 
         this.owner = owner;
 
         type = PowerType.BUFF;
-        isTurnBased = false;
-        this.amount = 1;
+        isTurnBased = true;
+        this.amount = 0;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -64,10 +64,21 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
     }*/
 
     @Override
+    public void atEndOfRound() {
+        if (this.amount > 0) {
+            flash();
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount * VigAmt)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionStaminaPower(this.owner, this.amount * StamAmt)));
+            this.amount = 0;
+            updateDescription();
+        }
+    }
+
+    @Override
     public void onSpecificTrigger() {
         flash();
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, VigAmt), VigAmt));
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionStaminaPower(this.owner, StamAmt), StamAmt));
+        this.amount++;
+        updateDescription();
     }
 
     @Override

@@ -30,9 +30,9 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/MultiShot84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/MultiShot32.png");
 
-    private static final int damage = 4;
+    private int damage;
     
-    public MultiShotPower(AbstractCreature owner, int amount) {
+    public MultiShotPower(AbstractCreature owner, int amount, int damage) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -40,6 +40,7 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
         type = PowerType.BUFF;
         isTurnBased = false;
         this.amount = amount;
+        this.damage = damage;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -66,15 +67,15 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
     @Override
     public void updateDescription() {
         if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
         else {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
         }
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new MultiShotPower(this.owner, this.amount);
+        return new MultiShotPower(this.owner, this.amount, this.damage);
     }
 }

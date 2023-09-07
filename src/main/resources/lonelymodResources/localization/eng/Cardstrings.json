@@ -67,13 +67,11 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Next turn, gain !M! less energy and add an *Overreaction to your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Next turn, gain !M! less energy and add an *Overreaction to your hand."
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Next turn, lose [E] and add an *Overreaction to your hand."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Next turn, draw !M! less card and add a *Panic *Attack to your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Next turn, draw !M! less card and add a *Panic *Attack to your hand."
+    "DESCRIPTION": "Gain !M! Vigor. NL Next turn, draw !M! less card and add a *Panic *Attack to your hand."
   },
   "${ModID}:Help": {
     "NAME": "Help!",
@@ -81,7 +79,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile. NL Exhaust."
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
@@ -160,8 +158,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand."
+    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust a random card in your hand."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -213,8 +211,7 @@
   },
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
-    "DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemy.",
-    "UPGRADE_DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemies."
+    "DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemies."
   },
   "${ModID}:Overcome": {
     "NAME": "Overcome",
@@ -287,8 +284,7 @@
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
-    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve."
+    "DESCRIPTION": "Choose a card to play next turn: *Bravery, *Desperation, *Resolve."
   },
   "${ModID}:Omen": {
     "NAME": "Omen",

@@ -89,7 +89,8 @@
   "${ModID}:MultiShotPower": {
     "NAME": "Multi-Shot",
     "DESCRIPTIONS": [
-      "Whenever you play an Attack card, deal #y4 damage to #b",
+      "Whenever you play an Attack card, deal #b",
+      " damage to #b",
       " random enemy.",
       " random enemies."
     ]
@@ -251,11 +252,11 @@
     ]
   },
   "${ModID}:BonesPower": {
-    "NAME": "Excited",
+    "NAME": "Excitement",
     "DESCRIPTIONS": [
-      "Whenever you #yCall a #yMove while Bones intends to use its #yAttack, #yProtect, or #ySpecial #yMove, Bones gains #b",
+      "Whenever you #yCall a #yMove, gains #b",
       " #yVigor and #b",
-      " #yStamina."
+      " #yStamina next turn."
     ]
   },
   "${ModID}:MeatPower": {

@@ -19,9 +19,10 @@ public class OccultPractice extends AbstractEasyCard {
 
     public OccultPractice() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 5;
+        baseMagicNumber = magicNumber = 8;
         baseSecondMagic = secondMagic = 1;
         this.cardsToPreview = new Wound();
+        this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -33,6 +34,6 @@ public class OccultPractice extends AbstractEasyCard {
     
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(3);
     }
 }

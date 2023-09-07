@@ -4,8 +4,10 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnPlayerDeathPower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,7 +18,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerInterface{
+public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerInterface, OnPlayerDeathPower {
     
     public static final String POWER_ID = makeID("DefyDeathPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -58,14 +60,21 @@ public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerI
         updateDescription();
     }
 
-    @Override
+    public boolean onPlayerDeath(AbstractPlayer p, DamageInfo info) {
+        flash();
+        p.currentHealth = 1;
+        p.healthBarRevivedEvent();
+        return false;
+    }
+
+    /*@Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if (damageAmount >= AbstractDungeon.player.currentHealth) {
             flash();
             damageAmount = AbstractDungeon.player.currentHealth - 1;
         }
         return damageAmount;
-    }
+    }*/
 
     @Override
     public void updateDescription() {

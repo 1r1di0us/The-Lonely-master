@@ -27,7 +27,7 @@ public class Genius extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
         upgradeSecondMagic(2);
     }
 }

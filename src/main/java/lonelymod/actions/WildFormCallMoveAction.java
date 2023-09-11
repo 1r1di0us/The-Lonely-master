@@ -25,9 +25,6 @@ public class WildFormCallMoveAction extends AbstractGameAction {
                 currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, true, true);
                 break;
         }
-        /*currCompanion.performMove(move);
-        currCompanion.applyTurnPowers();
-        currCompanion.callDefault();*/
         this.isDone = true;
     }
 }

@@ -1,4 +1,5 @@
 package lonelymod.actions;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -17,8 +18,13 @@ public class OverpowerAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.m != null && !(this.m.getIntentBaseDmg() >= 0))
-            addToTop(new ApplyPowerAction(this.m, AbstractDungeon.player, new WeakPower(this.m, this.amount, false), this.amount));
+        if (this.m != null) {
+            int multiAmt = ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+            if ((multiAmt <= 1 && AbstractDungeon.player.currentBlock >= m.getIntentDmg())
+                    || (multiAmt > 1 && AbstractDungeon.player.currentBlock >= m.getIntentDmg() * multiAmt)) {
+                addToTop(new ApplyPowerAction(this.m, AbstractDungeon.player, new WeakPower(this.m, this.amount, false), this.amount));
+            }
+        }
         this.isDone = true;
     }
 }

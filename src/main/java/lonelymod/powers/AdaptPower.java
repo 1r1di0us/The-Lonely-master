@@ -28,8 +28,8 @@ public class AdaptPower extends AbstractEasyPower implements CloneablePowerInter
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Adapt84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Adapt32.png");
 
-    private AbstractCard c;
-    private UUID bountyUUID;
+    private final AbstractCard c;
+    private final UUID bountyUUID;
 
     public AdaptPower(AbstractCreature owner, AbstractCard card, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);

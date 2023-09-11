@@ -8,18 +8,15 @@ import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.*;
-import lonelymod.actions.ReturnToHandAction;
+import lonelymod.actions.ReturnAllCardsAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.VentFrustration;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.cards.cardvars.ThirdMagicNumber;
 import lonelymod.fields.CompanionField;
-import lonelymod.fields.ReturnField;
-import lonelymod.interfaces.TriggerOnReturnInterface;
 import lonelymod.potions.CannedMeat;
 import lonelymod.potions.SpecialSauce;
-import lonelymod.potions.WaterFlask;
+import lonelymod.potions.TargetPotion;
 import lonelymod.relics.AbstractEasyRelic;
 
 import com.badlogic.gdx.Gdx;
@@ -27,7 +24,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -74,7 +70,7 @@ public class LonelyMod implements
     private static final String CHARSELECT_BUTTON = modID + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = modID + "Resources/images/charSelect/LonelyBG.png";
 
-    private static Map<String, CompanionStrings> companionStrings = new HashMap<>();
+    private static final Map<String, CompanionStrings> companionStrings = new HashMap<>();
 
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
@@ -185,8 +181,8 @@ public class LonelyMod implements
     }
 
     public void receiveEditPotions() {
+        BaseMod.addPotion(TargetPotion.class, BaseMod.getPotionLiquidColor(ExplosivePotion.POTION_ID), BaseMod.getPotionHybridColor(ExplosivePotion.POTION_ID), BaseMod.getPotionSpotsColor(BottledMiracle.POTION_ID), TargetPotion.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
         BaseMod.addPotion(CannedMeat.class, BaseMod.getPotionLiquidColor(SmokeBomb.POTION_ID), BaseMod.getPotionHybridColor(SmokeBomb.POTION_ID), BaseMod.getPotionSpotsColor(SmokeBomb.POTION_ID), CannedMeat.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
-        BaseMod.addPotion(WaterFlask.class, BaseMod.getPotionLiquidColor(BlockPotion.POTION_ID), BaseMod.getPotionHybridColor(BlockPotion.POTION_ID), BaseMod.getPotionSpotsColor(BloodPotion.POTION_ID), WaterFlask.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
         BaseMod.addPotion(SpecialSauce.class, BaseMod.getPotionLiquidColor(AncientPotion.POTION_ID), BaseMod.getPotionHybridColor(AncientPotion.POTION_ID), BaseMod.getPotionSpotsColor(StrengthPotion.POTION_ID), SpecialSauce.POTION_ID, LonelyCharacter.Enums.THE_LONELY);
 
     }
@@ -235,43 +231,13 @@ public class LonelyMod implements
     @Override
     public void receiveOnPlayerTurnStartPostDraw() {
         // This makes the return mechanic work:
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (ReturnField.willReturn.get(c)) {
-                ReturnField.willReturn.set(c, false);
-                AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
-                if (c instanceof TriggerOnReturnInterface) {
-                    ((TriggerOnReturnInterface) c).triggerOnReturn();
-                }
-            }
-        }
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (ReturnField.willReturn.get(c)) {
-                ReturnField.willReturn.set(c, false);
-                AbstractDungeon.actionManager.addToBottom(new ReturnToHandAction(c));
-                if (c instanceof TriggerOnReturnInterface) {
-                    ((TriggerOnReturnInterface) c).triggerOnReturn();
-                }
-            }
-        }
-        //Do this with the external method if you want it to draw BEFORE drawing the first 5 cards:
-        //AbstractDungeon.player.drawPile.group.removeIf(this::tryMoveCard);
-        //AbstractDungeon.player.discardPile.group.removeIf(this::tryMoveCard);
+        AbstractDungeon.actionManager.addToBottom(new ReturnAllCardsAction(true));
 
         //Just in case for when target runs out on Omen, but its default move has already been called so yeah.
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
         }
     }
-
-    /*an external method in case you want it
-    private boolean tryMoveCard(AbstractCard c) {
-        if (ReturnField.willReturn.get(c)) {
-            ReturnField.willReturn.set(c, false);
-            AbstractDungeon.player.hand.addToHand(c);
-            return true;
-        }
-        return false;
-    }*/
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {

@@ -71,19 +71,19 @@
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Gain !M! Vigor. NL Next turn, draw !M! less card and add a *Panic *Attack to your hand."
+    "DESCRIPTION": "Gain !M! Vigor. NL Next turn, draw !${ModID}:m2! less card and add a *Panic *Attack to your hand."
   },
   "${ModID}:Help": {
     "NAME": "Help!",
-    "DESCRIPTION": "For the next !M! turns, if you have no Block at the end of your turn, lonelymod:Call lonelymod:Protect."
+    "DESCRIPTION": "At the end of your next !M! turns, lonelymod:Call lonelymod:Protect. Exhaust."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile. NL Exhaust."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
-    "DESCRIPTION": "Gain !B! Block. NL If the enemy does not intend to Attack, apply !M! Weak."
+    "DESCRIPTION": "Gain !B! Block. NL If the enemy's intent has less damage than your current Block, apply !M! Weak."
   },
   "${ModID}:PureSkill": {
     "NAME": "Pure Skill",
@@ -111,7 +111,7 @@
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL If this deals unblocked damage, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
@@ -141,12 +141,12 @@
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E]. NL Gain !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E] [E]. NL Gain !M! Vulnerable."
+    "DESCRIPTION": "Put an *Outburst on top of your draw pile. NL Gain [E] [E]. NL Gain !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Put an *Outburst on top of your draw pile. NL Gain [E] [E] [E]. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Grant !${ModID}:m2! Vigor. NL Gain !M! Frail."
+    "DESCRIPTION": "Add a *Primal to your hand. NL Grant your lonelymod:Companion !${ModID}:m2! Vigor. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -158,8 +158,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust a random card in your hand.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust a random card in your hand."
+    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust !${ModID}:m2! card at random.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust !${ModID}:m2! card at random."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -253,12 +253,12 @@
   },
   "${ModID}:Cycle": {
     "NAME": "Cycle",
-    "DESCRIPTION": "Deal !D! damage. NL All cards that will lonelymod:Return are returned immediately."
+    "DESCRIPTION": "Deal !D! damage. NL All cards that will lonelymod:Return are lonelymod:Returned to your hand."
   },
   "${ModID}:Dominate": {
     "NAME": "Dominate",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, reduce enemy Strength by !${ModID}:m2! this turn.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, reduce enemy Strength by !${ModID}:m2! this turn."
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, enemy loses !${ModID}:m2! Strength. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, enemy loses !${ModID}:m2! Strength. Exhaust."
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
@@ -312,7 +312,7 @@
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
-    "DESCRIPTION": "Whenever a card lonelymod:Returns, temporarily reduce it's cost by 1."
+    "DESCRIPTION": "Whenever you lonelymod:Return all the cards that will lonelymod:Return, gain [E]."
   },
   "${ModID}:Resolve": {
     "NAME": "Resolve",

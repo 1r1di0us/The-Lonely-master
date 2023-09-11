@@ -11,7 +11,7 @@ public class PerfectShot extends AbstractEasyCard {
 
     public PerfectShot() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = 10;
+        baseDamage = 11;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

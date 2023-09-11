@@ -3,13 +3,9 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.BrainstormAction;
-import lonelymod.actions.PlanAction;
 
 public class Brainstorm extends AbstractEasyCard {
     public final static String ID = makeID("Brainstorm");

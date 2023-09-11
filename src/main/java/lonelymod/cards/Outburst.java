@@ -4,6 +4,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.OutburstAction;
@@ -23,13 +24,13 @@ public class Outburst extends AbstractEasyCard {
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean usable = false;
+        boolean retVal = false;
         for (AbstractCard c : p.discardPile.group) {
             if (c.type == CardType.ATTACK) {
-                usable = true;
+                retVal = true;
             }
         }
-        return usable;
+        return retVal;
     }
 
     public void upp() {

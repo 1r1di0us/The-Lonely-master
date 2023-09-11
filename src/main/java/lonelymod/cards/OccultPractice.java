@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,10 +18,9 @@ public class OccultPractice extends AbstractEasyCard {
 
     public OccultPractice() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 8;
+        baseMagicNumber = magicNumber = 5;
         baseSecondMagic = secondMagic = 1;
         this.cardsToPreview = new Wound();
-        this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

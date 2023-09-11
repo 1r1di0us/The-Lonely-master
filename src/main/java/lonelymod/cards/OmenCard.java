@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.SummonOmenAction;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
 
 public class OmenCard extends AbstractEasyCard {

@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -33,7 +32,7 @@ import lonelymod.actions.CallMoveAction;
 import lonelymod.cards.VentFrustration;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
-import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
+import lonelymod.interfaces.TriggerOnCompanionTurnEndPowerInterface;
 import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.powers.TargetPower;
@@ -42,8 +41,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import static lonelymod.LonelyMod.makeID;
 
 public abstract class AbstractCompanion extends AbstractMonster {
 
@@ -115,18 +112,21 @@ public abstract class AbstractCompanion extends AbstractMonster {
             getTarget(); //I have no clue if this solves anything, but this used to call getTarget();
         }
         takeTurn();
-        for (AbstractPower p : AbstractDungeon.player.powers)
+        for (AbstractPower p : this.powers)
             if (p instanceof TriggerOnPerformMoveInterface)
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
-        for (AbstractPower p : this.powers)
-            if (p instanceof OnCompanionTurnEndPowerInterface)
-                ((OnCompanionTurnEndPowerInterface) p).OnCompanionTurnEnd();
-        /*if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
-            addToBot(new CallMoveAction(NONE, this));
-        } else {*/
-        if (callDefault)
+        for (AbstractPower p : AbstractDungeon.player.powers)
+            if (p instanceof TriggerOnPerformMoveInterface) //nothing currently
+                ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
+        if (callDefault) {
+            for (AbstractPower p : this.powers)
+                if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //frenzy
+                    ((TriggerOnCompanionTurnEndPowerInterface) p).triggerOnCompanionTurnEnd();
+            for (AbstractPower p : AbstractDungeon.player.powers)
+                if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //nothing currently
+                    ((TriggerOnCompanionTurnEndPowerInterface) p).triggerOnCompanionTurnEnd();
             addToBot(new CallMoveAction(DEFAULT, this));
-        //}
+        }
     }
 
     @Override

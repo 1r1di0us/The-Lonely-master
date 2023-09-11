@@ -14,14 +14,14 @@ import lonelymod.LonelyMod;
 import lonelymod.actions.PerformMoveAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
-import lonelymod.interfaces.OnCompanionTurnEndPowerInterface;
+import lonelymod.interfaces.TriggerOnCompanionTurnEndPowerInterface;
 import lonelymod.util.TexLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInterface, OnCompanionTurnEndPowerInterface {
+public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnCompanionTurnEndPowerInterface {
 
     private static final Logger logger = LogManager.getLogger(AbstractEasyPower.class.getName());
 
@@ -69,7 +69,7 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
     }
 
     @Override
-    public void OnCompanionTurnEnd() {
+    public void triggerOnCompanionTurnEnd() {
         for (int i = 0; i < this.amount; i++) { //attack already happened once
             addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
             addToBot(new WaitAction(0.1F));

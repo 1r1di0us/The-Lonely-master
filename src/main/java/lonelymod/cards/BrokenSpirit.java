@@ -3,7 +3,7 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,7 +25,7 @@ public class BrokenSpirit extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, false, true));
+        addToBot(new MakeTempCardInHandAction(new Primal(), 1));
         if (CompanionField.currCompanion.get(p) != null)
             addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(p), p, new CompanionVigorPower(CompanionField.currCompanion.get(p), this.secondMagic)));
         else

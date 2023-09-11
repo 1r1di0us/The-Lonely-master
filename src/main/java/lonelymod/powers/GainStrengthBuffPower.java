@@ -53,7 +53,8 @@ public class GainStrengthBuffPower extends AbstractEasyPower implements Cloneabl
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
 
-    public void atEndOfTurn(boolean isPlayer) {
+    @Override
+    public void atEndOfRound() {
         flash();
         addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount), this.amount));
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));

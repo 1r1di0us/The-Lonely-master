@@ -26,8 +26,8 @@ public class AddCardToHandPower extends AbstractEasyPower implements CloneablePo
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/AddCardToHand84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/AddCardToHand32.png");
 
-    private AbstractCard cardToAdd;
-    private boolean isFree;
+    private final AbstractCard cardToAdd;
+    private final boolean isFree;
 
     public AddCardToHandPower(AbstractCreature owner, int amount, AbstractCard cardToAdd, boolean isFree) {
         super(POWER_ID, cardToAdd.name + NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -61,16 +61,18 @@ public class AddCardToHandPower extends AbstractEasyPower implements CloneablePo
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
-    public void stackPower(int stackAmount, AbstractCard newCardToAdd) {
-        if (newCardToAdd.getClass().equals(cardToAdd.getClass())) {
-            this.fontScale = 8.0F;
-            this.amount += stackAmount;
-        }
+    @Override
+    public boolean isStackable(AbstractPower power) {
+        return power instanceof AddCardToHandPower
+                && ((AddCardToHandPower) power).getCardToAdd().getClass() == this.getCardToAdd().getClass()
+                && ((AddCardToHandPower) power).getIsFree() == this.getIsFree();
     }
 
     public AbstractCard getCardToAdd() {
         return cardToAdd;
     }
+
+    public boolean getIsFree() { return isFree; }
 
     @Override
     public void updateDescription() {

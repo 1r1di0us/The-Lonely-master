@@ -15,8 +15,8 @@ public class CallMoveAction extends AbstractGameAction {
     public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CallActionMessage"));
     public static final String[] TEXT = uiStrings.TEXT;
 
-    private byte move;
-    private AbstractCompanion currCompanion;
+    private final byte move;
+    private final AbstractCompanion currCompanion;
 
     public CallMoveAction(byte move, AbstractCompanion currCompanion) {
         this.actionType = ActionType.SPECIAL;
@@ -41,7 +41,8 @@ public class CallMoveAction extends AbstractGameAction {
             } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
                 AbstractDungeon.player.getPower(WildFormPower.POWER_ID).flash();
                 addToTop(new WildFormCallMoveAction(move, currCompanion)); //this happens second, need to perform last move before you call this move.
-                addToTop(new CompanionTakeTurnAction(false)); //this happens first.
+                for (int i = 0; i < AbstractDungeon.player.getPower(WildFormPower.POWER_ID).amount; i++)
+                    addToTop(new CompanionTakeTurnAction(false)); //this happens first.
             } else if (move == AbstractCompanion.ATTACK) {
                 currCompanion.callMainMove(AbstractCompanion.ATTACK, true, true,true);
             } else if (move == AbstractCompanion.PROTECT) {

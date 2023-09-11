@@ -10,14 +10,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import lonelymod.cards.Counterstrike;
 
 public class OutburstAction extends AbstractGameAction {
   public static final String[] TEXT = (CardCrawlGame.languagePack.getUIString("WishAction")).TEXT;
   
-  private AbstractPlayer player;
+  private final AbstractPlayer player;
   
-  private int playAmt;
-  private boolean upgraded;
+  private final int playAmt;
+  private final boolean upgraded;
   private boolean attackInDiscard = false;
   private AbstractCard c = null;
   
@@ -40,7 +43,7 @@ public class OutburstAction extends AbstractGameAction {
                 }
             }
         }
-        if (attackInDiscard == false) {
+        if (!attackInDiscard) {
             this.isDone = true;
             return;
         }

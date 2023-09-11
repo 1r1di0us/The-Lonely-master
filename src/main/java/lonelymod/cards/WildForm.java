@@ -4,7 +4,6 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.powers.WildFormPower;
@@ -20,7 +19,7 @@ public class WildForm extends AbstractEasyCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WildFormPower(p, -1, this.upgraded), -1));
+        addToBot(new ApplyPowerAction(p, p, new WildFormPower(p, 1)));
     }
     
     @Override

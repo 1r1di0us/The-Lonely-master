@@ -4,39 +4,30 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.common.ShowMoveNameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
-import lonelymod.companions.AbstractCompanion;
-import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
-public class WildFormPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class WildFormPower extends AbstractEasyPower implements CloneablePowerInterface {
 
     public static final String POWER_ID = makeID("WildFormPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private boolean upgraded;
-
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/WildForm84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/WildForm32.png");
 
-    public WildFormPower(AbstractCreature owner, int amount, boolean upgraded) {
+    //actual implementation is in CallMoveAction
+    public WildFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
-        this.upgraded = upgraded;
 
         type = PowerType.BUFF;
         isTurnBased = false;
@@ -54,34 +45,14 @@ public class WildFormPower extends AbstractEasyPower implements CloneablePowerIn
         updateDescription();
     }
 
-    /*@Override
-    public void onInitialApplication() {
-        if (CompanionField.currCompanion.get(AbstractDungeon.player).nextMove != AbstractCompanion.DEFAULT) {
-            addToBot(new ShowMoveNameAction(CompanionField.currCompanion.get(AbstractDungeon.player), CompanionField.currCompanion.get(AbstractDungeon.player).moveName));
-            addToBot(new IntentFlashAction(CompanionField.currCompanion.get(AbstractDungeon.player)));
-            CompanionField.currCompanion.get(AbstractDungeon.player).applyTurnPowers();
-            CompanionField.currCompanion.get(AbstractDungeon.player).callDefault();
-        }
-        //CompanionField.currCompanion.get(AbstractDungeon.player).nextMove = AbstractCompanion.NONE;
-    }
-*/
-    @Override
-    public void atStartOfTurnPostDraw() {
-        /*flash();
-        if (upgraded) {
-            addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, false));
-        } else {
-            addToBot(new DiscardAction(AbstractDungeon.player, AbstractDungeon.player, this.amount, true));
-        }*/
-    }
-
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        if (amount == 1) description = DESCRIPTIONS[0] + DESCRIPTIONS[3];
+        else description = DESCRIPTIONS[0] + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + DESCRIPTIONS[3];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new WildFormPower(this.owner, this.amount, this.upgraded);
+        return new WildFormPower(this.owner, this.amount);
     }
 }

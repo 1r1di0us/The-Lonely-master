@@ -173,8 +173,7 @@
   "${ModID}:MuscleMemoryPower": {
     "NAME": "Muscle Memory",
     "DESCRIPTIONS": [
-      "Whenever a card #yReturns, temporarily reduce its cost by #b",
-      "."
+      "Whenever you #yReturn all the cards that will #yReturn, gain [E]."
     ]
   },
   "${ModID}:ResolvePower": {
@@ -195,7 +194,10 @@
   "${ModID}:WildFormPower": {
     "NAME": "Wild Form",
     "DESCRIPTIONS": [
-      "Whenever you #yCall a move, perform the previous move."
+      "Whenever you #yCall a move, perform the previous move",
+      " #b",
+      " times",
+      "."
     ]
   },
   "${ModID}:CompanionVigorPower": {
@@ -239,9 +241,9 @@
   "${ModID}:HelpPower":  {
     "NAME": "Help!",
     "DESCRIPTIONS": [
-      "At the end of your turn, if you have no Block, #yCall #yProtect.",
-      "At the end of your turn for the next #b",
-      " turns, if you have no Block, #yCall #yProtect."
+      "At the end of your turn, #yCall #yProtect.",
+      "At the end of your next #b",
+      " turns, #yCall #yProtect."
     ]
   },
   "${ModID}:FrenzyPower":  {

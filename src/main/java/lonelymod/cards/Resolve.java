@@ -15,8 +15,6 @@ import lonelymod.powers.SteelResolvePower;
 public class Resolve extends AbstractEasyCard {
     public final static String ID = makeID("Resolve");
 
-    private static boolean setCostToZero = false;
-
     public Resolve() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;

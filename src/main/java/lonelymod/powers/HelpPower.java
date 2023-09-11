@@ -62,8 +62,7 @@ public class HelpPower extends AbstractEasyPower implements CloneablePowerInterf
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer) {
-            if (AbstractDungeon.player.currentBlock <= 0)
-                addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
+            addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
             if (amount > 1)
                 addToBot(new ReducePowerAction(owner, owner, this, 1));
             else

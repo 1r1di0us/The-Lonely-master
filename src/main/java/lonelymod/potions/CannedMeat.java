@@ -1,7 +1,6 @@
 package lonelymod.potions;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -25,10 +24,10 @@ public class CannedMeat extends AbstractPotion {
     public static final String POTION_ID = makeID("CannedMeat");
 
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
-    private static int powerAmount = 2;
+    private static final int powerAmount = 3;
 
     public CannedMeat() {
-        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.COMMON, PotionSize.JAR, AbstractPotion.PotionColor.STRENGTH);
+        super(potionStrings.NAME, POTION_ID, AbstractPotion.PotionRarity.UNCOMMON, PotionSize.JAR, AbstractPotion.PotionColor.STRENGTH);
         this.labOutlineColor = Settings.LIGHT_YELLOW_COLOR;
         this.isThrown = false;
     }
@@ -54,8 +53,8 @@ public class CannedMeat extends AbstractPotion {
         } else {
             AbstractCompanion companion = CompanionField.currCompanion.get(AbstractDungeon.player);
             if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
-                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new StrengthPower(companion, powerAmount * this.potency), powerAmount * this.potency));
-                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new CompanionDexterityPower(companion, powerAmount * this.potency), powerAmount * this.potency));
+                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new StrengthPower(companion, powerAmount * this.potency)));
+                addToBot(new ApplyPowerAction(companion, AbstractDungeon.player, new CompanionDexterityPower(companion, powerAmount * this.potency)));
             }
         }
     }

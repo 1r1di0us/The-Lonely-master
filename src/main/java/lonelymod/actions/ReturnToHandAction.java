@@ -1,16 +1,13 @@
 package lonelymod.actions;
 
-import static lonelymod.LonelyMod.makeID;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class ReturnToHandAction extends AbstractGameAction {
 
-    private AbstractCard card;
+    private final AbstractCard card; //why must it be final >(
 
     public ReturnToHandAction(AbstractCard card) {
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -23,10 +20,6 @@ public class ReturnToHandAction extends AbstractGameAction {
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (AbstractDungeon.player.drawPile.contains(this.card) && AbstractDungeon.player.hand.size() < 10) {
                 AbstractDungeon.player.hand.addToHand(this.card);
-                //maybe I should have a hook here in case someone wants to mod extra cards into my mod. haha thats silly though.
-                if (AbstractDungeon.player.hasPower(makeID("MuscleMemoryPower"))) {
-                    AbstractDungeon.actionManager.addToTop(new ReduceCostForTurnAction(this.card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
-                }
                 this.card.unhover();
                 this.card.setAngle(0.0F, true);
                 this.card.lighten(false);
@@ -37,9 +30,6 @@ public class ReturnToHandAction extends AbstractGameAction {
             }
             else if (AbstractDungeon.player.discardPile.contains(this.card) && AbstractDungeon.player.hand.size() < 10) {
                 AbstractDungeon.player.hand.addToHand(this.card);
-                if (AbstractDungeon.player.hasPower(makeID("MuscleMemoryPower"))) {
-                    AbstractDungeon.actionManager.addToTop(new ReduceCostForTurnAction(card, AbstractDungeon.player.getPower(makeID("MuscleMemoryPower")).amount));
-                }
                 this.card.unhover();
                 this.card.setAngle(0.0F, true);
                 this.card.lighten(false);

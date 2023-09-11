@@ -13,8 +13,6 @@ import lonelymod.powers.StaminaPower;
 public class PureSkill extends AbstractEasyCard {
     public final static String ID = makeID("PureSkill");
 
-    int basePlanAmount;
-
     public PureSkill() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 3;

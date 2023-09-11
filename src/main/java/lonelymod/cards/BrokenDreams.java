@@ -5,11 +5,9 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import lonelymod.powers.StaminaPower;
 
 public class BrokenDreams extends AbstractEasyCard {
     public final static String ID = makeID("BrokenDreams");

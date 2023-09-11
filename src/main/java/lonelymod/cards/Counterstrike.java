@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.relics.StrikeDummy;
 
+import java.util.Objects;
+
 public class Counterstrike extends AbstractEasyCard {
     public final static String ID = makeID("Counterstrike");
     private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(makeID("CounterstrikeMessage"));
@@ -34,14 +36,12 @@ public class Counterstrike extends AbstractEasyCard {
             AttackEffect effect;
             if (damage <= 9)
                 effect = AttackEffect.SLASH_DIAGONAL;
-            else if (damage > 9 && damage <= 19)
+            else if (damage <= 19)
                 effect = AttackEffect.SLASH_HEAVY;
-            else if (damage > 19 && damage <= 29)
+            else if (damage <= 29)
                 effect = AttackEffect.BLUNT_HEAVY;
-            else if (damage > 29)
-                effect = AttackEffect.SMASH;
             else
-                effect = AttackEffect.NONE;
+                effect = AttackEffect.SMASH;
             for (int i = 0; i < magicNumber; i++) {
                 addToBot(new DamageAction(m, new DamageInfo(m, damage, damageTypeForTurn), effect));
             }
@@ -79,7 +79,7 @@ public class Counterstrike extends AbstractEasyCard {
                 }
                 this.initializeDescription();
             }
-            else if (this.magicNumber >= 2) { //mo is attacking many times
+            else { //mo is attacking many times
                 if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
                     this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[1];
                 } else {
@@ -93,9 +93,9 @@ public class Counterstrike extends AbstractEasyCard {
     @Override
     public void initializeDescription() {
         if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
-            if (this.rawDescription == "") {
+            if (Objects.equals(this.rawDescription, "")) {
                 this.rawDescription = "";
-            } else if (this.rawDescription == cardStrings.DESCRIPTION) {
+            } else if (Objects.equals(this.rawDescription, cardStrings.DESCRIPTION)) {
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2];
             }
         }

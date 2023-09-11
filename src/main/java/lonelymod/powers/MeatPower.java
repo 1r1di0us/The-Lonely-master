@@ -79,7 +79,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
         }
         else {
             if (creature instanceof AbstractMonster) {
-                int multiAmt = ReflectionHacks.getPrivate(creature, AbstractMonster.class, "intentMultimt");
+                int multiAmt = ReflectionHacks.getPrivate(creature, AbstractMonster.class, "intentMultiAmt");
                 if (multiAmt > 1) {
                     if (AbstractDungeon.player.currentBlock >= ((AbstractMonster) creature).getIntentDmg() * multiAmt && this.attackingMons.contains((AbstractMonster) creature))
                         addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));

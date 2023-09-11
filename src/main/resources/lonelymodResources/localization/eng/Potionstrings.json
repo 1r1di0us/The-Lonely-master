@@ -1,8 +1,15 @@
 {
+  "${ModID}:TargetPotion": {
+    "NAME": "Target Potion",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " #yTarget."
+    ]
+  },
   "${ModID}:CannedMeat": {
     "NAME": "Canned Meat",
     "DESCRIPTIONS": [
-      "Grant #b",
+      "Grant your #yCompanion #b",
       " #yStrength and #b",
       " #yDexterity."
     ]
@@ -10,7 +17,7 @@
   "${ModID}:WaterFlask": {
     "NAME": "Water Flask",
     "DESCRIPTIONS": [
-      "Exhaust all statuses in your deck. NL Draw #b",
+      "Exhaust all statuses and curses in your deck. NL Draw #b",
       " cards."
     ]
   },

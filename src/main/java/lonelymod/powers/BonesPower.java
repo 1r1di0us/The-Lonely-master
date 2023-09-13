@@ -5,16 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
@@ -68,7 +62,7 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
         if (this.amount > 0) {
             flash();
             addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount * VigAmt)));
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionStaminaPower(this.owner, this.amount * StamAmt)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new StaminaPower(this.owner, this.amount * StamAmt)));
             this.amount = 0;
             updateDescription();
         }

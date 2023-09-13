@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import lonelymod.actions.AutoplayWaitAction;
+import lonelymod.actions.LongerWaitAction;
 import lonelymod.actions.SummonOutcastAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.fields.CompanionField;
@@ -26,7 +26,7 @@ public class TheOutcast extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new AutoplayWaitAction(1.0f));
+        addToBot(new LongerWaitAction(1.0f));
         addToBot(new DrawCardAction(p, magicNumber));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);

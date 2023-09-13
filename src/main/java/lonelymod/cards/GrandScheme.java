@@ -21,8 +21,8 @@ public class GrandScheme extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DiscardDeckAction());
-        AbstractDungeon.actionManager.addToBottom(new PlanAction(this.magicNumber));
+        addToBot(new DiscardDeckAction());
+        addToBot(new PlanAction(this.magicNumber));
     }
 
     public void upp() {

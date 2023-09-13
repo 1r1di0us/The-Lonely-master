@@ -14,10 +14,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.ManiacPower;
+import lonelymod.powers.StaminaPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -72,8 +71,8 @@ public class Maniac extends AbstractCompanion {
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (this.hasPower(StrengthPower.POWER_ID)) {
@@ -113,8 +112,8 @@ public class Maniac extends AbstractCompanion {
             case PROTECT:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (this.hasPower(StrengthPower.POWER_ID))

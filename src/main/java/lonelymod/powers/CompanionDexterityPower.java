@@ -1,7 +1,6 @@
 package lonelymod.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -24,9 +23,6 @@ public class CompanionDexterityPower extends AbstractEasyPower implements Clonea
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/CompanionDexterity84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/CompanionDexterity32.png");
-
-//    public static TextureAtlas.AtlasRegion tex32 = new TextureAtlas(Gdx.files.internal("powers/powers.atlas")).findRegion("48/dexterity");
-//    public static TextureAtlas.AtlasRegion tex84 = new TextureAtlas(Gdx.files.internal("powers/powers.atlas")).findRegion("128/dexterity");
 
     public CompanionDexterityPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
@@ -62,7 +58,7 @@ public class CompanionDexterityPower extends AbstractEasyPower implements Clonea
     }
 
     @Override
-    public float modifyBlock(float blockAmount, AbstractCompanion companion) {
+    public float modifyCompanionBlock(float blockAmount, AbstractCompanion companion) {
         if ((blockAmount += this.amount) < 0.0F)
             return 0.0F;
         return blockAmount;

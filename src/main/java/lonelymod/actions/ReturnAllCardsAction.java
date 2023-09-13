@@ -10,7 +10,7 @@ import lonelymod.interfaces.TriggerOnReturnInterface;
 
 public class ReturnAllCardsAction extends AbstractGameAction {
 
-    private boolean turnOffReturn;
+    private final boolean turnOffReturn;
 
     public ReturnAllCardsAction(boolean turnOffReturn) {
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;

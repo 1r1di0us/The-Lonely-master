@@ -22,8 +22,8 @@ public class PlanAction extends AbstractGameAction {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;
 
-    private float startingDuration;
-    private AbstractEasyCard cardPlayed;
+    private final float startingDuration;
+    private final AbstractEasyCard cardPlayed;
     private int numCardsSelected = 0;
 
     public PlanAction(int numCards) {
@@ -34,7 +34,7 @@ public class PlanAction extends AbstractGameAction {
         this.amount = numCards;
         this.cardPlayed = cardPlayed;
         if (AbstractDungeon.player.hasPower(TwoStepsAheadPower.POWER_ID)) {
-            AbstractDungeon.player.getPower(TwoStepsAheadPower.POWER_ID).flash();;
+            AbstractDungeon.player.getPower(TwoStepsAheadPower.POWER_ID).flash();
             this.amount += AbstractDungeon.player.getPower(TwoStepsAheadPower.POWER_ID).amount;
         } 
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -55,7 +55,7 @@ public class PlanAction extends AbstractGameAction {
             if (AbstractDungeon.player.discardPile.isEmpty()) {
                 /*if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
                     AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
-                    AbstractDungeon.actionManager.addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
+                    addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
                             AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
                 }*/
                 this.isDone = true;

@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class AccursedBeakAction extends AbstractGameAction {
-    private AbstractPlayer player;
-    private AbstractMonster target;
-    private AbstractCard cardToQueue;
+    private final AbstractPlayer player;
+    private final AbstractMonster target;
+    private final AbstractCard cardToQueue;
 
     public AccursedBeakAction(AbstractPlayer player, AbstractMonster target, AbstractCard cardToQueue) {
         this.player = player;

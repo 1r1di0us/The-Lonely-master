@@ -19,8 +19,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.powers.BonesPower;
-import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.StaminaPower;
 import lonelymod.powers.TargetPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
@@ -66,8 +66,8 @@ public class Bones extends AbstractCompanion {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) { //have to check ABSOLUTELY EVERYWHERE IN CASE ITS AWAKENED ONE
@@ -85,8 +85,8 @@ public class Bones extends AbstractCompanion {
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 break;
             case SPECIAL:
@@ -110,8 +110,8 @@ public class Bones extends AbstractCompanion {
         switch (move) {
             case DEFAULT:
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case ATTACK:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
@@ -130,8 +130,8 @@ public class Bones extends AbstractCompanion {
                 addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));

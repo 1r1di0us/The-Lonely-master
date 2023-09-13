@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class DrawToHandAction extends AbstractGameAction {
-  private AbstractCard card;
+  private final AbstractCard card;
   
   public DrawToHandAction(AbstractCard card) {
     this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;

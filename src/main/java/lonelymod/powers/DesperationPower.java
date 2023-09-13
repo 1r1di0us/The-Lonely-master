@@ -15,10 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.actions.PlayCardAction;
-import lonelymod.interfaces.AtEndOfTurnPostEndTurnCardsInterface;
 import lonelymod.util.TexLoader;
-
-import java.util.Objects;
 
 public class DesperationPower extends AbstractEasyPower implements CloneablePowerInterface {
 

@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.powers.AdaptPower;
 
 public class AdaptFollowUpAction extends AbstractGameAction {
-    private int blockAmount;
+    private final int blockAmount;
 
     public AdaptFollowUpAction(int blockAmount) {
         this.blockAmount = blockAmount;
     }
     public void update() {
-        AbstractDungeon.actionManager.addToTop(new WaitAction(0.4F));
+        addToTop(new WaitAction(0.4F));
         tickDuration();
         if (this.isDone)
             for (AbstractCard c : DrawCardAction.drawnCards) {

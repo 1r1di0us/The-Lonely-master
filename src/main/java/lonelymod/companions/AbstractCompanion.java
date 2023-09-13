@@ -392,7 +392,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         float tmp = blk;
         for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers) {
             if (p instanceof ModifyCompanionBlockInterface)
-                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, this);
+                tmp = ((ModifyCompanionBlockInterface) p).modifyCompanionBlock(tmp, this);
         }
         if (this.intentBaseBlk != MathUtils.floor(tmp))
             this.isBlockModified = true;

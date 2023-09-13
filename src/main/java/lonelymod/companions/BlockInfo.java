@@ -27,10 +27,10 @@ public class BlockInfo {
         float tmp = this.output;
         for (AbstractPower p : owner.powers)
             if (p instanceof ModifyCompanionBlockInterface)
-                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, owner);
+                tmp = ((ModifyCompanionBlockInterface) p).modifyCompanionBlock(tmp, owner);
         for (AbstractPower p : target.powers)
             if (p instanceof ModifyCompanionBlockInterface)
-                tmp = ((ModifyCompanionBlockInterface) p).modifyBlock(tmp, owner);
+                tmp = ((ModifyCompanionBlockInterface) p).modifyCompanionBlock(tmp, owner);
         if (this.base != MathUtils.floor(tmp))
             this.isModified = true;
         if (tmp < 0.0F)

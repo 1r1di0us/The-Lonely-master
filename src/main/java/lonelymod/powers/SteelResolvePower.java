@@ -30,8 +30,8 @@ public class SteelResolvePower extends AbstractEasyPower implements CloneablePow
 
     private boolean lostHpThisTurn;
 
-    private int dexAmount;
-    private int platedArmorAmount;
+    private final int dexAmount;
+    private final int platedArmorAmount;
 
     public SteelResolvePower(AbstractCreature owner, int amount, int dexAmount, int platedArmorAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

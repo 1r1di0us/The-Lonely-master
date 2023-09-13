@@ -1,7 +1,6 @@
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -10,9 +9,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import lonelymod.cards.Counterstrike;
 
 public class OutburstAction extends AbstractGameAction {
   public static final String[] TEXT = (CardCrawlGame.languagePack.getUIString("WishAction")).TEXT;
@@ -22,9 +18,8 @@ public class OutburstAction extends AbstractGameAction {
   private final int playAmt;
   private final boolean upgraded;
   private boolean attackInDiscard = false;
-  private AbstractCard c = null;
-  
-  public OutburstAction(int numberOfCards, boolean upp) {
+
+    public OutburstAction(int numberOfCards, boolean upp) {
     this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
     this.duration = this.startDuration = Settings.ACTION_DUR_FAST;
     this.player = AbstractDungeon.player;
@@ -47,7 +42,7 @@ public class OutburstAction extends AbstractGameAction {
             this.isDone = true;
             return;
         }
-        c = this.player.discardPile.getRandomCard(CardType.ATTACK, true);
+        AbstractCard c = this.player.discardPile.getRandomCard(CardType.ATTACK, true);
         c.exhaust = true;
         AbstractDungeon.player.discardPile.group.remove(c);
         (AbstractDungeon.getCurrRoom()).souls.remove(c);

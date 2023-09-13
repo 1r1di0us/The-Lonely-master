@@ -25,7 +25,7 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely32.png");
 
-    private AbstractCard cardToPlay;
+    private final AbstractCard cardToPlay;
 
     public LonelyPower(AbstractCreature owner, AbstractCard cardToPlay) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 1);

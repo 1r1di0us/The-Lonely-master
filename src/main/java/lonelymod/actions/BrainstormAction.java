@@ -20,11 +20,9 @@ public class BrainstormAction extends AbstractGameAction {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;
 
-    private AbstractPlayer player;
+    private final AbstractPlayer player;
 
-    private int numberOfCards;
-
-    private boolean optional = false;
+    private final int numberOfCards;
 
     public BrainstormAction(int numberOfCards) {
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -39,7 +37,8 @@ public class BrainstormAction extends AbstractGameAction {
                 this.isDone = true;
                 return;
             }
-            if (this.player.discardPile.size() <= this.numberOfCards && !this.optional) {
+            boolean optional = false;
+            if (this.player.discardPile.size() <= this.numberOfCards && !optional) {
                 ArrayList<AbstractCard> cardsToMove = new ArrayList<>();
                 for (AbstractCard c : this.player.discardPile.group) {
                     cardsToMove.add(c);
@@ -52,12 +51,12 @@ public class BrainstormAction extends AbstractGameAction {
                 return;
             }
             if (this.numberOfCards == 1) {
-                if (this.optional) {
+                if (optional) {
                     AbstractDungeon.gridSelectScreen.open(this.player.discardPile, this.numberOfCards, true, TEXT[0]);
                 } else {
                     AbstractDungeon.gridSelectScreen.open(this.player.discardPile, this.numberOfCards, TEXT[0], false);
                 }
-            } else if (this.optional) {
+            } else if (optional) {
                 AbstractDungeon.gridSelectScreen.open(this.player.discardPile, this.numberOfCards, true, TEXT[1] + this.numberOfCards + TEXT[2]);
             } else {
                 AbstractDungeon.gridSelectScreen.open(this.player.discardPile, this.numberOfCards, TEXT[1] + this.numberOfCards + TEXT[2], false);

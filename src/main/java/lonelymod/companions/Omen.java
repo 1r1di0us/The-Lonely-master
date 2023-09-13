@@ -11,9 +11,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import lonelymod.actions.CallMoveAction;
-import lonelymod.powers.CompanionStaminaPower;
 import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.StaminaPower;
 import lonelymod.powers.OmenPower;
 import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
@@ -81,8 +80,8 @@ public class Omen extends AbstractCompanion {
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
@@ -124,8 +123,8 @@ public class Omen extends AbstractCompanion {
                     addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));

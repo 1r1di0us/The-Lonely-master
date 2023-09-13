@@ -9,7 +9,6 @@ import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
 import lonelymod.actions.*;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.OmenCard;
 
 @SpirePatch(
         clz=AbstractPlayer.class,

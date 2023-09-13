@@ -3,11 +3,10 @@ package lonelymod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class AgainstAllOddsAction extends AbstractGameAction {
 
-    private int damageCap;
+    private final int damageCap;
 
     public AgainstAllOddsAction(int energyAmt, int damageCap) {
         this.actionType = AbstractGameAction.ActionType.WAIT;

@@ -22,8 +22,6 @@ public class OvercomePower extends AbstractEasyPower implements CloneablePowerIn
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Overcome84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Overcome32.png");
 
-    //private int autoplayAmount;
-
     public OvercomePower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 

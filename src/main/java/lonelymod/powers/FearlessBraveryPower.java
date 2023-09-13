@@ -28,8 +28,8 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FearlessBravery84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/FearlessBravery32.png");
 
-    private int vigAmount;
-    private int drawAmount;
+    private final int vigAmount;
+    private final int drawAmount;
 
     public FearlessBraveryPower(AbstractCreature owner, int amount, int vigAmount, int drawAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -60,8 +60,6 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
             if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
                 addToBot(new DrawCardAction(this.owner, this.drawAmount * this.amount));
-                //addToBot(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, this.amount)));
-                //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseDexterityPower(this.owner, this.amount)));
                 return;
             }
         }

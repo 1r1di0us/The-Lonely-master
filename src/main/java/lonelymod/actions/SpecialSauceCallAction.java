@@ -6,7 +6,7 @@ import lonelymod.companions.AbstractCompanion;
 public class SpecialSauceCallAction extends AbstractGameAction {
 
     private final AbstractCompanion currCompanion;
-    private byte prevMove;
+    private final byte prevMove;
 
     public SpecialSauceCallAction(AbstractCompanion currCompanion) {
         this.currCompanion = currCompanion;

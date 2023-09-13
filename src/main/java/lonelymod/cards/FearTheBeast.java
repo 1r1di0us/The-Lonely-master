@@ -19,7 +19,7 @@ public class FearTheBeast extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FearTheBeastPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new FearTheBeastPower(p, magicNumber), magicNumber));
     }
     
     public void upp() {

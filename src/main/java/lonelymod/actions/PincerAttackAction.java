@@ -1,24 +1,20 @@
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.ClashEffect;
 
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
 
 public class PincerAttackAction extends AbstractGameAction {
-    //int additionalAmt;
-  
+
     public PincerAttackAction(AbstractCreature target, int damage) {
         this.target = target;
         this.amount = damage;
-        //this.additionalAmt = additional;
     }
 
     @Override

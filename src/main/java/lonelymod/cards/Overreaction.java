@@ -20,7 +20,7 @@ public class Overreaction extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
+        addToBot(new DrawCardAction(p, magicNumber));
     }
 
     public void upp() {

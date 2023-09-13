@@ -26,7 +26,7 @@ public class ResolvePower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Resolve32.png");
 
     private boolean lostHpThisTurn;
-    private int dexAmount;
+    private final int dexAmount;
 
     public ResolvePower(AbstractCreature owner, int amount, int dexAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

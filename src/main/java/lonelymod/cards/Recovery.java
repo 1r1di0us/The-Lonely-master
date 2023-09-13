@@ -19,7 +19,7 @@ public class Recovery extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RecoveryPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new RecoveryPower(p, magicNumber), magicNumber));
     }
     
     public void upp() {

@@ -23,9 +23,9 @@ public class AccursedBeak extends AbstractEasyCard {
     
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AttackEffect.BLUNT_LIGHT);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GainStrengthPower(p, magicNumber)));
-        AbstractDungeon.actionManager.addToBottom(new AccursedBeakAction(p, m, this));
+        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new GainStrengthPower(p, magicNumber)));
+        addToBot(new AccursedBeakAction(p, m, this));
     }
 
     public void upp() {

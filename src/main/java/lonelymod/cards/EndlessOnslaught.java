@@ -21,7 +21,7 @@ public class EndlessOnslaught extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        AbstractDungeon.actionManager.addToBottom(new GashAction(this, magicNumber));
+        addToBot(new GashAction(this, magicNumber));
         ReturnField.willReturn.set(this, true);
     }
 

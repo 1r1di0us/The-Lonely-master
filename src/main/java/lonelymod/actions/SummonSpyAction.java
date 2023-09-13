@@ -2,25 +2,19 @@ package lonelymod.actions;
 
 //import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Omen;
 import lonelymod.companions.Spy;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class SummonSpyAction extends AbstractGameAction {
-    private static final Logger logger = LogManager.getLogger(SummonSpyAction.class.getName());
     private AbstractCompanion c;
-    private boolean alreadySummoned = false;
 
     public SummonSpyAction() {
         if (Settings.FAST_MODE) {
@@ -29,44 +23,38 @@ public class SummonSpyAction extends AbstractGameAction {
             this.startDuration = Settings.ACTION_DUR_LONG;
         }
         this.duration = this.startDuration;
-        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-            if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Spy) {
-                alreadySummoned = true;
-                return;
-            }
-            //AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect, false));
-            //CompanionField.currCompanion.get(AbstractDungeon.player).damage(new DamageInfo(AbstractDungeon.player, 1, DamageInfo.DamageType.THORNS));
-            CompanionField.currCompanion.set(AbstractDungeon.player, null);
-        }
-        this.c = new Spy(-750, -40);
-        CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
-        this.c.init();
-        CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<AbstractCard>());
-        CompanionField.playableCards.get(AbstractDungeon.player).add(new Shiv());
     }
 
     public void update() {
-        if (!this.alreadySummoned) {
-            if (this.duration == this.startDuration) {
-                //this.c.animX = 1200.0F * Settings.xScale;
-                this.c.applyPowers();
+        if (this.duration == this.startDuration) {
+            if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+                if (CompanionField.currCompanion.get(AbstractDungeon.player) instanceof Spy) {
+                    this.isDone = true;
+                    return;
+                }
+                CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            tickDuration();
-            if (this.isDone) {
-                //this.c.animX = 0.0F;
-                this.c.showHealthBar();
-                this.c.usePreBattleAction();
-                for (AbstractRelic r : AbstractDungeon.player.relics) {
-                    if (r instanceof RelicOnSummonInterface) {
-                        ((RelicOnSummonInterface) r).onSummon(this.c, true);
-                    }
+            this.c = new Spy(-750, -40);
+            CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
+            this.c.init();
+            CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());
+            CompanionField.playableCards.get(AbstractDungeon.player).add(new Shiv());
+            //this.c.animX = 1200.0F * Settings.xScale;
+            this.c.applyPowers();
+        }
+        tickDuration();
+        if (this.isDone) {
+            //this.c.animX = 0.0F;
+            this.c.showHealthBar();
+            this.c.usePreBattleAction();
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                if (r instanceof RelicOnSummonInterface) {
+                    ((RelicOnSummonInterface) r).onSummon(this.c, true);
                 }
             }
-            // else {
-            //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
-            //}
-        } else {
-            this.isDone = true;
         }
+        // else {
+        //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
+        //}
     }
 }

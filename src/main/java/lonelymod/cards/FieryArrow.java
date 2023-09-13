@@ -20,7 +20,7 @@ public class FieryArrow extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new FieryArrowPower(m, 3, this.damage)));
+        addToBot(new ApplyPowerAction(m, p, new FieryArrowPower(m, 3, this.damage)));
     }
 
     public void upp() {

@@ -9,14 +9,18 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.companions.AbstractCompanion;
+import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.util.TexLoader;
 
-public class StaminaPower extends AbstractEasyPower implements CloneablePowerInterface{
+public class StaminaPower extends AbstractEasyPower implements CloneablePowerInterface, ModifyCompanionBlockInterface {
 
     public static final String POWER_ID = makeID("StaminaPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -47,8 +51,19 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
         updateDescription();
     }
 
+    public void onSpecificTrigger() { //when companion blocks
+        flash();
+        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    }
+
     @Override
     public float modifyBlock(float blockAmount) {
+        blockAmount += this.amount;
+        return blockAmount;
+    }
+
+    @Override
+    public float modifyCompanionBlock(float blockAmount, AbstractCompanion companion) {
         blockAmount += this.amount;
         return blockAmount;
     }
@@ -62,7 +77,9 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        if (owner == AbstractDungeon.player) description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[3];
+        else if (owner == CompanionField.currCompanion.get(AbstractDungeon.player)) description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
+        else description = DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
     }
 
     @Override

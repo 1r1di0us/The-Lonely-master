@@ -44,11 +44,6 @@ public class TwoStepsAheadPower extends AbstractEasyPower implements CloneablePo
         updateDescription();
     }
 
-    //@Override
-    //public int onPlan(int amount) {
-    //  return amount+this.amount;
-    //}
-
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];

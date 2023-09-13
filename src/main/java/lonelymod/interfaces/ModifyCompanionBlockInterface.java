@@ -4,5 +4,5 @@ import lonelymod.companions.AbstractCompanion;
 
 public interface ModifyCompanionBlockInterface {
 
-    float modifyBlock(float blockAmount, AbstractCompanion companion);
+    float modifyCompanionBlock(float blockAmount, AbstractCompanion companion);
 }

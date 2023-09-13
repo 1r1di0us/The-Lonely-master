@@ -12,8 +12,8 @@ import java.util.UUID;
 
 public class ExponentialForceAction extends AbstractGameAction {
 
-    private DamageInfo info;
-    private UUID uuid;
+    private final DamageInfo info;
+    private final UUID uuid;
 
     public ExponentialForceAction(AbstractCreature target, DamageInfo info, UUID targetUUID) {
         this.info = info;

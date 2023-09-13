@@ -15,7 +15,11 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import lonelymod.powers.*;
+import lonelymod.powers.MechanicPower;
+import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.RoboArmPower;
+import lonelymod.powers.StaminaPower;
+
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -73,8 +77,8 @@ public class Mechanic extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 addToBot(new ChannelAction(new Frost()));
                 if (hasPower(RoboArmPower.POWER_ID)) {
                     for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
@@ -128,8 +132,8 @@ public class Mechanic extends AbstractCompanion {
             case PROTECT:
                 addToTop(new ChannelAction(new Frost()));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 if (hasPower(RoboArmPower.POWER_ID)) {
                     for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
                         addToTop(new ChannelAction(new Frost()));

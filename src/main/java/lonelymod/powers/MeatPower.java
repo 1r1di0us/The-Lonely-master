@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import lonelymod.LonelyMod;
@@ -32,12 +31,12 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Meat32.png");
 
     private static final int WeakAmt = 1;
-    private int turnHp;
-    private final ArrayList<AbstractMonster> attackingMons = new ArrayList<AbstractMonster>();
+    //private int turnHp;
+    private final ArrayList<AbstractMonster> attackingMons = new ArrayList<>();
 
     public AbstractCreature creature;
 
-    public boolean firstUselessTrigger = true; //ApplyTurnMeatPowerPatch is too confusing for me. All i know is that it gets called too many times.
+    public boolean firstUselessTrigger = true; //ApplyTurnMeatPowerPatch is too confusing for me. All I know is that it gets called too many times.
 
     public MeatPower(AbstractCreature owner) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
@@ -63,7 +62,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     @Override
     public void duringTurn() {
         firstUselessTrigger = true;
-        this.turnHp = AbstractDungeon.player.currentHealth;
+        //this.turnHp = AbstractDungeon.player.currentHealth;
         this.attackingMons.clear();
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!mon.isDeadOrEscaped() && mon.getIntentBaseDmg() >= 0) {

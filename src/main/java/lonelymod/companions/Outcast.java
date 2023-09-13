@@ -15,7 +15,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import lonelymod.powers.*;
+import lonelymod.powers.OutcastPower;
+import lonelymod.powers.CompanionVigorPower;
+import lonelymod.powers.CompanionDexterityPower;
+import lonelymod.powers.StaminaPower;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -28,7 +31,7 @@ public class Outcast extends AbstractCompanion {
     private static final int EMP_ATTACK_AMT = 2;
     private static final int PROTECT_BLK = 8;
     private static final int EMP_PROTECT_PWR_AMT = 5;
-    private static final int SPECIAL_PWR_AMT = 3;
+    private static final int SPECIAL_PWR_AMT = 5;
     private static final int EMP_SPECIAL_PWR_AMT = 3;
 
     private int attackDmg;
@@ -75,8 +78,8 @@ public class Outcast extends AbstractCompanion {
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (consecutiveMove == 3)
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
@@ -121,16 +124,16 @@ public class Outcast extends AbstractCompanion {
                 if (consecutiveMove == 3)
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(CompanionStaminaPower.POWER_ID))
-                    getPower(CompanionStaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (consecutiveMove == 3) {
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                 }
-                addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
     }

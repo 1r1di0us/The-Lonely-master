@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class MentalOverloadAction extends AbstractGameAction {
-    private AbstractCard card;
-    private int baseCost;
-    private int difference;
+    private final AbstractCard card;
+    private final int baseCost;
+    private final int difference;
     // The point of this is to delay changing mental Overload's cost until after stuff has already happened
 
     public MentalOverloadAction(AbstractCard card, int baseCost, int difference) {

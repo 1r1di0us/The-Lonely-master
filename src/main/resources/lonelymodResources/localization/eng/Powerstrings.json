@@ -44,7 +44,9 @@
     "NAME": "Stamina",
     "DESCRIPTIONS": [
       "The next #yBlock card you play will give you #b",
-      " more Block."
+      "The next time this #yCompanion grants you #yBlock, it will grant #b",
+      "The next time this creature #yBlocks, it will gain #b",
+      " more #yBlock."
     ]
   },
   "${ModID}:FetchPower": {

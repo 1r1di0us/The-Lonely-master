@@ -11,8 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
@@ -29,7 +27,7 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bravery84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bravery32.png");
 
-    private int vigAmount;
+    private final int vigAmount;
 
     public BraveryPower(AbstractCreature owner, int amount, int vigAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
@@ -58,8 +56,6 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
                 addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
-                //addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount)));
-                //addToBot(new ApplyPowerAction(this.owner, this.owner, new LoseStrengthPower(this.owner, this.amount)));
                 return;
             }
         }

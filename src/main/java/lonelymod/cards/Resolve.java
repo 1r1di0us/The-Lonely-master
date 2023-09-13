@@ -3,7 +3,6 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -31,17 +30,7 @@ public class Resolve extends AbstractEasyCard {
     public void onChoseThisOption() { //this happens when you choose this card when playing Lonely
         this.freeToPlayOnce = true;
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new LonelyPower(AbstractDungeon.player, this)));
-//        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(this, 1, true, true, false));
-//        setCostToZero = true;
     }
-
-    /*@Override
-    public void triggerWhenDrawn() {
-        if (setCostToZero) {
-            this.setCostForTurn(0);
-            setCostToZero = false;
-        }
-    }*/
     
     @Override
     public void upp() {

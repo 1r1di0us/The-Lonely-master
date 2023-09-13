@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ImproviseAction extends AbstractGameAction {
     private boolean retrieveCard = false;
     //this whole thing was copied from foreignInfluenceAction, and then I changed attack->skill so yeah
-    private boolean upgraded;
+    private final boolean upgraded;
     
     public ImproviseAction(boolean upgraded) {
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;

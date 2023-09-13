@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
@@ -66,15 +65,6 @@ public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerI
         p.healthBarRevivedEvent();
         return false;
     }
-
-    /*@Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount >= AbstractDungeon.player.currentHealth) {
-            flash();
-            damageAmount = AbstractDungeon.player.currentHealth - 1;
-        }
-        return damageAmount;
-    }*/
 
     @Override
     public void updateDescription() {

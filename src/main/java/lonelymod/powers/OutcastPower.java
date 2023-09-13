@@ -22,7 +22,7 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Outcast32.png");
 
-    private boolean startOfBattle;
+    private final boolean startOfBattle;
 
     public OutcastPower(AbstractCreature owner, int amount, boolean startOfBattle) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);

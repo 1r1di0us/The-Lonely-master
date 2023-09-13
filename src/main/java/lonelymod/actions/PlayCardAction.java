@@ -11,9 +11,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class PlayCardAction extends AbstractGameAction {
-    private boolean exhaustCards;
-    private AbstractCard cardToPlay;
-    private CardGroup group;
+    private final boolean exhaustCards;
+    private final AbstractCard cardToPlay;
+    private final CardGroup group;
 
     public PlayCardAction(CardGroup group, AbstractCard card, AbstractCreature target, boolean exhausts) {
         this.duration = Settings.ACTION_DUR_FAST;

@@ -271,11 +271,17 @@
     ]
   },
   "${ModID}:OmenPower": {
+    "NAME": "Hatred",
+    "DESCRIPTIONS": [
+      "Whenever you draw an Attack card, gains #b",
+      " #yVigor."
+    ]
+  },
+  "${ModID}:ClawsPower": {
     "NAME": "Claws",
     "DESCRIPTIONS": [
       "Omen's attack move will hit #b",
-      " times. Increases by #b",
-      " at the start of your turn."
+      " times."
     ]
   },
   "${ModID}:OutcastPower": {

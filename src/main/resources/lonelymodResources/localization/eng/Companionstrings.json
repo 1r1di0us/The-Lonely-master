@@ -119,8 +119,10 @@
       " times, and apply #b",
       " #yTarget to an enemy.",
 
-      "Omen intends to gain #b",
-      " #yStrength.",
+      "Omen intends to grant you #b",
+      " #yBlock, gain #b",
+      " #yStrength, and increase the number of times its Attack hits by #b",
+      ".",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -134,8 +136,10 @@
       " times, and applies #b",
       " #yTarget.",
 
-      "Gains #b",
-      " #yStrength."
+      "Grants #b",
+      " #yBlock, Gains #b",
+      " #yStrength, and increases the number of times its attack hits by #b",
+      "."
     ],
     "DIALOG": [
       "SQUAK!",

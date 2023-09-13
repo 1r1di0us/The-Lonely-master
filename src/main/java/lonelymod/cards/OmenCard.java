@@ -34,10 +34,10 @@ public class OmenCard extends AbstractEasyCard {
     
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //kill current companion, effects, remove strength summon omen (which calls special
-        if (CompanionField.currCompanion.get(p) != null && !(CompanionField.currCompanion.get(p) instanceof Omen)) {
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
-            addToBot(new DamageAction(CompanionField.currCompanion.get(AbstractDungeon.player), new DamageInfo(p, 1, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+        //remove strength, kill current companion, effects, summon omen, call special
+        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
+        if (!(CompanionField.currCompanion.get(p) instanceof Omen)) {
+            addToBot(new DamageAction(CompanionField.currCompanion.get(AbstractDungeon.player), new DamageInfo(p, 10, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
             //copied from Corruption:
             addToBot(new SFXAction("VO_CULTIST_2C"));
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));
@@ -45,12 +45,10 @@ public class OmenCard extends AbstractEasyCard {
             addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.BLACK), 0.0F, true));
             addToBot(new SummonOmenAction(false));
         } else {
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
             //copied from Corruption:
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
             addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.BLACK), 0.0F, true));
-
             addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
 
         }

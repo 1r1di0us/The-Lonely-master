@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 @SpirePatch(
         clz = AbstractPlayer.class,
-        method = "draw"
-)
+        method = "draw",
+        paramtypez = {
+                int.class
+})
+
 public class OnCardDrawPatch {
     @SpireInsertPatch(
             locator=Locator.class,
             localvars={"c"}
     )
 
-    public static void Insert(AbstractPlayer __instance, AbstractCard c) {
+    public static void Insert(AbstractPlayer __instance, int numCards, AbstractCard c) {
         if (CompanionField.currCompanion.get(__instance) != null) {
             for (AbstractPower p : CompanionField.currCompanion.get(__instance).powers) {
                 p.onCardDraw(c);

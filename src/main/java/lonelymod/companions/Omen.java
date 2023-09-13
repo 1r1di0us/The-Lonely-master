@@ -165,7 +165,7 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.DEFEND_BUFF, this.block.get(1).base);
+        setMove(MOVES[3], SPECIAL, Intent.DEFEND_BUFF, this.block.get(1).base, false);
     }
 
     public void updateIntentTip() {

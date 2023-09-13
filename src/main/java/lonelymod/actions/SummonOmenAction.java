@@ -39,8 +39,6 @@ public class SummonOmenAction extends AbstractGameAction {
             this.c.init();
             //this.c.animX = 1200.0F * Settings.xScale;
             this.c.applyPowers();
-            if (!onBattleStart) //Called from OmenCard
-                addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
         }
         tickDuration();
         if (this.isDone) {
@@ -52,6 +50,8 @@ public class SummonOmenAction extends AbstractGameAction {
                     ((RelicOnSummonInterface) r).onSummon(this.c, false);
                 }
             }
+            if (!onBattleStart) //Called from OmenCard
+                addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
         }// else {
         //this.c.animX = Interpolation.fade.apply(0.0F, 1200.0F * Settings.xScale, this.duration);
         //}

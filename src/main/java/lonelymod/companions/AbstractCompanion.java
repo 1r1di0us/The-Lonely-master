@@ -266,6 +266,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.setMove(null, nextMove, intent, -1, 0, false, false);
     }
 
+    //override the other setMove() functions so they do the funny when you set the move wrong
+
     //important update methods:
 
     @Override

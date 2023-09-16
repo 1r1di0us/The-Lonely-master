@@ -7,7 +7,7 @@ public class PerformMoveAction extends AbstractGameAction {
 
     private final byte move;
     private final AbstractCompanion currCompanion;
-
+    //Done by frenzy. Use CompanionTakeTurnAction if it is not already the companion's turn.
     public PerformMoveAction(byte move, AbstractCompanion currCompanion) {
         this.move = move;
         this.currCompanion = currCompanion;

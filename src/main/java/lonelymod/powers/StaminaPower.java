@@ -64,7 +64,8 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public float modifyCompanionBlock(float blockAmount, AbstractCompanion companion) {
-        blockAmount += this.amount;
+        if (this.owner instanceof AbstractCompanion)
+            blockAmount += this.amount;
         return blockAmount;
     }
 

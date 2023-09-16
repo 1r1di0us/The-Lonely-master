@@ -7,7 +7,8 @@ public class WildFormCallMoveAction extends AbstractGameAction {
 
     private final byte move;
     private final AbstractCompanion currCompanion;
-
+    //only reason this exists is to delay calling the move.
+    //nothing special happens here.
     public WildFormCallMoveAction(byte move, AbstractCompanion currCompanion) {
         this.move = move;
         this.currCompanion = currCompanion;

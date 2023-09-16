@@ -3,20 +3,19 @@ package lonelymod.patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 import lonelymod.fields.CompanionField;
-import lonelymod.powers.SpyPower;
+import lonelymod.powers.LonelyPower;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.TreeMap;
 
 public class TargetCompanionWithCardPatch {
     @SpirePatch(
@@ -80,35 +79,44 @@ public class TargetCompanionWithCardPatch {
 
     @SpirePatch(
             clz=AbstractPlayer.class,
-            method="useCard"
+            method="useCard",
+            paramtypez = {
+                    AbstractCard.class,
+                    AbstractMonster.class,
+                    int.class
+    }
     )
     public static class UseCardPatch {
         public static ExprEditor Instrument() {
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getClassName().equals(AbstractCard.class.getName()) && m.getMethodName().equals("use")) {
-                        m.replace("lonelymod.patches.TargetCompanionWithCardPatch.useTheCard($0, $1, $2);");
+                        m.replace("if (lonelymod.patches.TargetCompanionWithCardPatch.useTheCard($0, $1, $2)) $proceed($$);");
                     }
                 }
             };
         }
     }
 
-    public static void useTheCard(Object card, Object p, Object m) {
-        if (CompanionField.currCompanion.get(p) != null && CompanionField.playableCards.get(p) != null && CompanionField.currCompanion.get(p) == m) {
-            boolean playedCard = false;
-            for (AbstractCard c : CompanionField.playableCards.get(p)) {
-                if (Objects.equals(c.cardID, ((AbstractCard) card).cardID)) {
-                    CompanionField.currCompanion.get(p).useTheCard((AbstractCard) card, (AbstractPlayer) p, (AbstractMonster) m);
-                    playedCard = true;
-                    break;
+    public static boolean useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
+        boolean proceed = true;
+        for (AbstractPower pow : p.powers) { //LonelyPower overrides this
+            if (pow instanceof LonelyPower && pow.amount == ((LonelyPower) pow).maxAmount - 1) {
+                proceed = false;
+                break;
+            }
+        }
+        if (proceed) {
+            if (CompanionField.currCompanion.get(p) != null && CompanionField.playableCards.get(p) != null && CompanionField.currCompanion.get(p) == m) {
+                for (AbstractCard c : CompanionField.playableCards.get(p)) {
+                    if (Objects.equals(c.cardID, (card).cardID)) {
+                        CompanionField.currCompanion.get(p).useTheCard(card, p, m);
+                        proceed = false;
+                        break;
+                    }
                 }
             }
-            if (!playedCard) {
-                ((AbstractCard) card).use((AbstractPlayer) p, (AbstractMonster) m);
-            }
-        } else {
-            ((AbstractCard) card).use((AbstractPlayer) p, (AbstractMonster) m);
         }
+        return proceed;
     }
 }

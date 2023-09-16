@@ -136,9 +136,9 @@
   "${ModID}:LonelyPower": {
     "NAME": "Lonely",
     "DESCRIPTIONS": [
-      "At the start of next turn, play #y",
-      ".",
-      "At the start of next turn, play the chosen card."
+      "Every #b",
+      "th card you play has #rno #reffect.",
+      "The next card you play will have #rno #reffect."
     ]
   },
   "${ModID}:BraveryPower": {

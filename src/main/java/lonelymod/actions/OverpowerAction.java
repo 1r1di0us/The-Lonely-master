@@ -17,8 +17,14 @@ public class OverpowerAction extends AbstractGameAction {
 
     public void update() {
         if (this.m != null) {
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
+                addToTop(new ApplyPowerAction(this.m, AbstractDungeon.player, new WeakPower(this.m, this.amount, false), this.amount));
+                this.isDone = true;
+                return;
+            }
             int multiAmt = ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-            if ((multiAmt <= 1 && AbstractDungeon.player.currentBlock >= m.getIntentDmg())
+            if ((!m.isDeadOrEscaped()
+                    && multiAmt <= 1 && AbstractDungeon.player.currentBlock >= m.getIntentDmg())
                     || (multiAmt > 1 && AbstractDungeon.player.currentBlock >= m.getIntentDmg() * multiAmt)) {
                 addToTop(new ApplyPowerAction(this.m, AbstractDungeon.player, new WeakPower(this.m, this.amount, false), this.amount));
             }

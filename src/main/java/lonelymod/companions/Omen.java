@@ -29,9 +29,9 @@ public class Omen extends AbstractCompanion {
     private static final int INIT_CLAWS_AMT = 5;
     private static final int DEFAULT_DMG = 10;
     private static final int ATTACK_DMG = 1;
-    private static final int PROTECT_BLK = 8;
+    private static final int PROTECT_BLK = 6;
     private static final int PROTECT_AMT = 2;
-    private static final int PROTECT_DEBUFF_AMT = 5;
+    private static final int PROTECT_DEBUFF_AMT = 4;
     private static final int SPECIAL_BLK = 12;
     private static final int SPECIAL_STR_AMT = 2;
     private static final int SPECIAL_PWR_AMT = 2;

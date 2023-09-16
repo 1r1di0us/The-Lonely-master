@@ -4,8 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,16 +24,18 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely32.png");
 
-    private final AbstractCard cardToPlay;
+    //private final AbstractCard cardToPlay;
+    public int maxAmount;
 
-    public LonelyPower(AbstractCreature owner, AbstractCard cardToPlay) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 1);
+    public LonelyPower(AbstractCreature owner, int maxAmt) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, -1);
 
         this.owner = owner;
 
-        type = PowerType.BUFF;
-        isTurnBased = true;
-        this.cardToPlay = cardToPlay;
+        type = PowerType.DEBUFF;
+        isTurnBased = false;
+        this.maxAmount = maxAmt;
+        //this.cardToPlay = cardToPlay;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,19 +50,32 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
     }
 
     @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        //actual not playing of the card happens in TargetCompanionWithCardPatch
+        this.amount++;
+        if (this.amount < this.maxAmount - 2) {
+            flashWithoutSound();
+        } else {
+            flash();
+            if (this.amount == this.maxAmount) this.amount = 0;
+        }
+    }
+
+    /*@Override
     public void atStartOfTurn() {
         addToBot(new NewQueueCardAction(this.cardToPlay, true, true, true));
         addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-    }
+    }*/
 
     @Override
     public void updateDescription() {
-        if (cardToPlay == null) description = DESCRIPTIONS[2];
-        else description = DESCRIPTIONS[0] + cardToPlay.name + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.maxAmount + DESCRIPTIONS[1];
+        //if (cardToPlay == null) description = DESCRIPTIONS[2];
+        //else description = DESCRIPTIONS[0] + cardToPlay.name + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new LonelyPower(this.owner, this.cardToPlay);
+        return new LonelyPower(this.owner, this.maxAmount);
     }
 }

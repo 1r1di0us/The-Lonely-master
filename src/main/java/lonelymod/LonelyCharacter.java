@@ -175,6 +175,9 @@ public class LonelyCharacter extends CustomPlayer {
         return TEXT[2];
     }
 
+    @Override
+    public String getSensoryStoneText() { return TEXT[3]; }
+
     //animation for replacing the starter relic
     public void onEquipMeatsStomach() {
         /*loadAnimation("lonelymodResources/images/char/mainChar/NewProject2.atlas", "lonelymodResources/images/char/mainChar/NewProject2.json", SIZE_SCALE);

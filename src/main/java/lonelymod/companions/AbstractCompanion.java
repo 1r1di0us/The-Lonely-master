@@ -183,6 +183,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public void init() {
         this.getMove();
         this.healthBarUpdatedEvent();
+        this.createIntent();
     }
 
     @Override
@@ -266,7 +267,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         this.setMove(null, nextMove, intent, -1, 0, false, false);
     }
 
-    //override the other setMove() functions so they do the funny when you set the move wrong
+    //you should override the other setMove() functions, so they do the funny when you set the move wrong
 
     //important update methods:
 

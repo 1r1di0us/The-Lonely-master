@@ -26,8 +26,13 @@ public class Overpower extends AbstractEasyCard {
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
+                this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+                break;
+            }
             int multiAmt = ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-            if (!m.isDeadOrEscaped() && ((multiAmt <= 1 && AbstractDungeon.player.currentBlock + this.block >= m.getIntentDmg())
+            if (!m.isDeadOrEscaped()
+                    && ((multiAmt <= 1 && AbstractDungeon.player.currentBlock + this.block >= m.getIntentDmg())
                     || (multiAmt > 1 && AbstractDungeon.player.currentBlock + this.block >= m.getIntentDmg() * multiAmt))) {
                 this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
                 break;

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.CallMoveAction;
+import lonelymod.actions.CompanionTakeTurnAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
@@ -20,11 +21,11 @@ public class Primal extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (upgraded) addToBot(new CompanionTakeTurnAction(false));
         addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {
-        this.exhaust = false;
         uDesc();
     }
 }

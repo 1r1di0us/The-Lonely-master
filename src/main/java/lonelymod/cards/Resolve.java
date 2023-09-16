@@ -3,11 +3,10 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import lonelymod.powers.LonelyPower;
 import lonelymod.powers.ResolvePower;
 import lonelymod.powers.SteelResolvePower;
 
@@ -29,7 +28,8 @@ public class Resolve extends AbstractEasyCard {
     @Override
     public void onChoseThisOption() { //this happens when you choose this card when playing Lonely
         this.freeToPlayOnce = true;
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new LonelyPower(AbstractDungeon.player, this)));
+        addToBot(new NewQueueCardAction(this, true, true, true));
+        //addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new LonelyPower(AbstractDungeon.player, this)));
     }
     
     @Override

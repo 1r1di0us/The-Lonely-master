@@ -1,15 +1,15 @@
 package lonelymod.potions;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+import lonelymod.KeywordManager;
 import lonelymod.actions.SpecialSauceCallAction;
 import lonelymod.fields.CompanionField;
 
@@ -33,9 +33,7 @@ public class SpecialSauce extends AbstractPotion {
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
         this.tips.add(new PowerTip(
-
-                TipHelper.capitalize(GameDictionary.STATUS.NAMES[0]), GameDictionary.keywords
-                .get(GameDictionary.STATUS.NAMES[0])));
+                KeywordManager.KEYWORDS.get("special_move").PROPER_NAME,KeywordManager.KEYWORDS.get("special_move").DESCRIPTION));
     }
 
     public void use(AbstractCreature target) {

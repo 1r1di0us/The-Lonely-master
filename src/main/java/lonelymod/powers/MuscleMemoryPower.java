@@ -48,7 +48,7 @@ public class MuscleMemoryPower extends AbstractEasyPower implements TriggerOnRet
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
 
     @Override

@@ -43,7 +43,7 @@
     "FLAVOR": "The laws written in this book are only the laws you have imposed upon yourself.",
     "DESCRIPTIONS": [
       "Gain [E] at the start of your turn. At the end of your turn, take #b",
-      " damage for every card still in your hand."
+      " damage for each card in your hand."
     ]
   },
   "${ModID}:ToyCat": {

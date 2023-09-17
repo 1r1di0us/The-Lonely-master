@@ -217,9 +217,14 @@ public class LonelyMod implements
         String json = Gdx.files.internal(modID + "Resources/localization/eng/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
 
+
+
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                if (keyword.ID != null) {
+                    KeywordManager.KEYWORDS.put(keyword.ID, keyword);
+                }
             }
         }
     }

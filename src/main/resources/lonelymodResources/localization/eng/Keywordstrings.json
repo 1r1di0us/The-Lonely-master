@@ -9,6 +9,7 @@
     "DESCRIPTION": "Replaces the current #yCompanion with a new one. While you have a card that can Call a #yMove in your deck, a #yCompanion will be automatically summoned at the start of combat."
   },
   {
+    "ID": "companion_move",
     "PROPER_NAME": "Companion Move",
     "NAMES": [
       "Companion_Move",
@@ -30,6 +31,7 @@
     "DESCRIPTION": "Tell your #yCompanion to perform this #yMove at the end of your turn. NL Calling another #yMove will override this #yMove."
   },
   {
+    "ID": "default_move",
     "PROPER_NAME": "Default",
     "NAMES": [
       "Default_Move",
@@ -42,6 +44,7 @@
     "DESCRIPTION": "Move: The weakest #yMove. NL #yCompanions will default to performing this #yMove on their turn."
   },
   {
+    "ID": "attack_move",
     "PROPER_NAME": "Attack",
     "NAMES": [
       "Attack_Move",
@@ -56,6 +59,7 @@
     "DESCRIPTION": "Move: Focuses on dealing damage to enemies."
   },
   {
+    "ID": "protect_move",
     "PROPER_NAME": "Protect",
     "NAMES": [
       "Protect_Move",
@@ -70,6 +74,7 @@
     "DESCRIPTION": "Move: Focuses on granting you #yBlock or weakening enemies."
   },
   {
+    "ID": "special_move",
     "PROPER_NAME": "Special",
     "NAMES": [
       "Special_Move",
@@ -82,6 +87,7 @@
     "DESCRIPTION": "Move: The most powerful #yMove. NL Effects vary greatly between #yCompanions."
   },
   {
+    "ID": "target",
     "PROPER_NAME": "Target",
     "NAMES": [
       "target",
@@ -91,9 +97,10 @@
       "Targeted",
       "targeted"
     ],
-    "DESCRIPTION": "Targeted creatures take 50% more damage from #yCompanions. NL #yCompanions will prioritize enemies with the most #yTarget."
+    "DESCRIPTION": "Targeted creatures take #b50% more damage from #yCompanions. NL #yCompanions will prioritize enemies with the most #yTarget."
   },
   {
+    "ID": "return",
     "PROPER_NAME": "Return",
     "NAMES": [
       "return",
@@ -112,6 +119,7 @@
     "DESCRIPTION": "Return this card to your hand at the start of next turn."
   },
   {
+    "ID": "plan",
     "PROPER_NAME": "Plan",
     "NAMES": [
       "plan",
@@ -135,6 +143,7 @@
     "DESCRIPTION": "The next attack you play deals X more damage."
   },
   {
+    "ID": "stamina",
     "PROPER_NAME": "Stamina",
     "NAMES": [
       "stamina",

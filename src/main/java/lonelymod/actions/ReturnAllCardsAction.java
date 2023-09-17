@@ -19,6 +19,7 @@ public class ReturnAllCardsAction extends AbstractGameAction {
     }
 
     public void update() {
+        boolean returnedACard = false;
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (ReturnField.willReturn.get(c)) {
                 if (turnOffReturn)
@@ -27,6 +28,7 @@ public class ReturnAllCardsAction extends AbstractGameAction {
                 if (c instanceof TriggerOnReturnInterface) {
                     ((TriggerOnReturnInterface) c).triggerOnReturn();
                 }
+                if (!returnedACard) returnedACard = true;
             }
         }
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
@@ -37,11 +39,14 @@ public class ReturnAllCardsAction extends AbstractGameAction {
                 if (c instanceof TriggerOnReturnInterface) {
                     ((TriggerOnReturnInterface) c).triggerOnReturn();
                 }
+                if (!returnedACard) returnedACard = true;
             }
         }
-        for (AbstractPower p : AbstractDungeon.player.powers) {
-            if (p instanceof TriggerOnReturnInterface) {
-                ((TriggerOnReturnInterface) p).triggerOnReturn();
+        if (returnedACard) {
+            for (AbstractPower p : AbstractDungeon.player.powers) {
+                if (p instanceof TriggerOnReturnInterface) {
+                    ((TriggerOnReturnInterface) p).triggerOnReturn();
+                }
             }
         }
         this.isDone = true;

@@ -35,7 +35,7 @@
   "${ModID}:AdaptPower": {
     "NAME": "Adapting",
     "DESCRIPTIONS": [
-      "Next time you play *",
+      "Next time you play #y",
       " this turn, gain #b",
       " #yBlock."
     ]
@@ -114,7 +114,7 @@
   "${ModID}:RecoveryPower": {
     "NAME": "Recovery",
     "DESCRIPTIONS": [
-      "Whenever you #yCall a #yMove while your #yCompanion intends to #yProtect, gain ",
+      "Whenever you #yCall a #yMove while your #yCompanion intends to #yProtect, gain #b",
       " Energy."
     ]
   },
@@ -175,7 +175,8 @@
   "${ModID}:MuscleMemoryPower": {
     "NAME": "Muscle Memory",
     "DESCRIPTIONS": [
-      "Whenever you #yReturn all the cards that will #yReturn, gain [E]."
+      "Whenever you #yReturn all the cards that will #yReturn, gain #b",
+      " Energy."
     ]
   },
   "${ModID}:ResolvePower": {
@@ -235,8 +236,8 @@
   "${ModID}:AttackNextTurnPower": {
     "NAME": "Attack Next Turn",
     "DESCRIPTIONS": [
-      "At the start of next turn, #yCall #yAttack.",
-      "At the start of the next #b",
+      "At the start of your next turn, #yCall #yAttack.",
+      "At the start of your next #b",
       " turns, #yCall #yAttack."
     ]
   },

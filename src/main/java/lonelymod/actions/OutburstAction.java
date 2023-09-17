@@ -56,36 +56,60 @@ public class OutburstAction extends AbstractGameAction {
         this.isDone = true;
     } else {
         if (this.duration == this.startDuration) {
-            if (this.player.discardPile.isEmpty()) {
+            if (!this.player.discardPile.isEmpty()) {
+                for (int i = 0; i < this.player.discardPile.group.size(); i++) {
+                    if (this.player.discardPile.group.get(i).type == CardType.ATTACK) {
+                        attackInDiscard = true;
+                        //discard pile is not empty and contains at least 1 attack
+                        break;
+                    }
+                }
+            }
+            if (!attackInDiscard) {
                 this.isDone = true;
                 return;
             }
             CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : this.player.discardPile.group)
-                if (c.type == CardType.ATTACK) {
+                if (c.type == CardType.ATTACK)
                     temp.addToTop(c);
-                } 
+
+            if (temp.size() == 1) { //only one attack in discard
+                AbstractCard c = temp.getTopCard();
+                c.exhaust = true;
+                AbstractDungeon.player.discardPile.group.remove(c);
+                (AbstractDungeon.getCurrRoom()).souls.remove(c);
+                addToBot(new NewQueueCardAction(c, true, false, true));
+                for (int i = 0; i < this.playAmt - 1; i++) {
+                    AbstractCard tmp = c.makeStatEquivalentCopy();
+                    tmp.purgeOnUse = true;
+                    addToBot(new NewQueueCardAction(tmp, true, false, true));
+                }
+                this.isDone = true;
+                return;
+            }
+            //otherwise...
             temp.sortAlphabetically(true);
             temp.sortByRarityPlusStatusCardType(false);
             AbstractDungeon.gridSelectScreen.open(temp, 1, TEXT[0], false);
             tickDuration();
             return;
-        } 
+        }
         if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-        for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-            c.exhaust = true;
-            AbstractDungeon.player.discardPile.group.remove(c);
-            (AbstractDungeon.getCurrRoom()).souls.remove(c);
-            addToBot(new NewQueueCardAction(c, true, false, true));
-            for (int i = 0; i < this.playAmt - 1; i++) {
-                AbstractCard tmp = c.makeStatEquivalentCopy();
-                tmp.purgeOnUse = true;
-                addToBot(new NewQueueCardAction(tmp, true, false, true));
-            } 
-        } 
-        AbstractDungeon.gridSelectScreen.selectedCards.clear();
-        AbstractDungeon.player.hand.refreshHandLayout();
-        } 
+            for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+                c.exhaust = true;
+                AbstractDungeon.player.discardPile.group.remove(c);
+                (AbstractDungeon.getCurrRoom()).souls.remove(c);
+                addToBot(new NewQueueCardAction(c, true, false, true));
+                for (int i = 0; i < this.playAmt - 1; i++) {
+                    AbstractCard tmp = c.makeStatEquivalentCopy();
+                    tmp.purgeOnUse = true;
+                    addToBot(new NewQueueCardAction(tmp, true, false, true));
+                }
+            }
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            AbstractDungeon.player.hand.refreshHandLayout();
+        }
         tickDuration();
     }
   }

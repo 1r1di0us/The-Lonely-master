@@ -22,7 +22,7 @@
   },
   "${ModID}:Kill": {
     "NAME": "Kill!",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of the next !M! turns, lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of your next !M! turns, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Marker": {
     "NAME": "Marker",
@@ -30,7 +30,7 @@
   },
   "${ModID}:Overthrow": {
     "NAME": "Overthrow",
-    "DESCRIPTION": "Deal !D! Damage. NL If you have run out of energy, apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! Damage. NL If you have no energy, apply !M! Vulnerable."
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",
@@ -58,8 +58,8 @@
   },
   "${ModID}:ActionPlan": {
     "NAME": "Action Plan",
-    "DESCRIPTION": "Gain !B! Block and lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block and lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack and draw !M! card."
+    "DESCRIPTION": "Gain !B! Block. NL lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL lonelymod:Call lonelymod:Protect. NL Next turn, lonelymod:Call lonelymod:Attack and draw !M! card."
   },
   "${ModID}:Adapt": {
     "NAME": "Adapt",
@@ -103,7 +103,7 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, it gains !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks the enemy, it gains !M! Strength."
   },
   "${ModID}:FieryArrow": {
     "NAME": "Fiery Arrow",
@@ -163,7 +163,7 @@
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
-    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of this combat. NL Gain !${ModID}:m2! lonelymod:Stamina."
+    "DESCRIPTION": "lonelymod:Plan !M!. NL Upgrade selected cards for the rest of combat. NL Gain !${ModID}:m2! lonelymod:Stamina."
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
@@ -187,7 +187,7 @@
   },
   "${ModID}:Preside": {
     "NAME": "Preside",
-    "DESCRIPTION": "Gain !B! Block. At the start of the next !M! turns, gain that much Block."
+    "DESCRIPTION": "Gain !B! Block. At the start of your next !M! turns, gain that much Block."
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
@@ -220,7 +220,7 @@
   },
   "${ModID}:PlanB": {
     "NAME": "Plan B",
-    "DESCRIPTION": "Whenever you lonelymod:Plan, gain !M! Vigor for every card you didn't select."
+    "DESCRIPTION": "Whenever you lonelymod:Plan, gain !M! Vigor for each card you didn't select."
   },
   "${ModID}:Recovery": {
     "NAME": "Recovery",
@@ -257,8 +257,8 @@
   },
   "${ModID}:Dominate": {
     "NAME": "Dominate",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage, enemy loses !${ModID}:m2! Strength. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! damage or less, enemy loses !${ModID}:m2! Strength. Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",

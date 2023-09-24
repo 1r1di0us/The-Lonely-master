@@ -15,15 +15,17 @@ public class FieryArrow extends AbstractEasyCard {
 
     public FieryArrow() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 10;
+        baseDamage = 12;
+        baseSecondDamage = 6;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        addToBot(new ApplyPowerAction(m, p, new FieryArrowPower(m, 3, this.damage)));
+        addToBot(new ApplyPowerAction(m, p, new FieryArrowPower(m, 3, this.secondDamage)));
     }
 
     public void upp() {
         upgradeDamage(2);
+        upgradeSecondDamage(1);
     }
 }

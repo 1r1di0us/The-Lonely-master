@@ -135,15 +135,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void performMove(byte move);
 
     public abstract void callDefault();
-    public void callMainMove(byte move, boolean flashIntent, boolean makeIntent, boolean triggerPowers) {
+    public void callMainMove(byte move, boolean flashIntent, boolean makeIntent) {
         if (flashIntent) flashIntent();
-        if (triggerPowers) {
-            for (AbstractPower p : AbstractDungeon.player.powers)
-                if (p instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, this.nextMove);
-            VentFrustration.movesCalledThisTurn++;
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
-                if (c instanceof TriggerOnCallMoveInterface) ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move, this.nextMove);
-        }
         switch (move) {
             case ATTACK:
                 callAttack();

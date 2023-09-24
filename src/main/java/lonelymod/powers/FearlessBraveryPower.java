@@ -56,12 +56,15 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
 
     @Override
     public void atStartOfTurnPostDraw() {
+        boolean gainVigor = true;
         for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
-                addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
-                addToBot(new DrawCardAction(this.owner, this.drawAmount * this.amount));
-                return;
+            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
+                gainVigor = false;
             }
+        }
+        if (gainVigor) {
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
+            addToBot(new DrawCardAction(this.owner, this.drawAmount * this.amount));
         }
     }
 

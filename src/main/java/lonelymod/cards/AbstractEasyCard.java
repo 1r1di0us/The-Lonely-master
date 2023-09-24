@@ -44,6 +44,11 @@ public abstract class AbstractEasyCard extends CustomCard {
     public boolean upgradedSecondDamage;
     public boolean isSecondDamageModified;
 
+    public int secondBlock;
+    public int baseSecondBlock;
+    public boolean upgradedSecondBlock;
+    public boolean isSecondBlockModified;
+
     private boolean needsArtRefresh = false;
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
@@ -98,6 +103,25 @@ public abstract class AbstractEasyCard extends CustomCard {
     }
 
     @Override
+    public void applyPowersToBlock() {
+        if (baseSecondDamage > -1) {
+            secondBlock = baseSecondBlock;
+
+            int tmp = baseBlock;
+            baseBlock = baseSecondBlock;
+
+            super.applyPowersToBlock();
+
+            secondBlock = block;
+            baseBlock = tmp;
+
+            super.applyPowersToBlock();
+
+            isSecondBlockModified = (secondBlock != baseSecondBlock);
+        } else super.applyPowersToBlock();
+    }
+
+    @Override
     public void applyPowers() {
         if (baseSecondDamage > -1) {
             secondDamage = baseSecondDamage;
@@ -143,6 +167,8 @@ public abstract class AbstractEasyCard extends CustomCard {
         isThirdMagicModified = false;
         secondDamage = baseSecondDamage;
         isSecondDamageModified = false;
+        secondBlock = baseSecondBlock;
+        isSecondBlockModified = false;
     }
 
     public void displayUpgrades() {
@@ -158,6 +184,10 @@ public abstract class AbstractEasyCard extends CustomCard {
         if (upgradedSecondDamage) {
             secondDamage = baseSecondDamage;
             isSecondDamageModified = true;
+        }
+        if (upgradedSecondBlock) {
+            secondBlock = baseSecondBlock;
+            isSecondBlockModified = true;
         }
     }
 
@@ -177,6 +207,12 @@ public abstract class AbstractEasyCard extends CustomCard {
         baseSecondDamage += amount;
         secondDamage = baseSecondDamage;
         upgradedSecondDamage = true;
+    }
+
+    protected void upgradeSecondBlock(int amount) {
+        baseSecondBlock += amount;
+        secondBlock = baseSecondBlock;
+        upgradedSecondBlock = true;
     }
 
     protected void uDesc() {
@@ -247,6 +283,10 @@ public abstract class AbstractEasyCard extends CustomCard {
 
     protected void upSecondDamage(int x) {
         upgradeSecondDamage(x);
+    }
+
+    protected void upSecondBlock(int x) {
+        upgradeSecondBlock(x);
     }
 
     public static class Enums {

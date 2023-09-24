@@ -1,11 +1,10 @@
 package lonelymod.powers;
 
-import basemod.ReflectionHacks;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,8 +19,7 @@ import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class MeatPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
-
+public class MeatPower extends AbstractEasyPower implements CloneablePowerInterface {
     public static final String POWER_ID = makeID("MeatPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -31,21 +29,15 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Meat32.png");
 
     private static final int WeakAmt = 1;
-    //private int turnHp;
-    private final ArrayList<AbstractMonster> attackingMons = new ArrayList<>();
 
-    public AbstractCreature creature;
-
-    public boolean firstUselessTrigger = true; //ApplyTurnMeatPowerPatch is too confusing for me. All I know is that it gets called too many times.
-
-    public MeatPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
+    public MeatPower(AbstractCreature owner, int amount) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
 
         type = PowerType.BUFF;
         isTurnBased = false;
-        this.amount = 1;
+        this.amount = amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -60,46 +52,36 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     }
 
     @Override
-    public void duringTurn() {
-        firstUselessTrigger = true;
-        //this.turnHp = AbstractDungeon.player.currentHealth;
-        this.attackingMons.clear();
-        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!mon.isDeadOrEscaped() && mon.getIntentBaseDmg() >= 0) {
-                this.attackingMons.add(mon);
+    public void atEndOfRound() {
+        if (this.amount > 0) {
+            flash();
+            this.amount = 0;
+            updateDescription();
+            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (!m.isDeadOrEscaped()) {
+                    addToBot(new ApplyPowerAction(m, this.owner, new WeakPower(m, WeakAmt, false)));
+                }
             }
         }
     }
 
     @Override
-    public void onSpecificTrigger() {
-        if (firstUselessTrigger) {
-            firstUselessTrigger = false;
-        }
-        else {
-            if (creature instanceof AbstractMonster) {
-                int multiAmt = ReflectionHacks.getPrivate(creature, AbstractMonster.class, "intentMultiAmt");
-                if (multiAmt > 1) {
-                    if (AbstractDungeon.player.currentBlock >= ((AbstractMonster) creature).getIntentDmg() * multiAmt && this.attackingMons.contains((AbstractMonster) creature))
-                        addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));
-                }
-                else {
-                    if (AbstractDungeon.player.currentBlock >= ((AbstractMonster) creature).getIntentDmg() && this.attackingMons.contains((AbstractMonster) creature))
-                        addToBot(new ApplyPowerAction(creature, this.owner, new WeakPower(creature, WeakAmt, true), WeakAmt));
-                }
-            }
-/*            if (AbstractDungeon.player.currentHealth != this.turnHp)
-                this.turnHp = AbstractDungeon.player.currentHealth;*/
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        if (!isPlayer && AbstractDungeon.player.energy.energy > 0) {
+            addToBot(new LoseEnergyAction(1));
+            flash();
+            this.amount++;
+            updateDescription();
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + WeakAmt + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + 1 + DESCRIPTIONS[1] + WeakAmt + DESCRIPTIONS[2];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new MeatPower(this.owner);
+        return new MeatPower(this.owner, this.amount);
     }
 }

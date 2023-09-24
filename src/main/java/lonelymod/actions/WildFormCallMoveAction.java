@@ -17,13 +17,13 @@ public class WildFormCallMoveAction extends AbstractGameAction {
     public void update() {
         switch (move) {
             case 1:
-                currCompanion.callMainMove(AbstractCompanion.ATTACK, false, true, true);
+                currCompanion.callMainMove(AbstractCompanion.ATTACK, false, true);
                 break;
             case 2:
-                currCompanion.callMainMove(AbstractCompanion.PROTECT, false, true, true);
+                currCompanion.callMainMove(AbstractCompanion.PROTECT, false, true);
                 break;
             case 3:
-                currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, true, true);
+                currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, true);
                 break;
         }
         this.isDone = true;

@@ -5,31 +5,31 @@ import static lonelymod.LonelyMod.makeID;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class BraveryPower extends AbstractEasyPower implements CloneablePowerInterface {
-   
-    public static final String POWER_ID = makeID("BraveryPower");
+public class PinDownPlusPower extends AbstractEasyPower implements CloneablePowerInterface {
+
+    public static final String POWER_ID = makeID("PinDownPlusPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bravery84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bravery32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/PinDown84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/PinDown32.png");
 
-    private final int vigAmount;
 
-    public BraveryPower(AbstractCreature owner, int amount, int vigAmount) {
+    public PinDownPlusPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -37,7 +37,6 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
-        this.vigAmount = vigAmount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,23 +51,27 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        boolean gainVigor = true;
-        for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
-            if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() < 0) {
-                gainVigor = false;
-            }
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        if (damageAmount - target.currentBlock > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
+            flash();
+            addToBot(new ApplyPowerAction(target, this.owner, new TargetPower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new VulnerablePower(target, this.amount, false), this.amount));
+            addToBot(new ApplyPowerAction(target, this.owner, new WeakPower(target, this.amount, false), this.amount));
         }
-        if (gainVigor) addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        if (isPlayer) addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.vigAmount * this.amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new BraveryPower(this.owner, this.amount, this.vigAmount);
+        return new PinDownPower(this.owner, this.amount);
     }
 }

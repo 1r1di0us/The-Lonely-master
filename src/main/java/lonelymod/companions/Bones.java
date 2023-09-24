@@ -153,26 +153,26 @@ public class Bones extends AbstractCompanion {
 
     @Override
     public void callAttack() {
-        if (hasPower(BonesPower.POWER_ID)) {
+        /*if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }
+        }*/
         getTarget();
         setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
     }
 
     @Override
     public void callProtect() {
-        if (hasPower(BonesPower.POWER_ID)) {
+        /*if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }
+        }*/
         setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
     }
 
     @Override
     public void callSpecial() {
-        if (hasPower(BonesPower.POWER_ID)) {
+        /*if (hasPower(BonesPower.POWER_ID)) {
             getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }
+        }*/
         setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
     }
 

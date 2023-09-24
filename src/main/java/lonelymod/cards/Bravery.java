@@ -18,7 +18,7 @@ public class Bravery extends AbstractEasyCard {
     public Bravery() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         baseMagicNumber = magicNumber = 12;
-        baseSecondMagic = secondMagic = 0;
+        baseSecondMagic = secondMagic = 1;
     }
     
     @Override
@@ -36,7 +36,6 @@ public class Bravery extends AbstractEasyCard {
 
     @Override
     public void upp() {
-        upgradeSecondMagic(1);
         uDesc();
     }
 }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.*;
 import lonelymod.actions.ReturnAllCardsAction;
 import lonelymod.cards.AbstractEasyCard;
+import lonelymod.cards.cardvars.SecondBlock;
 import lonelymod.cards.cardvars.SecondDamage;
 import lonelymod.cards.cardvars.SecondMagicNumber;
 import lonelymod.cards.cardvars.ThirdMagicNumber;
@@ -149,8 +150,9 @@ public class LonelyMod implements
     @Override
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new SecondMagicNumber());
-        BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new ThirdMagicNumber());
+        BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new SecondBlock());
         new AutoAdd(modID)
                 .packageFilter(AbstractEasyCard.class)
                 .setDefaultSeen(true)

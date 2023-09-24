@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class OutcastPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class OutcastPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnCallMoveInterface {
     public static final String POWER_ID = makeID("OutcastPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -52,6 +53,17 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
             description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
         else
             description = DESCRIPTIONS[0];
+    }
+
+    @Override
+    public void triggerOnCallMove(byte move, byte prevMove) {
+        flash();
+        if (this.amount == 3) {
+            this.amount = 1;
+        } else {
+            this.amount++;
+        }
+        updateDescription();
     }
 
     @Override

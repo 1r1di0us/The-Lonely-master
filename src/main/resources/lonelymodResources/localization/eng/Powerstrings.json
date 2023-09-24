@@ -68,8 +68,15 @@
   "${ModID}:PinDownPower": {
     "NAME": "Pin Down",
     "DESCRIPTIONS": [
-      "Whenever you deal unblocked damage this turn, apply #b",
-      " #yTarget, #yWeak, and #yVulnerable."
+      "Whenever you deal unblocked attack damage this turn, apply #b",
+      " #yTarget and #yVulnerable."
+    ]
+  },
+  "${ModID}:PinDownPlusPower": {
+    "NAME": "Pin Down+",
+    "DESCRIPTIONS": [
+      "Whenever you deal unblocked attack damage this turn, apply #b",
+      "#yTarget, #yVulnerable, and #yWeak."
     ]
   },
   "${ModID}:PresidePower": {
@@ -144,14 +151,14 @@
   "${ModID}:BraveryPower": {
     "NAME": "Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any enemy intends to attack, Gain #b",
+      "At the start of your turn, if ALL enemies intend to attack, Gain #b",
       " #yVigor."
     ]
   },
   "${ModID}:FearlessBraveryPower": {
     "NAME": "Fearless Bravery",
     "DESCRIPTIONS": [
-      "At the start of your turn, if any enemy intends to attack, Gain #b",
+      "At the start of your turn, if ALL enemies intend to attack, Gain #b",
       " #yVigor and draw #b",
       " card."
     ]
@@ -265,10 +272,11 @@
     ]
   },
   "${ModID}:MeatPower": {
-    "NAME": "Intimidate",
+    "NAME": "Intimidating",
     "DESCRIPTIONS": [
-      "Whenever you fully #yBlock an enemy's attack, apply #b",
-      " #yWeak to that enemy."
+      "At the end of your turn, takes up to #b",
+      " leftover #yEnergy from you and stores it. NL At the start of your turn, spends stored energy to apply #b",
+      " #yWeak to ALL enemies."
     ]
   },
   "${ModID}:OmenPower": {
@@ -325,6 +333,13 @@
     "DESCRIPTIONS": [
       "Whenever you lose HP, he gains #b",
       " #yStrength."
+    ]
+  },
+  "${ModID}:DEPRECATEDMeatPower": {
+    "NAME": "Intimidate",
+    "DESCRIPTIONS": [
+      "Whenever you fully #yBlock an enemy's attack, apply #b",
+      " #yWeak to that enemy."
     ]
   }
 }

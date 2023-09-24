@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.powers.CompanionVigorPower;
@@ -32,7 +33,7 @@ public class Meat extends AbstractCompanion {
 
     private static final int DEFAULT_PWR_AMT = 2;
     private static final int ATTACK_DMG = 8, ATTACK_AMT = 2, ATTACK_EMP_AMT = 3;
-    private static final int PROTECT_BLK = 5, PROTECT_AMT = 3;
+    private static final int PROTECT_BLK = 5, PROTECT_AMT = 3, PROTECT_ENERGY = 1;
     private static final int PROTECT_PWR_AMT = 5; //Was thinking of causing protect to increase constricted on constricted targets.
     private static final int SPECIAL_DMG = 25;
     private int attackDmg;
@@ -51,7 +52,7 @@ public class Meat extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToTop(new ApplyPowerAction(this, this, new MeatPower(this), -1));
+        addToTop(new ApplyPowerAction(this, this, new MeatPower(this, 0)));
     }
 
     @Override
@@ -77,6 +78,9 @@ public class Meat extends AbstractCompanion {
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
+                if (hasPower(MeatPower.POWER_ID) && getPower(MeatPower.POWER_ID).amount > 0) {
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, PROTECT_ENERGY)));
+                }
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
@@ -116,6 +120,9 @@ public class Meat extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
+                if (hasPower(MeatPower.POWER_ID) && getPower(MeatPower.POWER_ID).amount > 0) {
+                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, PROTECT_ENERGY)));
+                }
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
@@ -179,17 +186,17 @@ public class Meat extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[7] + this.intentBlk + INTENTS[8] + PROTECT_AMT + INTENTS[9];
+                this.intentTip.body = INTENTS[7] + this.intentBlk + INTENTS[8] + PROTECT_AMT + INTENTS[9] + PROTECT_ENERGY + INTENTS[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[10] + this.intentDmg + INTENTS[11];
+                this.intentTip.body = INTENTS[11] + this.intentDmg + INTENTS[12];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[12];
+                this.intentTip.body = INTENTS[13];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -215,13 +222,13 @@ public class Meat extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_AMT + INTENT_TOOLTIPS[5] + PROTECT_ENERGY + INTENT_TOOLTIPS[6];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[6] + this.damage.get(1).output + INTENT_TOOLTIPS[7];
+                    return INTENT_TOOLTIPS[7] + this.damage.get(1).output + INTENT_TOOLTIPS[8];
                 }
         }
         return "";

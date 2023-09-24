@@ -3,12 +3,10 @@ package lonelymod.patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import lonelymod.LonelyCharacter;
 import lonelymod.fields.CompanionField;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
         clz=MonsterGroup.class,
         method="applyEndOfTurnPowers"
 )
-public class CompanionEndOfTurnPowersPatch {
+public class CompanionEndOfRoundPowersPatch {
 
     @SpireInsertPatch(
             locator=Locator.class,
@@ -27,7 +25,7 @@ public class CompanionEndOfTurnPowersPatch {
     public static void Insert(MonsterGroup __instance) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             for (AbstractPower p: CompanionField.currCompanion.get(AbstractDungeon.player).powers)
-                p.atEndOfRound();
+                p.atEndOfRound(); //this means at the end of the round, which is at the start of the turn.
     }
 
     private static class Locator extends SpireInsertLocator {

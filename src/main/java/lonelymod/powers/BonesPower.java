@@ -10,11 +10,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class BonesPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class BonesPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower, TriggerOnCallMoveInterface {
 
     public static final String POWER_ID = makeID("BonesPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -66,6 +67,13 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
             this.amount = 0;
             updateDescription();
         }
+    }
+
+    @Override
+    public void triggerOnCallMove(byte move, byte prevMove) {
+        flash();
+        this.amount++;
+        updateDescription();
     }
 
     @Override

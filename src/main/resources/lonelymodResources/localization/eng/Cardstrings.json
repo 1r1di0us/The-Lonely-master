@@ -107,15 +107,15 @@
   },
   "${ModID}:FieryArrow": {
     "NAME": "Fiery Arrow",
-    "DESCRIPTION": "Deal !D! damage. NL The enemy takes that much damage at the start of its next 3 turns."
+    "DESCRIPTION": "Deal !D! damage. NL The enemy takes !${ModID}:sd! damage at the start of its next 3 turns."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals unblocked damage, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! or more unblocked damage, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. Next turn, add a copy of this card to your hand. lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this card into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -124,8 +124,7 @@
   },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
-    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain !B! Block X+1 times."
+    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times."
   },
   "${ModID}:VentFrustration": {
     "NAME": "Vent Frustration",
@@ -183,11 +182,12 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Weak, and Vulnerable."
+    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Vulnerable and Weak."
   },
   "${ModID}:Preside": {
     "NAME": "Preside",
-    "DESCRIPTION": "Gain !B! Block. At the start of your next !M! turns, gain that much Block."
+    "DESCRIPTION": "Gain !B! Block. At the start of your next !M! turns, gain !${ModID}:sb! Block."
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
@@ -257,7 +257,7 @@
   },
   "${ModID}:Dominate": {
     "NAME": "Dominate",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. NL Exhaust.",
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
   },
   "${ModID}:ExponentialForce": {
@@ -302,8 +302,8 @@
   },
   "${ModID}:Bravery": {
     "NAME": "Bravery",
-    "DESCRIPTION": "At the start of your turn, if any enemy intends to attack, gain !M! Vigor.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, if any enemy intends to attack, gain !M! Vigor and draw !${ModID}:m2! card."
+    "DESCRIPTION": "At the start of your turn, if ALL enemies intend to attack, gain !M! Vigor.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, if ALL enemies intend to attack, gain !M! Vigor and draw !${ModID}:m2! card."
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",

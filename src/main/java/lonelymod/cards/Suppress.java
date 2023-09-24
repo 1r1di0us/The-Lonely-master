@@ -30,7 +30,7 @@ public class Suppress extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
-        uDesc();
+        upgradeDamage(2);
+        upgradeBlock(2);
     }
 }

@@ -29,6 +29,6 @@ public class TwistedChant extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
     }
 }

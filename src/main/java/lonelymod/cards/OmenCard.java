@@ -56,6 +56,6 @@ public class OmenCard extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(-2);
+        upgradeMagicNumber(-1);
     }
 }

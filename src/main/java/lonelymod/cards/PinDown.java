@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import lonelymod.powers.PinDownPlusPower;
 import lonelymod.powers.PinDownPower;
 
 public class PinDown extends AbstractEasyCard{
@@ -17,10 +18,11 @@ public class PinDown extends AbstractEasyCard{
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new PinDownPower(p, this.magicNumber), this.magicNumber));
+        if (!upgraded) addToBot(new ApplyPowerAction(p, p, new PinDownPower(p, this.magicNumber), this.magicNumber));
+        else addToBot(new ApplyPowerAction(p, p, new PinDownPlusPower(p, this.magicNumber), this.magicNumber));
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        uDesc();
     }
 }

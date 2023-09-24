@@ -72,7 +72,8 @@
 
       "Meat intends to grant you #b",
       " #yBlock #b",
-      " times.",
+      " times. If Meat has any stored energy, Grants you #b",
+      " Energy next turn.",
 
       "Meat intends to attack an enemy for #b",
       " damage. If the target is #yWeakened, Meat will apply #yConstricted equal to the damage dealt.",
@@ -82,11 +83,12 @@
     "INTENT_TOOLTIPS": [
       "Deals #b",
       " damage #b",
-      " times, hits one more time if the enemy is #yConstricted.",
+      " times. If the enemy is #yConstricted, hits one more time.",
 
       "Grants #b",
       " #yBlock #b",
-      " times.",
+      " times. If he has any stored #yEnergy, Grants you #b",
+      " #yEnergy next turn.",
 
       "Deals #b",
       " damage. If the enemy is #yWeakened, applies #yConstricted equal to the damage dealt."

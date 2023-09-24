@@ -2,8 +2,10 @@ package lonelymod.powers;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -19,7 +21,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-public class FieryArrowPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class FieryArrowPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower, HealthBarRenderPower {
 
     public static final String POWER_ID = makeID("FieryArrowPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -76,5 +78,15 @@ public class FieryArrowPower extends AbstractEasyPower implements CloneablePower
     @Override
     public AbstractPower makeCopy() {
         return new FieryArrowPower(this.owner, this.amount, this.damageAmt);
+    }
+
+    @Override
+    public int getHealthBarAmount() {
+        return this.damageAmt;
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.YELLOW;
     }
 }

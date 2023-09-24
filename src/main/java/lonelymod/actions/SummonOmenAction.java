@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Bones;
 import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
@@ -36,7 +35,13 @@ public class SummonOmenAction extends AbstractGameAction {
             }
             this.c = new Omen(-750, -40);
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
-            this.c.init();
+            if (!onBattleStart) { //in case you have wild form, and you use omen then default move doesn't happen
+                this.c.callNone();
+                this.c.healthBarUpdatedEvent();
+                this.c.createIntent();
+            } else {
+                this.c.init();
+            }
             //this.c.animX = 1200.0F * Settings.xScale;
             this.c.applyPowers();
         }

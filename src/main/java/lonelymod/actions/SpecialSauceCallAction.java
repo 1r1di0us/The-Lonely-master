@@ -14,7 +14,7 @@ public class SpecialSauceCallAction extends AbstractGameAction {
     }
 
     public void update() {
-        currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, false, true);
+        currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, false);
         currCompanion.performMove(AbstractCompanion.SPECIAL);
         currCompanion.applyTurnPowers();
         switch (prevMove) {
@@ -22,13 +22,13 @@ public class SpecialSauceCallAction extends AbstractGameAction {
                 currCompanion.callDefault();
                 break;
             case AbstractCompanion.ATTACK:
-                currCompanion.callMainMove(AbstractCompanion.ATTACK, false, false, false);
+                currCompanion.callMainMove(AbstractCompanion.ATTACK, false, false);
                 break;
             case AbstractCompanion.PROTECT:
-                currCompanion.callMainMove(AbstractCompanion.PROTECT, false, false, false);
+                currCompanion.callMainMove(AbstractCompanion.PROTECT, false, false);
                 break;
             case AbstractCompanion.SPECIAL:
-                currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, false, false);
+                currCompanion.callMainMove(AbstractCompanion.SPECIAL, false, false);
                 break;
         }
         this.isDone = true;

@@ -3,13 +3,11 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.fields.ReturnField;
-import lonelymod.powers.AddCardToHandPower;
 
 public class OverflowingQuiver extends AbstractEasyCard {
     public final static String ID = makeID("OverflowingQuiver");
@@ -23,17 +21,17 @@ public class OverflowingQuiver extends AbstractEasyCard {
 
     public OverflowingQuiver() {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = 3;
+        baseDamage = 4;
         this.isEthereal = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        addToBot(new ApplyPowerAction(p, p, new AddCardToHandPower(p, 1, this.makeStatEquivalentCopy(), false)));
+        addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true, false));
         ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {
-        upgradeDamage(1);
+        upgradeDamage(2);
     }
 }

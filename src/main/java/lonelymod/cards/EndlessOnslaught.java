@@ -5,7 +5,6 @@ import static lonelymod.LonelyMod.makeID;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.defect.GashAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.fields.ReturnField;
@@ -15,7 +14,7 @@ public class EndlessOnslaught extends AbstractEasyCard {
 
     public EndlessOnslaught() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 5;
+        baseDamage = 6;
         baseMagicNumber = magicNumber = 2;
     }
 

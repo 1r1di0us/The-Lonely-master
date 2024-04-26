@@ -15,8 +15,6 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
-import java.util.ArrayList;
-
 import static lonelymod.LonelyMod.makeID;
 
 public class MeatPower extends AbstractEasyPower implements CloneablePowerInterface {

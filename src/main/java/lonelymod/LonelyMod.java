@@ -159,6 +159,7 @@ public class LonelyMod implements
                 .notPackageFilter("lonelymod.cards.democards.complex")
                 .notPackageFilter("lonelymod.cards.democards.simple")
                 .notPackageFilter("lonelymod.cards.deprecated")
+                .notPackageFilter("lonelymod.cards.summonmoves")
                 .cards();
     }
 

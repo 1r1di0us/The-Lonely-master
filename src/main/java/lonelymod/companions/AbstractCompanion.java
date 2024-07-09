@@ -60,6 +60,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
     private float hoverTimer = 0.0F;
     private float intentAngle = 0.0F;
+
     public PowerTip intentTip = new PowerTip();
     public Texture intentImg = null;
     public ArrayList<BlockInfo> block = new ArrayList<>();
@@ -88,8 +89,12 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte NONE = 5;
     private boolean isBlockModified = false;
 
-    //in order to target the companion with a card you must add the card to CompanionField.playableCards.get(AbstractDungeon.player) in your summon
-    //then you must Use useTheCard to implement the seperate functionality when the card is played on the companion.
+    //card preview stuff
+    protected float cardDrawScale = 0.7F;
+    protected AbstractCard cardsToPreview = null; //naming them opposite since that's the way they are in AbstractCard
+    protected ArrayList<AbstractCard> cardToPreview = new ArrayList<>();
+    protected int previewIndex = 0;
+    protected float rotationTimer = 0.f;
 
     public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -170,6 +175,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public abstract String getKeywordMoveTip(byte move, boolean head);
 
+    //in order to target the companion with a card you must add the card to CompanionField.playableCards.get(AbstractDungeon.player) in your summon
+    //then you must Use useTheCard to implement the seperate functionality when the card is played on the companion.
     public abstract void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m);
 
     @Override
@@ -286,6 +293,26 @@ public abstract class AbstractCompanion extends AbstractMonster {
         } else {
             CompanionField.hoveredCompanion.set(AbstractDungeon.player, null);
         }
+
+        if (!cardToPreview.isEmpty()) {
+            if (hb.hovered) {
+                if (rotationTimer <= 0F) {
+                    rotationTimer = getRotationTimeNeeded();
+                    cardsToPreview = cardToPreview.get(previewIndex);
+                    if (previewIndex == cardToPreview.size() - 1) {
+                        previewIndex = 0;
+                    } else {
+                        previewIndex++;
+                    }
+                } else {
+                    rotationTimer -= Gdx.graphics.getDeltaTime();
+                }
+            }
+        }
+    }
+
+    public float getRotationTimeNeeded() {
+        return 2.5f;
     }
 
 
@@ -524,6 +551,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     public void renderTip(SpriteBatch sb) {
+
         this.tips.clear();
         if (this.intentAlphaTarget == 1.0F && this.intent != AbstractMonster.Intent.NONE) {
             this.tips.add(this.intentTip);
@@ -531,8 +559,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
         Iterator var2 = this.powers.iterator();
 
-        while(var2.hasNext()) {
-            AbstractPower p = (AbstractPower)var2.next();
+        while (var2.hasNext()) {
+            AbstractPower p = (AbstractPower) var2.next();
             if (p.region48 != null) {
                 this.tips.add(new PowerTip(p.name, p.description, p.region48));
             } else {
@@ -547,6 +575,22 @@ public abstract class AbstractCompanion extends AbstractMonster {
                 TipHelper.queuePowerTips(this.hb.cX - this.hb.width / 2.0F + TIP_OFFSET_L_X, this.hb.cY + TipHelper.calculateAdditionalOffset(this.tips, this.hb.cY), this.tips);
             }
         }
+
+        if (this.cardsToPreview != null) {
+            renderCardPreview(sb);
+            return;
+        }
+    }
+
+    public void renderCardPreview(SpriteBatch sb) {
+        if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard)
+            return;
+        float tmpScale = cardDrawScale * 0.8F;
+        cardsToPreview.current_x = drawX - (AbstractCard.IMG_WIDTH / 2.0F + AbstractCard.IMG_WIDTH / 2.0F * 0.8F + 16.0F) * cardDrawScale;
+        cardsToPreview.current_y = drawY + (AbstractCard.IMG_HEIGHT / 2.0F - AbstractCard.IMG_HEIGHT / 2.0F * 0.8F) * cardDrawScale;
+
+        this.cardsToPreview.drawScale = tmpScale;
+        this.cardsToPreview.render(sb);
     }
 
     @Override

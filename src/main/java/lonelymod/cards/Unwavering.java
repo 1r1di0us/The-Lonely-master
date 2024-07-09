@@ -13,8 +13,8 @@ public class Unwavering extends AbstractEasyCard {
 
     public Unwavering() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = 12;
-        this.baseMagicNumber = this.magicNumber = 12;
+        baseBlock = 10;
+        this.baseMagicNumber = this.magicNumber = 10;
         //magic number just sets the thing in the description
         this.isEthereal = true;
     }

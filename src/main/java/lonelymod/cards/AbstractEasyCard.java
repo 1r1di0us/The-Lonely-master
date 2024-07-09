@@ -25,6 +25,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import java.util.ArrayList;
+
 public abstract class AbstractEasyCard extends CustomCard {
 
     protected final CardStrings cardStrings;
@@ -50,6 +52,10 @@ public abstract class AbstractEasyCard extends CustomCard {
     public boolean isSecondBlockModified;
 
     private boolean needsArtRefresh = false;
+
+    protected ArrayList<AbstractCard> cardToPreview = new ArrayList<>();
+    protected int previewIndex = 0;
+    protected float rotationTimer = 0.f;
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, LonelyCharacter.Enums.YELLOW);
@@ -234,6 +240,25 @@ public abstract class AbstractEasyCard extends CustomCard {
         if (needsArtRefresh) {
             CardArtRoller.computeCard(this);
         }
+        if (!cardToPreview.isEmpty()) {
+            if (hb.hovered) {
+                if (rotationTimer <= 0F) {
+                    rotationTimer = getRotationTimeNeeded();
+                    cardsToPreview = cardToPreview.get(previewIndex);
+                    if (previewIndex == cardToPreview.size() - 1) {
+                        previewIndex = 0;
+                    } else {
+                        previewIndex++;
+                    }
+                } else {
+                    rotationTimer -= Gdx.graphics.getDeltaTime();
+                }
+            }
+        }
+    }
+
+    protected float getRotationTimeNeeded() {
+        return 2.5f;
     }
 
     // These shortcuts are specifically for cards. All other shortcuts that aren't specifically for cards can go in Wiz.

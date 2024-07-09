@@ -21,7 +21,7 @@ public class DarkRitual extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         //Rest in peace Hemokinesis effect on self
         addToBot(new ApplyPowerAction(p, p, new RitualPower(p, magicNumber, true)));
-        addToBot(new ExhaustAction(secondMagic, true, false, false));
+        addToBot(new ExhaustAction(secondMagic, false, false, false));
     }
 
     public void upp() {

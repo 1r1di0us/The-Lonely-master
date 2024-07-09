@@ -75,11 +75,11 @@
   },
   "${ModID}:Help": {
     "NAME": "Help!",
-    "DESCRIPTION": "At the end of your next !M! turns, lonelymod:Call lonelymod:Protect. Exhaust."
+    "DESCRIPTION": "At the end of your next !M! turns, lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile. NL Exhaust."
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
@@ -103,7 +103,7 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks the enemy, it gains !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
   },
   "${ModID}:FieryArrow": {
     "NAME": "Fiery Arrow",
@@ -111,7 +111,7 @@
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! or more unblocked damage, lonelymod:Call lonelymod:Attack. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! or more unblocked damage, lonelymod:Call lonelymod:Attack and lonelymod:Return."
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
@@ -140,12 +140,12 @@
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "Put an *Outburst on top of your draw pile. NL Gain [E] [E]. NL Gain !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Put an *Outburst on top of your draw pile. NL Gain [E] [E] [E]. NL Gain !M! Vulnerable."
+    "DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E] [E]. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
-    "DESCRIPTION": "Add a *Primal to your hand. NL Grant your lonelymod:Companion !${ModID}:m2! Vigor. NL Gain !M! Frail."
+    "DESCRIPTION": "Put a *Primal on top of your draw pile. NL Grant !${ModID}:m2! Strength. NL Gain !M! Frail.",
+    "UPGRADE_DESCRIPTION": "Add a *Primal to your hand. NL Grant !${ModID}:m2! Strength. NL Gain !M! Frail."
   },
   "${ModID}:ChasingFantasies":  {
     "NAME": "Chasing Fantasies",
@@ -157,8 +157,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust !${ModID}:m2! card at random.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust !${ModID}:m2! card at random."
+    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust !${ModID}:m2! card.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust !${ModID}:m2! card."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -174,7 +174,7 @@
   },
   "${ModID}:OnGuard":  {
     "NAME": "On Guard",
-    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect. NL lonelymod:Return."
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL If any enemy intends to Attack, lonelymod:Call lonelymod:Protect and lonelymod:Return."
   },
   "${ModID}:Overreaction": {
     "NAME": "Overreaction",
@@ -264,6 +264,11 @@
     "NAME": "Exponential Force",
     "DESCRIPTION": "Deal !D! damage. NL If NOT Fatal, double this card's damage this combat."
   },
+  "${ModID}:Feint": {
+    "NAME": "Feint",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to to !B! minus the amount of unblocked damage this dealt.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
     "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a RANDOM card in your hand from your deck. NL Exhaust.",
@@ -347,6 +352,26 @@
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
     "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Bones. NL Exhaust."
+  },
+  "${ModID}:Excitement": {
+    "NAME": "Excitement",
+    "DESCRIPTION": "Passive Power NL Whenever you Call a Move, gains 2 Vigor and 1 Stamina next turn."
+  },
+  "${ModID}:Bark": {
+    "NAME": "Bark",
+    "DESCRIPTION": "Default Move NL Grant 3 Block."
+  },
+  "${ModID}:Bite": {
+    "NAME": "Bite",
+    "DESCRIPTION": "Attack Move NL Deal 12 damage. NL Gains 2 Strength."
+  },
+  "${ModID}:Poise": {
+    "NAME": "Poise",
+    "DESCRIPTION": "Protect Move NL Grant 4 Block 2 times. NL Gains 4 Vigor."
+  },
+  "${ModID}:Howl": {
+    "NAME": "Howl",
+    "DESCRIPTION": "Special Move NL Grant 3 Strength. NL Gains 5 Strength. NL Apply 3 Target and 3 Vulnerable to ALL enemies."
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",

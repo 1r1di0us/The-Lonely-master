@@ -30,9 +30,10 @@ public class OnGuard extends AbstractEasyCard {
                 callMove = true;
             }
         }
-        if (callMove)
+        if (callMove) {
             addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        ReturnField.willReturn.set(this, true);
+            ReturnField.willReturn.set(this, true);
+        }
     }
 
     public void triggerOnGlowCheck() {

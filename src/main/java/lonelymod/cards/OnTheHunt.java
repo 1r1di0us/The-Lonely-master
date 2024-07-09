@@ -27,9 +27,10 @@ public class OnTheHunt extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         DamageInfo info = new DamageInfo(p, this.damage, damageTypeForTurn);
         addToBot(new DamageAction(m, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        if (!m.isDeadOrEscaped() && info.output-m.currentBlock >= this.magicNumber)
+        if (!m.isDeadOrEscaped() && info.output-m.currentBlock >= this.magicNumber) {
             addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        ReturnField.willReturn.set(this, true);
+            ReturnField.willReturn.set(this, true);
+        }
     }
 
     public void triggerOnGlowCheck() {

@@ -18,10 +18,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.StaminaPower;
 import lonelymod.powers.TargetPower;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -54,7 +57,19 @@ public class Bones extends AbstractCompanion {
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.defaultBlk));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Excitement());
+            add(new Bark());
+            add(new Bite());
+            add(new Poise());
+            add(new Howl());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {

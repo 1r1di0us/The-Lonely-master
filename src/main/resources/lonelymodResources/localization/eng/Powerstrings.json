@@ -79,8 +79,8 @@
       "#yTarget, #yVulnerable, and #yWeak."
     ]
   },
-  "${ModID}:PresidePower": {
-    "NAME": "Presiding",
+  "${ModID}:PrevailPower": {
+    "NAME": "Prevailing",
     "DESCRIPTIONS": [
       "At the start of your next #b",
       " turn, gain #b",

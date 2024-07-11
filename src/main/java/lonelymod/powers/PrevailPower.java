@@ -16,19 +16,19 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class PresidePower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class PrevailPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
 
-    public static final String POWER_ID = makeID("PresidePower");
+    public static final String POWER_ID = makeID("PrevailPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Preside84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Preside32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Prevail84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Prevail32.png");
 
     private final int blockAmount;
 
-    public PresidePower(AbstractCreature owner, int amount, int blockAmount) {
+    public PrevailPower(AbstractCreature owner, int amount, int blockAmount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -72,6 +72,6 @@ public class PresidePower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public AbstractPower makeCopy() {
-        return new PresidePower(this.owner, this.amount, this.blockAmount);
+        return new PrevailPower(this.owner, this.amount, this.blockAmount);
     }
 }

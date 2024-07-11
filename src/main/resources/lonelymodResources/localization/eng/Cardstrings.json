@@ -185,8 +185,8 @@
     "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and Vulnerable.",
     "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Vulnerable and Weak."
   },
-  "${ModID}:Preside": {
-    "NAME": "Preside",
+  "${ModID}:Prevail": {
+    "NAME": "Prevail",
     "DESCRIPTION": "Gain !B! Block. At the start of your next !M! turns, gain !${ModID}:sb! Block."
   },
   "${ModID}:Relax": {
@@ -264,9 +264,9 @@
     "NAME": "Exponential Force",
     "DESCRIPTION": "Deal !D! damage. NL If NOT Fatal, double this card's damage this combat."
   },
-  "${ModID}:Feint": {
-    "NAME": "Feint",
-    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to to !B! minus the amount of unblocked damage this dealt.",
+  "${ModID}:FakeOut": {
+    "NAME": "Fake Out",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to !B! minus the amount of unblocked damage this dealt.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
   },
   "${ModID}:Abandon": {

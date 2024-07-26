@@ -56,12 +56,6 @@ public class OraclePower extends AbstractEasyPower implements CloneablePowerInte
     }
 
     @Override
-    public void onSpecificTrigger() {
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount + Oracle.SPECIAL_PWR_AMT)));
-        //+5 because the extra amount has not been applied yet.
-    }
-
-    @Override
     public AbstractPower makeCopy() {
         return new OraclePower(this.owner, this.amount);
     }

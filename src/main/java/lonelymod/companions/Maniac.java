@@ -14,9 +14,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.ManiacPower;
 import lonelymod.powers.StaminaPower;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -28,7 +34,7 @@ public class Maniac extends AbstractCompanion {
     private static final int ATTACK_DMG = 5;
     private static final int ATTACK_AMT = 2;
     private static final int PROTECT_BLK = 8;
-    private static final int PROTECT_BUFF_AMT = 3;
+    private static final int PROTECT_DEBUFF_AMT = 2;
     private static final int SPECIAL_PWR_AMT = 5;
 
     private int attackDmg;
@@ -40,7 +46,18 @@ public class Maniac extends AbstractCompanion {
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new ManiacNothing());
+            add(new Harass());
+            add(new Scare());
+            add(new Sacrifice());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {
@@ -70,7 +87,7 @@ public class Maniac extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
+                addToBot(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -110,7 +127,7 @@ public class Maniac extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, PROTECT_BUFF_AMT)));
+                addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
@@ -138,7 +155,7 @@ public class Maniac extends AbstractCompanion {
     @Override
     public void callProtect() {
         getTarget();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
     }
 
     @Override
@@ -161,7 +178,7 @@ public class Maniac extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_BUFF_AMT + INTENTS[6];
+                this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_DEBUFF_AMT + INTENTS[6];
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
@@ -197,7 +214,7 @@ public class Maniac extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_BUFF_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + PROTECT_DEBUFF_AMT + INTENT_TOOLTIPS[5];
                 }
             case SPECIAL:
                 if (head) {
@@ -207,6 +224,20 @@ public class Maniac extends AbstractCompanion {
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

@@ -2,13 +2,17 @@ package lonelymod.cards.colorlesssummons;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.LongerWaitAction;
 import lonelymod.actions.SummonManiacAction;
 import lonelymod.cards.AbstractEasyCard;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.fields.CompanionField;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -23,6 +27,8 @@ public class TheManiac extends AbstractEasyCard {
         this.isInnate = true;
         AutoplayField.autoplay.set(this, true);
         //this.tags.add(Enums.COMPANION);
+
+        this.cardToPreview.addAll(CardTips);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -33,7 +39,15 @@ public class TheManiac extends AbstractEasyCard {
         addToBot(new SummonManiacAction());
     }
 
-    public void upp() {
+    public void upp() {}
 
-    }
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Fervor());
+            add(new ManiacNothing());
+            add(new Harass());
+            add(new Scare());
+            add(new Sacrifice());
+        }
+    };
 }

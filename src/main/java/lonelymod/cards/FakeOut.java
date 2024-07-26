@@ -1,12 +1,9 @@
 package lonelymod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.actions.FakeOutAction;
 
 import static lonelymod.LonelyMod.makeID;
@@ -27,11 +24,44 @@ public class FakeOut extends AbstractEasyCard {
             dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
             blck();
         }
+    }
 
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        if (!upgraded) {
+            if (mo.currentBlock < this.damage) {
+                this.baseMagicNumber = this.magicNumber = this.block - (this.damage - mo.currentBlock);
+            }
+            else if (this.block - (this.damage - mo.currentBlock) <= 0) {
+                this.baseMagicNumber = this.magicNumber = 0;
+            } else {
+                this.baseMagicNumber = this.magicNumber = this.block;
+            }
+            this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            this.initializeDescription();
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+
+        if (!cardStrings.DESCRIPTION.equals(this.rawDescription) && !upgraded) {
+            this.rawDescription = cardStrings.DESCRIPTION;
+            initializeDescription();
+        }
+    }
+
+    public void onMoveToDiscard() {
+        if (!upgraded) {
+            this.rawDescription = cardStrings.DESCRIPTION;
+            initializeDescription();
+        }
     }
 
     public void upp() {
-        upgradeBlock(2);
+        upgradeBlock(3);
         uDesc();
     }
 }

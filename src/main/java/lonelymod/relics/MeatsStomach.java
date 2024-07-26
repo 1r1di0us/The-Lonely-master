@@ -2,11 +2,15 @@ package lonelymod.relics;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
 import lonelymod.actions.SummonMeatAction;
+import lonelymod.cards.summonmoves.*;
+
+import java.util.ArrayList;
 
 public class MeatsStomach extends AbstractEasyRelic {
     public static final String ID = makeID("MeatsStomach");
@@ -14,7 +18,18 @@ public class MeatsStomach extends AbstractEasyRelic {
     public MeatsStomach() {
         super(ID, RelicTier.BOSS, LandingSound.SOLID, LonelyCharacter.Enums.YELLOW);
         //figured this out from DarkVexon's FishingCharacter
-    }    
+        this.cardToPreview.addAll(CardTips);
+    }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Intimidating());
+            add(new Stretch());
+            add(new Maul());
+            add(new BodyBlock());
+            add(new Eat());
+        }
+    };
 
     @Override
     public void atBattleStart() {

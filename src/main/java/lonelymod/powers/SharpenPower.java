@@ -3,33 +3,37 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
+import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class RoboArmPower extends AbstractEasyPower implements CloneablePowerInterface {
-
-    public static final String POWER_ID = makeID("RoboArmPower");
+public class SharpenPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnCallMoveInterface {
+    public static final String POWER_ID = makeID("SharpenPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/RoboArm84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/RoboArm32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws32.png");
 
-    public RoboArmPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, 1);
+    public SharpenPower(AbstractCreature owner, int amount) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
-        this.amount = amount;
 
-        type = AbstractPower.PowerType.BUFF;
-        isTurnBased = true;
+        type = PowerType.BUFF;
+        isTurnBased = false;
+        this.amount = amount;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,7 +53,13 @@ public class RoboArmPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
+    public void triggerOnCallMove(byte move, byte prevMove) {
+        flash();
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, this.owner, new StrengthPower(AbstractDungeon.player, this.amount)));
+    }
+
+    @Override
     public AbstractPower makeCopy() {
-        return new RoboArmPower(this.owner, this.amount);
+        return new SharpenPower(this.owner, this.amount);
     }
 }

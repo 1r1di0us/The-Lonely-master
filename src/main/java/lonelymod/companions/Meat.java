@@ -18,10 +18,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
 import lonelymod.powers.StaminaPower;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -48,7 +53,18 @@ public class Meat extends AbstractCompanion {
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.damage.add(new DamageInfo(this, this.specialDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Stretch());
+            add(new Maul());
+            add(new BodyBlock());
+            add(new Eat());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {
@@ -90,10 +106,10 @@ public class Meat extends AbstractCompanion {
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                     if (targetEnemy.hasPower(WeakPower.POWER_ID))
                         addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, this.damage.get(1).output), this.damage.get(1).output));
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case UNKNOWN:
@@ -232,6 +248,20 @@ public class Meat extends AbstractCompanion {
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

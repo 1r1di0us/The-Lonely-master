@@ -15,10 +15,15 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.CompanionDexterityPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.SpyPower;
 import lonelymod.powers.StaminaPower;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -41,7 +46,18 @@ public class Spy extends AbstractCompanion {
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new SpyNothing());
+            add(new Assassinate());
+            add(new Speedy());
+            add(new PoisonCloud());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {
@@ -235,6 +251,20 @@ public class Spy extends AbstractCompanion {
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

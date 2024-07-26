@@ -1,10 +1,16 @@
 package lonelymod;
 
+import basemod.ModLabeledToggleButton;
+
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.*;
@@ -29,11 +35,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import lonelymod.tutorials.CompanionTutorial;
+import lonelymod.util.TexLoader;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -45,7 +54,8 @@ public class LonelyMod implements
         EditCharactersSubscriber,
         OnPlayerTurnStartPostDrawSubscriber,
         PostBattleSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        OnStartBattleSubscriber{
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -55,6 +65,18 @@ public class LonelyMod implements
     }
 
     public static final Color characterColor = new Color(235f/255f, 235f/255f, 52f/255f, 1f);
+
+    // mod config stuff
+    public static Properties theDefaultDefaultSettings = new Properties();
+    public static final String SKIP_TUTORIALS_SETTING = "enablePlaceholder";
+    public static Boolean skipTutorialsPlaceholder = true; // The boolean we'll be setting on/off (true/false)
+    public static ModLabeledToggleButton skipTutorials;
+
+    //Badge thing
+    private static final String MODNAME = "Lonely Mod";
+    private static final String AUTHOR = "zrgrush";
+    private static final String DESCRIPTION = "An exile who lives alone, and hunts with his animal companions. NL He has mostly forgotten his dark past.";
+    public static final String BADGE_IMAGE = "Resources/images/ui/missing.png";
 
     public static final String SHOULDER1 = modID + "Resources/images/char/mainChar/shoulder.png";
     public static final String SHOULDER2 = modID + "Resources/images/char/mainChar/shoulder2.png";
@@ -93,6 +115,18 @@ public class LonelyMod implements
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
+
+        //mod config settings?
+        theDefaultDefaultSettings.setProperty(SKIP_TUTORIALS_SETTING, "FALSE"); // This is the default setting. It's actually set...
+        try {
+            SpireConfig config = new SpireConfig(modID, makeID("Config"), theDefaultDefaultSettings); // ...right here
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            skipTutorialsPlaceholder = config.getBool(SKIP_TUTORIALS_SETTING);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static String makePath(String resourcePath) {
@@ -181,6 +215,31 @@ public class LonelyMod implements
     @Override
     public void receivePostInitialize() {
         receiveEditPotions();
+
+        ModPanel settingsPanel = new ModPanel();
+
+        skipTutorials = new ModLabeledToggleButton("Skip Tutorials",
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                skipTutorialsPlaceholder, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    skipTutorialsPlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig(modID, makeID("Config"), theDefaultDefaultSettings);
+                        config.setBool(SKIP_TUTORIALS_SETTING, skipTutorialsPlaceholder);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        settingsPanel.addUIElement(skipTutorials); // Add the button to the settings panel. Button is a go.
+
+        Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);
+        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
     }
 
     public void receiveEditPotions() {
@@ -212,6 +271,8 @@ public class LonelyMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(Settings.language, "Powerstrings"));
 
         BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(Settings.language, "uistrings"));
+
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, makeLocPath(Settings.language, "Tutorialstrings"));
     }
 
     @Override
@@ -251,6 +312,15 @@ public class LonelyMod implements
     public void receivePostBattle(AbstractRoom abstractRoom) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
+        }
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        if (!skipTutorials.toggle.enabled && AbstractDungeon.player.chosenClass.equals(LonelyCharacter.Enums.THE_LONELY)){
+            AbstractDungeon.ftue = new CompanionTutorial();
+            skipTutorials.toggle.toggle();
+
         }
     }
 }

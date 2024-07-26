@@ -11,13 +11,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
-
 
 public class Omen extends AbstractCompanion {
     public static final String ID = makeID("Omen");
@@ -25,37 +29,44 @@ public class Omen extends AbstractCompanion {
 
     private static final Logger logger = LogManager.getLogger(Omen.class.getName());
 
-    private static final int INIT_TRAIT_AMT = 1;
+    //private static final int INIT_TRAIT_AMT = 1;
     private static final int INIT_CLAWS_AMT = 5;
     private static final int DEFAULT_DMG = 10;
     private static final int ATTACK_DMG = 1;
     private static final int PROTECT_BLK = 6;
     private static final int PROTECT_AMT = 2;
     private static final int PROTECT_DEBUFF_AMT = 3;
-    private static final int SPECIAL_BLK = 15;
-    private static final int SPECIAL_STR_AMT = 3;
+    private static final int SPECIAL_ATK_AMT = 3;
     private static final int SPECIAL_PWR_AMT = 1;
 
     private int defaultDmg;
     private int attackDmg;
     private int protectBlk;
-    private int specialBlk;
 
     public Omen(float drawX, float drawY) {
         super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG, drawX, drawY);
         this.defaultDmg = DEFAULT_DMG;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
-        this.specialBlk = SPECIAL_BLK;
         this.damage.add(new DamageInfo(this, this.defaultDmg));
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
-        this.block.add(new BlockInfo(this, this.specialBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Dive());
+            add(new Shred());
+            add(new Shriek());
+            add(new Sharpen());
+        }
+    };
 
     public void usePreBattleAction() {
         addToTop(new ApplyPowerAction(this, this, new ClawsPower(this, INIT_CLAWS_AMT)));
-        addToTop(new ApplyPowerAction(this, this, new OmenPower(this, INIT_TRAIT_AMT)));
+        //addToTop(new ApplyPowerAction(this, this, new DEPRECATEDOmenPower(this, INIT_TRAIT_AMT)));
     }
 
     public void takeTurn() {
@@ -79,6 +90,8 @@ public class Omen extends AbstractCompanion {
                     }
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(ClawsPower.POWER_ID))
+                        getPower(ClawsPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:
@@ -90,11 +103,8 @@ public class Omen extends AbstractCompanion {
                     addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
             case SPECIAL:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
-                addToBot(new ApplyPowerAction(this, this, new ClawsPower(this, SPECIAL_PWR_AMT)));
+                addToBot(new ApplyPowerAction(this, this, new SharpenPower(this, SPECIAL_PWR_AMT)));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 break;
             case UNKNOWN:
                 break;
@@ -114,6 +124,8 @@ public class Omen extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    if (hasPower(ClawsPower.POWER_ID))
+                        getPower(ClawsPower.POWER_ID).onSpecificTrigger();
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (this.hasPower(ClawsPower.POWER_ID)) {
@@ -135,11 +147,8 @@ public class Omen extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(this, this, new ClawsPower(this, SPECIAL_PWR_AMT)));
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_STR_AMT)));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new SharpenPower(this, SPECIAL_PWR_AMT)));
                 break;
         }
     }
@@ -187,12 +196,12 @@ public class Omen extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[9] + SPECIAL_BLK + INTENTS[10] + SPECIAL_STR_AMT + INTENTS[11] + SPECIAL_PWR_AMT + INTENTS[12];
+                this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_ATK_AMT + INTENTS[11];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[13];
+                this.intentTip.body = INTENTS[12];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -227,10 +236,24 @@ public class Omen extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[7] + SPECIAL_BLK + INTENT_TOOLTIPS[8] + SPECIAL_STR_AMT + INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10];
+                    return INTENT_TOOLTIPS[7] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[8] + SPECIAL_ATK_AMT + INTENT_TOOLTIPS[9];
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

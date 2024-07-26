@@ -17,7 +17,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import com.megacrit.cardcrawl.random.Random;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionVigorPower;
@@ -51,6 +54,7 @@ public class Bones extends AbstractCompanion {
 
     public Bones(float drawX, float drawY) {
         super("Bones", ID, 0.0F, 0.0F, 220.0F, 130.0F, IMG, drawX, drawY);
+
         this.defaultBlk = DEFAULT_BLK;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
@@ -63,7 +67,6 @@ public class Bones extends AbstractCompanion {
 
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
         {
-            add(new Excitement());
             add(new Bark());
             add(new Bite());
             add(new Poise());
@@ -252,6 +255,20 @@ public class Bones extends AbstractCompanion {
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

@@ -136,7 +136,7 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Shuffle a *Dominate into your draw pile. NL Draw !${ModID}:m2! cards. NL Gain !M! Weak."
+    "DESCRIPTION": "Shuffle a *Fake *Out into your draw pile. NL Draw !${ModID}:m2! cards. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
@@ -203,7 +203,7 @@
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
-    "DESCRIPTION": "Ethereal. Gain !B! Block. Gain additional Block equal to ALL enemies' combined Strength. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !B! plus ALL enemies' combined Strength in Block. NL lonelymod:Return."
   },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
@@ -246,19 +246,14 @@
     "NAME": "Counterstrike",
     "DESCRIPTION": "Deal the same damage this enemy is attacking you for.",
     "EXTENDED_DESCRIPTION": [
-      " NL [Deals !D! damage]",
-      " NL [Deals !D! damage !M! times]",
+      "Deal !D! damage",
+      "Deal !D! damage !M! times",
       "Deal the same damage this enemy is attacking you for + 3."
     ]
   },
   "${ModID}:Cycle": {
     "NAME": "Cycle",
     "DESCRIPTION": "Deal !D! damage. NL All cards that will lonelymod:Return are lonelymod:Returned to your hand."
-  },
-  "${ModID}:Dominate": {
-    "NAME": "Dominate",
-    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
@@ -267,7 +262,10 @@
   "${ModID}:FakeOut": {
     "NAME": "Fake Out",
     "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to !B! minus the amount of unblocked damage this dealt.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": [
+      "Deal !D! damage. NL Gain !M! Block."
+    ]
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
@@ -331,31 +329,131 @@
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Kharn. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Kharn and draw 1 card. NL Exhaust."
+  },
+  "${ModID}:Fervor": {
+    "NAME": "Fervor",
+    "DESCRIPTION": "Passive Power NL Whenever you lose HP, Kharn gains 2 Strength."
+  },
+  "${ModID}:ManiacNothing": {
+    "NAME": "Nothing",
+    "DESCRIPTION": "Default Move NL Makes an angry noise."
+  },
+  "${ModID}:Harass": {
+    "NAME": "Harass",
+    "DESCRIPTION": "Attack Move NL Deal 5 damage 2 times."
+  },
+  "${ModID}:Scare": {
+    "NAME": "Scare",
+    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Apply 2 Vulnerable."
+  },
+  "${ModID}:Sacrifice": {
+    "NAME": "Sacrifice",
+    "DESCRIPTION": "Special Move NL Transfers its current Strength + 5 to you."
   },
   "${ModID}:TheSpy": {
     "NAME": "The Spy",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Dzil. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Dzil and draw 1 card. NL Exhaust."
+  },
+  "${ModID}:Crafty": {
+    "NAME": "Crafty",
+    "DESCRIPTION": "Passive Power NL You can give him *Shiv cards to permanently improve his lonelymod:Attack lonelymod:Move"
+  },
+  "${ModID}:SpyNothing": {
+    "NAME": "Nothing",
+    "DESCRIPTION": "Default Move NL Makes a quiet noise."
+  },
+  "${ModID}:Assassinate": {
+    "NAME": "Assassinate",
+    "DESCRIPTION": "Attack Move NL Deal 6 damage. Deal 6 more damage for every *Shiv he has."
+  },
+  "${ModID}:Speedy": {
+    "NAME": "Speedy",
+    "DESCRIPTION": "Protect Move NL Grant 6 Block. NL At the start of next turn, Grant 6 Block. NL Gain 1 Dexterity."
+  },
+  "${ModID}:PoisonCloud": {
+    "NAME": "Poison Cloud",
+    "DESCRIPTION": "Special Move NL Apply 25 Poison evenly among ALL enemies."
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Blirt. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Blirt and drawn 1 card. NL Exhaust."
+  },
+  "${ModID}:Power": {
+    "NAME": "Power",
+    "DESCRIPTION": "Passive Power NL Whenever you play a Power card, increase Power by 1."
+  },
+  "${ModID}:MechanicNothing": {
+    "NAME": "Nothing",
+    "DESCRIPTION": "Default Move NL Makes a smart noise."
+  },
+  "${ModID}:Electrocute": {
+    "NAME": "Bite",
+    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Channel 1 Lightning for every stack of Power."
+  },
+  "${ModID}:IceWall": {
+    "NAME": "Ice Wall",
+    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Channel 1 Frost for every stack of Power."
+  },
+  "${ModID}:Supercritical": {
+    "NAME": "Supercritical",
+    "DESCRIPTION": "Special Move NL Evoke your next orb once for every stack of Power. NL Channel 1 Plasma."
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Sowru. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Sowru and draw 1 card. NL Exhaust."
+  },
+  "${ModID}:Charge": {
+    "NAME": "Charge",
+    "DESCRIPTION": "Passive Power NL At the start of your turn, gains 5 lonelymod:Vigor."
+  },
+  "${ModID}:OracleNothing": {
+    "NAME": "Nothing",
+    "DESCRIPTION": "Default Move NL Makes a thoughtful noise."
+  },
+  "${ModID}:FieryBlast": {
+    "NAME": "Fiery Blast",
+    "DESCRIPTION": "Attack Move NL Deal 10 damage."
+  },
+  "${ModID}:PeacefulProtest": {
+    "NAME": "Peaceful Protest",
+    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Enter Calm."
+  },
+  "${ModID}:Blessing": {
+    "NAME": "Blessing",
+    "DESCRIPTION": "Special Move NL Add 2 *Miracle+ to your hand. NL Shuffle 2 *Insight+ into your draw pile."
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Fring. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Fring and draw 1 card. NL Exhaust."
+  },
+  "${ModID}:Empower": {
+    "NAME": "Empower",
+    "DESCRIPTION": "Passive Power NL Every third lonelymod:Move you lonelymod:Call is Empowered, gaining additional effects."
+  },
+  "${ModID}:OutcastNothing": {
+    "NAME": "Nothing",
+    "DESCRIPTION": "Default Move NL Makes a sad noise."
+  },
+  "${ModID}:SpearJab": {
+    "NAME": "Spear Jab",
+    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Empowered: Deal 10 damage again."
+  },
+  "${ModID}:HoldGround": {
+    "NAME": "Hold Ground",
+    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Empowered: Grant 5 Thorns."
+  },
+  "${ModID}:TrainUp": {
+    "NAME": "Train Up",
+    "DESCRIPTION": "Special Move NL Gain 5 Strength and 5 Dexterity. NL Empowered: Grant 3 Strength and 3 Dexterity."
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Bones. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Bones and draw 1 card. NL Exhaust."
   },
   "${ModID}:Excitement": {
     "NAME": "Excitement",
-    "DESCRIPTION": "Passive Power NL Whenever you Call a Move, gains 2 Vigor and 1 Stamina next turn."
+    "DESCRIPTION": "Passive Power NL Whenever you lonelymod:Call a lonelymod:Move, gains 2 Vigor and 1 lonelymod:Stamina next turn."
   },
   "${ModID}:Bark": {
     "NAME": "Bark",
@@ -371,16 +469,57 @@
   },
   "${ModID}:Howl": {
     "NAME": "Howl",
-    "DESCRIPTION": "Special Move NL Grant 3 Strength. NL Gains 5 Strength. NL Apply 3 Target and 3 Vulnerable to ALL enemies."
+    "DESCRIPTION": "Special Move NL Grant 3 Strength. NL Gains 5 Strength. NL Apply 3 lonelymod:Target and 3 Vulnerable to ALL enemies."
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Meat. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Meat and draw 1 card. NL Exhaust."
+  },
+  "${ModID}:Intimidating": {
+    "NAME": "Intimidating",
+    "DESCRIPTION": "Passive Power NL At the end of your turn, takes up to 1 energy from you and stores it. NL At the start of your turn, spends stored energy to apply 1 Weak to ALL enemies."
+  },
+  "${ModID}:Stretch": {
+    "NAME": "Stretch",
+    "DESCRIPTION": "Default Move NL Gain 2 Vigor and 2 lonelymod:Stamina."
+  },
+  "${ModID}:Maul": {
+    "NAME": "Maul",
+    "DESCRIPTION": "Attack Move NL Deal 8 damage 2 times. NL If the target is Constricted, Deal 8 damage again."
+  },
+  "${ModID}:BodyBlock": {
+    "NAME": "Body Block",
+    "DESCRIPTION": "Protect Move NL Grant 5 Block 3 times. NL If Meat has any stored Energy, Grant 1 Energy at the start of next turn."
+  },
+  "${ModID}:Eat": {
+    "NAME": "Eat",
+    "DESCRIPTION": "Special Move NL Deal 25 damage. If the target is Weakened, apply Constricted equal to the unblocked damage dealt."
   },
   "${ModID}:TheRavyn": {
     "NAME": "The Ravyn",
-    "DESCRIPTION": "Innate. NL Autoplay. NL Draw 1 card. NL lonelymod:Summon lonelymod:Omen. NL Exhaust."
+    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Omen and draw 1 card. NL Exhaust."
   },
+  "${ModID}:Claws": {
+    "NAME": "Claws",
+    "DESCRIPTION": "Passive Power NL Whenever you play an Attack, Omen's next lonelymod:Attack lonelymod:Move will hit 1 more time."
+  },
+  "${ModID}:Dive": {
+    "NAME": "Dive",
+    "DESCRIPTION": "Default Move NL Deal 10 damage."
+  },
+  "${ModID}:Shred": {
+    "NAME": "Shred",
+    "DESCRIPTION": "Attack Move NL Deal 1 damage 5 times."
+  },
+  "${ModID}:Shriek": {
+    "NAME": "Shriek",
+    "DESCRIPTION": "Protect Move NL Reduce ALL enemy's Strength by 5 this turn. NL Apply 3 lonelymod:Target."
+  },
+  "${ModID}:Sharpen": {
+    "NAME": "Sharpen",
+    "DESCRIPTION": "Special Move NL Whenever you lonelymod:Call a lonelymod:Move, gains 1 Strength. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
+  },
+
   "${ModID}:InlinePowerDemo": {
     "NAME": "Inline Power",
     "DESCRIPTION": "Strikes deal !M! more damage. NL At the end of your turn, gain !M! Block.",
@@ -447,5 +586,10 @@
   "${ModID}:MentalOverload": {
     "NAME": "Mental Overload",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Costs 1 less [E] for every other card in your hand."
+  },
+  "${ModID}:Dominate": {
+    "NAME": "Dominate",
+    "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
   }
 }

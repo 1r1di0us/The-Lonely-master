@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
+import com.megacrit.cardcrawl.actions.unique.MulticastAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -15,11 +16,18 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.orbs.Plasma;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.MechanicPower;
 import lonelymod.powers.CompanionVigorPower;
-import lonelymod.powers.RoboArmPower;
 import lonelymod.powers.StaminaPower;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -28,9 +36,10 @@ public class Mechanic extends AbstractCompanion {
     public static final String ID = makeID("Mechanic");
     public static final String IMG = makeCompanionPath("Mechanic.png");
 
+    private static final Logger logger = LogManager.getLogger(Mechanic.class.getName());
     private static final int ATTACK_DMG = 8;
     private static final int PROTECT_BLK = 8;
-    private static final int SPECIAL_PWR_AMT = 1;
+    private static final int SPECIAL_ORB_AMT = 1;
 
     private int attackDmg;
     private int protectBlk;
@@ -41,7 +50,18 @@ public class Mechanic extends AbstractCompanion {
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new MechanicNothing());
+            add(new Electrocute());
+            add(new IceWall());
+            add(new Supercritical());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {
@@ -65,36 +85,32 @@ public class Mechanic extends AbstractCompanion {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
-                addToBot(new ChannelAction(new Lightning()));
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
-                        if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                            addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                        }
+                if (hasPower(MechanicPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
                         addToBot(new ChannelAction(new Lightning()));
                     }
                 }
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ChannelAction(new Frost()));
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
-                        addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                if (hasPower(MechanicPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
                         addToBot(new ChannelAction(new Frost()));
                     }
                 }
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 break;
             case SPECIAL:
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    int amount = getPower(RoboArmPower.POWER_ID).amount;
-                    for (int i = 0; i < amount; i++) {
-                        addToBot(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
-                    }
-                }
-                addToBot(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                if (hasPower(MechanicPower.POWER_ID))
+                    addToBot(new MulticastAction(AbstractDungeon.player, getPower(MechanicPower.POWER_ID).amount, false, true));
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
+                addToBot(new ChannelAction(new Plasma()));
                 break;
             case UNKNOWN:
                 break;
@@ -114,41 +130,37 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                addToTop(new ChannelAction(new Lightning()));
+                if (hasPower(MechanicPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
+                        addToTop(new ChannelAction(new Lightning()));
+                    }
+                }
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
                 }
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
-                        addToTop(new ChannelAction(new Lightning()));
-                        if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                            addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                        }
-                    }
-                }
                 break;
             case PROTECT:
-                addToTop(new ChannelAction(new Frost()));
+                if (hasPower(MechanicPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
+                        addToTop(new ChannelAction(new Frost()));
+                    }
+                }
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(RoboArmPower.POWER_ID).amount; i++) {
-                        addToTop(new ChannelAction(new Frost()));
-                        addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                    }
-                }
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 break;
             case SPECIAL:
-                if (hasPower(RoboArmPower.POWER_ID)) {
-                    int amount = getPower(RoboArmPower.POWER_ID).amount;
-                    for (int i = 0; i < amount; i++) {
-                        addToTop(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
-                    }
-                }
-                addToTop(new ApplyPowerAction(this, this, new RoboArmPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
+                addToTop(new ChannelAction(new Plasma()));
+                if (hasPower(MechanicPower.POWER_ID))
+                    addToTop(new MulticastAction(AbstractDungeon.player, getPower(MechanicPower.POWER_ID).amount, false, true));
+                else
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 break;
         }
     }
@@ -161,20 +173,12 @@ public class Mechanic extends AbstractCompanion {
     @Override
     public void callAttack() {
         getTarget();
-        if (hasPower(RoboArmPower.POWER_ID)) {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, getPower(RoboArmPower.POWER_ID).amount + 1, true, true);
-        } else {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
-        }
+        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
     }
 
     @Override
     public void callProtect() {
-        if (hasPower(RoboArmPower.POWER_ID)) {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, getPower(RoboArmPower.POWER_ID).amount + 1, true, false);
-        } else {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-        }
+        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
     }
 
     @Override
@@ -192,31 +196,31 @@ public class Mechanic extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                if (hasPower(RoboArmPower.POWER_ID))
-                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + INTENTS[3] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[4] + INTENTS[5] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[7];
+                if (hasPower(MechanicPower.POWER_ID))
+                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + getPower(MechanicPower.POWER_ID).amount + INTENTS[3];
                 else
-                    this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[5] + 1 + INTENTS[6];
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                if (hasPower(RoboArmPower.POWER_ID))
-                    this.intentTip.body = INTENTS[8] + this.intentBlk + INTENTS[9] + INTENTS[10] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[11] + INTENTS[12] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENTS[14];
+                if (hasPower(MechanicPower.POWER_ID))
+                    this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + getPower(MechanicPower.POWER_ID).amount + INTENTS[6];
                 else
-                    this.intentTip.body = INTENTS[8] + this.intentBlk + INTENTS[12] + 1 + INTENTS[13];
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 this.intentTip.img = getIntentImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                if (hasPower(RoboArmPower.POWER_ID))
-                    this.intentTip.body = INTENTS[15] + (getPower(RoboArmPower.POWER_ID).amount + SPECIAL_PWR_AMT) + INTENTS[16];
+                if (hasPower(MechanicPower.POWER_ID))
+                    this.intentTip.body = INTENTS[7] + getPower(MechanicPower.POWER_ID).amount + INTENTS[8] + SPECIAL_ORB_AMT + INTENTS[9];
                 else
-                    this.intentTip.body = INTENTS[15] + SPECIAL_PWR_AMT + INTENTS[16];
+                    logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[17];
+                this.intentTip.body = INTENTS[10];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -236,31 +240,45 @@ public class Mechanic extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    if (hasPower(RoboArmPower.POWER_ID))
-                        return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + INTENT_TOOLTIPS[2] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[3] + INTENT_TOOLTIPS[4] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[5];
+                    if (hasPower(MechanicPower.POWER_ID))
+                        return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1] + getPower(MechanicPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
                     else
-                        return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[4] + 1 + INTENT_TOOLTIPS[5];
+                        logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 }
             case PROTECT:
                 if (head) {
                     return MOVES[2];
                 } else {
-                    if (hasPower(RoboArmPower.POWER_ID))
-                        return INTENT_TOOLTIPS[6] + this.block.get(0).output + INTENT_TOOLTIPS[7] + INTENT_TOOLTIPS[8] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[9] + INTENT_TOOLTIPS[10] + (getPower(RoboArmPower.POWER_ID).amount + 1) + INTENT_TOOLTIPS[11];
+                    if (hasPower(MechanicPower.POWER_ID))
+                        return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[4] + getPower(MechanicPower.POWER_ID).amount + INTENT_TOOLTIPS[5];
                     else
-                        return INTENT_TOOLTIPS[3] + this.block.get(0).output + INTENT_TOOLTIPS[10] + 1 + INTENT_TOOLTIPS[11];
+                        logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    if (hasPower(RoboArmPower.POWER_ID))
-                        return INTENT_TOOLTIPS[12] + (getPower(RoboArmPower.POWER_ID).amount + SPECIAL_PWR_AMT) + INTENT_TOOLTIPS[13];
+                    if (hasPower(MechanicPower.POWER_ID))
+                        return INTENT_TOOLTIPS[6] + getPower(MechanicPower.POWER_ID).amount + INTENT_TOOLTIPS[7] + SPECIAL_ORB_AMT + INTENT_TOOLTIPS[8];
                     else
-                        return INTENT_TOOLTIPS[12] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[13];
+                        logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

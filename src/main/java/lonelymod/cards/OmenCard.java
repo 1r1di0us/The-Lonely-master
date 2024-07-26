@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,9 +19,12 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.SummonOmenAction;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
+
+import java.util.ArrayList;
 
 public class OmenCard extends AbstractEasyCard {
     public final static String ID = makeID("Omen");
@@ -30,8 +34,20 @@ public class OmenCard extends AbstractEasyCard {
         this.baseMagicNumber = magicNumber = 4;
         this.exhaust = true;
         this.tags.add(Enums.COMPANION);
+
+        this.cardToPreview.addAll(CardTips);
     }
-    
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new Claws());
+            add(new Dive());
+            add(new Shred());
+            add(new Shriek());
+            add(new Sharpen());
+        }
+    };
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //remove strength, kill current companion, effects, summon omen, call special

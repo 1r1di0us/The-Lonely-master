@@ -37,7 +37,12 @@ public class FakeOutAction extends AbstractGameAction {
             if (this.target.lastDamageTaken > 0) {
                 addToTop(new GainBlockAction(this.source, this.block - this.target.lastDamageTaken));
                 if (this.target.hb != null)
-                    addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new WallopEffect(this.target.lastDamageTaken, this.target.hb.cX, this.target.hb.cY)));
+                    addToTop(new VFXAction(new WallopEffect(this.block, this.source.hb.cX, this.source.hb.cY)));
+            }
+            else {
+                addToTop (new GainBlockAction(this.source, this.block));
+                if (this.target.hb != null)
+                    addToTop(new VFXAction(new WallopEffect(this.block, this.source.hb.cX, this.source.hb.cY)));
             }
             if ((AbstractDungeon.getCurrRoom()).monsters.areMonstersBasicallyDead()) {
                 AbstractDungeon.actionManager.clearPostCombatActions();

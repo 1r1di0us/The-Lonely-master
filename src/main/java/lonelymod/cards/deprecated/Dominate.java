@@ -1,4 +1,4 @@
-package lonelymod.cards;
+package lonelymod.cards.deprecated;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import lonelymod.cards.AbstractEasyCard;
 
 public class Dominate extends AbstractEasyCard {
     public final static String ID = makeID("Dominate");

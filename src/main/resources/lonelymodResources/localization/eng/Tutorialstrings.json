@@ -1,0 +1,24 @@
+{
+  "${ModID}:CompanionTutorial": {
+    "TEXT": [
+      "This is your #yCompanion, Bones. NL NL You can click him to pet him. (Not implemented yet).",
+      "Every #yCompanion has 4 #yMoves: NL NL The #yDefault #yMove, which is automatically #yCalled at the start of your turn. NL The #yAttack #yMove. NL The #yProtect #yMove. NL And the #ySpecial #yMove.",
+      "Whenever a #yMove is #yCalled, It will change your #yCompanion's intent to that #yMove. NL NL Keep in mind that #yCalling a #yMove merely overrides the previous Intent, and does not provide any intrinsic value.",
+      "After your turn is over, your #yCompanion will perform its current intent, before the enemies take their turn.",
+      "Every #yCompanion is summoned with its own unique Power. NL NL Make sure to read these Powers, as they may allow you to interact with your #yCompanion outside of #yCalling #yMoves.",
+      "Some cards #yCall #yMoves or create other cards that #yCall #yMoves. NL NL As long as you have one of these cards in your deck, a #yCompanion will be #ySummoned at the start of Combat."
+    ],
+    "LABEL": [
+      "Next",
+      "Done",
+      "Page ",
+      "/6",
+      "Companions",
+      "Moves",
+      "Intents",
+      "Performing",
+      "Powers",
+      "Summoning"
+    ]
+  }
+}

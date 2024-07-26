@@ -279,11 +279,11 @@
       " #yWeak to ALL enemies."
     ]
   },
-  "${ModID}:OmenPower": {
-    "NAME": "Hatred",
+  "${ModID}:SharpenPower": {
+    "NAME": "Sharpen",
     "DESCRIPTIONS": [
-      "Whenever you draw an Attack card, gains #b",
-      " #yVigor."
+      "Whenever you Call a Move, gains #b",
+      " #yStrength."
     ]
   },
   "${ModID}:ClawsPower": {
@@ -308,9 +308,9 @@
     ]
   },
   "${ModID}:MechanicPower": {
-    "NAME": "Plugged In",
+    "NAME": "Power",
     "DESCRIPTIONS": [
-      "Whenever you gain #yFocus, she gains an equal amount of #yStrength and #yDexterity."
+      "Whenever you play a Power card, increase Power by 1."
     ]
   },
   "${ModID}:RoboArmPower": {

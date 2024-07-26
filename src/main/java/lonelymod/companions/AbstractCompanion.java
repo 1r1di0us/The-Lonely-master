@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -29,11 +31,9 @@ import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
 import lonelymod.CompanionStrings;
 import lonelymod.LonelyMod;
 import lonelymod.actions.CallMoveAction;
-import lonelymod.cards.VentFrustration;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.TriggerOnCompanionTurnEndPowerInterface;
-import lonelymod.interfaces.TriggerOnCallMoveInterface;
 import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.powers.TargetPower;
 import org.apache.logging.log4j.LogManager;
@@ -81,6 +81,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     protected String[] INTENT_TOOLTIPS;
     protected String[] DIALOG;
 
+    protected int lastDialog = -1;
+
     public static final byte DEFAULT = 0;
     public static final byte ATTACK = 1;
     public static final byte PROTECT = 2;
@@ -105,8 +107,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
         INTENTS = companionStrings.INTENTS;
         INTENT_TOOLTIPS = companionStrings.INTENT_TOOLTIPS;
         DIALOG = companionStrings.DIALOG;
-        dialogX = offsetX + hb_w; //I can't find the right place :(
-        dialogY = offsetY + hb_h;
+        dialogX = this.drawX - 750.0F * Settings.scale;
+        dialogY = this.drawY - 300.0F * Settings.scale;
     }
 
     // move methods:
@@ -140,6 +142,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public abstract void performMove(byte move);
 
     public abstract void callDefault();
+
+    public abstract void talk();
+
     public void callMainMove(byte move, boolean flashIntent, boolean makeIntent) {
         if (flashIntent) flashIntent();
         switch (move) {
@@ -308,6 +313,16 @@ public abstract class AbstractCompanion extends AbstractMonster {
                     rotationTimer -= Gdx.graphics.getDeltaTime();
                 }
             }
+        }
+
+        //if name is being displayed and you click, talk!
+        if ((!AbstractDungeon.player.isDraggingCard
+                || AbstractDungeon.player.hoveredCard == null)
+                && !this.isDying
+                && this.hb.hovered
+                && (InputHelper.justClickedLeft
+                || CInputActionSet.select.isJustReleased())) {
+            talk();
         }
     }
 

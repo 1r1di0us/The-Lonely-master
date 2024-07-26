@@ -3,9 +3,11 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
@@ -20,6 +22,8 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws32.png");
+
+    private final int initAmount = 5;
 
     public ClawsPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
@@ -39,6 +43,18 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
             region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, tex32.getWidth(), tex32.getHeight());
         }
 
+        updateDescription();
+    }
+
+    public void onPlayCard(AbstractCard card, AbstractMonster m) {
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            this.amount++;
+            updateDescription();
+        }
+    }
+
+    public void onSpecificTrigger() {
+        this.amount = initAmount;
         updateDescription();
     }
 

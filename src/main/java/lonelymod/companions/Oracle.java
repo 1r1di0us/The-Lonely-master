@@ -2,20 +2,25 @@ package lonelymod.companions;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.tempCards.Insight;
+import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OraclePower;
 import lonelymod.powers.StaminaPower;
+
+import java.util.ArrayList;
 
 import static lonelymod.LonelyMod.makeCompanionPath;
 import static lonelymod.LonelyMod.makeID;
@@ -26,7 +31,7 @@ public class Oracle extends AbstractCompanion {
 
     private static final int ATTACK_DMG = 10;
     private static final int PROTECT_BLK = 8;
-    public static final int SPECIAL_PWR_AMT = 10;
+    public static final int SPECIAL_CARD_AMT = 2;
 
     private int attackDmg;
     private int protectBlk;
@@ -37,7 +42,18 @@ public class Oracle extends AbstractCompanion {
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
         this.block.add(new BlockInfo(this, this.protectBlk));
+
+        this.cardToPreview.addAll(CardTips);
     }
+
+    public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
+        {
+            add(new OracleNothing());
+            add(new FieryBlast());
+            add(new PeacefulProtest());
+            add(new Blessing());
+        }
+    };
 
     @Override
     public void usePreBattleAction() {
@@ -70,8 +86,12 @@ public class Oracle extends AbstractCompanion {
                 addToBot(new ChangeStanceAction("Calm"));
                 break;
             case SPECIAL:
-                addToBot(new ApplyPowerAction(this, this, new OraclePower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
-                this.getPower(OraclePower.POWER_ID).onSpecificTrigger();
+                Miracle miracle = new Miracle();
+                miracle.upgrade();
+                addToBot(new MakeTempCardInHandAction(miracle, 2));
+                Insight insight = new Insight();
+                insight.upgrade();
+                addToBot(new MakeTempCardInDrawPileAction(insight, 2, true, true));
                 break;
             case UNKNOWN:
                 break;
@@ -104,8 +124,12 @@ public class Oracle extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(this, this, new OraclePower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT));
-                this.getPower(OraclePower.POWER_ID).onSpecificTrigger();
+                Insight insight = new Insight();
+                insight.upgrade();
+                addToTop(new MakeTempCardInDrawPileAction(insight, 2, true, true));
+                Miracle miracle = new Miracle();
+                miracle.upgrade();
+                addToTop(new MakeTempCardInHandAction(miracle, 2));
                 break;
         }
     }
@@ -151,12 +175,12 @@ public class Oracle extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_PWR_AMT + INTENTS[6];
+                this.intentTip.body = INTENTS[5] + SPECIAL_CARD_AMT + INTENTS[6] + SPECIAL_CARD_AMT + INTENTS[7];
                 this.intentTip.img = getIntentImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[7];
+                this.intentTip.body = INTENTS[8];
                 this.intentTip.img = getIntentImg();
                 return;
             case NONE:
@@ -188,10 +212,24 @@ public class Oracle extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[5];
+                    return INTENT_TOOLTIPS[4] + SPECIAL_CARD_AMT + INTENT_TOOLTIPS[5] + SPECIAL_CARD_AMT + INTENT_TOOLTIPS[6];
                 }
         }
         return "";
+    }
+
+    @Override
+    public void talk() {
+        Random rand = new Random();
+        int text = -1;
+        if (lastDialog == -1)
+            text = rand.random(0,2);
+        else {
+            text = rand.random(0, 1);
+            if (lastDialog <= text)
+                text++;
+        }
+        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

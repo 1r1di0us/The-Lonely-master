@@ -121,9 +121,9 @@
       " times, and apply #b",
       " #yTarget to an enemy.",
 
-      "Omen intends to grant you #b",
-      " #yBlock, gain #b",
-      " #yStrength, and increase the number of times its Attack hits by #b",
+      "Omen intends to gain #b",
+      " #yStrength whenever you #yCall a #yMove, and #yCall #Attack at the start of the next #b",
+      " turns.",
       ".",
 
       "This Companion's intentions are #yUnknown."
@@ -138,10 +138,9 @@
       " times, and applies #b",
       " #yTarget.",
 
-      "Grants #b",
-      " #yBlock, Gains #b",
-      " #yStrength, and increases the number of times its attack hits by #b",
-      "."
+      "Gains #b",
+      " #yStrength whenever you #yCall a #yMove, and #yCalls #yAttack at the start of the next #b",
+      " turns."
     ],
     "DIALOG": [
       "SQUAK!",
@@ -214,7 +213,7 @@
       "Nothing",
       "Furious Blast",
       "Peaceful Protest",
-      "Chant",
+      "Blessing",
       "Unknown"
     ],
     "INTENTS": [
@@ -226,8 +225,9 @@
       "Sowru intends to grant you #b",
       " #yBlock and convince you to enter #yCalm.",
 
-      "Sowru intends to empower her passive #yVigor gain by #b",
-      ", and trigger her passive #yVigor gain.",
+      "Sowru intends to add #b",
+      " #yMiracle+ to your hand and shuffle #b",
+      " #yInsight+ into your draw pile.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -238,8 +238,9 @@
       "Grants #b",
       " #yBlock and causes you to enter #yCalm.",
 
-      "Empowers its passive #yVigor gain by #b",
-      ", and triggers her passive #yVigor gain."
+      "Adds #b",
+      " #yMiracle+ to your hand and shuffles #b",
+      " #yInsight+ into your draw pile."
     ],
     "DIALOG": [
       "I've come to study...",
@@ -260,43 +261,31 @@
       "Blirt intends to make smart sounds.",
 
       "Blirt intends to attack an enemy for #b",
-      " damage",
-      " #b",
-      " times",
-      ", and #yChannel #b",
-      " #yLightning orb.",
-      " #yLightning orbs",
+      " damage, and #yChannel #b",
+      " #yLightning.",
 
       "Blirt intends to grand you #b",
-      " #yBlock",
-      " #b",
-      " times",
-      ", and #yChannel #b",
-      " #yFrost orb.",
-      " #yFrost orbs.",
+      " #yBlock, and #yChannel #b",
+      " #yFrost.",
 
-      "Blirt intends to increase the number of times her main #yMoves are performed by #b",
-      ".",
+      "Blirt intends to #yEvoke your next orb #b",
+      " times and #yChannel #b",
+      " #yPlasma.",
 
       "This Companion's intentions are #yUnknown."
     ],
     "INTENT_TOOLTIPS": [
       "Deals #b",
-      " damage",
-      " #b",
-      " times",
-      ", and #yChannels #b",
+      " damage, and #yChannels #b",
       " #yLightning.",
 
       "Grants #b",
-      " #yBlock",
-      " #b",
-      " times",
-      ", and #yChannels #b",
+      " #yBlock, and #yChannels #b",
       " #yFrost.",
 
-      "Increases the number of times her main #yMoves are performed by #b",
-      "."
+      "#yEvokes your next orb #b",
+      " times and #yChannels #b",
+      " #yPlasma."
     ],
     "DIALOG": [
       "n...Nice robot...",
@@ -368,8 +357,8 @@
       " times.",
 
       "Kharn intends to grant you #b",
-      " #yBlock, and gain #b",
-      " #yStrength.",
+      " #yBlock, and apply #b",
+      " #yVulnerable.",
 
       "Kharn intends to transfer its current #yStrength + #b",
       " to you.",
@@ -382,8 +371,8 @@
       " times.",
 
       "Grants #b",
-      " #yBlock and gains #b",
-      " #yStrength.",
+      " #yBlock and apply #b",
+      " #yVulnerable.",
 
       "Transfers its current #yStrength + #b",
       " to you."

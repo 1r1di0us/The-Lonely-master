@@ -14,7 +14,7 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class OmenPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class DEPRECATEDOmenPower extends AbstractEasyPower implements CloneablePowerInterface {
     public static final String POWER_ID = makeID("OmenPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -23,7 +23,7 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws32.png");
 
-    public OmenPower(AbstractCreature owner, int amount) {
+    public DEPRECATEDOmenPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -58,6 +58,6 @@ public class OmenPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public AbstractPower makeCopy() {
-        return new OmenPower(this.owner, this.amount);
+        return new DEPRECATEDOmenPower(this.owner, this.amount);
     }
 }

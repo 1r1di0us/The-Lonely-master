@@ -23,13 +23,14 @@ public class TheDryhound extends AbstractEasyCard {
 
     public TheDryhound() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
-        cardToPreview.addAll(CardTips);
 
         this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
         this.isInnate = true;
         AutoplayField.autoplay.set(this, true);
         //this.tags.add(Enums.COMPANION);
+
+        cardToPreview.addAll(CardTips);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

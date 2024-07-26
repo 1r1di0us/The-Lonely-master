@@ -72,19 +72,11 @@ public class Counterstrike extends AbstractEasyCard {
             super.calculateCardDamage(mo);
             if (this.magicNumber <= 1) { //mo is attacking once
                 this.baseMagicNumber = this.magicNumber = 1;
-                if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
-                    this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[0];
-                } else {
-                    this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-                }
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
                 this.initializeDescription();
             }
             else { //mo is attacking many times
-                if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(StrikeDummy.ID)) {
-                    this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[2] + cardStrings.EXTENDED_DESCRIPTION[1];
-                } else {
-                    this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1];
-                }
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
                 this.initializeDescription();
             }
         }
@@ -110,6 +102,11 @@ public class Counterstrike extends AbstractEasyCard {
             this.rawDescription = cardStrings.DESCRIPTION;
             initializeDescription();
         }
+    }
+
+    public void onMoveToDiscard() {
+        this.rawDescription = cardStrings.DESCRIPTION;
+        initializeDescription();
     }
 
     public void upp() {

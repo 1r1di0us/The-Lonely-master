@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import lonelymod.LonelyMod;
 import lonelymod.util.TexLoader;
 
@@ -65,7 +66,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (!isPlayer && AbstractDungeon.player.energy.energy > 0) {
+        if (!isPlayer && EnergyPanel.totalCount > 0) {
             addToBot(new LoseEnergyAction(1));
             flash();
             this.amount++;

@@ -1,6 +1,7 @@
 package lonelymod;
 
 import basemod.abstracts.CustomEnergyOrb;
+import basemod.abstracts.CustomUnlockBundle;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import lonelymod.cards.Defend;
@@ -38,6 +39,14 @@ public class LonelyCharacter extends CustomPlayer {
     static final String[] TEXT = characterStrings.TEXT;
 
     private static final Float SIZE_SCALE = 0.8F;
+
+    private CustomUnlockBundle unlocks0;
+    private CustomUnlockBundle unlocks1;
+    private CustomUnlockBundle unlocks2;
+    private CustomUnlockBundle unlocks3;
+    private CustomUnlockBundle unlocks4;
+    //https://github.com/mikemayhemdev/DownfallSTS/blob/master/src/main/java/downfall/downfallMod.java#L1655
+    //https://github.com/daviscook477/BaseMod/blob/master/mod/src/main/java/basemod/abstracts/CustomUnlockBundle.java
 
     public LonelyCharacter(String name, PlayerClass setClass) {
         super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(

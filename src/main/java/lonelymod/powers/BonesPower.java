@@ -25,8 +25,6 @@ public class BonesPower extends AbstractEasyPower implements CloneablePowerInter
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bones84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Bones32.png");
 
-//    private static final int StrengthAmt = 2;
-//    private static final int DexAmt = 1;
     private static final int VigAmt = 2;
     private static final int StamAmt = 1;
 

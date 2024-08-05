@@ -20,10 +20,10 @@
 
     <!-- This information will be displayed in ModTheSpire, the modded launcher. -->
     <name>LonelyMod</name>
-    <version>0.2.5</version>
+    <version>0.3.0</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
-    <description>Adds The Lonely as a playable Character. Intended to be the logical 5th base game character.</description>
+    <description>Adds The Lonely as a playable Character. Intended to be the logical complement to The Watcher as the 5th base game character.</description>
 
     <!--You shouldn't need to change anything below this point, but feel free to look at it.-->
     <!--You'll get a warning regarding these when you package your mod, but don't worry, it's just set up like this for convenience.-->

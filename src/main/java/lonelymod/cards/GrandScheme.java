@@ -13,8 +13,7 @@ public class GrandScheme extends AbstractEasyCard {
     public final static String ID = makeID("GrandScheme");
 
     public GrandScheme() {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 20;
+        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         this.isInnate = true;
         this.exhaust = true;
     }
@@ -22,10 +21,10 @@ public class GrandScheme extends AbstractEasyCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DiscardDeckAction());
-        addToBot(new PlanAction(this.magicNumber));
+        addToBot(new PlanAction(p.discardPile.size() + p.drawPile.size())); // discard deck action hasn't happened yet.
     }
 
     public void upp() {
-        upgradeMagicNumber(8);
+        upgradeBaseCost(1);
     }
 }

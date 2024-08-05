@@ -1,19 +1,20 @@
-package lonelymod.relics;
+package lonelymod.relics.deprecated;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyCharacter;
+import lonelymod.relics.AbstractEasyRelic;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class BookOfTheLaw extends AbstractEasyRelic {
+public class DEPRECATEDBookOfTheLaw extends AbstractEasyRelic {
     public static final String ID = makeID("BookOfTheLaw");
 
     private static final int DMG = 1;
 
-    public BookOfTheLaw() {
+    public DEPRECATEDBookOfTheLaw() {
         super(ID, RelicTier.BOSS, LandingSound.HEAVY, LonelyCharacter.Enums.YELLOW);
     }
 

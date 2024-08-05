@@ -5,10 +5,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.companions.Bones;
 import lonelymod.companions.Mechanic;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 
 public class SummonMechanicAction extends AbstractGameAction {
     private AbstractCompanion c;
@@ -31,7 +35,11 @@ public class SummonMechanicAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            this.c = new Mechanic(-750, -40);
+            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
+                this.c = new Mechanic(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
+            } else {
+                this.c = new Mechanic(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
+            }
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
             //this.c.animX = 1200.0F * Settings.xScale;

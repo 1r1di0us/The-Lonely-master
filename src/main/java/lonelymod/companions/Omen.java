@@ -95,6 +95,7 @@ public class Omen extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
+                talk();
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
@@ -139,6 +140,7 @@ public class Omen extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
+                talk();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));

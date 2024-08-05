@@ -283,7 +283,7 @@
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
-    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan !M!. NL Exhaust."
+    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan your discard pile. NL Exhaust."
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
@@ -518,6 +518,11 @@
   "${ModID}:Sharpen": {
     "NAME": "Sharpen",
     "DESCRIPTION": "Special Move NL Whenever you lonelymod:Call a lonelymod:Move, gains 1 Strength. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
+  },
+  "${ModID}:GodlyPowers": {
+    "NAME": "Godly Powers",
+    "DESCRIPTION": "Gain [E]. NL lonelymod:Return.",
+    "UPGRADED_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."
   },
 
   "${ModID}:InlinePowerDemo": {

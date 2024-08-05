@@ -100,6 +100,7 @@ public class Meat extends AbstractCompanion {
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    talk();
                     addToBot(new WaitAction(0.4F));
                     addToBot(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
@@ -147,6 +148,7 @@ public class Meat extends AbstractCompanion {
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                    talk();
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
                     if (targetEnemy.hasPower(WeakPower.POWER_ID))

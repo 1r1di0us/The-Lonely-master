@@ -14,8 +14,8 @@
       ".[] NL At the start of combat, #ySummon #yMeat."
     ]
   },
-  "${ModID}:TreatBox": {
-    "NAME": "Treat Box",
+  "${ModID}:BoxOfTreats": {
+    "NAME": "Box Of Treats",
     "FLAVOR": "Every time you open this, another treat lies within.",
     "DESCRIPTIONS": [
       "Whenever a #yCompanion is #ySummoned, Grant it #b",
@@ -30,12 +30,26 @@
       "At the start of combat, #yCall #yProtect."
     ]
   },
+  "${ModID}:PaperDaug": {
+    "NAME": "Paper Daug",
+    "FLAVOR": "Reminds you of Bones.",
+    "DESCRIPTIONS": [
+      "Enemies with #yTarget take 100% more damage from Companions rather than 50%."
+    ]
+  },
   "${ModID}:WorldMap": {
     "NAME": "World Map",
     "FLAVOR": "\"A well-documented map can do wonders for one's sense of direction.\" - The Architect",
     "DESCRIPTIONS": [
       "At the end of your turn, after discarding your cards, #yPlan #b",
       "."
+    ]
+  },
+  "${ModID}:Boomerang": {
+    "NAME": "Boomerang",
+    "FLAVOR": "It always comes back no matter how you throw it",
+    "DESCRIPTIONS": [
+      "The first card you play each turn will #yReturn to your hand next turn."
     ]
   },
   "${ModID}:BookOfTheLaw": {
@@ -46,14 +60,19 @@
       " damage for each card in your hand."
     ]
   },
-  "${ModID}:ToyCat": {
-    "NAME": "Toy Cat",
-    "FLAVOR": "It just couldn't stay away...",
+  "${ModID}:GiftOfGod": {
+    "NAME": "Gift of God",
+    "FLAVOR": "You may have this power, but not what you hoped to obtain through it.",
     "DESCRIPTIONS": [
-      "Upon pickup, choose a non-exhausting #yAttack or #ySkill. At the start of each turn, place this card in your hand.",
-      "Choose a card for ",
-      "At the start of each turn, place ",
-      " in your hand."
+      "At the start of combat, shuffle a #yGodly #yPowers into your draw pile."
+    ]
+  },
+  "${ModID}:Spyglass": {
+    "NAME": "Spyglass",
+    "FLAVOR": "The eyepiece is extremely cold.",
+    "DESCRIPTIONS": [
+      "Whenever you #yPlan X while your discard pile is empty, #yScry X + #b",
+      " instead."
     ]
   }
 }

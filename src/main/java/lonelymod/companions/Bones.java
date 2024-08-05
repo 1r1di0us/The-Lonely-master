@@ -108,6 +108,7 @@ public class Bones extends AbstractCompanion {
                 addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 break;
             case SPECIAL:
+                talk();
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                     if (mo != null && !mo.isDeadOrEscaped()) {
                         addToBot(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
@@ -152,6 +153,7 @@ public class Bones extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
+                talk();
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT), SPECIAL_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_SELF_PWR_AMT), SPECIAL_SELF_PWR_AMT, true, AbstractGameAction.AttackEffect.NONE));
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

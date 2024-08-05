@@ -9,12 +9,12 @@ import lonelymod.powers.CompanionDexterityPower;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class TreatBox extends AbstractEasyRelic implements RelicOnSummonInterface {
-    public static final String ID = makeID("TreatBox");
+public class BoxOfTreats extends AbstractEasyRelic implements RelicOnSummonInterface {
+    public static final String ID = makeID("BoxOfTreats");
 
     private static final int POWER_AMT = 1;
 
-    public TreatBox() {
+    public BoxOfTreats() {
         super(ID, RelicTier.COMMON, LandingSound.CLINK, LonelyCharacter.Enums.YELLOW);
     }
 

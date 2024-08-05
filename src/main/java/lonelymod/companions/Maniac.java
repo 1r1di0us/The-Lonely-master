@@ -68,6 +68,7 @@ public class Maniac extends AbstractCompanion {
     public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(2);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINANGRY_1A"));
@@ -109,6 +110,7 @@ public class Maniac extends AbstractCompanion {
     public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(2);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINANGRY_1A"));

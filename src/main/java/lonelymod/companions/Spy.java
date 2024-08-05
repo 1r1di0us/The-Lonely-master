@@ -68,6 +68,7 @@ public class Spy extends AbstractCompanion {
     public void takeTurn() {
         switch (this.nextMove) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(1);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINSPAZZY_1A"));
@@ -113,6 +114,7 @@ public class Spy extends AbstractCompanion {
     public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(1);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINSPAZZY_1A"));

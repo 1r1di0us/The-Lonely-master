@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.vfx.*;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashIntentEffect;
@@ -36,11 +37,14 @@ import lonelymod.interfaces.ModifyCompanionBlockInterface;
 import lonelymod.interfaces.TriggerOnCompanionTurnEndPowerInterface;
 import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.powers.TargetPower;
+import lonelymod.relics.PaperDaug;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 
 public abstract class AbstractCompanion extends AbstractMonster {
 
@@ -89,6 +93,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte SPECIAL = 3;
     public static final byte UNKNOWN = 4;
     public static final byte NONE = 5;
+
+    public static final float INIT_X = 175;
+    public static final float INIT_Y = -40;
     private boolean isBlockModified = false;
 
     //card preview stuff
@@ -107,8 +114,13 @@ public abstract class AbstractCompanion extends AbstractMonster {
         INTENTS = companionStrings.INTENTS;
         INTENT_TOOLTIPS = companionStrings.INTENT_TOOLTIPS;
         DIALOG = companionStrings.DIALOG;
-        dialogX = this.drawX - 750.0F * Settings.scale;
-        dialogY = this.drawY - 300.0F * Settings.scale;
+        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
+            dialogX = (offsetX + hb_w + 150.F) * Settings.scale;
+            dialogY = (offsetY + hb_h - 25.F) * Settings.scale;
+        } else {
+            dialogX = (offsetX + hb_w + 650.F) * Settings.scale;
+            dialogY = (offsetY + hb_h - 25.F) * Settings.scale;
+        }
     }
 
     // move methods:
@@ -412,8 +424,12 @@ public abstract class AbstractCompanion extends AbstractMonster {
             }
         }
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-        if (isTargeted)
-            tmp = (int)(tmp * 1.5F);
+        if (isTargeted) {
+            if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
+                tmp = (int) (tmp * 2.0F);
+            else
+                tmp = (int) (tmp * 1.5F);
+        }
         for (AbstractPower p : this.powers)
             tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
         if (targetEnemy != null) {
@@ -765,6 +781,16 @@ public abstract class AbstractCompanion extends AbstractMonster {
         float x = this.hb.cX - this.hb.width / 2.0F;
         float y = this.hb.cY - this.hb.height / 2.0F + hbOff;
         ReflectionHacks.privateMethod(AbstractCreature.class, "renderPowerIcons", SpriteBatch.class, float.class, float.class).invoke(this, sb, x, y);
+    }
+
+    public void movePosition(float x, float y) {
+        this.drawX += x;
+        this.drawY = y;
+        this.dialogX = this.drawX + 0.0F * Settings.scale;
+        this.dialogY = this.drawY + 170.0F * Settings.scale;
+        this.animX = 0.0F;
+        this.animY = 0.0F;
+        refreshHitboxLocation();
     }
 
     /*methods to redo:

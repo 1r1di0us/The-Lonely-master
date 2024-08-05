@@ -5,10 +5,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.companions.Bones;
 import lonelymod.companions.Omen;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 
 public class SummonOmenAction extends AbstractGameAction {
     private AbstractCompanion c;
@@ -33,7 +37,11 @@ public class SummonOmenAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            this.c = new Omen(-750, -40);
+            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
+                this.c = new Omen(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
+            } else {
+                this.c = new Omen(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
+            }
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             if (!onBattleStart) { //in case you have wild form, and you use omen then default move doesn't happen
                 this.c.callNone();

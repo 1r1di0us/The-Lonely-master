@@ -2,6 +2,7 @@ package lonelymod.actions;
 
 import static lonelymod.LonelyMod.makeID;
 
+import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -16,6 +17,7 @@ import lonelymod.cards.AbstractEasyCard;
 import lonelymod.interfaces.TriggerOnPlanInterface;
 import lonelymod.powers.PlanBPower;
 import lonelymod.powers.TwoStepsAheadPower;
+import lonelymod.relics.Spyglass;
 
 public class PlanAction extends AbstractGameAction {
     public static final String ID = makeID("PlanAction");
@@ -53,11 +55,9 @@ public class PlanAction extends AbstractGameAction {
         }
         if (this.duration == this.startingDuration) {
             if (AbstractDungeon.player.discardPile.isEmpty()) {
-                /*if (AbstractDungeon.player.hasPower(makeID("PlanBPower"))) {
-                    AbstractDungeon.player.getPower(makeID("PlanBPower")).flash();
-                    addToTop(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player,
-                            AbstractDungeon.player.getPower(makeID("PlanBPower")).amount, DamageType.THORNS), AttackEffect.SLASH_HEAVY));
-                }*/
+                if (AbstractDungeon.player.hasRelic(Spyglass.ID)) {
+                    addToBot(new ScryAction(this.amount + Spyglass.EXTRA_SCRY));
+                }
                 this.isDone = true;
                 triggerPlanActions();
                 return;
@@ -90,10 +90,7 @@ public class PlanAction extends AbstractGameAction {
     }
 
     private void triggerPlanActions() {
-        //for (AbstractCard c : AbstractDungeon.player.drawPile.group) {}
-        //for (AbstractCard c : AbstractDungeon.player.discardPile.group) {}
-        //for (AbstractCard c : AbstractDungeon.player.hand.group) {}
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) { //this was for now Deprecated Part of the Plan, which is drawn when you plan
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             if (c instanceof TriggerOnPlanInterface) {
                 ((TriggerOnPlanInterface) c).triggerOnPlan(false);
             }
@@ -102,12 +99,7 @@ public class PlanAction extends AbstractGameAction {
         //  p.postPlan(selectedCards.size());
         //}
         if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID) && this.amount - numCardsSelected > 0) {
-            ((PlanBPower) AbstractDungeon.player.getPower(PlanBPower.POWER_ID)).onPlan(this.amount - numCardsSelected);
+            ((PlanBPower) AbstractDungeon.player.getPower(PlanBPower.POWER_ID)).onPlan(Math.min(this.amount - numCardsSelected, AbstractDungeon.player.discardPile.size() - numCardsSelected));
         }
-/*        if (this.isDone && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            if (AbstractDungeon.player.hasPower(PlanBPower.POWER_ID)) {
-                AbstractDungeon.player.getPower(PlanBPower.POWER_ID).onPlan();
-            }
-        }*/
     }
 }

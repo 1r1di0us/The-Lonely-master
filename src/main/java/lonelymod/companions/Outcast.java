@@ -68,6 +68,7 @@ public class Outcast extends AbstractCompanion {
     public void takeTurn() {
         switch (nextMove) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(2);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINFAT_1A"));
@@ -114,6 +115,7 @@ public class Outcast extends AbstractCompanion {
     public void performMove(byte move) {
         switch (move) {
             case DEFAULT:
+                talk();
                 int roll = MathUtils.random(2);
                 if (roll == 0) {
                     addToBot(new SFXAction("VO_GREMLINFAT_1A"));

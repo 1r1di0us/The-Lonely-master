@@ -6,12 +6,16 @@ import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import lonelymod.companions.AbstractCompanion;
+import lonelymod.companions.Bones;
 import lonelymod.companions.Spy;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
 
 import java.util.ArrayList;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 
 public class SummonSpyAction extends AbstractGameAction {
     private AbstractCompanion c;
@@ -34,7 +38,11 @@ public class SummonSpyAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            this.c = new Spy(-750, -40);
+            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
+                this.c = new Spy(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
+            } else {
+                this.c = new Spy(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
+            }
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
             CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());

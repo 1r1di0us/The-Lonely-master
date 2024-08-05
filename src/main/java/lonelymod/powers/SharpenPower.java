@@ -55,7 +55,7 @@ public class SharpenPower extends AbstractEasyPower implements CloneablePowerInt
     @Override
     public void triggerOnCallMove(byte move, byte prevMove) {
         flash();
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, this.owner, new StrengthPower(AbstractDungeon.player, this.amount)));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(AbstractDungeon.player, this.amount)));
     }
 
     @Override

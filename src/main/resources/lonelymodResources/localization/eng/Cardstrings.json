@@ -63,7 +63,7 @@
   },
   "${ModID}:Adapt": {
     "NAME": "Adapt",
-    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Next time you play the drawn card this turn, gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL If you play the drawn card this turn, gain !B! Block."
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
@@ -461,7 +461,7 @@
   },
   "${ModID}:Bite": {
     "NAME": "Bite",
-    "DESCRIPTION": "Attack Move NL Deal 12 damage. NL Gains 2 Strength."
+    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Gains 2 Strength."
   },
   "${ModID}:Poise": {
     "NAME": "Poise",

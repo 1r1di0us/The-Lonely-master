@@ -3,6 +3,8 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -46,9 +48,10 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
         updateDescription();
     }
 
-    public void onPlayCard(AbstractCard card, AbstractMonster m) {
+    public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK) {
-            this.amount++;
+            flash();
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new ClawsPower(this.owner, 1)));
             updateDescription();
         }
     }
@@ -60,7 +63,7 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + 1 + DESCRIPTIONS[2];
     }
 
     @Override

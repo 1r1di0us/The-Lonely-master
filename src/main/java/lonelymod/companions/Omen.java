@@ -162,7 +162,7 @@ public class Omen extends AbstractCompanion {
 
     public void callAttack() {
         getTarget();
-        if (this.hasPower(makeID("OmenPower"))) {
+        if (this.hasPower(ClawsPower.POWER_ID)) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(ClawsPower.POWER_ID).amount, true, true);
         } else {
             logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
@@ -176,7 +176,7 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.DEFEND_BUFF, this.block.get(1).base, false);
+        setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
 
     public void updateIntentTip() {
@@ -188,7 +188,10 @@ public class Omen extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.intentMultiAmt + INTENTS[4];
+                if (hasPower(ClawsPower.POWER_ID))
+                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.getPower(ClawsPower.POWER_ID).amount + INTENTS[4];
+                else
+                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + 5 + INTENTS[4];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:

@@ -32,7 +32,7 @@ public class MeatsStomach extends AbstractEasyRelic {
     };
 
     @Override
-    public void atBattleStart() {
+    public void atPreBattle() {
         flash();
         addToBot(new SummonMeatAction());
     }

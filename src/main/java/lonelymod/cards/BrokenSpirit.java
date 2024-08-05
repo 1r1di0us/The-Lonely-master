@@ -26,7 +26,7 @@ public class BrokenSpirit extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded) {
+        if (!upgraded) {
             addToBot(new MakeTempCardInDrawPileAction(new Primal(), 1, false, true));
         }
         else {

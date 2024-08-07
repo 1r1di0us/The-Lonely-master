@@ -94,7 +94,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public static final byte UNKNOWN = 4;
     public static final byte NONE = 5;
 
-    public static final float INIT_X = 175;
     public static final float INIT_Y = -40;
     private boolean isBlockModified = false;
 
@@ -105,8 +104,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     protected int previewIndex = 0;
     protected float rotationTimer = 0.f;
 
-    public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
-        super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
+    public AbstractCompanion(String name, String id, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
+        super(name, id, 1, hb_x, hb_y, hb_w, hb_h, imgUrl,0, 0); // we override drawX anyway
         ID = id;
         CompanionStrings companionStrings = LonelyMod.getCompanionStrings(ID);
         NAME = companionStrings.NAME;
@@ -115,12 +114,13 @@ public abstract class AbstractCompanion extends AbstractMonster {
         INTENT_TOOLTIPS = companionStrings.INTENT_TOOLTIPS;
         DIALOG = companionStrings.DIALOG;
         if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
-            dialogX = (offsetX + hb_w + 150.F) * Settings.scale;
-            dialogY = (offsetY + hb_h - 25.F) * Settings.scale;
+            this.drawX = Settings.WIDTH * 0.5F + AbstractDungeon.player.hb_w;
         } else {
-            dialogX = (offsetX + hb_w + 650.F) * Settings.scale;
-            dialogY = (offsetY + hb_h - 25.F) * Settings.scale;
+            this.drawX = AbstractDungeon.player.drawX + AbstractDungeon.player.hb_w;
         }
+        this.drawY = AbstractDungeon.floorY + INIT_Y * Settings.yScale;
+        this.dialogX = this.drawX + this.hb_w * 0.4F;
+        this.dialogY = this.drawY + this.hb_h * 0.8F;
     }
 
     // move methods:
@@ -784,10 +784,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public void movePosition(float x, float y) {
-        this.drawX += x;
-        this.drawY = y;
-        this.dialogX = this.drawX + 0.0F * Settings.scale;
-        this.dialogY = this.drawY + 170.0F * Settings.scale;
+        this.drawX = x + AbstractDungeon.player.hb_w;
+        this.drawY = y + INIT_Y;
+        this.dialogX = this.drawX + this.hb_w - 80.F * Settings.scale;
+        this.dialogY = this.drawY + this.hb_h - 25.F * Settings.scale;
         this.animX = 0.0F;
         this.animY = 0.0F;
         refreshHitboxLocation();

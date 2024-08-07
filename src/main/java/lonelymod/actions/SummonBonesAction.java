@@ -34,11 +34,7 @@ public class SummonBonesAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
-                this.c = new Bones(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
-            } else {
-                this.c = new Bones(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
-            }
+            this.c = new Bones();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
             //this.c.animX = 1200.0F * Settings.xScale;

@@ -44,8 +44,8 @@ public class Mechanic extends AbstractCompanion {
     private int attackDmg;
     private int protectBlk;
 
-    public Mechanic(float drawX, float drawY) {
-        super("Blirt", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG, drawX, drawY);
+    public Mechanic() {
+        super("Blirt", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg));
@@ -280,7 +280,7 @@ public class Mechanic extends AbstractCompanion {
             if (lastDialog <= text)
                 text++;
         }
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.dialogX, this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

@@ -38,11 +38,7 @@ public class SummonSpyAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
-                this.c = new Spy(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
-            } else {
-                this.c = new Spy(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
-            }
+            this.c = new Spy();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
             CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());

@@ -43,8 +43,8 @@ public class Omen extends AbstractCompanion {
     private int attackDmg;
     private int protectBlk;
 
-    public Omen(float drawX, float drawY) {
-        super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG, drawX, drawY);
+    public Omen() {
+        super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG);
         this.defaultDmg = DEFAULT_DMG;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
@@ -258,7 +258,7 @@ public class Omen extends AbstractCompanion {
             if (lastDialog <= text)
                 text++;
         }
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.dialogX, this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

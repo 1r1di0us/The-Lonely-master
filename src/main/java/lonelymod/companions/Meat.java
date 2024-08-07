@@ -45,8 +45,8 @@ public class Meat extends AbstractCompanion {
     private int protectBlk;
     private int specialDmg;
 
-    public Meat(float drawX, float drawY) {
-        super("Meat", ID, 0.0F, 0.0F, 400.0F, 300.0F, IMG, drawX, drawY);
+    public Meat() {
+        super("Meat", ID, 0.0F, 0.0F, 400.0F, 300.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.specialDmg = SPECIAL_DMG;
@@ -263,7 +263,7 @@ public class Meat extends AbstractCompanion {
             if (lastDialog <= text)
                 text++;
         }
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.dialogX, this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

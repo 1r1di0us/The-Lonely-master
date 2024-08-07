@@ -37,11 +37,7 @@ public class SummonOmenAction extends AbstractGameAction {
                 }
                 CompanionField.currCompanion.set(AbstractDungeon.player, null);
             }
-            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear")) {
-                this.c = new Omen(AbstractCompanion.INIT_X - Settings.WIDTH * 0.25F, AbstractCompanion.INIT_Y);
-            } else {
-                this.c = new Omen(AbstractCompanion.INIT_X - Settings.WIDTH * 0.5F, AbstractCompanion.INIT_Y);
-            }
+            this.c = new Omen();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             if (!onBattleStart) { //in case you have wild form, and you use omen then default move doesn't happen
                 this.c.callNone();

@@ -52,8 +52,8 @@ public class Bones extends AbstractCompanion {
     private int protectBlk;
 
 
-    public Bones(float drawX, float drawY) {
-        super("Bones", ID, 0.0F, 0.0F, 220.0F, 130.0F, IMG, drawX, drawY);
+    public Bones() {
+        super("Bones", ID, 0.0F, 0.0F, 220.0F, 130.0F, IMG);
 
         this.defaultBlk = DEFAULT_BLK;
         this.attackDmg = ATTACK_DMG;
@@ -270,7 +270,7 @@ public class Bones extends AbstractCompanion {
             if (lastDialog <= text)
                 text++;
         }
-        AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 3.0F, DIALOG[text], true));
+        AbstractDungeon.effectList.add(new SpeechBubble(this.dialogX, this.dialogY, 3.0F, DIALOG[text], true));
     }
 
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

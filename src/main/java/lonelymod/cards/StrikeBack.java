@@ -1,3 +1,4 @@
+package lonelymod.cards;
 
 
 import static lonelymod.LonelyMod.makeID;
@@ -9,9 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import lonelymod.cards.AbstractEasyCard;
-import lonelymod.companions.AbstractCompanion;
-import lonelymod.fields.CompanionField;
 
 
 public class StrikeBack extends AbstractEasyCard {

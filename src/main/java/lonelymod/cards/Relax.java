@@ -13,19 +13,19 @@ public class Relax extends AbstractEasyCard {
     public final static String ID = makeID("Relax");
 
     public Relax() {
-        super(ID, 0, AbstractCard.CardType.SKILL, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
-        baseMagicNumber = magicNumber = 10;
-        baseSecondMagic = secondMagic = 1;
+        super(ID, 1, AbstractCard.CardType.SKILL, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
+        baseMagicNumber = magicNumber = 3;
+        baseSecondMagic = secondMagic = 5;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int number = Math.floorDiv(p.currentBlock, this.magicNumber);
-        addToBot(new DrawCardAction(number));
+        addToBot(new DrawCardAction(this.magicNumber));
+        int number = Math.floorDiv(p.currentBlock, this.secondMagic);
         addToBot(new GainEnergyAction(number));
         addToBot(new RemoveAllBlockAction(p, p));
     }
 
     public void upp() {
-        upgradeMagicNumber(-2);
+        upgradeMagicNumber(1);
     }
 }

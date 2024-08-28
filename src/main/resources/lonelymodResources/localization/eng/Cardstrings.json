@@ -24,6 +24,10 @@
     "NAME": "Kill!",
     "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack. NL At the start of your next !M! turns, lonelymod:Call lonelymod:Attack."
   },
+  "${ModID}:LongShot": {
+    "NAME": "Long Shot",
+    "DESCRIPTION": "Deal !D! damage. Deal !${ModID}:sd! damage instead if played on the furthest enemy away."
+  },
   "${ModID}:Marker": {
     "NAME": "Marker",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target."
@@ -191,7 +195,7 @@
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
-    "DESCRIPTION": "Remove all your Block. For every !M! Block removed, gain [E] and draw !${ModID}:m2! card."
+    "DESCRIPTION": "Draw !M! cards. Remove all your Block. For every !${ModID}:m2! Block removed, gain [E]."
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
@@ -236,7 +240,7 @@
   },
   "${ModID}:AccursedBeak": {
     "NAME": "Accursed Beak",
-    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. If you still have Strength, play this card again."
+    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. NL If you still have Strength, play this card again."
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
@@ -269,16 +273,16 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. Draw !M! card. Permanently remove a RANDOM card in your hand from your deck. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Permanently remove a RANDOM card in your hand from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. Draw !M! card. NL Remove a RANDOM card in your hand from your deck. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Remove a RANDOM card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. Next turn, draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. NL Next turn, draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
-    "DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X times this turn",
+    "DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X times this turn.",
     "UPGRADE_DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X+1 times this turn."
   },
   "${ModID}:GrandScheme": {
@@ -329,7 +333,7 @@
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Kharn and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Kharn. NL Exhaust."
   },
   "${ModID}:Fervor": {
     "NAME": "Fervor",
@@ -353,7 +357,7 @@
   },
   "${ModID}:TheSpy": {
     "NAME": "The Spy",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Dzil and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Dzil. NL Exhaust."
   },
   "${ModID}:Crafty": {
     "NAME": "Crafty",
@@ -377,7 +381,7 @@
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Blirt and drawn 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Blirt. NL Exhaust."
   },
   "${ModID}:Power": {
     "NAME": "Power",
@@ -401,7 +405,7 @@
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Sowru and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Sowru. NL Exhaust."
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
@@ -425,7 +429,7 @@
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Fring and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Fring. NL Exhaust."
   },
   "${ModID}:Empower": {
     "NAME": "Empower",
@@ -449,7 +453,7 @@
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Bones and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Bones. NL Exhaust."
   },
   "${ModID}:Excitement": {
     "NAME": "Excitement",
@@ -473,7 +477,7 @@
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Meat and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Meat. NL Exhaust."
   },
   "${ModID}:Intimidating": {
     "NAME": "Intimidating",
@@ -497,7 +501,7 @@
   },
   "${ModID}:TheRavyn": {
     "NAME": "The Ravyn",
-    "DESCRIPTION": "Innate. NL When drawn, lonelymod:Summon lonelymod:Omen and draw 1 card. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL Exhaust."
   },
   "${ModID}:Claws": {
     "NAME": "Claws",
@@ -513,7 +517,7 @@
   },
   "${ModID}:Shriek": {
     "NAME": "Shriek",
-    "DESCRIPTION": "Protect Move NL Reduce ALL enemy's Strength by 5 this turn. NL Apply 3 lonelymod:Target."
+    "DESCRIPTION": "Protect Move NL Grant 6 Block 2 times. NL Apply 3 lonelymod:Target."
   },
   "${ModID}:Sharpen": {
     "NAME": "Sharpen",

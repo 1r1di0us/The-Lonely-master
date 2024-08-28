@@ -22,18 +22,11 @@ public class TheRavyn extends AbstractEasyCard {
 
     public TheRavyn() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
-        this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
-        this.isInnate = true;
-        AutoplayField.autoplay.set(this, true);
-        //this.tags.add(Enums.COMPANION);
-
         this.cardToPreview.addAll(CardTips);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LongerWaitAction(1.0f));
-        addToBot(new DrawCardAction(p, magicNumber));
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         addToBot(new SummonOmenAction(true));

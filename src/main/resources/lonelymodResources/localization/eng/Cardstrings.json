@@ -52,6 +52,10 @@
     "NAME": "Siphon",
     "DESCRIPTION": "Deal !D! damage. NL Gain Vigor equal to the unblocked damage dealt."
   },
+  "${ModID}:StrikeBack": {
+    "NAME": "Strike Back",
+    "DESCRIPTION": "Deal !D! damage. NL If you have a debuff, gain [E]."
+  },
   "${ModID}:StrikeTeam": {
     "NAME": "Strike Team",
     "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E]."

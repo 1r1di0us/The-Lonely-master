@@ -13,10 +13,10 @@ public class BrokenDreams extends AbstractEasyCard {
     public final static String ID = makeID("BrokenDreams");
 
     public BrokenDreams() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new FakeOut();
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 3;
+        this.baseSecondMagic = this.secondMagic = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

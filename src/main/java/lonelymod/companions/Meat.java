@@ -50,8 +50,8 @@ public class Meat extends AbstractCompanion {
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.specialDmg = SPECIAL_DMG;
-        this.damage.add(new DamageInfo(this, this.attackDmg));
-        this.damage.add(new DamageInfo(this, this.specialDmg));
+        this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
+        this.damage.add(new DamageInfo(this, this.specialDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.protectBlk));
 
         this.cardToPreview.addAll(CardTips);

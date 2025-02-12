@@ -13,8 +13,7 @@ public class GrandScheme extends AbstractEasyCard {
     public final static String ID = makeID("GrandScheme");
 
     public GrandScheme() {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        this.isInnate = true;
+        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         this.exhaust = true;
     }
     
@@ -25,6 +24,6 @@ public class GrandScheme extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeBaseCost(1);
+        this.isInnate = true;
     }
 }

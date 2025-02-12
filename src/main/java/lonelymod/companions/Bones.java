@@ -58,7 +58,7 @@ public class Bones extends AbstractCompanion {
         this.defaultBlk = DEFAULT_BLK;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
-        this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.defaultBlk));
         this.block.add(new BlockInfo(this, this.protectBlk));
 

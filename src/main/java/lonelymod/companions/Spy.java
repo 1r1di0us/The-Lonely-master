@@ -44,7 +44,7 @@ public class Spy extends AbstractCompanion {
         super("Dzil", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
-        this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.protectBlk));
 
         this.cardToPreview.addAll(CardTips);

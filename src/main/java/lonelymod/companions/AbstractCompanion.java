@@ -460,7 +460,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
         //used to call getTarget() if targetEnemy is null or dead or escaped.
         if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
             for (DamageInfo dmg : this.damage) {
+                dmg.type = DamageInfo.DamageType.NORMAL;
                 applyPowersToDamage(dmg, targetEnemy);
+                dmg.type = DamageInfo.DamageType.THORNS;
             }
         }
         for (BlockInfo blk : this.block) {

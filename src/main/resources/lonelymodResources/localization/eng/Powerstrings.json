@@ -304,7 +304,7 @@
   "${ModID}:OraclePower": {
     "NAME": "Chant",
     "DESCRIPTIONS": [
-      "At the start of each turn, she gains #b",
+      "At the start of each turn and whenever you enter #yCalm, gains #b",
       " #yVigor."
     ]
   },

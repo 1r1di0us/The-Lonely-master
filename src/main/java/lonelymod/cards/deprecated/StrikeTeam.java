@@ -1,4 +1,4 @@
-package lonelymod.cards;
+package lonelymod.cards.deprecated;
 
 import static lonelymod.LonelyMod.makeID;
 
@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import lonelymod.cards.AbstractEasyCard;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 

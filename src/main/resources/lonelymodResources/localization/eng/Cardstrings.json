@@ -26,7 +26,10 @@
   },
   "${ModID}:LongShot": {
     "NAME": "Long Shot",
-    "DESCRIPTION": "Deal !D! damage. Deal !${ModID}:sd! damage instead if played on the furthest enemy away."
+    "DESCRIPTION": "Deal !D! damage. Deal !${ModID}:sd! more damage if played on the furthest enemy away.",
+    "EXTENDED_DESCRIPTION": [
+      "Deal !M! damage."
+    ]
   },
   "${ModID}:Marker": {
     "NAME": "Marker",
@@ -75,11 +78,11 @@
   },
   "${ModID}:Distracted": {
     "NAME": "Distracted",
-    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Next turn, lose [E] and add an *Overreaction to your hand."
+    "DESCRIPTION": "Gain !M! Vigor. NL Next turn, lose [E] and add an *Overreaction to your hand."
   },
   "${ModID}:Forgetful": {
     "NAME": "Forgetful",
-    "DESCRIPTION": "Gain !M! Vigor. NL Next turn, draw !${ModID}:m2! less card and add a *Panic *Attack to your hand."
+    "DESCRIPTION": "Gain !M! lonelymod:Stamina. NL Next turn, draw !${ModID}:m2! less card and add a *Panic *Attack to your hand."
   },
   "${ModID}:Help": {
     "NAME": "Help!",
@@ -162,6 +165,10 @@
   "${ModID}:Consideration": {
     "NAME": "Consideration",
     "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards."
+  },
+  "${ModID}:ClearThoughts": {
+    "NAME": "Clear Thoughts",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards. NL Exhaust all Status cards drawn this way."
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
@@ -291,7 +298,8 @@
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
-    "DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan your discard pile. NL Exhaust."
+    "DESCRIPTION": "Discard your draw pile. NL lonelymod:Plan your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Discard your draw pile. NL lonelymod:Plan your discard pile. NL Exhaust."
   },
   "${ModID}:Lonely": {
     "NAME": "Lonely",
@@ -413,7 +421,7 @@
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
-    "DESCRIPTION": "Passive Power NL At the start of your turn, gains 5 lonelymod:Vigor."
+    "DESCRIPTION": "Passive Power NL At the start of your turn and whenever you Enter Calm, gains 5 lonelymod:Vigor."
   },
   "${ModID}:OracleNothing": {
     "NAME": "Nothing",

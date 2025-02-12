@@ -1,6 +1,6 @@
 package lonelymod.patches;
 
-
+/*
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -118,4 +118,4 @@ public class ManualDiscardDynamicPatch {
 			return false;
 		}
 	}
-}
+}*/

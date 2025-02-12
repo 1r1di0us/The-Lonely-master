@@ -29,6 +29,7 @@ public class Oracle extends AbstractCompanion {
     public static final String ID = makeID("Oracle");
     public static final String IMG = makeCompanionPath("Oracle.png");
 
+    public static final int INIT_POWER_AMT = 5;
     private static final int ATTACK_DMG = 10;
     private static final int PROTECT_BLK = 8;
     public static final int SPECIAL_CARD_AMT = 2;
@@ -40,7 +41,7 @@ public class Oracle extends AbstractCompanion {
         super("Sowru", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
-        this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.protectBlk));
 
         this.cardToPreview.addAll(CardTips);
@@ -57,8 +58,8 @@ public class Oracle extends AbstractCompanion {
 
     @Override
     public void usePreBattleAction() {
-        addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, 5)));
-        addToTop(new ApplyPowerAction(this, this, new OraclePower(this, 5)));
+        addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, INIT_POWER_AMT))); //start of turn do the thing
+        addToTop(new ApplyPowerAction(this, this, new OraclePower(this, INIT_POWER_AMT)));
     }
 
     @Override

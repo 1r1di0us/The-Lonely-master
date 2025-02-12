@@ -21,16 +21,21 @@ public class CallMoveAction extends AbstractGameAction {
 
     private final byte move;
     private final AbstractCompanion currCompanion;
+    private int triggerPowers;
 
-    public CallMoveAction(byte move, AbstractCompanion currCompanion) {
+    public CallMoveAction(byte move, AbstractCompanion currCompanion, int triggerPowers) {
         this.actionType = ActionType.SPECIAL;
         this.duration = this.startDuration = Settings.ACTION_DUR_FAST;
         this.move = move;
         this.currCompanion = currCompanion;
+        this.triggerPowers = triggerPowers; //set triggerPowers to -1 to denote no triggering powers under any circumstances
+    }
+
+    public CallMoveAction(byte move, AbstractCompanion currCompanion) {
+        this(move, currCompanion, 0);
     }
 
     public void update() {
-        boolean triggerPowers = false;
         if (currCompanion == null) {
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[0], true));
         }
@@ -48,20 +53,14 @@ public class CallMoveAction extends AbstractGameAction {
                 addToTop(new WildFormCallMoveAction(move, currCompanion)); //this happens second, need to perform last move before you call this move.
                 for (int i = 0; i < AbstractDungeon.player.getPower(WildFormPower.POWER_ID).amount; i++)
                     addToTop(new CompanionTakeTurnAction(false)); //this happens first.
-                triggerPowers = true;
-            } else if (move == AbstractCompanion.ATTACK) {
-                currCompanion.callMainMove(AbstractCompanion.ATTACK, true, true);
-                triggerPowers = true;
-            } else if (move == AbstractCompanion.PROTECT) {
-                currCompanion.callMainMove(AbstractCompanion.PROTECT, true, true);
-                triggerPowers = true;
-            } else if (move == AbstractCompanion.SPECIAL) {
-                currCompanion.callMainMove(AbstractCompanion.SPECIAL, true, true);
-                triggerPowers = true;
+                if (triggerPowers == 0) triggerPowers = 1; //if we are ok with triggering powers do it
+            } else if (move == AbstractCompanion.ATTACK || move == AbstractCompanion.PROTECT || move == AbstractCompanion.SPECIAL) {
+                currCompanion.callMainMove(move, true, true);
+                if (triggerPowers == 0) triggerPowers = 1; //if we are ok with triggering powers do it
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
             }
-            if (triggerPowers) {
+            if (triggerPowers == 1) {
                 for (AbstractPower p : currCompanion.powers)
                     if (p instanceof TriggerOnCallMoveInterface)
                         ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, currCompanion.nextMove);

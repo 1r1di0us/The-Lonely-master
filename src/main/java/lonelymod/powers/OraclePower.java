@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import lonelymod.LonelyMod;
 import lonelymod.companions.Oracle;
 import lonelymod.util.TexLoader;
@@ -53,6 +55,13 @@ public class OraclePower extends AbstractEasyPower implements CloneablePowerInte
     @Override
     public void atEndOfRound() {
         addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
+    }
+
+    @Override
+    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
+        if (!oldStance.ID.equals(newStance.ID) && newStance.ID.equals(CalmStance.STANCE_ID)) {
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
+        }
     }
 
     @Override

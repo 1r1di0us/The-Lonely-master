@@ -43,13 +43,15 @@ public class Omen extends AbstractCompanion {
     private int attackDmg;
     private int protectBlk;
 
+    private boolean updateAttack = false;
+
     public Omen() {
         super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG);
         this.defaultDmg = DEFAULT_DMG;
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
-        this.damage.add(new DamageInfo(this, this.defaultDmg));
-        this.damage.add(new DamageInfo(this, this.attackDmg));
+        this.damage.add(new DamageInfo(this, this.defaultDmg, DamageInfo.DamageType.THORNS));
+        this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.protectBlk));
 
         this.cardToPreview.addAll(CardTips);
@@ -161,7 +163,11 @@ public class Omen extends AbstractCompanion {
     }
 
     public void callAttack() {
-        getTarget();
+        if (updateAttack) {
+            updateAttack = false;
+        } else {
+            getTarget();
+        }
         if (this.hasPower(ClawsPower.POWER_ID)) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(ClawsPower.POWER_ID).amount, true, true);
         } else {

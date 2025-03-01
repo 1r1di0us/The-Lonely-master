@@ -1,5 +1,6 @@
 package lonelymod;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomUnlockBundle;
 import basemod.abstracts.CustomPlayer;
@@ -9,22 +10,34 @@ import lonelymod.cards.Sic;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
 import lonelymod.relics.BonesStomach;
-
+import lonelymod.util.TexLoader;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.AbstractPanel;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static lonelymod.LonelyCharacter.Enums.YELLOW;
 import static lonelymod.LonelyMod.*;
@@ -39,6 +52,7 @@ public class LonelyCharacter extends CustomPlayer {
     static final String[] TEXT = characterStrings.TEXT;
 
     private static final Float SIZE_SCALE = 0.8F;
+    private static final float ORB_IMG_SCALE = 1.15F * Settings.scale;
 
     private CustomUnlockBundle unlocks0;
     private CustomUnlockBundle unlocks1;
@@ -49,18 +63,74 @@ public class LonelyCharacter extends CustomPlayer {
     //https://github.com/daviscook477/BaseMod/blob/master/mod/src/main/java/basemod/abstracts/CustomUnlockBundle.java
 
     public LonelyCharacter(String name, PlayerClass setClass) {
-        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", null), new SpriterAnimation(
+        super(name, setClass, new CustomEnergyOrb(orbTextures, modID + "Resources/images/char/mainChar/orb/vfx.png", new float[] {
+                40f, 20f, 15f, -10f, 0f
+            }) {
+                private FrameBuffer orbFbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+                private Texture orbMask = TexLoader.getTexture(makeImagePath("char/mainChar/orb/mask.png"));
+
+                @Override
+                public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
+                    sb.end();
+                    orbFbo.begin();
+                    Gdx.gl.glClearColor(0, 0, 0, 0);
+                    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+                    Gdx.gl.glColorMask(true, true, true, true);
+                    sb.begin();
+                    sb.setColor(Color.WHITE);
+                    sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+                    for(int i = 0; i < energyLayers.length; ++i) {
+                        float moveX = 0f, moveY = 0f;
+                        if (i == 1) {
+                            moveX = 63f;
+                            moveY = 52f;
+                        } else if (i >= 2) {
+                            moveX = -52f;
+                            moveY = -44f;
+                        }
+                        sb.draw((enabled ? energyLayers : noEnergyLayers)[i], current_x - 192f + moveX * ORB_IMG_SCALE, current_y - 192f + moveY * ORB_IMG_SCALE, 192f, 192f, 384.0F, 384.0F, ORB_IMG_SCALE, ORB_IMG_SCALE, angles[i], 0, 0, 384, 384, false, false);
+                    }
+                    sb.setBlendFunction(0, GL20.GL_SRC_ALPHA);
+                    sb.setColor(Color.WHITE);
+                    sb.draw(orbMask, current_x - 192, current_y - 192, 192, 192, 384, 384, ORB_IMG_SCALE, ORB_IMG_SCALE, 0, 0, 0, 384, 384, false, false);
+                    sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+                    sb.end();
+                    orbFbo.end();
+                    sb.begin();
+                    TextureRegion drawTex = new TextureRegion(orbFbo.getColorBufferTexture());
+                    drawTex.flip(false, true);
+                    sb.draw(drawTex, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
+                    sb.draw(baseLayer, current_x - 192.0F, current_y - 192.0F, 192.0F, 192.0F, 384.0F, 384.0F, ORB_IMG_SCALE, ORB_IMG_SCALE, 0, 0, 0, 384, 384, false, false);
+                }
+            },
+            new SpriterAnimation(
                 modID + "Resources/images/char/mainChar/static.scml"));
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
-                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(3));
-
+                getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(3)
+        );
 
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 240.0F * Settings.scale);
+    }
 
+    @SpirePatch(clz = EnergyPanel.class, method="renderVfx")
+    public static class RenderEnergyVFXPatch {
+        public static SpireReturn<Void> Prefix(EnergyPanel __instance, SpriteBatch sb) {
+            if (AbstractDungeon.player instanceof LonelyCharacter) {
+                if ((float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxTimer") != 0.0F) {
+                    sb.setBlendFunction(770, 1);
+                    sb.setColor((Color)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxColor"));
+                    sb.draw((Texture)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "gainEnergyImg"), (float)ReflectionHacks.getPrivate(__instance, AbstractPanel.class, "current_x") - 196.0F, (float)ReflectionHacks.getPrivate(__instance, AbstractPanel.class, "current_y") - 196.0F, 196.0F, 196.0F, 384.0F, 384.0F, (float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxScale"), (float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxScale"), -(float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxAngle") + 50.0F, 0, 0, 384, 384, true, false);
+                    sb.draw((Texture)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "gainEnergyImg"), (float)ReflectionHacks.getPrivate(__instance, AbstractPanel.class, "current_x") - 196.0F, (float)ReflectionHacks.getPrivate(__instance, AbstractPanel.class, "current_y") - 196.0F, 196.0F, 196.0F, 384.0F, 384.0F, (float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxScale"), (float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxScale"), (float)ReflectionHacks.getPrivate(__instance, EnergyPanel.class, "energyVfxAngle"), 0, 0, 384, 384, false, false);
+                    sb.setBlendFunction(770, 771);
+                } 
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
     }
 
     @Override

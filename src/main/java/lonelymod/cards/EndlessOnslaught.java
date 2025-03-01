@@ -8,24 +8,31 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.fields.ReturnField;
+import lonelymod.interfaces.TriggerOnPlanInterface;
 
-public class EndlessOnslaught extends AbstractEasyCard {
+public class EndlessOnslaught extends AbstractEasyCard implements TriggerOnPlanInterface {
     public final static String ID = makeID("EndlessOnslaught");
 
     public EndlessOnslaught() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 6;
-        baseMagicNumber = magicNumber = 2;
+        baseDamage = 9;
+        baseMagicNumber = magicNumber = 3;
+    }
+
+    @Override
+    public void triggerOnPlan(boolean thisCardPlanned) {
+        if (!thisCardPlanned) {
+            addToBot(new GashAction(this, magicNumber));
+        }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        addToBot(new GashAction(this, magicNumber));
         ReturnField.willReturn.set(this, true);
     }
 
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(3);
         upgradeMagicNumber(1);
     }
 }

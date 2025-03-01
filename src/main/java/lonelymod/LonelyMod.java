@@ -68,14 +68,14 @@ public class LonelyMod implements
 
     // mod config stuff
     public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String SKIP_TUTORIALS_SETTING = "enablePlaceholder";
+    public static final String SKIP_TUTORIALS_SETTING = "disable one time tutorial";
     public static Boolean skipTutorialsPlaceholder = true; // The boolean we'll be setting on/off (true/false)
     public static ModLabeledToggleButton skipTutorials;
 
     //Badge thing
     private static final String MODNAME = "Lonely Mod";
     private static final String AUTHOR = "zrgrush";
-    private static final String DESCRIPTION = "An exile who lives alone, and hunts with his animal companions. NL He has mostly forgotten his dark past.";
+    private static final String DESCRIPTION = "An exile who lives alone with his animal companions. NL He has not forgotten his dark past.";
     public static final String BADGE_IMAGE = modID + "Resources/images/ui/badge.png";
 
     public static final String SHOULDER1 = modID + "Resources/images/char/mainChar/shoulder.png";

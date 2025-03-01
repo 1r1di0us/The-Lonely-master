@@ -110,7 +110,7 @@
   },
   "${ModID}:EndlessOnslaught": {
     "NAME": "Endless Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL Whenever you lonelymod:Plan, increase this card's damage by !M! this combat. NL lonelymod:Return."
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",

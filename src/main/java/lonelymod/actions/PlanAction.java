@@ -95,6 +95,16 @@ public class PlanAction extends AbstractGameAction {
                 ((TriggerOnPlanInterface) c).triggerOnPlan(false);
             }
         }
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c instanceof TriggerOnPlanInterface) {
+                ((TriggerOnPlanInterface) c).triggerOnPlan(false);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (c instanceof TriggerOnPlanInterface) {
+                ((TriggerOnPlanInterface) c).triggerOnPlan(false);
+            }
+        }
         //for (AbstractPower p : AbstractDungeon.player.powers) {
         //  p.postPlan(selectedCards.size());
         //}

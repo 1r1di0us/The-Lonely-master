@@ -2,7 +2,7 @@
   "modid": "${ModID}",
   "name": "${project.name}",
   "author_list": [
-    "zrgrush(Rushalisk)"
+    "zrgrush(Rushalisk), ocean"
   ],
   "description": "${project.description}",
   "version": "${project.version}",

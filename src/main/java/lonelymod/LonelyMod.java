@@ -68,7 +68,7 @@ public class LonelyMod implements
 
     // mod config stuff
     public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String SKIP_TUTORIALS_SETTING = "disable one time tutorial";
+    public static final String SKIP_TUTORIALS_SETTING = "skip tutorial";
     public static Boolean skipTutorialsPlaceholder = true; // The boolean we'll be setting on/off (true/false)
     public static ModLabeledToggleButton skipTutorials;
 

@@ -15,6 +15,8 @@ public class GrandScheme extends AbstractEasyCard {
     public GrandScheme() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         this.exhaust = true;
+        // originally, this card starts as innate and plans 20(28) instead of your whole draw pile.
+        // I like the original more but the current version might be more palatable to the target audience.
     }
     
     @Override
@@ -25,5 +27,6 @@ public class GrandScheme extends AbstractEasyCard {
 
     public void upp() {
         this.isInnate = true;
+        uDesc();
     }
 }

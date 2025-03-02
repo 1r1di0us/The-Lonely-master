@@ -181,8 +181,8 @@
   },
   "${ModID}:Improvise": {
     "NAME": "Improvise",
-    "DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Choose 1 of 3 Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
+    "DESCRIPTION": "Choose 1 of !M! Skills of any color to add into your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 of !M! Skills of any color to add into your hand. NL It costs 0 this turn. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Choose a card to add into your hand."
     ]
@@ -218,7 +218,10 @@
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
-    "DESCRIPTION": "Ethereal. NL Gain !B! plus ALL enemies' combined Strength in Block. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Gain !B! plus ALL enemies' combined Strength in Block. NL lonelymod:Return.",
+    "EXTENDED_DESCRIPTION": [
+      "Ethereal. NL Gain !B! Block. NL lonelymod:Return."
+    ]
   },
   "${ModID}:FearTheBeast": {
     "NAME": "Fear The Beast",
@@ -293,8 +296,8 @@
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
-    "DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X times this turn.",
-    "UPGRADE_DESCRIPTION": "Your lonelymod:Companion ignores your lonelymod:Calls and instead lonelymod:Attacks X+1 times this turn."
+    "DESCRIPTION": "This turn, your lonelymod:Companion ignores lonelymod:Calls and lonelymod:Attacks X times. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "This turn, Your lonelymod:Companion ignores lonelymod:Calls and lonelymod:Attacks X times."
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",

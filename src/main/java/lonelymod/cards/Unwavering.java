@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import com.megacrit.cardcrawl.relics.StrikeDummy;
 import lonelymod.fields.ReturnField;
+
+import java.util.Objects;
 
 public class Unwavering extends AbstractEasyCard {
     public final static String ID = makeID("Unwavering");
@@ -14,8 +17,6 @@ public class Unwavering extends AbstractEasyCard {
     public Unwavering() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 10;
-        this.baseMagicNumber = this.magicNumber = 10;
-        //magic number just sets the thing in the description
         this.isEthereal = true;
     }
 
@@ -28,30 +29,34 @@ public class Unwavering extends AbstractEasyCard {
     public void calculateCardDamage(AbstractMonster mo) {
         int realBaseBlock = this.baseBlock;
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon.hasPower("Strength")) {
+            if (mon.hasPower("Strength") && !mon.isDeadOrEscaped()) {
                 this.baseBlock += mon.getPower("Strength").amount;
             }
         }
         super.calculateCardDamage(mo);
         this.baseBlock = realBaseBlock;
-        this.isBlockModified = (this.block != this.baseBlock);
+        this.isBlockModified = true;
+
+        this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+        this.initializeDescription();
     }
 
     @Override
     public void applyPowers() {
-        int realBaseBlock = this.baseBlock;
-        for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mon.hasPower("Strength")) {
-                this.baseBlock += mon.getPower("Strength").amount;
-            }
-        }
         super.applyPowers();
-        this.baseBlock = realBaseBlock;
-        this.isBlockModified = (this.block != this.baseBlock);
+
+        if (!cardStrings.DESCRIPTION.equals(this.rawDescription)) {
+            this.rawDescription = cardStrings.DESCRIPTION;
+            initializeDescription();
+        }
+    }
+
+    public void onMoveToDiscard() {
+        this.rawDescription = cardStrings.DESCRIPTION;
+        initializeDescription();
     }
 
     public void upp() {
         upgradeBlock(3);
-        upgradeMagicNumber(3);
     }
 }

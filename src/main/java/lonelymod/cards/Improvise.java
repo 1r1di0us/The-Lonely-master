@@ -12,11 +12,12 @@ public class Improvise extends AbstractEasyCard {
     
     public Improvise() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 5;
         this.exhaust = true;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ImproviseAction(this.upgraded));
+        addToBot(new ImproviseAction(this.upgraded, this.magicNumber));
     }
     
     public void upp() {

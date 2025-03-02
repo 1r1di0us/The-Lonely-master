@@ -26,7 +26,7 @@
   },
   "${ModID}:LongShot": {
     "NAME": "Long Shot",
-    "DESCRIPTION": "Deal !D! damage. Deal !${ModID}:sd! more damage if played on the furthest enemy away.",
+    "DESCRIPTION": "Deal !D! damage. Deal !${ModID}:sd! more damage if played on the furthest away enemy.",
     "EXTENDED_DESCRIPTION": [
       "Deal !M! damage."
     ]
@@ -94,7 +94,7 @@
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
-    "DESCRIPTION": "Gain !B! Block. NL If the enemy's intent has less damage than your current Block, apply !M! Weak."
+    "DESCRIPTION": "Gain !B! Block. NL If the enemy intends to deal less damage than your Block, apply !M! Weak."
   },
   "${ModID}:PureSkill": {
     "NAME": "Pure Skill",
@@ -110,7 +110,7 @@
   },
   "${ModID}:EndlessOnslaught": {
     "NAME": "Endless Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL Whenever you lonelymod:Plan, increase this card's damage by !M! this combat. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL When you lonelymod:Plan, increase it's damage by !M! this combat. NL lonelymod:Return."
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
@@ -126,7 +126,7 @@
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this card into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -164,7 +164,8 @@
   },
   "${ModID}:Consideration": {
     "NAME": "Consideration",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Grant !${ModID}:m2! Vigor. NL Draw !M! cards."
   },
   "${ModID}:ClearThoughts": {
     "NAME": "Clear Thoughts",
@@ -197,8 +198,8 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, Vulnerable and Weak."
+    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and !M Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, !M! Vulnerable and !M! Weak."
   },
   "${ModID}:Prevail": {
     "NAME": "Prevail",
@@ -254,7 +255,7 @@
   },
   "${ModID}:AccursedBeak": {
     "NAME": "Accursed Beak",
-    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. NL If you still have Strength, play this card again."
+    "DESCRIPTION": "Deal !D! damage. NL Lose !M! Strength this turn. NL If you have Strength, play this again."
   },
   "${ModID}:AgainstAllOdds": {
     "NAME": "Against All Odds",
@@ -279,7 +280,7 @@
   },
   "${ModID}:FakeOut": {
     "NAME": "Fake Out",
-    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to !B! minus the amount of unblocked damage this dealt.",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! minus the unblocked damage this dealt in Block.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
     "EXTENDED_DESCRIPTION": [
       "Deal !D! damage. NL Gain !M! Block."
@@ -292,7 +293,7 @@
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. NL Next turn, draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -343,8 +344,8 @@
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
-    "DESCRIPTION": "Ethereal. NL Whenever you lonelymod:Call a move, perform the previous move.",
-    "UPGRADE_DESCRIPTION": "Whenever you lonelymod:Call a move, perform the previous move."
+    "DESCRIPTION": "Ethereal. NL Whenever you lonelymod:Call a lonelymod:Move, perform the previous lonelymod:Move.",
+    "UPGRADE_DESCRIPTION": "Whenever you lonelymod:Call a lonelymod:Move, perform the previous lonelymod:Move."
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",
@@ -541,7 +542,7 @@
   "${ModID}:GodlyPowers": {
     "NAME": "Godly Powers",
     "DESCRIPTION": "Gain [E]. NL lonelymod:Return.",
-    "UPGRADED_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."
+    "UPGRADE_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."
   },
 
   "${ModID}:InlinePowerDemo": {

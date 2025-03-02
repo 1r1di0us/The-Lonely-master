@@ -14,6 +14,7 @@ public class Improvise extends AbstractEasyCard {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 5;
         this.exhaust = true;
+        //unfortunately it does partially block the eye button
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

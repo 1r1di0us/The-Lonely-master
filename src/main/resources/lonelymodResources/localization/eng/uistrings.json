@@ -16,6 +16,11 @@
       "This enemy is not attacking you!"
     ]
   },
+  "${ModID}:FeedTheBearMessage": {
+    "TEXT": [
+      "I shouldn't feed my enemies."
+    ]
+  },
   "${ModID}:CallActionMessage": {
     "TEXT": [
       "But nobody came...",

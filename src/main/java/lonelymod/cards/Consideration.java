@@ -22,9 +22,9 @@ public class Consideration extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
-        if (upgraded) {
-            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new CompanionVigorPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.secondMagic)));
+        addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(p)));
+        if (upgraded && CompanionField.currCompanion.get(p) != null) {
+            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(p), p, new CompanionVigorPower(CompanionField.currCompanion.get(p), this.secondMagic)));
         }
         addToBot(new DrawCardAction(p, this.magicNumber));
     }

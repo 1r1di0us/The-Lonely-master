@@ -15,6 +15,7 @@ public class Improvise extends AbstractEasyCard {
         this.baseMagicNumber = this.magicNumber = 5;
         this.exhaust = true;
         //unfortunately it does partially block the eye button
+        //might rename this to Adapt and Rename adapt improvise solely based on duct tape meme
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

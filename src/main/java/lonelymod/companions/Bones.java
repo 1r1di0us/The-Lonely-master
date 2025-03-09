@@ -34,7 +34,7 @@ import static lonelymod.LonelyMod.makeID;
 
 public class Bones extends AbstractCompanion {
     public static final String ID = makeID("Bones");
-    public static final String IMG = makeCompanionPath("BonesSmall.png");
+    public static final String IMG = makeCompanionPath("Bones.png");
 
     private static final int DEFAULT_BLK = 3;
     private static final int ATTACK_DMG = 10;

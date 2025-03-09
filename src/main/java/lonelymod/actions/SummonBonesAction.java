@@ -37,6 +37,7 @@ public class SummonBonesAction extends AbstractGameAction {
             this.c = new Bones();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
+            CompanionField.playableCards.set(AbstractDungeon.player, null);
             //this.c.animX = 1200.0F * Settings.xScale;
             this.c.applyPowers();
         }

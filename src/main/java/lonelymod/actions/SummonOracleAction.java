@@ -39,6 +39,7 @@ public class SummonOracleAction extends AbstractGameAction {
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
             //this.c.animX = 1200.0F * Settings.xScale;
+            CompanionField.playableCards.set(AbstractDungeon.player, null);
             this.c.applyPowers();
         }
         tickDuration();

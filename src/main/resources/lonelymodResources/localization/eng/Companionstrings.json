@@ -57,41 +57,49 @@
       "Stretch",
       "Maul",
       "Body Block",
-      "Eat",
+      "Devour",
       "Unknown"
     ],
     "INTENTS": [
       "Meat intends to gain #b",
       " #yVigor and #b",
-      " #yStamina.",
+      " #yStamina. Gains #g",
+      " more of each for each Energy spent.",
 
       "Meat intends to attack an enemy for #b",
       " damage #b",
-      " times. If the target is #yConstricted, Meat will attack #b",
-      " more time.",
+      " times. Hits #g",
+      " more time and gains #g",
+      " #yStrength for each Energy spent.",
 
       "Meat intends to grant you #b",
       " #yBlock #b",
-      " times. If Meat has any stored energy, Grants you #b",
-      " Energy next turn.",
+      " times. Next turn, grants #g",
+      " Energy and applies #g",
+      " #yWeak for each Energy spent.",
 
       "Meat intends to attack an enemy for #b",
-      " damage. If the target is #yWeakened, Meat will apply #yConstricted equal to the damage dealt.",
+      " damage, applying Constricted equal to the unblocked damage dealt. Deals #g",
+      " more damage for each Energy spent.",
 
       "This Companion's intentions are #yUnknown."
     ],
     "INTENT_TOOLTIPS": [
       "Deals #b",
       " damage #b",
-      " times. If the enemy is #yConstricted, hits one more time.",
+      " times. Hits #g",
+      " more time and gains #g",
+      " Strength for each Energy spent.",
 
       "Grants #b",
       " #yBlock #b",
-      " times. If he has any stored #yEnergy, Grants you #b",
-      " #yEnergy next turn.",
+      " times. Next turn, grants #g",
+      " Energy and applies #g",
+      " #yWeak for each Energy spent.",
 
       "Deals #b",
-      " damage. If the enemy is #yWeakened, applies #yConstricted equal to the damage dealt."
+      " damage, applying Constricted equal to the unblocked damage dealt. Deals #g",
+      " more damage for each Energy spent."
     ],
     "DIALOG": [
       "Grrr...",
@@ -122,7 +130,7 @@
       " #yTarget to an enemy.",
 
       "Omen intends to gain #b",
-      " #yStrength whenever you #yCall a #yMove, and #yCall #yAttack at the start of the next #b",
+      " #yRitual, and #yCall #yAttack at the start of the next #b",
       " turns.",
       ".",
 
@@ -139,7 +147,7 @@
       " #yTarget.",
 
       "Gains #b",
-      " #yStrength whenever you #yCall a #yMove, and #yCalls #yAttack at the start of the next #b",
+      " #yRitual, and #yCalls #yAttack at the start of the next #b",
       " turns."
     ],
     "DIALOG": [

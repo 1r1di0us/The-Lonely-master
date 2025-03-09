@@ -272,11 +272,9 @@
     ]
   },
   "${ModID}:MeatPower": {
-    "NAME": "Intimidating",
+    "NAME": "Energy Store",
     "DESCRIPTIONS": [
-      "At the end of your turn, takes up to #b",
-      " leftover #yEnergy from you and stores it. NL At the start of your turn, spends stored energy to apply #b",
-      " #yWeak to ALL enemies."
+      "You can feed Meat #yEnergy during your turn. NL Moves will spend stored #yEnergy to do additional effects."
     ]
   },
   "${ModID}:SharpenPower": {

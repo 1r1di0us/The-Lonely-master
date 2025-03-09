@@ -30,7 +30,7 @@ import static lonelymod.LonelyMod.makeID;
 
 public class Outcast extends AbstractCompanion {
     public static final String ID = makeID("Outcast");
-    public static final String IMG = makeCompanionPath("OutcastSmall.png");
+    public static final String IMG = makeCompanionPath("Outcast.png");
 
     private static final int ATTACK_DMG = 10;
     private static final int EMP_ATTACK_AMT = 2;

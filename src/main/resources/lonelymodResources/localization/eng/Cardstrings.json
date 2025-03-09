@@ -293,7 +293,7 @@
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and gain !${ModID}:m2! Strength. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and NL gain !${ModID}:m2! Strength. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -495,25 +495,29 @@
     "NAME": "The Drybear",
     "DESCRIPTION": "lonelymod:Summon lonelymod:Meat. NL Exhaust."
   },
-  "${ModID}:Intimidating": {
-    "NAME": "Intimidating",
-    "DESCRIPTION": "Passive Power NL At the end of your turn, takes up to 1 energy from you and stores it. NL At the start of your turn, spends stored energy to apply 1 Weak to ALL enemies."
+  "${ModID}:FeedTheBear": {
+    "NAME": "Feed The Bear",
+    "DESCRIPTION": "Give him some energy. NL Play as much as you like."
+  },
+  "${ModID}:EnergyStore": {
+    "NAME": "Energy Store",
+    "DESCRIPTION": "Passive Power NL You can feed Meat [E] during your turn. NL Moves will spend stored [E] to do additional effects."
   },
   "${ModID}:Stretch": {
     "NAME": "Stretch",
-    "DESCRIPTION": "Default Move NL Gain 2 Vigor and 2 lonelymod:Stamina."
+    "DESCRIPTION": "Default Move NL Gain 2 Vigor and 2 lonelymod:Stamina. Gains 2 more of each for each [E] spent."
   },
   "${ModID}:Maul": {
     "NAME": "Maul",
-    "DESCRIPTION": "Attack Move NL Deal 8 damage 2 times. NL If the target is Constricted, Deal 8 damage again."
+    "DESCRIPTION": "Attack Move NL Deal 8 damage 2 times. NL Deal 8 damage again and gain 1 Strength for each [E] spent."
   },
   "${ModID}:BodyBlock": {
     "NAME": "Body Block",
-    "DESCRIPTION": "Protect Move NL Grant 5 Block 3 times. NL If Meat has any stored Energy, Grant 1 Energy at the start of next turn."
+    "DESCRIPTION": "Protect Move NL Grant 5 Block 3 times. NL Next turn, grant 1 [E] and apply 1 Weak for each [E] spent."
   },
-  "${ModID}:Eat": {
-    "NAME": "Eat",
-    "DESCRIPTION": "Special Move NL Deal 25 damage. If the target is Weakened, apply Constricted equal to the unblocked damage dealt."
+  "${ModID}:Devour": {
+    "NAME": "Devour",
+    "DESCRIPTION": "Special Move NL Deal 25 damage. NL Apply Constricted equal to damage dealt. Deals 10 more damage for each [E] spent."
   },
   "${ModID}:TheRavyn": {
     "NAME": "The Ravyn",
@@ -537,7 +541,7 @@
   },
   "${ModID}:Sharpen": {
     "NAME": "Sharpen",
-    "DESCRIPTION": "Special Move NL Whenever you lonelymod:Call a lonelymod:Move, gains 1 Strength. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Special Move NL Gains 1 Ritual. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:GodlyPowers": {
     "NAME": "Godly Powers",

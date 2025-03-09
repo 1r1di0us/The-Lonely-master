@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
@@ -25,7 +26,7 @@ import static lonelymod.LonelyMod.makeID;
 
 public class Omen extends AbstractCompanion {
     public static final String ID = makeID("Omen");
-    public static final String IMG = makeCompanionPath("OmenSmall.png");
+    public static final String IMG = makeCompanionPath("Omen.png");
 
     private static final Logger logger = LogManager.getLogger(Omen.class.getName());
 
@@ -106,7 +107,7 @@ public class Omen extends AbstractCompanion {
                     addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 break;
             case SPECIAL:
-                addToBot(new ApplyPowerAction(this, this, new SharpenPower(this, SPECIAL_PWR_AMT)));
+                addToBot(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 break;
             case UNKNOWN:
@@ -152,7 +153,7 @@ public class Omen extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
-                addToTop(new ApplyPowerAction(this, this, new SharpenPower(this, SPECIAL_PWR_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
                 break;
         }
     }

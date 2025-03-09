@@ -4,6 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import lonelymod.LonelyMod;
+import lonelymod.cards.colorlesssummons.FeedTheBear;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -26,8 +28,6 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Meat84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Meat32.png");
-
-    private static final int WeakAmt = 1;
 
     public MeatPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
@@ -51,8 +51,18 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     }
 
     @Override
-    public void atEndOfRound() {
+    public void onSpecificTrigger() {
         if (this.amount > 0) {
+            flash();
+            this.amount = 0;
+            updateDescription();
+        }
+    }
+
+    @Override
+    public void atEndOfRound() {
+        addToBot(new MakeTempCardInHandAction(new FeedTheBear()));
+        /*if (this.amount > 0) {
             flash();
             this.amount = 0;
             updateDescription();
@@ -61,10 +71,10 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
                     addToBot(new ApplyPowerAction(m, this.owner, new WeakPower(m, WeakAmt, false)));
                 }
             }
-        }
+        }*/
     }
 
-    @Override
+    /*@Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (!isPlayer && EnergyPanel.totalCount > 0) {
             addToBot(new LoseEnergyAction(1));
@@ -72,11 +82,11 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
             this.amount++;
             updateDescription();
         }
-    }
+    }*/
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + 1 + DESCRIPTIONS[1] + WeakAmt + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0];
     }
 
     @Override

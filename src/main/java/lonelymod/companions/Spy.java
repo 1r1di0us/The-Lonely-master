@@ -235,7 +235,7 @@ public class Spy extends AbstractCompanion {
                     } else if (this.hasPower(SpyPower.POWER_ID) && this.getPower(SpyPower.POWER_ID).amount == 1) {
                         return INTENT_TOOLTIPS[0] + this.intentDmg + INTENT_TOOLTIPS[1];
                     } else {
-                        //set up incorrectly
+                        //if set up incorrectly
                         return "";
                     }
                 }

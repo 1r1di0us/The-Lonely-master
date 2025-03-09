@@ -2,15 +2,17 @@ package lonelymod.actions;
 
 //import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import lonelymod.cards.colorlesssummons.FeedTheBear;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Bones;
 import lonelymod.companions.Meat;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.RelicOnSummonInterface;
+
+import java.util.ArrayList;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 
@@ -38,8 +40,11 @@ public class SummonMeatAction extends AbstractGameAction {
             this.c = new Meat();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             this.c.init();
+            CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());
+            CompanionField.playableCards.get(AbstractDungeon.player).add(new FeedTheBear());
             //this.c.animX = 1200.0F * Settings.xScale;
             this.c.applyPowers();
+            addToBot(new MakeTempCardInHandAction(new FeedTheBear()));
         }
         tickDuration();
         if (this.isDone) {

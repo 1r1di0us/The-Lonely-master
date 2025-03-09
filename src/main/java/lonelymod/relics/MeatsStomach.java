@@ -23,11 +23,11 @@ public class MeatsStomach extends AbstractEasyRelic {
 
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
         {
-            add(new Intimidating());
+            add(new EnergyStore());
             add(new Stretch());
             add(new Maul());
             add(new BodyBlock());
-            add(new Eat());
+            add(new Devour());
         }
     };
 

@@ -12,7 +12,7 @@ import static lonelymod.LonelyMod.modID;
 
 public class Shred extends CustomCard {
     public final static String ID = makeID("Shred");
-    public final static String ImageID = makeID("TheRavyn");
+    public final static String ImageID = makeID("TheVulchyr");
     protected final CardStrings cardStrings;
 
     public Shred() {

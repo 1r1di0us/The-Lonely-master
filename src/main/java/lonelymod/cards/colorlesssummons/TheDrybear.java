@@ -1,5 +1,6 @@
 package lonelymod.cards.colorlesssummons;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,6 +21,7 @@ public class TheDrybear extends AbstractEasyCard {
     public TheDrybear() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.exhaust = true;
+        this.isInnate = true;
         cardToPreview.addAll(CardTips);
     }
 
@@ -27,6 +29,7 @@ public class TheDrybear extends AbstractEasyCard {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         addToBot(new SummonMeatAction());
+        addToBot(new DrawCardAction(1));
     }
 
     public void upp() {

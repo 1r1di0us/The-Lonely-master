@@ -38,7 +38,7 @@ public class StartOfCombatSummonPatch {
                 AbstractDungeon.actionManager.addToBottom(new SummonMechanicAction());
             } else if (__instance instanceof Watcher) {
                 //summon oracle
-                AbstractDungeon.actionManager.addToBottom(new SummonOracleAction());
+                AbstractDungeon.actionManager.addToBottom(new SummonOracleAction(false));
             } else if (__instance instanceof LonelyCharacter) {
                 //summon outcast
                 AbstractDungeon.actionManager.addToBottom(new SummonOutcastAction());

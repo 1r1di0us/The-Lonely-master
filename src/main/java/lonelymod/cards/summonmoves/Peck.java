@@ -10,12 +10,12 @@ import lonelymod.cards.AbstractEasyCard;
 import static lonelymod.LonelyMod.makeID;
 import static lonelymod.LonelyMod.modID;
 
-public class Dive extends CustomCard {
-    public final static String ID = makeID("Dive");
-    public final static String ImageID = makeID("TheRavyn");
+public class Peck extends CustomCard {
+    public final static String ID = makeID("Peck");
+    public final static String ImageID = makeID("TheVulchyr");
     protected final CardStrings cardStrings;
 
-    public Dive() {
+    public Peck() {
         super(ID, "", AbstractEasyCard.getCardTextureString(ImageID.replace(modID + ":", ""), AbstractEasyCard.CardType.SKILL),
                 -2, "", AbstractEasyCard.CardType.SKILL, AbstractEasyCard.CardColor.COLORLESS, AbstractEasyCard.CardRarity.SPECIAL, AbstractEasyCard.CardTarget.SELF);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);

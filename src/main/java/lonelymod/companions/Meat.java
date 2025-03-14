@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.cards.colorlesssummons.FeedTheBear;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.powers.ApplyWeakNextTurnPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
 import lonelymod.powers.StaminaPower;
@@ -111,7 +112,7 @@ public class Meat extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 if (bonusAmt > 0) {
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, bonusAmt), bonusAmt));
-                    //addToBot(new ApplyPowerAction(this, this, new WeakNextTurnPower(this, bonusAmt), bonusAmt));
+                    addToBot(new ApplyPowerAction(this, this, new ApplyWeakNextTurnPower(this, bonusAmt), bonusAmt));
                 }
                 if (hasPower(MeatPower.POWER_ID)) {
                     getPower(MeatPower.POWER_ID).onSpecificTrigger();
@@ -174,7 +175,7 @@ public class Meat extends AbstractCompanion {
                 break;
             case PROTECT:
                 if (bonusAmt > 0) {
-                    //addToTop(new ApplyPowerAction(this, this, new WeakNextTurnPower(this, bonusAmt), bonusAmt));
+                    addToTop(new ApplyPowerAction(this, this, new ApplyWeakNextTurnPower(this, bonusAmt), bonusAmt));
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, bonusAmt), bonusAmt));
                 }
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
@@ -315,7 +316,7 @@ public class Meat extends AbstractCompanion {
         if (card instanceof FeedTheBear) {
             addToBot(new ApplyPowerAction(this, this, new MeatPower(this, 1)));
             this.bonusAmt++;
-            addToBot(new MakeTempCardInHandAction(new FeedTheBear()));
+            addToTop(new MakeTempCardInHandAction(new FeedTheBear())); //to make sure none end up in the discard
             flashIntent();
             switch (this.nextMove) {
                 case ATTACK:

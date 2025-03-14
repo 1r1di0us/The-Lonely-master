@@ -1,6 +1,7 @@
 package lonelymod.cards.colorlesssummons;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -23,13 +24,17 @@ public class TheOracle extends AbstractEasyCard {
     public TheOracle() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.exhaust = true;
+        this.isInnate = true;
         this.cardToPreview.addAll(CardTips);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
-        addToBot(new SummonOracleAction());
+        addToBot(new SummonOracleAction(true));
+        addToBot(new DrawCardAction(1));
+        //would love to give 5 vigor to the oracle but alas she is not summoned yet.
+        //could make an action for it but I don't really care enough
     }
 
     public void upp() {}

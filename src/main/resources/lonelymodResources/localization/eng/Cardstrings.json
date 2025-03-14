@@ -349,7 +349,7 @@
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Kharn. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL A vicious gremlin that becomes angrier whenever its friend is hurt."
   },
   "${ModID}:Fervor": {
     "NAME": "Fervor",
@@ -373,7 +373,7 @@
   },
   "${ModID}:TheSpy": {
     "NAME": "The Spy",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Dzil. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL A deadly gremlin that can use anything you give it to great effect."
   },
   "${ModID}:Crafty": {
     "NAME": "Crafty",
@@ -381,7 +381,7 @@
   },
   "${ModID}:SpyNothing": {
     "NAME": "Nothing",
-    "DESCRIPTION": "Default Move NL Makes a quiet noise."
+    "DESCRIPTION": "Default Move NL Makes a sneaky noise."
   },
   "${ModID}:Assassinate": {
     "NAME": "Assassinate",
@@ -397,7 +397,7 @@
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Blirt. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL An inventive gremlin that has spent its life tinkering with Orb technology."
   },
   "${ModID}:Power": {
     "NAME": "Power",
@@ -421,7 +421,7 @@
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Sowru. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat."
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
@@ -445,7 +445,7 @@
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Fring. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL An unwanted gremlin that tries its best to help out."
   },
   "${ModID}:Empower": {
     "NAME": "Empower",
@@ -469,7 +469,7 @@
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Bones. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL An emaciated canine from the Drywoods, he's always hungry."
   },
   "${ModID}:Excitement": {
     "NAME": "Excitement",
@@ -493,7 +493,7 @@
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Meat. NL Exhaust."
+    "DESCRIPTION": "lonelymod:Companion. NL A full stomach doesn't stop him from chomping down everything that fits in his mouth."
   },
   "${ModID}:FeedTheBear": {
     "NAME": "Feed The Bear",
@@ -519,21 +519,21 @@
     "NAME": "Devour",
     "DESCRIPTION": "Special Move NL Deal 25 damage. NL Apply Constricted equal to damage dealt. Deals 10 more damage for each [E] spent."
   },
-  "${ModID}:TheRavyn": {
-    "NAME": "The Ravyn",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL Exhaust."
+  "${ModID}:TheVulchyr": {
+    "NAME": "The Vulchyr",
+    "DESCRIPTION": "lonelymod:Companion. NL An evil being that drains power from its master to destroy their enemies."
   },
   "${ModID}:Claws": {
     "NAME": "Claws",
     "DESCRIPTION": "Passive Power NL Whenever you play an Attack, Omen's next lonelymod:Attack lonelymod:Move will hit 1 more time."
   },
-  "${ModID}:Dive": {
-    "NAME": "Dive",
+  "${ModID}:Peck": {
+    "NAME": "Peck",
     "DESCRIPTION": "Default Move NL Deal 10 damage."
   },
   "${ModID}:Shred": {
     "NAME": "Shred",
-    "DESCRIPTION": "Attack Move NL Deal 1 damage 5 times."
+    "DESCRIPTION": "Attack Move NL Deal 2 damage 5 times."
   },
   "${ModID}:Shriek": {
     "NAME": "Shriek",
@@ -543,7 +543,7 @@
     "NAME": "Sharpen",
     "DESCRIPTION": "Special Move NL Gains 1 Ritual. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
   },
-  "${ModID}:GodlyPowers": {
+    "${ModID}:GodlyPowers": {
     "NAME": "Godly Powers",
     "DESCRIPTION": "Gain [E]. NL lonelymod:Return.",
     "UPGRADE_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."

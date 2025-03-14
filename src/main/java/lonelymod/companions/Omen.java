@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
@@ -30,10 +29,9 @@ public class Omen extends AbstractCompanion {
 
     private static final Logger logger = LogManager.getLogger(Omen.class.getName());
 
-    //private static final int INIT_TRAIT_AMT = 1;
     private static final int INIT_CLAWS_AMT = 5;
     private static final int DEFAULT_DMG = 10;
-    private static final int ATTACK_DMG = 1;
+    private static final int ATTACK_DMG = 2;
     private static final int PROTECT_BLK = 6;
     private static final int PROTECT_AMT = 2;
     private static final int PROTECT_DEBUFF_AMT = 3;
@@ -60,7 +58,7 @@ public class Omen extends AbstractCompanion {
 
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
         {
-            add(new Dive());
+            add(new Peck());
             add(new Shred());
             add(new Shriek());
             add(new Sharpen());
@@ -198,7 +196,7 @@ public class Omen extends AbstractCompanion {
                 if (hasPower(ClawsPower.POWER_ID))
                     this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.getPower(ClawsPower.POWER_ID).amount + INTENTS[4];
                 else
-                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + 5 + INTENTS[4];
+                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + INIT_CLAWS_AMT + INTENTS[4];
                 this.intentTip.img = getIntentImg();
                 return;
             case PROTECT:
@@ -236,7 +234,7 @@ public class Omen extends AbstractCompanion {
                     if (hasPower(ClawsPower.POWER_ID))
                         return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(ClawsPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
                     else
-                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + 5 + INTENT_TOOLTIPS[2];
+                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + INIT_CLAWS_AMT + INTENT_TOOLTIPS[2];
                 }
             case PROTECT:
                 if (head) {

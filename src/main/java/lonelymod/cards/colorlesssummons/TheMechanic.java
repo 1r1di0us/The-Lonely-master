@@ -23,6 +23,7 @@ public class TheMechanic extends AbstractEasyCard {
     public TheMechanic() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.exhaust = true;
+        this.isInnate = true;
         this.cardToPreview.addAll(CardTips);
     }
 
@@ -30,6 +31,7 @@ public class TheMechanic extends AbstractEasyCard {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         addToBot(new SummonMechanicAction());
+        addToBot(new DrawCardAction(1));
     }
 
     public void upp() {}

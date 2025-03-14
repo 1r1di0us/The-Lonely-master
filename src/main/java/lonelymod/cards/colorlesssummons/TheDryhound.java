@@ -24,6 +24,7 @@ public class TheDryhound extends AbstractEasyCard {
     public TheDryhound() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.exhaust = true;
+        this.isInnate = true;
         cardToPreview.addAll(CardTips);
     }
 
@@ -31,6 +32,7 @@ public class TheDryhound extends AbstractEasyCard {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         addToBot(new SummonBonesAction());
+        addToBot(new DrawCardAction(1));
     }
 
     public void upp() {}

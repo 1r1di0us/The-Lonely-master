@@ -41,7 +41,7 @@ public class OmenCard extends AbstractEasyCard {
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
         {
             add(new Claws());
-            add(new Dive());
+            add(new Peck());
             add(new Shred());
             add(new Shriek());
             add(new Sharpen());

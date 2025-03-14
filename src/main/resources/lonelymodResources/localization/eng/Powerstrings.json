@@ -277,6 +277,20 @@
       "You can feed Meat #yEnergy during your turn. NL Moves will spend stored #yEnergy to do additional effects."
     ]
   },
+  "${ModID}:ApplyWeakNextTurnPower": {
+    "NAME": "Apply Weak Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of next turn, apply #b",
+      " #yWeak to an enemy."
+    ]
+  },
+  "${ModID}:EnemyConstrictedPower": {
+    "NAME": "Constricted",
+    "DESCRIPTIONS": [
+      "At the end of its turn, takes #b",
+      " damage."
+    ]
+  },
   "${ModID}:SharpenPower": {
     "NAME": "Sharpen",
     "DESCRIPTIONS": [

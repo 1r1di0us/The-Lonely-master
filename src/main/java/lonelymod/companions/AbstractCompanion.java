@@ -479,6 +479,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public void getTarget() {
         AbstractMonster currTarget = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
         int targetAmount = 0;
+        isTargeted = false;
         MonsterGroup targetGroup = new MonsterGroup(currTarget);
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mon.hasPower(TargetPower.POWER_ID) && !mon.isDeadOrEscaped()) {
@@ -494,9 +495,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
         if (targetAmount > 0) {
             currTarget = targetGroup.getRandomMonster(true);
             isTargeted = true;
-        }
-        else {
-            isTargeted = false;
         }
         if (currTarget != null && !currTarget.isDeadOrEscaped()) {
             targetEnemy = currTarget;

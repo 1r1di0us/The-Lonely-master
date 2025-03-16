@@ -69,14 +69,17 @@
     "NAME": "Pin Down",
     "DESCRIPTIONS": [
       "Whenever you deal unblocked attack damage this turn, apply #b",
-      " #yTarget and #yVulnerable."
+      " #yTarget and #b",
+      " #yVulnerable."
     ]
   },
   "${ModID}:PinDownPlusPower": {
     "NAME": "Pin Down+",
     "DESCRIPTIONS": [
       "Whenever you deal unblocked attack damage this turn, apply #b",
-      "#yTarget, #yVulnerable, and #yWeak."
+      " #yTarget, #b",
+      " #yVulnerable, and #b",
+      " #yWeak."
     ]
   },
   "${ModID}:PrevailPower": {
@@ -235,9 +238,9 @@
   "${ModID}:TargetPower": {
     "NAME": "Target",
     "DESCRIPTIONS": [
-      "Companions will deal 50% more damage to this enemy. They will also prioritize this enemy with their moves. Will last #b",
-      " more turn.",
-      " more turns."
+      "Receive #b50% more damage from #yCompanions for #b",
+      " more turn. #yCompanions prioritize enemies with #yTarget.",
+      " more turns. #yCompanions prioritize enemies with #yTarget."
     ]
   },
   "${ModID}:AttackNextTurnPower": {

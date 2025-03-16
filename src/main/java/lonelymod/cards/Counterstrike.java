@@ -43,7 +43,7 @@ public class Counterstrike extends AbstractEasyCard {
             else
                 effect = AttackEffect.SMASH;
             for (int i = 0; i < magicNumber; i++) {
-                addToBot(new DamageAction(m, new DamageInfo(m, damage, damageTypeForTurn), effect));
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
             }
         }
     }

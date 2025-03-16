@@ -5,6 +5,7 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomUnlockBundle;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import lonelymod.cards.Defend;
 import lonelymod.cards.Sic;
 import lonelymod.cards.Heel;
@@ -43,6 +44,7 @@ import static lonelymod.LonelyCharacter.Enums.YELLOW;
 import static lonelymod.LonelyMod.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LonelyCharacter extends CustomPlayer {
 
@@ -239,9 +241,9 @@ public class LonelyCharacter extends CustomPlayer {
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[]{
-                AbstractGameAction.AttackEffect.FIRE,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.FIRE};
+                AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
+                AbstractGameAction.AttackEffect.BLUNT_LIGHT,
+                AbstractGameAction.AttackEffect.BLUNT_HEAVY};
     }
 
     @Override
@@ -256,6 +258,20 @@ public class LonelyCharacter extends CustomPlayer {
 
     @Override
     public String getSensoryStoneText() { return TEXT[3]; }
+
+    //@Override
+    //public Texture getCutsceneBg() {
+    //    return ImageMaster.loadImage(modID + "Resources/images/scenes/bkg.png");// 307
+    //}
+
+    @Override
+    public List<CutscenePanel> getCutscenePanels() {
+        List<CutscenePanel> panels = new ArrayList();// 312
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_1.png"));// 313
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_2.png", "ATTACK_HEAVY"));// 314
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_3.png"));// 315
+        return panels;// 316
+    }
 
     //animation for replacing the starter relic
     public void onEquipMeatsStomach() {

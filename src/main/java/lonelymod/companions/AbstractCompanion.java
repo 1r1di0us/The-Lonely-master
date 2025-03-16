@@ -534,7 +534,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
                 dmg.isModified = true;
         }
         if (isTargeted && target.hasPower(TargetPower.POWER_ID))
-            tmp = (int)(tmp * 1.5F);
+            if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
+                tmp = (int)(tmp * 2.0F);
+            else
+                tmp = (int)(tmp * 1.5F);
         if (dmg.base != (int)tmp)
             dmg.isModified = true;
         dmg.output = MathUtils.floor(tmp);

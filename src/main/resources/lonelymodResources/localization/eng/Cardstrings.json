@@ -110,7 +110,7 @@
   },
   "${ModID}:EndlessOnslaught": {
     "NAME": "Endless Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL When you lonelymod:Plan, increase it's damage by !M! this combat. NL lonelymod:Return."
+    "DESCRIPTION": "Deal !D! damage. NL When you lonelymod:Plan, increase its damage by !M! this combat. NL lonelymod:Return."
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
@@ -198,7 +198,7 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and !M Vulnerable.",
+    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and !M! Vulnerable.",
     "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, !M! Vulnerable and !M! Weak."
   },
   "${ModID}:Prevail": {
@@ -219,7 +219,7 @@
   },
   "${ModID}:Unwavering": {
     "NAME": "Unwavering",
-    "DESCRIPTION": "Ethereal. NL Gain !B! plus ALL enemies' combined Strength in Block. NL lonelymod:Return.",
+    "DESCRIPTION": "Ethereal. NL Gain !B! plus ALL enemy's combined Strength in Block. NL lonelymod:Return.",
     "EXTENDED_DESCRIPTION": [
       "Ethereal. NL Gain !B! Block. NL lonelymod:Return."
     ]

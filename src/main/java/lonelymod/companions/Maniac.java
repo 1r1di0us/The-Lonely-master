@@ -41,7 +41,7 @@ public class Maniac extends AbstractCompanion {
     private int protectBlk;
 
     public Maniac() {
-        super("Kharn", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
+        super("Kharn", ID, 0.0F, 0.0F, 90.0F, 140.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));

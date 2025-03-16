@@ -41,7 +41,7 @@ public class Spy extends AbstractCompanion {
     private int protectBlk;
 
     public Spy() {
-        super("Dzil", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
+        super("Dzil", ID, 0.0F, 0.0F, 80.0F, 100.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));

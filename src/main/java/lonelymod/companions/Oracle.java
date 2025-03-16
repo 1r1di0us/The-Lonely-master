@@ -38,7 +38,7 @@ public class Oracle extends AbstractCompanion {
     private int protectBlk;
 
     public Oracle() {
-        super("Sowru", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
+        super("Sowru", ID, 0.0F, 0.0F, 100.0F, 150.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
         this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));

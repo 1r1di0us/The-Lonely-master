@@ -67,10 +67,10 @@ public class MultiShotPower extends AbstractEasyPower implements CloneablePowerI
     @Override
     public void updateDescription() {
         if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[2];
         }
         else {
-            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[1] + amount + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + damage + DESCRIPTIONS[1];
         }
     }
 

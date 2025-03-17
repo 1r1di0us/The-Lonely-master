@@ -230,7 +230,7 @@
   },
   "${ModID}:MultiShot": {
     "NAME": "Multi-Shot",
-    "DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to !M! random enemies."
+    "DESCRIPTION": "Whenever you play an attack, deal !${ModID}:m2! damage to a random enemy !M! times."
   },
   "${ModID}:Overcome": {
     "NAME": "Overcome",
@@ -298,7 +298,7 @@
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
     "DESCRIPTION": "This turn, your lonelymod:Companion ignores lonelymod:Calls and lonelymod:Attacks X times. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "This turn, Your lonelymod:Companion ignores lonelymod:Calls and lonelymod:Attacks X times."
+    "UPGRADE_DESCRIPTION": "This turn, your lonelymod:Companion ignores lonelymod:Calls and lonelymod:Attacks X times."
   },
   "${ModID}:GrandScheme": {
     "NAME": "Grand Scheme",
@@ -335,12 +335,12 @@
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
-    "DESCRIPTION": "Whenever you lonelymod:Return all the cards that will lonelymod:Return, gain [E]."
+    "DESCRIPTION": "Whenever your cards lonelymod:Return, gain [E]."
   },
   "${ModID}:Resolve": {
     "NAME": "Resolve",
     "DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity.",
-    "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity and !${ModID}:m2! Plated Armor."
+    "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity and !${ModID}:m2! lonelymod:plated_armor."
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
@@ -393,7 +393,7 @@
   },
   "${ModID}:PoisonCloud": {
     "NAME": "Poison Cloud",
-    "DESCRIPTION": "Special Move NL Apply 25 Poison evenly among ALL enemies."
+    "DESCRIPTION": "Special Move NL Apply 25 Poison evenly among ALL enemies, rounds down."
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",

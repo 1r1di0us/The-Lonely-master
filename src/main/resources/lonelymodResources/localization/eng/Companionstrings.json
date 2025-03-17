@@ -323,8 +323,8 @@
       " #yBlock next turn, and gain #b",
       " #yDexterity",
 
-      "Dzil intends to evenly distribute #b",
-      " #yPoison among all enemies.",
+      "Dzil intends to apply #b",
+      " #yPoison evenly among ALL enemies, rounds down.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -340,7 +340,7 @@
       " #yDexterity.",
 
       "Applies #b",
-      " #yPoison, evenly distributed among all enemies."
+      " #yPoison evenly among all enemies, rounds down."
     ],
     "DIALOG": [
       "Can I see your knives?",

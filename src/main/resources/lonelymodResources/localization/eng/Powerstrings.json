@@ -102,9 +102,9 @@
     "NAME": "Multi-Shot",
     "DESCRIPTIONS": [
       "Whenever you play an Attack card, deal #b",
-      " damage to #b",
-      " random enemy.",
-      " random enemies."
+      " damage to a random enemy #b",
+      " times.",
+      " time."
     ]
   },
   "${ModID}:OvercomePower": {

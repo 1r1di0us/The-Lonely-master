@@ -154,14 +154,15 @@
     "DESCRIPTION": "The next card you play that gives you #yBlock gives X more #yBlock."
   },
   {
-    "PROPER_NAME": "Autoplay",
+    "ID": "plated_armor",
+    "PROPER_NAME": "Plated Armor",
     "NAMES": [
-      "autoplay",
-      "autoplay.",
-      "Autoplay",
-      "Autoplay."
+      "plated_armor",
+      "Plated_Armor",
+      "plated armor",
+      "Plated Armor"
     ],
-    "DESCRIPTION": "When drawn, this card is immediately played, spending its energy cost."
+    "DESCRIPTION": "Creatures with #yPlated #yArmor gain #yBlock at the end of their turn. Receiving unblocked attack damage reduces #yPlated #yArmor by #b1."
   },
   {
     "PROPER_NAME": "Bones",

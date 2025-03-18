@@ -239,8 +239,8 @@
     "NAME": "Target",
     "DESCRIPTIONS": [
       "Receive #b50% more damage from #yCompanions for #b",
-      " more turn. #yCompanions prioritize enemies with #yTarget.",
-      " more turns. #yCompanions prioritize enemies with #yTarget."
+      " more turn. #yCompanions prioritize enemies with the most #yTarget.",
+      " more turns. #yCompanions prioritize enemies with the most #yTarget."
     ]
   },
   "${ModID}:AttackNextTurnPower": {

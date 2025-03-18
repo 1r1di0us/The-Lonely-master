@@ -59,6 +59,26 @@ public class TargetPower extends AbstractEasyPower implements CloneablePowerInte
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null
+                && CompanionField.currCompanion.get(AbstractDungeon.player).targetAmount > this.amount) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+            CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
+        }
+    }
+
+    @Override
+    public void reducePower(int reduceAmount) {
+        super.reducePower(reduceAmount);
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null
+                && CompanionField.currCompanion.get(AbstractDungeon.player).targetAmount == this.amount+reduceAmount) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
+            CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
+        }
+    }
+
+    @Override
     public void atEndOfRound() {
         if (justApplied) {
             justApplied = false;

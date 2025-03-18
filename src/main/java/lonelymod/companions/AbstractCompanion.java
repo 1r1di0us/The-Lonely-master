@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.*;
@@ -58,6 +59,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public AbstractCreature targetEnemy;
     public boolean isTargeted;
+    public int targetAmount = 0;
+    public static Random companionRng = null;
     public CompanionMoveInfo move;
 
     private Color nameColor = new Color();
@@ -477,8 +480,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public void getTarget() {
-        AbstractMonster currTarget = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
-        int targetAmount = 0;
+        AbstractMonster currTarget = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, companionRng);
+        targetAmount = 0;
         isTargeted = false;
         MonsterGroup targetGroup = new MonsterGroup(currTarget);
         for (AbstractMonster mon : AbstractDungeon.getCurrRoom().monsters.monsters) {
@@ -493,7 +496,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             }
         }
         if (targetAmount > 0) {
-            currTarget = targetGroup.getRandomMonster(true);
+            currTarget = targetGroup.getRandomMonster(null, true, companionRng);
             isTargeted = true;
         }
         if (currTarget != null && !currTarget.isDeadOrEscaped()) {

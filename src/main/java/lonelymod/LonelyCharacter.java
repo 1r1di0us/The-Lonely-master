@@ -11,6 +11,7 @@ import lonelymod.cards.Sic;
 import lonelymod.cards.Heel;
 import lonelymod.cards.Strike;
 import lonelymod.relics.BonesStomach;
+import lonelymod.relics.MeatsStomach;
 import lonelymod.util.TexLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -261,16 +262,26 @@ public class LonelyCharacter extends CustomPlayer {
 
     //@Override
     //public Texture getCutsceneBg() {
-    //    return ImageMaster.loadImage(modID + "Resources/images/scenes/bkg.png");// 307
+    //    return ImageMaster.loadImage(modID + "Resources/images/scenes/bkg.png");
     //}
 
     @Override
     public List<CutscenePanel> getCutscenePanels() {
-        List<CutscenePanel> panels = new ArrayList();// 312
-        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_1.png"));// 313
-        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_2.png", "ATTACK_HEAVY"));// 314
-        panels.add(new CutscenePanel(modID + "Resources/images/scenes/ending_3.png"));// 315
-        return panels;// 316
+        List<CutscenePanel> panels = new ArrayList();
+        if (hasRelic(BonesStomach.ID)) {
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_1_bones.png", "ATTACK_HEAVY"));
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_2_bones.png"));
+        }
+        else if (hasRelic(MeatsStomach.ID)) {
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_1_meat.png", "ATTACK_HEAVY"));
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_2_meat.png"));
+        }
+        else {
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_1_none.png", "ATTACK_HEAVY"));
+            panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_2_none.png"));
+        }
+        panels.add(new CutscenePanel(modID + "Resources/images/scenes/scene_3.png"));
+        return panels;
     }
 
     //animation for replacing the starter relic

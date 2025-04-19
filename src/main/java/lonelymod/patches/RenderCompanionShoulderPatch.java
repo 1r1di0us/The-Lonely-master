@@ -22,16 +22,16 @@ public class RenderCompanionShoulderPatch {
     public static void Postfix(AbstractPlayer __instance, SpriteBatch sb) {
         if (__instance.hasRelic(BonesStomach.ID)) {
             if (CampfireUI.hidden) {
-                sb.draw(Bones.shoulder2Img, 0.0F, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
+                sb.draw(Bones.shoulderImg, 0.0F, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
             } else {
-                sb.draw(Bones.shoulderImg, __instance.animX, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
+                sb.draw(Bones.shoulder2Img, __instance.animX, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
             }
         }
         else if (__instance.hasRelic(MeatsStomach.ID)) {
             if (CampfireUI.hidden) {
-                sb.draw(Meat.shoulder2Img, 0.0F, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
+                sb.draw(Meat.shoulderImg, 0.0F, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
             } else {
-                sb.draw(Meat.shoulderImg, __instance.animX, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
+                sb.draw(Meat.shoulder2Img, __instance.animX, 0.0F, 1920.0F * Settings.scale, 1136.0F * Settings.scale);
             }
         }
     }

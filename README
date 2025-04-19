@@ -32,3 +32,12 @@ commission good art
 animate character
 custom companion tooltip with pages or tabs or drop down
 lock some cards and relics behind the xp system
+
+Usage: java.exe -jar mod-uploader.jar [-h] [COMMAND]
+  -h, --help   Prints this help text.
+Commands:
+  new     Creates a new project workspace. (Start Here)
+                Example: java.exe -jar mod-uploader.jar new -w mymod
+  upload  Uploads the contents of the mod workspace to Steam Workshop.
+                Example: java.exe -jar mod-uploader.jar upload -w mymod
+shift right click to open powershell at folder

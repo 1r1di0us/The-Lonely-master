@@ -194,7 +194,7 @@ public class Mechanic extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
@@ -202,7 +202,7 @@ public class Mechanic extends AbstractCompanion {
                     this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + getPower(MechanicPower.POWER_ID).amount + INTENTS[3];
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
@@ -210,7 +210,7 @@ public class Mechanic extends AbstractCompanion {
                     this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + getPower(MechanicPower.POWER_ID).amount + INTENTS[6];
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
@@ -218,12 +218,12 @@ public class Mechanic extends AbstractCompanion {
                     this.intentTip.body = INTENTS[7] + getPower(MechanicPower.POWER_ID).amount + INTENTS[8] + SPECIAL_ORB_AMT + INTENTS[9];
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[10];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

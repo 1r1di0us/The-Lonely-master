@@ -298,6 +298,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateReticle();
         updateHealthBar();
         updateAnimations();
+        updateEscapeAnimation();
         updateIntent();
         this.tint.update();
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.DEATH) {
@@ -582,6 +583,64 @@ public abstract class AbstractCompanion extends AbstractMonster {
         return ImageMaster.INTENT_UNKNOWN_L;
     }
 
+    public Texture getIntentTipImg() {
+        switch (this.intent) {
+            case ATTACK:
+                return getAttackIntentTipImg();
+            case ATTACK_BUFF:
+                return ImageMaster.INTENT_ATTACK_BUFF;
+            case ATTACK_DEBUFF:
+                return ImageMaster.INTENT_ATTACK_DEBUFF;
+            case ATTACK_DEFEND:
+                return ImageMaster.INTENT_ATTACK_DEFEND;
+            case BUFF:
+                return ImageMaster.INTENT_BUFF;
+            case DEBUFF:
+                return ImageMaster.INTENT_DEBUFF;
+            case STRONG_DEBUFF:
+                return ImageMaster.INTENT_DEBUFF2;
+            case DEFEND:
+                return ImageMaster.INTENT_DEFEND;
+            case DEFEND_DEBUFF:
+                return ImageMaster.INTENT_DEFEND;
+            case DEFEND_BUFF:
+                return ImageMaster.INTENT_DEFEND_BUFF;
+            case ESCAPE:
+                return ImageMaster.INTENT_ESCAPE;
+            case MAGIC:
+                return ImageMaster.INTENT_MAGIC;
+            case SLEEP:
+                return ImageMaster.INTENT_SLEEP;
+            case STUN:
+                return ImageMaster.INTENT_STUN;
+            case UNKNOWN:
+                return ImageMaster.INTENT_UNKNOWN;
+        }
+        return ImageMaster.INTENT_UNKNOWN;
+    }
+
+    private Texture getAttackIntentTipImg() {
+        int tmp;
+        if (this.isMultiDmg) {
+            tmp = this.intentDmg * this.intentMultiAmt;
+        } else {
+            tmp = this.intentDmg;
+        }
+        if (tmp < 5)
+            return ImageMaster.INTENT_ATK_TIP_1;
+        if (tmp < 10)
+            return ImageMaster.INTENT_ATK_TIP_2;
+        if (tmp < 15)
+            return ImageMaster.INTENT_ATK_TIP_3;
+        if (tmp < 20)
+            return ImageMaster.INTENT_ATK_TIP_4;
+        if (tmp < 25)
+            return ImageMaster.INTENT_ATK_TIP_5;
+        if (tmp < 30)
+            return ImageMaster.INTENT_ATK_TIP_6;
+        return ImageMaster.INTENT_ATK_TIP_7;
+    }
+
     //important render functions:
     //the render functions are copied from AbstractMonster.
     //the only change I did is remove the interaction with Runic Dome for both renderTip and render
@@ -615,7 +674,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
         if (this.cardsToPreview != null) {
             renderCardPreview(sb);
-            return;
         }
     }
 
@@ -799,14 +857,27 @@ public abstract class AbstractCompanion extends AbstractMonster {
         refreshHitboxLocation();
     }
 
+    private void updateEscapeAnimation() {
+        if (this.escapeTimer != 0.0F) {
+            this.flipHorizontal = true;
+            this.escapeTimer -= Gdx.graphics.getDeltaTime();
+            this.drawX -= Gdx.graphics.getDeltaTime() * 800.0F * Settings.scale;
+        }
+        if (this.escapeTimer < 0.0F) {
+            this.escaped = true;
+        }
+    }
+
+    public void escape() {
+        this.isEscaping = true;
+        this.escapeTimer = 3.0F;
+    }
+
     /*methods to redo:
     constructor
     more constructors?
     refreshIntentHbLocation
     unhover
-    getAttackIntent(int dmg)
-    getAttackIntent()
-    getAttackIntentTip
     damage
     setHp (X)
     updateHitbox
@@ -815,7 +886,6 @@ public abstract class AbstractCompanion extends AbstractMonster {
     updateEscapeAnimation
     escapeNext
     deathReact (X)
-    escape
     die (x2)
     usePreBattleAction
     changeState(?)

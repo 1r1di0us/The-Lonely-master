@@ -47,17 +47,9 @@
   },
   "${ModID}:Boomerang": {
     "NAME": "Boomerang",
-    "FLAVOR": "It always comes back no matter how you throw it",
+    "FLAVOR": "There seems to be no way to get rid of it.",
     "DESCRIPTIONS": [
       "The first card you play each turn will #yReturn to your hand next turn."
-    ]
-  },
-  "${ModID}:BookOfTheLaw": {
-    "NAME": "Book of the Law",
-    "FLAVOR": "The laws written in this book are only the laws you have imposed upon yourself.",
-    "DESCRIPTIONS": [
-      "Gain [E] at the start of your turn. At the end of your turn, take #b",
-      " damage for each card in your hand."
     ]
   },
   "${ModID}:GiftOfGod": {

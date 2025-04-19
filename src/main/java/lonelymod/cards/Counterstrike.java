@@ -18,8 +18,6 @@ import java.util.Objects;
 
 public class Counterstrike extends AbstractEasyCard {
     public final static String ID = makeID("Counterstrike");
-    private static final UIStrings uistring = CardCrawlGame.languagePack.getUIString(makeID("CounterstrikeMessage"));
-    public static final String[] TEXT = uistring.TEXT;
 
     public Counterstrike() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
@@ -46,22 +44,9 @@ public class Counterstrike extends AbstractEasyCard {
                 addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
             }
         }
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean canUse = super.canUse(p, m);
-        if (!canUse) {
-            return false;
-        } else if (m == null) {
-            return false;
-        } else if (m.isDeadOrEscaped()) {
-            return false;
-        } else if (m.getIntentBaseDmg() < 0) {
-            canUse = false;
-            this.cantUseMessage = TEXT[0];
+        else if (!m.isDeadOrEscaped()) {
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AttackEffect.BLUNT_LIGHT));
         }
-        return canUse;
     }
 
     @Override
@@ -79,6 +64,12 @@ public class Counterstrike extends AbstractEasyCard {
                 this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
                 this.initializeDescription();
             }
+        }
+        else if (!mo.isDeadOrEscaped()) {
+            this.baseDamage = 0;
+            this.baseMagicNumber= this.magicNumber = 1;
+            this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+            this.initializeDescription();
         }
     }
 

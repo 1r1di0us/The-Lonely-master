@@ -19,7 +19,7 @@ public class OccultPractice extends AbstractEasyCard {
     public OccultPractice() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 7;
-        baseSecondMagic = secondMagic = 1;
+        baseSecondMagic = secondMagic = 2;
         this.cardsToPreview = new Wound();
         this.exhaust = true;
     }

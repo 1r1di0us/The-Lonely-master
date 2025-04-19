@@ -1,6 +1,7 @@
 package lonelymod.companions;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -35,6 +36,12 @@ import static lonelymod.LonelyMod.makeID;
 public class Bones extends AbstractCompanion {
     public static final String ID = makeID("Bones");
     public static final String IMG = makeCompanionPath("Bones.png");
+
+    public static final String SHOULDER1 = makeCompanionPath("BonesShoulder.png");
+    public static final String SHOULDER2 = makeCompanionPath("BonesShoulder2.png");
+    public static final Texture shoulderImg = ImageMaster.loadImage(SHOULDER1);
+    public static final Texture shoulder2Img = ImageMaster.loadImage(SHOULDER2);
+
 
     private static final int DEFAULT_BLK = 3;
     private static final int ATTACK_DMG = 10;
@@ -202,27 +209,27 @@ public class Bones extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0] + this.intentBlk + INTENTS[1];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
                 this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + ATTACK_PWR_AMT + INTENTS[4];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_AMT + INTENTS[7] + PROTECT_PWR_AMT + INTENTS[8];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10] + SPECIAL_DEBUFF_AMT + INTENTS[11] + SPECIAL_SELF_PWR_AMT + INTENTS[12] + SPECIAL_PWR_AMT + INTENTS[13];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[14];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -53,7 +54,8 @@ public class OmenCard extends AbstractEasyCard {
         //remove strength, kill current companion, effects, summon omen, call special
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -magicNumber)));
         if (!(CompanionField.currCompanion.get(p) instanceof Omen)) {
-            addToBot(new DamageAction(CompanionField.currCompanion.get(AbstractDungeon.player), new DamageInfo(p, 10, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+            //addToBot(new DamageAction(CompanionField.currCompanion.get(AbstractDungeon.player), new DamageInfo(p, 0, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+            addToBot(new EscapeAction(CompanionField.currCompanion.get(AbstractDungeon.player)));
             //copied from Corruption:
             addToBot(new SFXAction("VO_CULTIST_2C"));
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));

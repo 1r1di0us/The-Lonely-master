@@ -39,10 +39,6 @@
     "NAME": "Overthrow",
     "DESCRIPTION": "Deal !D! Damage. NL If you have no energy, apply !M! Vulnerable."
   },
-  "${ModID}:PerfectShot": {
-    "NAME": "Perfect Shot",
-    "DESCRIPTION": "Deal !D! damage."
-  },
   "${ModID}:PincerAttack": {
     "NAME": "Pincer Attack",
     "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Attack, deal !D! damage again."
@@ -58,10 +54,6 @@
   "${ModID}:StrikeBack": {
     "NAME": "Strike Back",
     "DESCRIPTION": "Deal !D! damage. NL If you have a debuff, gain [E]."
-  },
-  "${ModID}:StrikeTeam": {
-    "NAME": "Strike Team",
-    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E]."
   },
   "${ModID}:Volley": {
     "NAME": "Volley",
@@ -90,7 +82,7 @@
   },
   "${ModID}:OccultPractice": {
     "NAME": "Occult Practice",
-    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle a *Wound into your draw pile. NL Exhaust."
+    "DESCRIPTION": "Gain !M! Strength this turn. NL Shuffle 2 *Wounds into your draw pile. NL Exhaust."
   },
   "${ModID}:Overpower": {
     "NAME": "Overpower",
@@ -126,7 +118,8 @@
   },
   "${ModID}:OverflowingQuiver": {
     "NAME": "Overflowing Quiver",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this into your draw pile. NL lonelymod:Return."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Shuffle a copy of this into your draw pile. NL lonelymod:Return."
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
@@ -135,7 +128,7 @@
   },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
-    "DESCRIPTION": "Deal !D! damage X times. NL Gain !B! Block X times."
+    "DESCRIPTION": "Deal !D! damage to a random enemy X times. NL Gain !B! Block X times."
   },
   "${ModID}:VentFrustration": {
     "NAME": "Vent Frustration",
@@ -167,10 +160,6 @@
     "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Grant !${ModID}:m2! Vigor. NL Draw !M! cards."
   },
-  "${ModID}:ClearThoughts": {
-    "NAME": "Clear Thoughts",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards. NL Exhaust all Status cards drawn this way."
-  },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
     "DESCRIPTION": "Gain !M! Ritual. NL Exhaust !${ModID}:m2! card.",
@@ -198,8 +187,8 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target and !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked damage this turn, apply !M! lonelymod:Target, !M! Vulnerable and !M! Weak."
+    "DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target and !M! Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target, !M! Vulnerable and !M! Weak."
   },
   "${ModID}:Prevail": {
     "NAME": "Prevail",
@@ -207,7 +196,7 @@
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
-    "DESCRIPTION": "Draw !M! cards. Remove all your Block. For every !${ModID}:m2! Block removed, gain [E]."
+    "DESCRIPTION": "Draw !M! cards. NL Lose all your Block. NL For every !${ModID}:m2! Block removed, gain [E]."
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
@@ -263,7 +252,7 @@
   },
   "${ModID}:Counterstrike": {
     "NAME": "Counterstrike",
-    "DESCRIPTION": "Deal the same damage this enemy is attacking you for.",
+    "DESCRIPTION": "Deal the same damage printed on this enemy's current intent.",
     "EXTENDED_DESCRIPTION": [
       "Deal !D! damage",
       "Deal !D! damage !M! times",
@@ -288,8 +277,7 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. Draw !M! card. NL Remove a RANDOM card in your hand from your deck. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Remove a RANDOM card in your hand from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Exhaust 1 card at random and remove it from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
@@ -340,7 +328,7 @@
   "${ModID}:Resolve": {
     "NAME": "Resolve",
     "DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity.",
-    "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity and !${ModID}:m2! lonelymod:plated_armor."
+    "UPGRADE_DESCRIPTION": "The first time you lose HP each turn, gain !M! Dexterity and !${ModID}:m2! lonelymod:Plated lonelymod:Armor."
   },
   "${ModID}:WildForm": {
     "NAME": "Wild Form",
@@ -361,11 +349,11 @@
   },
   "${ModID}:Harass": {
     "NAME": "Harass",
-    "DESCRIPTION": "Attack Move NL Deal 5 damage 2 times."
+    "DESCRIPTION": "Attack Move NL Deals 5 damage 2 times."
   },
   "${ModID}:Scare": {
     "NAME": "Scare",
-    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Apply 2 Vulnerable."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Applies 2 Vulnerable."
   },
   "${ModID}:Sacrifice": {
     "NAME": "Sacrifice",
@@ -377,7 +365,7 @@
   },
   "${ModID}:Crafty": {
     "NAME": "Crafty",
-    "DESCRIPTION": "Passive Power NL You can give him *Shiv cards to permanently improve his lonelymod:Attack lonelymod:Move"
+    "DESCRIPTION": "Passive Power NL You can give him *Shiv cards to permanently improve his lonelymod:Attack lonelymod:Move."
   },
   "${ModID}:SpyNothing": {
     "NAME": "Nothing",
@@ -385,15 +373,15 @@
   },
   "${ModID}:Assassinate": {
     "NAME": "Assassinate",
-    "DESCRIPTION": "Attack Move NL Deal 6 damage. Deal 6 more damage for every *Shiv he has."
+    "DESCRIPTION": "Attack Move NL Deals 6 damage. Deals 6 more damage for every *Shiv he has."
   },
   "${ModID}:Speedy": {
     "NAME": "Speedy",
-    "DESCRIPTION": "Protect Move NL Grant 6 Block. NL At the start of next turn, Grant 6 Block. NL Gain 1 Dexterity."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL At the start of next turn, Grants 6 Block. NL Gains 1 Dexterity."
   },
   "${ModID}:PoisonCloud": {
     "NAME": "Poison Cloud",
-    "DESCRIPTION": "Special Move NL Apply 25 Poison evenly among ALL enemies, rounds down."
+    "DESCRIPTION": "Special Move NL Applies 25 Poison evenly among ALL enemies, rounds down."
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
@@ -409,15 +397,15 @@
   },
   "${ModID}:Electrocute": {
     "NAME": "Bite",
-    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Channel 1 Lightning for every stack of Power."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Channels 1 Lightning for every stack of Power."
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
-    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Channel 1 Frost for every stack of Power."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Channel 1 Frosts for every stack of Power."
   },
   "${ModID}:Supercritical": {
     "NAME": "Supercritical",
-    "DESCRIPTION": "Special Move NL Evoke your next orb once for every stack of Power. NL Channel 1 Plasma."
+    "DESCRIPTION": "Special Move NL Evokes your next orb once for every stack of Power. NL Channels 1 Plasma."
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
@@ -433,15 +421,15 @@
   },
   "${ModID}:FieryBlast": {
     "NAME": "Fiery Blast",
-    "DESCRIPTION": "Attack Move NL Deal 10 damage."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage."
   },
   "${ModID}:PeacefulProtest": {
     "NAME": "Peaceful Protest",
-    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Enter Calm."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Enter Calm."
   },
   "${ModID}:Blessing": {
     "NAME": "Blessing",
-    "DESCRIPTION": "Special Move NL Add 2 *Miracle+ to your hand. NL Shuffle 2 *Insight+ into your draw pile."
+    "DESCRIPTION": "Special Move NL Adds 2 *Miracle+ to your hand. NL Shuffles 2 *Insight+ into your draw pile."
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
@@ -457,15 +445,15 @@
   },
   "${ModID}:SpearJab": {
     "NAME": "Spear Jab",
-    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Empowered: Deal 10 damage again."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Empowered: Deal 10s damage again."
   },
   "${ModID}:HoldGround": {
     "NAME": "Hold Ground",
-    "DESCRIPTION": "Protect Move NL Grant 8 Block. NL Empowered: Grant 5 Thorns."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Grants 5 Thorns."
   },
   "${ModID}:TrainUp": {
     "NAME": "Train Up",
-    "DESCRIPTION": "Special Move NL Gain 5 Strength and 5 Dexterity. NL Empowered: Grant 3 Strength and 3 Dexterity."
+    "DESCRIPTION": "Special Move NL Gains 5 Strength and 5 Dexterity. NL Empowered: Grants 3 Strength and 3 Dexterity."
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
@@ -477,19 +465,19 @@
   },
   "${ModID}:Bark": {
     "NAME": "Bark",
-    "DESCRIPTION": "Default Move NL Grant 3 Block."
+    "DESCRIPTION": "Default Move NL Grants 3 Block."
   },
   "${ModID}:Bite": {
     "NAME": "Bite",
-    "DESCRIPTION": "Attack Move NL Deal 10 damage. NL Gains 2 Strength."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Gains 2 Strength."
   },
   "${ModID}:Poise": {
     "NAME": "Poise",
-    "DESCRIPTION": "Protect Move NL Grant 4 Block 2 times. NL Gains 4 Vigor."
+    "DESCRIPTION": "Protect Move NL Grants 4 Block 2 times. NL Gains 4 Vigor."
   },
   "${ModID}:Howl": {
     "NAME": "Howl",
-    "DESCRIPTION": "Special Move NL Grant 3 Strength. NL Gains 5 Strength. NL Apply 3 lonelymod:Target and 3 Vulnerable to ALL enemies."
+    "DESCRIPTION": "Special Move NL Applies 3 lonelymod:Target and 3 Vulnerable to ALL enemies. NL Gains 5 Strength. NL Grants 3 Strength."
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
@@ -505,19 +493,19 @@
   },
   "${ModID}:Stretch": {
     "NAME": "Stretch",
-    "DESCRIPTION": "Default Move NL Gain 2 Vigor and 2 lonelymod:Stamina. Gains 2 more of each for each [E] spent."
+    "DESCRIPTION": "Default Move NL Gains 2 Vigor and 2 lonelymod:Stamina. Gains 2 more of each for each [E] spent."
   },
   "${ModID}:Maul": {
     "NAME": "Maul",
-    "DESCRIPTION": "Attack Move NL Deal 8 damage 2 times. NL Deal 8 damage again and gain 1 Strength for each [E] spent."
+    "DESCRIPTION": "Attack Move NL Deals 8 damage 2 times. NL Deals 8 damage again and gains 1 Strength for each [E] spent."
   },
   "${ModID}:BodyBlock": {
     "NAME": "Body Block",
-    "DESCRIPTION": "Protect Move NL Grant 5 Block 3 times. NL Next turn, grant 1 [E] and apply 1 Weak for each [E] spent."
+    "DESCRIPTION": "Protect Move NL Grants 5 Block 3 times. NL Next turn, grants [E] and applies 1 Weak for each [E] spent."
   },
   "${ModID}:Devour": {
     "NAME": "Devour",
-    "DESCRIPTION": "Special Move NL Deal 25 damage. NL Apply Constricted equal to damage dealt. Deals 10 more damage for each [E] spent."
+    "DESCRIPTION": "Special Move NL Deals 25 damage. NL Applies Constricted equal to damage dealt. Deals 10 more damage for each [E] spent."
   },
   "${ModID}:TheVulchyr": {
     "NAME": "The Vulchyr",
@@ -529,15 +517,15 @@
   },
   "${ModID}:Peck": {
     "NAME": "Peck",
-    "DESCRIPTION": "Default Move NL Deal 10 damage."
+    "DESCRIPTION": "Default Move NL Deals 10 damage."
   },
   "${ModID}:Shred": {
     "NAME": "Shred",
-    "DESCRIPTION": "Attack Move NL Deal 2 damage 5 times."
+    "DESCRIPTION": "Attack Move NL Deals 2 damage 5 times."
   },
   "${ModID}:Shriek": {
     "NAME": "Shriek",
-    "DESCRIPTION": "Protect Move NL Grant 6 Block 2 times. NL Apply 3 lonelymod:Target."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block 2 times. NL Applies 3 lonelymod:Target."
   },
   "${ModID}:Sharpen": {
     "NAME": "Sharpen",
@@ -547,62 +535,6 @@
     "NAME": "Godly Powers",
     "DESCRIPTION": "Gain [E]. NL lonelymod:Return.",
     "UPGRADE_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."
-  },
-
-  "${ModID}:InlinePowerDemo": {
-    "NAME": "Inline Power",
-    "DESCRIPTION": "Strikes deal !M! more damage. NL At the end of your turn, gain !M! Block.",
-    "EXTENDED_DESCRIPTION": [
-      "Strike+, Block+",
-      "#yStrikes deal #b",
-      " additional damage. At the end of your turn, gain #b",
-      " #yBlock."
-    ]
-  },
-  "${ModID}:ExampleTwoAmountPowerCard": {
-    "NAME": "Two Amount Power",
-    "DESCRIPTION": "At the start of your turn, gain !M! Strength and !${ModID}:m2! Dexterity."
-  },
-  "${ModID}:SelectCardsPlusCardMods": {
-    "NAME": "Cool Card Stuff",
-    "DESCRIPTION": "Choose from 1 of 3 cost 0 cards from any class. NL Add it into your hand. NL It gains Ethereal and Exhaust.",
-    "EXTENDED_DESCRIPTION": [
-      "Choose a card to add into your hand with Ethereal and Exhaust."
-    ]
-  },
-  "${ModID}:EasyXCostDemo": {
-    "NAME": "Easy X Cost",
-    "DESCRIPTION": "Deal !D! damage X times. NL Gain X Strength. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times. NL Gain X+1 Strength. NL Exhaust."
-  },
-  "${ModID}:EasyModalChoiceDemo": {
-    "NAME": "Easy Modal Choice",
-    "DESCRIPTION": "Choose one: Draw !M! cards or gain !${ModID}:m2! Strength.",
-    "EXTENDED_DESCRIPTION": [
-      "Draw",
-      "Draw ",
-      " cards.",
-      "Strength",
-      "Gain ",
-      " Strength."
-    ]
-  },
-  "${ModID}:DrawAndShiv": {
-    "NAME": "Draw and Shiv",
-    "DESCRIPTION": "Draw 1 card. NL Add 1 *Shiv into your hand."
-  },
-  "${ModID}:TwoTypesOfDamage": {
-    "NAME": "Two Damage Values",
-    "DESCRIPTION": "Deal !D! damage. NL If you're Vulnerable, deal !${ModID}:sd! damage instead."
-  },
-  "${ModID}:StartupBlockCard": {
-    "NAME": "Startup And AOE",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Startup: Gain !M! Block."
-  },
-  "${ModID}:MultiCardPreviewAndDrawCallback": {
-    "NAME": "Previews and Callbacks",
-    "DESCRIPTION": "Shuffle *Smite and *Safety into your draw pile. NL Draw 1 card. NL If it's Colorless, deal !D! damage to ALL enemies.",
-    "UPGRADE_DESCRIPTION": "Shuffle *Smite and *Safety into your draw pile. NL Draw 1 card. NL If it's Colorless, deal !D! damage to ALL enemies."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",
@@ -620,5 +552,17 @@
     "NAME": "Dominate",
     "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
+  },
+  "${ModID}:PerfectShot": {
+    "NAME": "Perfect Shot",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:StrikeTeam": {
+    "NAME": "Strike Team",
+    "DESCRIPTION": "Deal !D! damage. NL If your lonelymod:Companion intends to lonelymod:Protect, gain [E]."
+  },
+  "${ModID}:ClearThoughts": {
+    "NAME": "Clear Thoughts",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect. NL Draw !M! cards. NL Exhaust all Status cards drawn this way."
   }
 }

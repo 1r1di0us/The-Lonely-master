@@ -75,7 +75,7 @@ public class LonelyMod implements
     //Badge thing
     private static final String MODNAME = "Lonely Mod";
     private static final String AUTHOR = "zrgrush, ocean";
-    private static final String DESCRIPTION = "An exile who lives alone with his animal companions. NL He has not forgotten his dark past.";
+    private static final String DESCRIPTION = "An exile, back from the Drywoods with his animal companion. NL He has not forgotten his dark past.";
     public static final String BADGE_IMAGE = modID + "Resources/images/ui/badge.png";
 
     public static final String SHOULDER1 = modID + "Resources/images/char/mainChar/shoulder.png";

@@ -160,7 +160,11 @@
       "plated_armor",
       "Plated_Armor",
       "plated armor",
-      "Plated Armor"
+      "Plated Armor",
+      "Plated",
+      "plated",
+      "Armor",
+      "armor"
     ],
     "DESCRIPTION": "Creatures with #yPlated #yArmor gain #yBlock at the end of their turn. Receiving unblocked attack damage reduces #yPlated #yArmor by #b1."
   },

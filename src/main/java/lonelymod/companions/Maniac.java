@@ -171,27 +171,27 @@ public class Maniac extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
                 this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2] + ATTACK_AMT + INTENTS[3];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 this.intentTip.body = INTENTS[4] + this.intentBlk + INTENTS[5] + PROTECT_DEBUFF_AMT + INTENTS[6];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 this.intentTip.body = INTENTS[7] + SPECIAL_PWR_AMT + INTENTS[8];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[9];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

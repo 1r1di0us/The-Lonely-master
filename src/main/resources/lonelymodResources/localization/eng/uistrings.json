@@ -11,11 +11,6 @@
       " Cards to Return Next Turn."
     ]
   },
-  "${ModID}:CounterstrikeMessage": {
-    "TEXT": [
-      "This enemy is not attacking you!"
-    ]
-  },
   "${ModID}:FeedTheBearMessage": {
     "TEXT": [
       "I shouldn't feed my enemies."
@@ -26,6 +21,11 @@
       "But nobody came...",
       "My companion is not listening!",
       "That is not a valid action!"
+    ]
+  },
+  "${ModID}:AwakenedOneMessage": {
+    "TEXT": [
+      "You never should have come back..."
     ]
   }
 }

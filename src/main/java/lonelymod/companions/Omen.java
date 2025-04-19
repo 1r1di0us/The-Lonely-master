@@ -42,7 +42,7 @@ public class Omen extends AbstractCompanion {
     private int attackDmg;
     private int protectBlk;
 
-    private boolean updateAttack = false;
+    public boolean updateAttack = false;
 
     public Omen() {
         super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG);
@@ -164,6 +164,9 @@ public class Omen extends AbstractCompanion {
     public void callAttack() {
         if (updateAttack) {
             updateAttack = false;
+            if (nextMove != ATTACK) {
+                return; //in case of heel making clawspower call attack after you called protect
+            }
         } else {
             getTarget();
         }
@@ -189,7 +192,7 @@ public class Omen extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0] + this.intentDmg + INTENTS[1];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
@@ -197,22 +200,22 @@ public class Omen extends AbstractCompanion {
                     this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.getPower(ClawsPower.POWER_ID).amount + INTENTS[4];
                 else
                     this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + INIT_CLAWS_AMT + INTENTS[4];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6] + PROTECT_AMT + INTENTS[7] + PROTECT_DEBUFF_AMT + INTENTS[8];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_ATK_AMT + INTENTS[11];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[12];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

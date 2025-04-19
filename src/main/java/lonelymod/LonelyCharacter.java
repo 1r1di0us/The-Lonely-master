@@ -260,11 +260,6 @@ public class LonelyCharacter extends CustomPlayer {
     @Override
     public String getSensoryStoneText() { return TEXT[3]; }
 
-    //@Override
-    //public Texture getCutsceneBg() {
-    //    return ImageMaster.loadImage(modID + "Resources/images/scenes/bkg.png");
-    //}
-
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList();

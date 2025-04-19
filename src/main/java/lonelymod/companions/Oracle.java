@@ -164,27 +164,27 @@ public class Oracle extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
                 this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 this.intentTip.body = INTENTS[3] + this.intentBlk + INTENTS[4];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 this.intentTip.body = INTENTS[5] + SPECIAL_CARD_AMT + INTENTS[6] + SPECIAL_CARD_AMT + INTENTS[7];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[8];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

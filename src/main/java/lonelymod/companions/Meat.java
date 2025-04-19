@@ -1,6 +1,7 @@
 package lonelymod.companions;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -19,7 +20,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
@@ -38,6 +38,11 @@ import static lonelymod.LonelyMod.makeID;
 public class Meat extends AbstractCompanion {
     public static final String ID = makeID("Meat");
     public static final String IMG = makeCompanionPath("Meat.png");
+
+    public static final String SHOULDER1 = makeCompanionPath("MeatShoulder.png");
+    public static final String SHOULDER2 = makeCompanionPath("MeatShoulder2.png");
+    public static final Texture shoulderImg = ImageMaster.loadImage(SHOULDER1);
+    public static final Texture shoulder2Img = ImageMaster.loadImage(SHOULDER2);
 
 
     private static final int DEFAULT_PWR_AMT = 2, DEFAULT_BONUS_AMT = 2;
@@ -241,27 +246,27 @@ public class Meat extends AbstractCompanion {
             case DEFAULT:
                 this.intentTip.header = MOVES[0];
                 this.intentTip.body = INTENTS[0] + DEFAULT_PWR_AMT + INTENTS[1] + DEFAULT_PWR_AMT + INTENTS[2] + DEFAULT_BONUS_AMT + INTENTS[3];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
                 this.intentTip.body = INTENTS[4] + this.intentDmg + INTENTS[5] + ATTACK_AMT + INTENTS[6] + ATTACK_BONUS + INTENTS[7] + ATTACK_BONUS_STR + INTENTS[8];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
                 this.intentTip.body = INTENTS[9] + this.intentBlk + INTENTS[10] + PROTECT_AMT + INTENTS[11] + PROTECT_BONUS_ENERGY + INTENTS[12] + PROTECT_BONUS_WEAK + INTENTS[13];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
                 this.intentTip.body = INTENTS[14] + this.intentDmg + INTENTS[15] + SPECIAL_BONUS + INTENTS[16];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
                 this.intentTip.body = INTENTS[17];
-                this.intentTip.img = getIntentImg();
+                this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
                 this.intentTip.header = "";

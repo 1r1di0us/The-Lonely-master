@@ -28,10 +28,12 @@ public class OverflowingQuiver extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new MakeTempCardInDrawPileAction(this.makeStatEquivalentCopy(), 1, true, true, false));
-        ReturnField.willReturn.set(this, true);
+        if (upgraded) {
+            ReturnField.willReturn.set(this, true);
+        }
     }
 
     public void upp() {
-        upgradeDamage(2);
+        uDesc();
     }
 }

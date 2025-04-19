@@ -28,6 +28,7 @@ public class CompanionTakeTurnPatch {
                 p.atEndOfTurnPreEndTurnCards(false); //triggering powers.
             }
             if (!__instance.skipMonsterTurn) {
+                CompanionField.currCompanion.get(AbstractDungeon.player).isPlayerTurn = false;
                 AbstractDungeon.actionManager.addToBottom(new CompanionTakeTurnAction(true));
             }
         }

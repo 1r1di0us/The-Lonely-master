@@ -3,6 +3,7 @@ package lonelymod.cards.colorlesssummons;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -33,8 +34,17 @@ public class TheOracle extends AbstractEasyCard {
             CompanionField.currCompanion.set(AbstractDungeon.player, null);
         addToBot(new SummonOracleAction(true));
         addToBot(new DrawCardAction(1));
-        //would love to give 5 vigor to the oracle but alas she is not summoned yet.
-        //could make an action for it but I don't really care enough
+        AbstractCard attack = new CommandAttack();
+        AbstractCard protect = new CommandProtect();
+        AbstractCard special = new CommandSpecial();
+        if (upgraded) {
+            attack.upgrade();
+            protect.upgrade();
+            special.upgrade();
+        }
+        addToBot(new MakeTempCardInDrawPileAction(attack, 1, true, true, false));
+        addToBot(new MakeTempCardInDrawPileAction(protect, 1, true, true, false));
+        addToBot(new MakeTempCardInDrawPileAction(special, 1, true, true, false));
     }
 
     public void upp() {}

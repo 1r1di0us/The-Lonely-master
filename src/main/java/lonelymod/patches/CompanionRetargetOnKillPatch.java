@@ -16,7 +16,7 @@ import lonelymod.powers.TargetPower;
 public class CompanionRetargetOnKillPatch {
 
     public static void Postfix(AbstractMonster __instance, boolean triggerRelics) {
-        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null && AbstractDungeon.overlayMenu.endTurnButton.enabled) {
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null && CompanionField.currCompanion.get(AbstractDungeon.player).isPlayerTurn) {
             CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
             CompanionField.currCompanion.get(AbstractDungeon.player).applyPowers();
         }

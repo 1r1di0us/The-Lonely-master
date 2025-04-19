@@ -531,10 +531,25 @@
     "NAME": "Sharpen",
     "DESCRIPTION": "Special Move NL Gains 1 Ritual. NL At the start of the next 3 turns, lonelymod:Call lonelymod:Attack."
   },
-    "${ModID}:GodlyPowers": {
+  "${ModID}:GodlyPowers": {
     "NAME": "Godly Powers",
     "DESCRIPTION": "Gain [E]. NL lonelymod:Return.",
     "UPGRADE_DESCRIPTION": "Retain. NL Gain [E]. NL lonelymod:Return."
+  },
+  "${ModID}:CommandAttack": {
+    "NAME": "Command: Attack",
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Attack."
+  },
+  "${ModID}:CommandProtect": {
+    "NAME": "Command: Protect",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Protect.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL lonelymod:Call lonelymod:Protect."
+  },
+  "${ModID}:CommandSpecial": {
+    "NAME": "Command: Special",
+    "DESCRIPTION": "Ethereal. NL lonelymod:Call lonelymod:Special. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",

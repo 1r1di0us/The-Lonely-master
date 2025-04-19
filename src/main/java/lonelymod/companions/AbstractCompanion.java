@@ -62,7 +62,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public int targetAmount = 0;
     public static Random companionRng = null;
     public CompanionMoveInfo move;
-
+    public boolean isPlayerTurn = true;
     private Color nameColor = new Color();
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
     private float hoverTimer = 0.0F;

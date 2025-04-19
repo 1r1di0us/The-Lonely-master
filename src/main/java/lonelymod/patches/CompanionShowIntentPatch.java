@@ -14,6 +14,7 @@ public class CompanionShowIntentPatch {
     public static void Postfix(MonsterGroup __instance) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             CompanionField.currCompanion.get(AbstractDungeon.player).createIntent();
+            CompanionField.currCompanion.get(AbstractDungeon.player).isPlayerTurn = true;
         }
     }
 }

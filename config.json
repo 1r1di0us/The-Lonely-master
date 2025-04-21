@@ -1,7 +1,10 @@
 {
-  "title": "",
+  "steamPublishedID": "3467813220",
+  "title": "The Lonely",
   "description": "",
   "visibility": "private",
   "changeNote": "",
-  "tags": []
+  "tags": [
+    "Character"
+  ]
 }

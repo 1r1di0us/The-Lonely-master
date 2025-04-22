@@ -397,11 +397,11 @@
   },
   "${ModID}:Electrocute": {
     "NAME": "Bite",
-    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Channels 1 Lightning for every stack of Power."
+    "DESCRIPTION": "Attack Move NL Deals 8 damage. NL Channels 1 Lightning for every stack of Power."
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
-    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Channel 1 Frosts for every stack of Power."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Channel 1 Frosts for every stack of Power."
   },
   "${ModID}:Supercritical": {
     "NAME": "Supercritical",
@@ -425,7 +425,7 @@
   },
   "${ModID}:PeacefulProtest": {
     "NAME": "Peaceful Protest",
-    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Enter Calm."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Enter Calm."
   },
   "${ModID}:Blessing": {
     "NAME": "Blessing",
@@ -548,7 +548,7 @@
   },
   "${ModID}:CommandSpecial": {
     "NAME": "Command: Special",
-    "DESCRIPTION": "Ethereal. NL lonelymod:Call lonelymod:Special. NL Exhaust.",
+    "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
   },
   "${ModID}:Apprehend": {

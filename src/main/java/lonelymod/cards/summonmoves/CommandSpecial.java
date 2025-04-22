@@ -17,7 +17,6 @@ public class CommandSpecial extends AbstractEasyCard {
     public CommandSpecial() {
         super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
         exhaust = true;
-        isEthereal = true;
         this.tags.add(Enums.COMPANION);
     }
 
@@ -27,7 +26,6 @@ public class CommandSpecial extends AbstractEasyCard {
 
     public void upp() {
         uDesc();
-        this.isEthereal = false;
         this.exhaust = false;
     }
 }

@@ -38,7 +38,7 @@ public class Mechanic extends AbstractCompanion {
 
     private static final Logger logger = LogManager.getLogger(Mechanic.class.getName());
     private static final int ATTACK_DMG = 8;
-    private static final int PROTECT_BLK = 8;
+    private static final int PROTECT_BLK = 6;
     private static final int SPECIAL_ORB_AMT = 1;
 
     private int attackDmg;

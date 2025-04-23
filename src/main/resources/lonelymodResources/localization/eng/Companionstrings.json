@@ -174,8 +174,7 @@
 
       "Fring intends to grant you #b",
       " #yBlock.",
-      " #yBlock and grant you #b",
-      " #yThorns.",
+      " #yBlock and gain #yVigor equal to the #yBlock granted.",
 
       "Fring intends to gain #b",
       " #yStrength and #b",
@@ -196,8 +195,7 @@
       "Grants #b",
       " #yBlock.",
       "Empowered: Grants #b",
-      " #yBlock and grants #b",
-      " #yThorns.",
+      " #yBlock and gains #yVigor equal to the #yBlock granted.",
 
       "Gains #b",
       " #yStrength and #b",

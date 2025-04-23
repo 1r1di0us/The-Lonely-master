@@ -50,25 +50,23 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     @Override
     public void updateDescription() {
         if (amount >= 3 && !startOfBattle)
-            description = DESCRIPTIONS[0] + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1] + DESCRIPTIONS[2];
         else
-            description = DESCRIPTIONS[0];
+            description = DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1];
     }
 
     @Override
     public void triggerOnCallMove(byte move, byte prevMove) {
         flash();
-        if (this.amount == 3) {
-            this.amount = 1;
-        } else {
-            this.amount++;
-        }
+        this.amount++;
         updateDescription();
     }
 
     @Override
     public void onSpecificTrigger() {
-        addToBot(new ReducePowerAction(this.owner, this.owner, this, this.amount-1));
+        flash();
+        this.amount = 0;
+        updateDescription();
     }
 
     @Override

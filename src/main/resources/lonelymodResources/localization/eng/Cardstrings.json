@@ -445,15 +445,15 @@
   },
   "${ModID}:SpearJab": {
     "NAME": "Spear Jab",
-    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Empowered: Deal 10s damage again."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Empowered: Deal 10 damage again."
   },
   "${ModID}:HoldGround": {
     "NAME": "Hold Ground",
-    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Grants 5 Thorns."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Grants 4 more Block. NL Gains Vigor equal to Block granted."
   },
   "${ModID}:TrainUp": {
     "NAME": "Train Up",
-    "DESCRIPTION": "Special Move NL Gains 5 Strength and 5 Dexterity. NL Empowered: Grants 3 Strength and 3 Dexterity."
+    "DESCRIPTION": "Special Move NL Gains 6 Strength and 6 Dexterity. NL Empowered: Grants 3 Strength and 3 Dexterity."
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",

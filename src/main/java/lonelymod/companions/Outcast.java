@@ -35,19 +35,22 @@ public class Outcast extends AbstractCompanion {
     private static final int ATTACK_DMG = 10;
     private static final int EMP_ATTACK_AMT = 2;
     private static final int PROTECT_BLK = 8;
-    private static final int EMP_PROTECT_PWR_AMT = 5;
-    private static final int SPECIAL_PWR_AMT = 5;
+    private static final int EMP_PROTECT_BLK_AMT = 12;
+    private static final int SPECIAL_PWR_AMT = 6;
     private static final int EMP_SPECIAL_PWR_AMT = 3;
 
     private int attackDmg;
     private int protectBlk;
+    private int empProtectBlk;
 
     public Outcast() {
         super("Fring", ID, 0.0F, 0.0F, 90.0F, 120.0F, IMG);
         this.attackDmg = ATTACK_DMG;
         this.protectBlk = PROTECT_BLK;
+        this.empProtectBlk = EMP_PROTECT_BLK_AMT;
         this.damage.add(new DamageInfo(this, this.attackDmg, DamageInfo.DamageType.THORNS));
         this.block.add(new BlockInfo(this, this.protectBlk));
+        this.block.add(new BlockInfo(this, this.empProtectBlk));
 
         this.cardToPreview.addAll(CardTips);
     }
@@ -80,9 +83,10 @@ public class Outcast extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
+                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
                             addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                        getPower(OutcastPower.POWER_ID).onSpecificTrigger();
                     } else {
                         addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
@@ -91,18 +95,24 @@ public class Outcast extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
-                addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3)
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
+                    addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, this.block.get(1).output)));
+                    getPower(OutcastPower.POWER_ID).onSpecificTrigger();
+                }
+                else {
+                    addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                }
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT)));
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
+                    getPower(OutcastPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case UNKNOWN:
@@ -129,25 +139,32 @@ public class Outcast extends AbstractCompanion {
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
-                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
+                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
                             addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                        getPower(OutcastPower.POWER_ID).onSpecificTrigger();
                     } else {
                         addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
                 }
                 break;
             case PROTECT:
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3)
-                    addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new ThornsPower(AbstractDungeon.player, EMP_PROTECT_PWR_AMT)));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
+                    addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, this.block.get(1).output)));
+                    addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                    getPower(OutcastPower.POWER_ID).onSpecificTrigger();
+                }
+                else {
+                    addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                }
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new DexterityPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
                     addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(AbstractDungeon.player, EMP_SPECIAL_PWR_AMT)));
+                    getPower(OutcastPower.POWER_ID).onSpecificTrigger();
                 }
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, SPECIAL_PWR_AMT)));
                 addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
@@ -161,16 +178,7 @@ public class Outcast extends AbstractCompanion {
 
     public void callAttack() {
         getTarget();
-        /*consecutiveMove++;
-        if (consecutiveMove == 4) {
-            if (hasPower(OutcastPower.POWER_ID)) {
-                getPower(OutcastPower.POWER_ID).onSpecificTrigger();
-            }
-            consecutiveMove = 1;
-        } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
-        }*/
-        if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 2) {
+        if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 2) {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
         } else {
             setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
@@ -178,32 +186,14 @@ public class Outcast extends AbstractCompanion {
     }
 
     public void callProtect() {
-        /*consecutiveMove++;
-        if (consecutiveMove == 4) {
-            if (hasPower(OutcastPower.POWER_ID)) {
-                getPower(OutcastPower.POWER_ID).onSpecificTrigger();
-            }
-            consecutiveMove = 1;
-        } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
-        }*/
-        if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 2) {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+        if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 2) {
+            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, false);
         } else {
             setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
         }
     }
 
     public void callSpecial() {
-        /*consecutiveMove++;
-        if (consecutiveMove == 4) {
-            if (hasPower(OutcastPower.POWER_ID)) {
-                getPower(OutcastPower.POWER_ID).onSpecificTrigger();
-            }
-            consecutiveMove = 1;
-        } else {
-            addToBot(new ApplyPowerAction(this, this, new OutcastPower(this, 1, false)));
-        }*/
         setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
 
@@ -216,7 +206,7 @@ public class Outcast extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
                     this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[3] + this.intentMultiAmt + INTENTS[4];
                 } else {
                     this.intentTip.body = INTENTS[1] + this.intentDmg + INTENTS[2];
@@ -225,8 +215,8 @@ public class Outcast extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
-                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[7] + EMP_PROTECT_PWR_AMT + INTENTS[8];
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
+                    this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[7];
                 } else {
                     this.intentTip.body = INTENTS[5] + this.intentBlk + INTENTS[6];
                 }
@@ -234,16 +224,16 @@ public class Outcast extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3) {
-                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[12] + EMP_SPECIAL_PWR_AMT + INTENTS[13] + EMP_SPECIAL_PWR_AMT + INTENTS[14];
+                if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3) {
+                    this.intentTip.body = INTENTS[8] + SPECIAL_PWR_AMT + INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[11] + EMP_SPECIAL_PWR_AMT + INTENTS[12] + EMP_SPECIAL_PWR_AMT + INTENTS[13];
                 } else {
-                    this.intentTip.body = INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10] + SPECIAL_PWR_AMT + INTENTS[11];
+                    this.intentTip.body = INTENTS[8] + SPECIAL_PWR_AMT + INTENTS[9] + SPECIAL_PWR_AMT + INTENTS[10];
                 }
                 this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[15];
+                this.intentTip.body = INTENTS[14];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
@@ -263,7 +253,7 @@ public class Outcast extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3)
+                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3)
                         return INTENT_TOOLTIPS[2] + this.damage.get(0).output + INTENT_TOOLTIPS[3] + EMP_ATTACK_AMT + INTENT_TOOLTIPS[4];
                     else return INTENT_TOOLTIPS[0] + this.damage.get(0).output + INTENT_TOOLTIPS[1];
                 }
@@ -271,17 +261,17 @@ public class Outcast extends AbstractCompanion {
                 if (head) {
                     return MOVES[2];
                 } else {
-                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3)
-                        return INTENT_TOOLTIPS[7] + this.block.get(0).output + INTENT_TOOLTIPS[8] + EMP_PROTECT_PWR_AMT + INTENT_TOOLTIPS[9];
+                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3)
+                        return INTENT_TOOLTIPS[7] + this.block.get(1).output + INTENT_TOOLTIPS[8];
                     else return INTENT_TOOLTIPS[5] + this.block.get(0).output + INTENT_TOOLTIPS[6];
                 }
             case SPECIAL:
                 if (head) {
                     return MOVES[3];
                 } else {
-                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount == 3)
-                        return INTENT_TOOLTIPS[13] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[14] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[15] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[16] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[17];
-                    else return INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[12];
+                    if (hasPower(OutcastPower.POWER_ID) && getPower(OutcastPower.POWER_ID).amount >= 3)
+                        return INTENT_TOOLTIPS[12] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[13] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[14] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[15] + EMP_SPECIAL_PWR_AMT + INTENT_TOOLTIPS[16];
+                    else return INTENT_TOOLTIPS[9] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[10] + SPECIAL_PWR_AMT + INTENT_TOOLTIPS[11];
                 }
         }
         return "";

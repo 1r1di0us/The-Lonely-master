@@ -305,7 +305,8 @@
   "${ModID}:OutcastPower": {
     "NAME": "Empower",
     "DESCRIPTIONS": [
-      "Every third move that you #yCall will be #yEmpowered, gaining bonus effects.",
+      "Whenever you #yCall a #yMove, gains #b1 #yEmpower. Moves performed at #b",
+      " or more #yEmpower will gain additional effects and reset #yEmpower to 0.",
       "NL THE CURRENT MOVE IS EMPOWERED!"
     ]
   },
@@ -319,7 +320,7 @@
   "${ModID}:MechanicPower": {
     "NAME": "Power",
     "DESCRIPTIONS": [
-      "Whenever you play a Power card, increase #yPower by #b1."
+      "Whenever you play a Power card, gains #b1 #yPower."
     ]
   },
   "${ModID}:SpyPower": {

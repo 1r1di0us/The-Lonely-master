@@ -55,7 +55,8 @@ public class LonelyMod implements
         OnPlayerTurnStartPostDrawSubscriber,
         PostBattleSubscriber,
         PostInitializeSubscriber,
-        OnStartBattleSubscriber{
+        OnStartBattleSubscriber,
+        AddAudioSubscriber{
         //PostEnergyRechargeSubscriber
 
     public static final String modID = "lonelymod";
@@ -95,6 +96,13 @@ public class LonelyMod implements
 
     private static final Map<String, CompanionStrings> companionStrings = new HashMap<>();
 
+    public static final String HOWL_SFX_1 = makeID("great_howl");
+    private static final String HOWL_SFX_WAV_1 = getWavFile("great_howl");
+
+
+    public static String getWavFile(String fileName) {
+        return modID + "Resources/audio/" + fileName + ".wav";
+    }
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
     };
@@ -322,5 +330,10 @@ public class LonelyMod implements
             skipTutorials.toggle.toggle();
 
         }
+    }
+
+    @Override
+    public void receiveAddAudio() {
+        BaseMod.addAudio(HOWL_SFX_1, HOWL_SFX_WAV_1);
     }
 }

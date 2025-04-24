@@ -16,6 +16,10 @@ public class AbandonAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        if (AbstractDungeon.player.hand.isEmpty()) {
+            this.isDone = true;
+            return;
+        }
         AbstractCard cardToExhaust = AbstractDungeon.player.hand.group.get(AbstractDungeon.cardRandomRng.random(0, AbstractDungeon.player.hand.group.size() - 1));
         addToTop(new ExhaustSpecificCardAction(cardToExhaust, AbstractDungeon.player.hand));
 

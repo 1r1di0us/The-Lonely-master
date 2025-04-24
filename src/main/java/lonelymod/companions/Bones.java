@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -22,6 +23,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import com.megacrit.cardcrawl.random.Random;
+import lonelymod.LonelyMod;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionVigorPower;
@@ -116,6 +118,7 @@ public class Bones extends AbstractCompanion {
                 break;
             case SPECIAL:
                 talk();
+                addToBot(new SFXAction(LonelyMod.HOWL_SFX_1));
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                     if (mo != null && !mo.isDeadOrEscaped()) {
                         addToBot(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
@@ -169,6 +172,7 @@ public class Bones extends AbstractCompanion {
                         addToTop(new ApplyPowerAction(mo, this, new VulnerablePower(mo, SPECIAL_DEBUFF_AMT, true), SPECIAL_DEBUFF_AMT, true, AbstractGameAction.AttackEffect.NONE));
                     }
                 }
+                addToTop(new SFXAction(LonelyMod.HOWL_SFX_1));
                 break;
         }
     }

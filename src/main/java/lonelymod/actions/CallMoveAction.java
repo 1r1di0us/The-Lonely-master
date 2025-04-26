@@ -40,6 +40,7 @@ public class CallMoveAction extends AbstractGameAction {
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[0], true));
         }
         else {
+            byte prevMove = currCompanion.nextMove;
             if (move == AbstractCompanion.DEFAULT) {
                 currCompanion.callDefault();
             } else if (move == AbstractCompanion.UNKNOWN) {
@@ -63,14 +64,14 @@ public class CallMoveAction extends AbstractGameAction {
             if (triggerPowers == 1) {
                 for (AbstractPower p : currCompanion.powers)
                     if (p instanceof TriggerOnCallMoveInterface)
-                        ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, currCompanion.nextMove);
+                        ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, prevMove);
                 for (AbstractPower p : AbstractDungeon.player.powers)
                     if (p instanceof TriggerOnCallMoveInterface)
-                        ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, currCompanion.nextMove);
+                        ((TriggerOnCallMoveInterface) p).triggerOnCallMove(move, prevMove);
                 VentFrustration.movesCalledThisTurn++;
                 for (AbstractCard c : AbstractDungeon.player.hand.group)
                     if (c instanceof TriggerOnCallMoveInterface)
-                        ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move, currCompanion.nextMove);
+                        ((TriggerOnCallMoveInterface) c).triggerOnCallMove(move, prevMove);
             }
         }
         this.isDone = true;

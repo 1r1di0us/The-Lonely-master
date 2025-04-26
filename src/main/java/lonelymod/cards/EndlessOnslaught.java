@@ -20,8 +20,8 @@ public class EndlessOnslaught extends AbstractEasyCard implements TriggerOnPlanI
     }
 
     @Override
-    public void triggerOnPlan(boolean thisCardPlanned) {
-        if (!thisCardPlanned) {
+    public void triggerOnPlan(boolean inPlanSelect) {
+        if (!inPlanSelect) {
             addToBot(new GashAction(this, magicNumber));
         }
     }

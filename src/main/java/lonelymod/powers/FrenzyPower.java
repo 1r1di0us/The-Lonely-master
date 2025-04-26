@@ -70,6 +70,7 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void triggerOnCompanionTurnEnd() {
+        flash();
         for (int i = 0; i < this.amount; i++) { //attack already happened once
             addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
             addToBot(new WaitAction(0.1F));

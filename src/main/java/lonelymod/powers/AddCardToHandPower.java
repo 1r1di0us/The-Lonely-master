@@ -54,6 +54,7 @@ public class AddCardToHandPower extends AbstractEasyPower implements CloneablePo
 
     @Override
     public void atStartOfTurn() {
+        flash();
         if (isFree) {
             this.cardToAdd.freeToPlayOnce = true;
         }

@@ -56,6 +56,7 @@ public class PlanAction extends AbstractGameAction {
         if (this.duration == this.startingDuration) {
             if (AbstractDungeon.player.discardPile.isEmpty()) {
                 if (AbstractDungeon.player.hasRelic(Spyglass.ID)) {
+                    AbstractDungeon.player.getRelic(Spyglass.ID).flash();
                     addToBot(new ScryAction(this.amount + Spyglass.EXTRA_SCRY));
                 }
                 this.isDone = true;

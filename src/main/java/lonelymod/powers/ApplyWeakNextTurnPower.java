@@ -49,6 +49,7 @@ public class ApplyWeakNextTurnPower extends AbstractEasyPower implements Cloneab
 
     @Override
     public void atEndOfRound() {
+        flash();
         CompanionField.currCompanion.get(AbstractDungeon.player).getTarget();
         addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player).targetEnemy, this.owner,
                 new WeakPower(CompanionField.currCompanion.get(AbstractDungeon.player).targetEnemy, this.amount, true)));

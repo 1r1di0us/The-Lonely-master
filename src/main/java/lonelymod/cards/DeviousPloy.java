@@ -24,6 +24,8 @@ public class DeviousPloy extends AbstractEasyCard {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         addToBot(new PlanAction(this.magicNumber, this));
         addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, this.secondMagic)));
+        //addToBot(new ApplyPowerAction(p, p, new EnergizedYellowPower(p, this.secondMagic)));
+        // I don't have a good asset for this.
     }
 
     public void upp() {

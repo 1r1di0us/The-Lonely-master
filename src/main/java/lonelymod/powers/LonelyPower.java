@@ -24,7 +24,6 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Lonely32.png");
 
-    //private final AbstractCard cardToPlay;
     public int maxAmount;
 
     public LonelyPower(AbstractCreature owner, int maxAmt) {
@@ -35,7 +34,6 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
         type = PowerType.DEBUFF;
         isTurnBased = false;
         this.maxAmount = maxAmt;
-        //this.cardToPlay = cardToPlay;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -61,17 +59,9 @@ public class LonelyPower extends AbstractEasyPower implements CloneablePowerInte
         }
     }
 
-    /*@Override
-    public void atStartOfTurn() {
-        addToBot(new NewQueueCardAction(this.cardToPlay, true, true, true));
-        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-    }*/
-
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + this.maxAmount + DESCRIPTIONS[1];
-        //if (cardToPlay == null) description = DESCRIPTIONS[2];
-        //else description = DESCRIPTIONS[0] + cardToPlay.name + DESCRIPTIONS[1];
     }
 
     @Override

@@ -53,6 +53,7 @@ public class OvercomePower extends AbstractEasyPower implements CloneablePowerIn
                 }
             }
             if (blockTotal > 0) {
+                flash();
                 addToBot(new GainBlockAction(this.owner, blockTotal));
             }
         }

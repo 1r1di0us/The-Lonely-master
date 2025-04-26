@@ -18,8 +18,8 @@ public class PlannedAssault extends AbstractEasyCard implements TriggerOnPlanInt
     }
     
     @Override
-    public void triggerOnPlan(boolean thisCardPlanned) {
-        if (AbstractDungeon.player.drawPile.contains(this) && !thisCardPlanned) { //triggerOnPlan triggers twice for cards that were planned technically
+    public void triggerOnPlan(boolean inPlanSelect) {
+        if (AbstractDungeon.player.drawPile.contains(this) && !inPlanSelect) { //triggerOnPlan triggers twice for cards that were planned technically
             addToBot(new DrawToHandAction(this));
         }
     }

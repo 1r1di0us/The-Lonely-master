@@ -54,12 +54,14 @@ public class OraclePower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void atEndOfRound() {
+        flash();
         addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
     }
 
     @Override
     public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
         if (!oldStance.ID.equals(newStance.ID) && newStance.ID.equals(CalmStance.STANCE_ID)) {
+            flash();
             addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
         }
     }

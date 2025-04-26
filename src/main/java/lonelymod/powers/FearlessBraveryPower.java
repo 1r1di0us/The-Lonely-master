@@ -63,6 +63,7 @@ public class FearlessBraveryPower extends AbstractEasyPower implements Cloneable
             }
         }
         if (gainVigor) {
+            flash();
             addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.vigAmount * this.amount)));
             addToBot(new DrawCardAction(this.owner, this.drawAmount * this.amount));
         }

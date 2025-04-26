@@ -53,6 +53,7 @@ public class MuscleMemoryPower extends AbstractEasyPower implements TriggerOnRet
 
     @Override
     public void triggerOnReturn() {
+        flash();
         addToBot(new GainEnergyAction(this.amount));
     }
 

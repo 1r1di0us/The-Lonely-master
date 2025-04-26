@@ -54,6 +54,7 @@ public class RecoveryPower extends AbstractEasyPower implements CloneablePowerIn
 
     public void triggerOnCallMove(byte move, byte prevMove) {
         if (prevMove == AbstractCompanion.PROTECT) {
+            flash();
             addToBot(new GainEnergyAction(this.amount));
         }
     }

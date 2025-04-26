@@ -62,27 +62,7 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     @Override
     public void atEndOfRound() {
         addToTop(new MakeTempCardInHandAction(new FeedTheBear())); //to make sure none end up in the discard
-        /*if (this.amount > 0) {
-            flash();
-            this.amount = 0;
-            updateDescription();
-            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if (!m.isDeadOrEscaped()) {
-                    addToBot(new ApplyPowerAction(m, this.owner, new WeakPower(m, WeakAmt, false)));
-                }
-            }
-        }*/
     }
-
-    /*@Override
-    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (!isPlayer && EnergyPanel.totalCount > 0) {
-            addToBot(new LoseEnergyAction(1));
-            flash();
-            this.amount++;
-            updateDescription();
-        }
-    }*/
 
     @Override
     public void updateDescription() {

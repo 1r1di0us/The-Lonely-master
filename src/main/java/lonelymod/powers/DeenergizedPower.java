@@ -47,6 +47,7 @@ public class DeenergizedPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void atStartOfTurn() {
+        flash();
         addToBot(new LoseEnergyAction(1));
         addToBot(new ReducePowerAction(this.owner, this.owner, this, 1));
     }

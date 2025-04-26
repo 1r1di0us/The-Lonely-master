@@ -63,6 +63,7 @@ public class AdaptPower extends AbstractEasyPower implements CloneablePowerInter
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.uuid == bountyUUID) {
+            flash();
             addToBot(new GainBlockAction(this.owner, this.owner, this.amount));
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }

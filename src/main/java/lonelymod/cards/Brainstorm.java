@@ -2,9 +2,16 @@ package lonelymod.cards;
 
 import static lonelymod.LonelyMod.makeID;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import lonelymod.actions.BrainstormAction;
 
 public class Brainstorm extends AbstractEasyCard {
@@ -18,7 +25,17 @@ public class Brainstorm extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        allDmg(AttackEffect.LIGHTNING);
+        DamageInfo info = new DamageInfo(p, this.baseDamage);
+        float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
+        if (Settings.FAST_MODE)
+            speedTime = 0.0F;
+        addToTop(new DamageAllEnemiesAction(p,
+                DamageInfo.createDamageMatrix(info.base, true, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+        for (AbstractMonster m3 : (AbstractDungeon.getMonsters()).monsters) {
+            if (!m3.isDeadOrEscaped() && !m3.halfDead)
+                addToTop(new VFXAction(new LightningEffect(m3.drawX, m3.drawY), speedTime));
+        }
+        addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
         addToBot(new BrainstormAction(this.magicNumber));
     }
 

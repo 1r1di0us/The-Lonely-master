@@ -23,8 +23,8 @@ public class DEPRECATEDPartOfThePlan extends AbstractEasyCard implements Trigger
     }
 
     @Override
-    public void triggerOnPlan(boolean thisCardPlanned) {
-        if (AbstractDungeon.player.drawPile.contains(this) && !thisCardPlanned) {
+    public void triggerOnPlan(boolean inPlanSelect) {
+        if (AbstractDungeon.player.drawPile.contains(this) && !inPlanSelect) {
             addToBot(new DrawToHandAction(this));
         }
     }

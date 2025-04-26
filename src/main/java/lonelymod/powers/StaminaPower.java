@@ -71,7 +71,8 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.baseBlock >= 0 && this.owner == AbstractDungeon.player) { //don't forget suppress and co.
+        if (card.baseBlock >= 0 && this.owner == AbstractDungeon.player) {
+            flash();
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
     }

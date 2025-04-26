@@ -59,7 +59,10 @@ public class BraveryPower extends AbstractEasyPower implements CloneablePowerInt
                 gainVigor = false;
             }
         }
-        if (gainVigor) addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
+        if (gainVigor) {
+            flash();
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new VigorPower(this.owner, this.amount * this.vigAmount)));
+        }
     }
 
     @Override

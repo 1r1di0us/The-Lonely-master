@@ -22,6 +22,7 @@ public class WorldMap extends AbstractEasyRelic implements AtEndOfTurnPostEndTur
 
     @Override
     public void atEndOfTurnPostEndTurnCards(boolean isPlayer) {
+        flash();
         addToBot(new PlanAction(PLAN_AMT));
     }
 }

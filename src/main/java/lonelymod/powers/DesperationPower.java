@@ -60,6 +60,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
                         }
                     }
                     if (!tmp.isEmpty()) {
+                        flash();
                         AbstractCard cardToPlay = tmp.getRandomCard(true);
                         addToBot(new PlayCardAction(AbstractDungeon.player.hand, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
                     }

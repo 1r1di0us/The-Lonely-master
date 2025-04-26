@@ -2,6 +2,7 @@ package lonelymod.relics;
 
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import lonelymod.LonelyCharacter;
 import lonelymod.fields.ReturnField;
 
@@ -30,5 +31,7 @@ public class Boomerang extends AbstractEasyRelic {
     @Override
     public void atTurnStart() {
         this.activated = false;
+        beginPulse();
+        this.pulse = true;
     }
 }

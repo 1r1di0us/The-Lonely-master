@@ -70,8 +70,11 @@ public class LonelyMod implements
     // mod config stuff
     public static Properties theDefaultDefaultSettings = new Properties();
     public static final String SKIP_TUTORIALS_SETTING = "skip tutorial";
+    public static final String REMOVE_COMMANDS_SETTING = "remove colorless command cards";
     public static Boolean skipTutorialsPlaceholder = true; // The boolean we'll be setting on/off (true/false)
+    public static Boolean removeCommandsPlaceholder = true;
     public static ModLabeledToggleButton skipTutorials;
+    public static ModLabeledToggleButton removeCommands;
 
     //Badge thing
     private static final String MODNAME = "Lonely Mod";
@@ -126,11 +129,13 @@ public class LonelyMod implements
 
         //mod config settings?
         theDefaultDefaultSettings.setProperty(SKIP_TUTORIALS_SETTING, "FALSE"); // This is the default setting. It's actually set...
+        theDefaultDefaultSettings.setProperty(REMOVE_COMMANDS_SETTING, "FALSE");
         try {
             SpireConfig config = new SpireConfig(modID, makeID("Config"), theDefaultDefaultSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             skipTutorialsPlaceholder = config.getBool(SKIP_TUTORIALS_SETTING);
+            removeCommandsPlaceholder = config.getBool(REMOVE_COMMANDS_SETTING);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -195,14 +200,23 @@ public class LonelyMod implements
         BaseMod.addDynamicVariable(new ThirdMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         BaseMod.addDynamicVariable(new SecondBlock());
-        new AutoAdd(modID)
-                .packageFilter(AbstractEasyCard.class)
-                .setDefaultSeen(true)
-                .notPackageFilter("lonelymod.cards.democards.complex")
-                .notPackageFilter("lonelymod.cards.democards.simple")
-                .notPackageFilter("lonelymod.cards.deprecated")
-                .notPackageFilter("lonelymod.cards.summonmoves")
-                .cards();
+        if (removeCommands != null && removeCommands.toggle.enabled) { //no commands
+            new AutoAdd(modID)
+                    .packageFilter(AbstractEasyCard.class)
+                    .setDefaultSeen(true)
+                    .notPackageFilter("lonelymod.cards.colorlesscommands")
+                    .notPackageFilter("lonelymod.cards.deprecated")
+                    .notPackageFilter("lonelymod.cards.summonmoves")
+                    .cards();
+        }
+        else {
+            new AutoAdd(modID)
+                    .packageFilter(AbstractEasyCard.class)
+                    .setDefaultSeen(true)
+                    .notPackageFilter("lonelymod.cards.deprecated")
+                    .notPackageFilter("lonelymod.cards.summonmoves")
+                    .cards();
+        }
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
@@ -245,6 +259,26 @@ public class LonelyMod implements
                 });
 
         settingsPanel.addUIElement(skipTutorials); // Add the button to the settings panel. Button is a go.
+
+        removeCommands = new ModLabeledToggleButton("Remove Colorless Command Cards (Requires restart. Will mess up any ongoing run)",
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                removeCommandsPlaceholder, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    removeCommandsPlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig(modID, makeID("Config"), theDefaultDefaultSettings);
+                        config.setBool(REMOVE_COMMANDS_SETTING, removeCommandsPlaceholder);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        settingsPanel.addUIElement(removeCommands); // Add the button to the settings panel. Button is a go.
 
         Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
@@ -328,7 +362,6 @@ public class LonelyMod implements
         if (!skipTutorials.toggle.enabled && AbstractDungeon.player.chosenClass.equals(LonelyCharacter.Enums.THE_LONELY)){
             AbstractDungeon.ftue = new CompanionTutorial();
             skipTutorials.toggle.toggle();
-
         }
     }
 

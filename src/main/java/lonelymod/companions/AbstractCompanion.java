@@ -156,6 +156,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public abstract void performMove(byte move);
 
+    public abstract void useOnSummonAction(boolean onBattleStart);
+
     public abstract void callDefault();
 
     public abstract void talk();

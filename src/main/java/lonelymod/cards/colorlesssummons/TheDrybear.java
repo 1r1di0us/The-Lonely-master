@@ -3,15 +3,17 @@ package lonelymod.cards.colorlesssummons;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import lonelymod.actions.SummonMeatAction;
+import lonelymod.actions.SummonCompanionAction;
 import lonelymod.cards.AbstractEasyCard;
+import lonelymod.cards.colorlesscommands.CommandAttack;
+import lonelymod.cards.colorlesscommands.CommandProtect;
+import lonelymod.cards.colorlesscommands.CommandSpecial;
 import lonelymod.cards.summonmoves.*;
-import lonelymod.fields.CompanionField;
+import lonelymod.companions.Meat;
 
 import java.util.ArrayList;
 
@@ -30,8 +32,6 @@ public class TheDrybear extends AbstractEasyCard {
 
     public void triggerWhenDrawn() {
         addToTop(new DrawCardAction(1));
-        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
-            CompanionField.currCompanion.set(AbstractDungeon.player, null);
         AbstractCard attack = new CommandAttack();
         AbstractCard protect = new CommandProtect();
         AbstractCard special = new CommandSpecial();
@@ -43,15 +43,12 @@ public class TheDrybear extends AbstractEasyCard {
         addToTop(new MakeTempCardInDrawPileAction(special, 1, true, true, false));
         addToTop(new MakeTempCardInDrawPileAction(protect, 1, true, true, false));
         addToTop(new MakeTempCardInDrawPileAction(attack, 1, true, true, false));
-        addToTop(new SummonMeatAction());
-        addToTop(new MakeTempCardInHandAction(new FeedTheBear(), 1));
+        addToTop(new SummonCompanionAction(new Meat(), false));
         addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null)
-            CompanionField.currCompanion.set(AbstractDungeon.player, null);
-        addToBot(new SummonMeatAction());
+        addToBot(new SummonCompanionAction(new Meat(), false));
         AbstractCard attack = new CommandAttack();
         AbstractCard protect = new CommandProtect();
         AbstractCard special = new CommandSpecial();

@@ -538,18 +538,24 @@
   },
   "${ModID}:CommandAttack": {
     "NAME": "Command: Attack",
-    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Attack."
+    "DESCRIPTION": "Deal !D! damage. NL lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:CommandProtect": {
     "NAME": "Command: Protect",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Protect.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL lonelymod:Call lonelymod:Protect."
+    "DESCRIPTION": "Gain !B! Block. NL lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:CommandSpecial": {
     "NAME": "Command: Special",
-    "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "lonelymod:Call lonelymod:Special."
+    "DESCRIPTION": "lonelymod:Call lonelymod:Special. NL Exhaust."
+  },
+  "${ModID}:CommandTarget": {
+    "NAME": "Command: Target",
+    "DESCRIPTION": "Apply !M! lonelymod:Target. NL If the enemy is below half health, lonelymod:Call lonelymod:Attack. NL Otherwise lonelymod:Call lonelymod:Protect."
+  },
+  "${ModID}:CommandCopy": {
+    "NAME": "Command: Copy",
+    "DESCRIPTION": "If your next card played is an Attack, lonelymod:Call lonelymod:Attack. NL Otherwise lonelymod:Call lonelymod:Protect.",
+    "UPGRADE_DESCRIPTION": "If your next card played is: NL An Attack: lonelymod:Call lonelymod:Attack. NL A Power: lonelymod:Call lonelymod:Special. NL Other: lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",

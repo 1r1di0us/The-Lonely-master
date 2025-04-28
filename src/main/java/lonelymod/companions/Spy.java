@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionDexterityPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.SpyPower;
@@ -60,7 +61,9 @@ public class Spy extends AbstractCompanion {
     };
 
     @Override
-    public void usePreBattleAction() {
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());
+        CompanionField.playableCards.get(AbstractDungeon.player).add(new Shiv());
         addToTop(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
     }
 

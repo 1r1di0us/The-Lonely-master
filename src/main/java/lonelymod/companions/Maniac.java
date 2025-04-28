@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.ManiacPower;
 import lonelymod.powers.StaminaPower;
@@ -60,7 +61,8 @@ public class Maniac extends AbstractCompanion {
     };
 
     @Override
-    public void usePreBattleAction() {
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, null);
         addToTop(new ApplyPowerAction(this, this, new ManiacPower(this)));
     }
 

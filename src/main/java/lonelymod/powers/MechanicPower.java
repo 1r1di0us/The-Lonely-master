@@ -25,10 +25,11 @@ public class MechanicPower extends AbstractEasyPower implements CloneablePowerIn
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Mechanic84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Mechanic32.png");
 
-    public MechanicPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, -1);
+    public MechanicPower(AbstractCreature owner, int amount) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
+        this.amount = amount;
 
         type = AbstractPower.PowerType.BUFF;
         isTurnBased = false;
@@ -59,6 +60,6 @@ public class MechanicPower extends AbstractEasyPower implements CloneablePowerIn
 
     @Override
     public AbstractPower makeCopy() {
-        return new MechanicPower(this.owner);
+        return new MechanicPower(this.owner, this.amount);
     }
 }

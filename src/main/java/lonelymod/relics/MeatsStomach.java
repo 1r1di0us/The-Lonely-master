@@ -7,8 +7,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import lonelymod.LonelyCharacter;
 import lonelymod.LonelyMod;
-import lonelymod.actions.SummonMeatAction;
+import lonelymod.actions.SummonCompanionAction;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.companions.Meat;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class MeatsStomach extends AbstractEasyRelic {
     @Override
     public void atPreBattle() {
         flash();
-        addToBot(new SummonMeatAction());
+        addToBot(new SummonCompanionAction(new Meat()));
     }
 
     @Override

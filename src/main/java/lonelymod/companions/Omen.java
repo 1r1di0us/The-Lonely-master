@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,9 +67,9 @@ public class Omen extends AbstractCompanion {
         }
     };
 
-    public void usePreBattleAction() {
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, null);
         addToTop(new ApplyPowerAction(this, this, new ClawsPower(this, INIT_CLAWS_AMT)));
-        //addToTop(new ApplyPowerAction(this, this, new DEPRECATEDOmenPower(this, INIT_TRAIT_AMT)));
     }
 
     public void takeTurn() {

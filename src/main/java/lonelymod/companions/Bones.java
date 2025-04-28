@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import com.megacrit.cardcrawl.random.Random;
 import lonelymod.LonelyMod;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.BonesPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.StaminaPower;
@@ -84,7 +85,8 @@ public class Bones extends AbstractCompanion {
     };
 
     @Override
-    public void usePreBattleAction() {
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, null);
         addToTop(new ApplyPowerAction(this, this, new BonesPower(this), -1));
     }
 

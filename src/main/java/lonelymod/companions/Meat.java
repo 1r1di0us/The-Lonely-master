@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.cards.colorlesssummons.FeedTheBear;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.ApplyWeakNextTurnPower;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.MeatPower;
@@ -76,8 +77,11 @@ public class Meat extends AbstractCompanion {
     };
 
     @Override
-    public void usePreBattleAction() {
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, new ArrayList<>());
+        CompanionField.playableCards.get(AbstractDungeon.player).add(new FeedTheBear());
         addToTop(new ApplyPowerAction(this, this, new MeatPower(this, 0)));
+        addToBot(new MakeTempCardInHandAction(new FeedTheBear()));
     }
 
     @Override

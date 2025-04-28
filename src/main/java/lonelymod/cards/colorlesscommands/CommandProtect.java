@@ -1,9 +1,8 @@
-package lonelymod.cards.summonmoves;
+package lonelymod.cards.colorlesscommands;
 
 import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import lonelymod.actions.CallMoveAction;
@@ -15,20 +14,17 @@ public class CommandProtect extends AbstractEasyCard {
     public final static String ID = makeID("CommandProtect");
 
     public CommandProtect() {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);
-        this.baseBlock = 0;
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, CardColor.COLORLESS);
+        this.baseBlock = 5;
         this.tags.add(Enums.COMPANION);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded) {
-            blck();
-        }
-        addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(AbstractDungeon.player)));
+        blck();
+        addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(p)));
     }
 
     public void upp() {
         upgradeBlock(3);
-        uDesc();
     }
 }

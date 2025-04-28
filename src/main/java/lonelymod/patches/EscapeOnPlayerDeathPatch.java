@@ -1,42 +1,24 @@
 package lonelymod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.common.EscapeAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.screens.DeathScreen;
 import lonelymod.fields.CompanionField;
 
-import java.util.ArrayList;
-
 @SpirePatch(
-        clz= AbstractPlayer.class,
-        method="damage",
+        clz= DeathScreen.class,
+        method=SpirePatch.CONSTRUCTOR,
         paramtypez = {
-                DamageInfo.class
+                MonsterGroup.class
         }
 )
 
 public class EscapeOnPlayerDeathPatch {
 
-    @SpireInsertPatch(
-            locator= EscapeOnPlayerDeathPatch.Locator.class
-    )
-
-    public static void Insert(AbstractPlayer __instance, DamageInfo info) {
-        if (CompanionField.currCompanion.get(__instance) != null) {
-            CompanionField.currCompanion.get(__instance).escape();
-        }
-    }
-
-    private static class Locator extends SpireInsertLocator {
-        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-            Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "isDead");
-
-            return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[0]};
+    public static void Prefix(DeathScreen __instance, MonsterGroup m) {
+        if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
+            CompanionField.currCompanion.get(AbstractDungeon.player).escape();
         }
     }
 }

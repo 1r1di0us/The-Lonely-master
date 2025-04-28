@@ -3,14 +3,11 @@ package lonelymod.cards;
 import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +16,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalAuraEffect;
 
 import lonelymod.actions.CallMoveAction;
-import lonelymod.actions.SummonOmenAction;
+import lonelymod.actions.SummonOmenCardAction;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.companions.Omen;
@@ -61,7 +58,7 @@ public class OmenCard extends AbstractEasyCard {
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
             addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.BLACK), 0.0F, true));
-            addToBot(new SummonOmenAction(false));
+            addToBot(new SummonOmenCardAction(false));
         } else {
             //copied from Corruption:
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));

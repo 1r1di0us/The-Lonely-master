@@ -2,13 +2,11 @@ package lonelymod.relics;
 
 import static lonelymod.LonelyMod.makeID;
 
-import basemod.helpers.CardPowerTip;
-import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import lonelymod.LonelyCharacter;
-import lonelymod.actions.SummonBonesAction;
+import lonelymod.actions.SummonCompanionAction;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.companions.Bones;
 
 import java.util.ArrayList;
 
@@ -23,7 +21,7 @@ public class BonesStomach extends AbstractEasyRelic {
     @Override
     public void atPreBattle() {
         flash();
-        addToBot(new SummonBonesAction());
+        addToBot(new SummonCompanionAction(new Bones()));
     }
 
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {

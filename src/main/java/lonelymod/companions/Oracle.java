@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
+import lonelymod.fields.CompanionField;
 import lonelymod.powers.CompanionVigorPower;
 import lonelymod.powers.OraclePower;
 import lonelymod.powers.StaminaPower;
@@ -57,8 +58,11 @@ public class Oracle extends AbstractCompanion {
     };
 
     @Override
-    public void usePreBattleAction() {
-        addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, INIT_POWER_AMT))); //start of turn do the thing
+    public void useOnSummonAction(boolean onBattleStart) {
+        CompanionField.playableCards.set(AbstractDungeon.player, null);
+        if (!onBattleStart) {
+            addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, INIT_POWER_AMT))); //start of turn do the thing
+        }
         addToTop(new ApplyPowerAction(this, this, new OraclePower(this, INIT_POWER_AMT)));
     }
 

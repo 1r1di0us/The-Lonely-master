@@ -68,9 +68,9 @@ public class PlanAction extends AbstractGameAction {
                 for (int i = 0; i < Math.min(this.amount, AbstractDungeon.player.discardPile.size()); i++)
                     tmpGroup.addToTop(AbstractDungeon.player.discardPile.group
                             .get(AbstractDungeon.player.discardPile.size() - i - 1)); 
-            } else {
+            } else { // add them all
                 for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-                    tmpGroup.addToBottom(c); 
+                    tmpGroup.addToTop(c);
             } 
             AbstractDungeon.gridSelectScreen.open(tmpGroup, this.amount, true, TEXT[0]);
         } else if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {

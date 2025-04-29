@@ -32,7 +32,7 @@ public class EndlessOnslaught extends AbstractEasyCard implements TriggerOnPlanI
     }
 
     public void upp() {
-        upgradeDamage(3);
+        upgradeDamage(1);
         upgradeMagicNumber(1);
     }
 }

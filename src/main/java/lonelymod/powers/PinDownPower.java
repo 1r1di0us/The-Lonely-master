@@ -66,7 +66,7 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
     
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override

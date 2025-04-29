@@ -11,6 +11,8 @@ import lonelymod.actions.SummonCompanionAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.companions.*;
 import lonelymod.fields.CompanionField;
+import lonelymod.relics.BonesStomach;
+import lonelymod.relics.MeatsStomach;
 
 @SpirePatch(clz = CardGroup.class, method = "addToTop", paramtypez = AbstractCard.class)
 @SpirePatch(clz = CardGroup.class, method = "addToBottom", paramtypez = AbstractCard.class)
@@ -22,7 +24,8 @@ public class CreateCardSummonPatch {
                 __instance.type == CardGroup.CardGroupType.DISCARD_PILE ||
                 __instance.type == CardGroup.CardGroupType.DRAW_PILE) {
             if (c.hasTag(AbstractEasyCard.Enums.COMPANION) &&
-                    CompanionField.currCompanion.get(AbstractDungeon.player) == null) {
+                    CompanionField.currCompanion.get(AbstractDungeon.player) == null &&
+                    !(AbstractDungeon.player.hasRelic(BonesStomach.ID) || AbstractDungeon.player.hasRelic(MeatsStomach.ID))) {
                 //default = maniac
                 AbstractCompanion companion = new Maniac();
                 if (AbstractDungeon.player instanceof Ironclad) {

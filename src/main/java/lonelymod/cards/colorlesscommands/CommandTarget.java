@@ -22,7 +22,7 @@ public class CommandTarget extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, p, new TargetPower(m, this.magicNumber, false), this.magicNumber));
-        if (m.currentHealth < m.maxHealth / 2) {
+        if (m.currentHealth <= m.maxHealth / 2) {
             addToBot(new CallMoveAction(AbstractCompanion.ATTACK, CompanionField.currCompanion.get(p)));
         } else {
             addToBot(new CallMoveAction(AbstractCompanion.PROTECT, CompanionField.currCompanion.get(p)));

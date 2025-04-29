@@ -28,7 +28,7 @@ public class StartOfCombatSummonPatch {
                 }
             }
         }
-        if (needsCompanion && !(__instance.hasRelic(BonesStomach.ID)) && !(__instance.hasRelic(MeatsStomach.ID))) {
+        if (needsCompanion && !(__instance.hasRelic(BonesStomach.ID) || __instance.hasRelic(MeatsStomach.ID))) {
             //default = maniac
             AbstractCompanion companion = new Maniac();
             if (__instance instanceof Ironclad) {

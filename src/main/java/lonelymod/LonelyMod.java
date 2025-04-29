@@ -241,7 +241,7 @@ public class LonelyMod implements
         ModPanel settingsPanel = new ModPanel();
 
         skipTutorials = new ModLabeledToggleButton("Skip Tutorials",
-                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                350.0f, 750.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
                 skipTutorialsPlaceholder, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk

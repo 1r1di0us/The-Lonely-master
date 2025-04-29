@@ -68,7 +68,11 @@ public class CopyCommandPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        if (!this.upgraded) {
+            description = DESCRIPTIONS[0];
+        } else {
+            description = DESCRIPTIONS[1];
+        }
     }
 
     @Override

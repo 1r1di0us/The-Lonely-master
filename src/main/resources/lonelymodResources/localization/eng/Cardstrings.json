@@ -123,8 +123,7 @@
   },
   "${ModID}:PanicAttack": {
     "NAME": "Panic Attack",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Gain [E] [E]. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Gain [E] [E] [E]. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage to a random enemy. NL Gain [E] [E]. NL Exhaust."
   },
   "${ModID}:Suppress": {
     "NAME": "Suppress",
@@ -187,8 +186,8 @@
   },
   "${ModID}:PinDown": {
     "NAME": "Pin Down",
-    "DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target and !M! Vulnerable.",
-    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target, !M! Vulnerable and !M! Weak."
+    "DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target and Vulnerable.",
+    "UPGRADE_DESCRIPTION": "Whenever you deal unblocked attack damage this turn, apply !M! lonelymod:Target, Vulnerable and Weak."
   },
   "${ModID}:Prevail": {
     "NAME": "Prevail",
@@ -277,7 +276,7 @@
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
-    "DESCRIPTION": "Ethereal. NL Exhaust 1 card at random and remove it from your deck. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL Lose !M! HP. NL Remove 1 card in your hand from your deck. NL Exhaust."
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
@@ -555,7 +554,7 @@
   "${ModID}:CommandCopy": {
     "NAME": "Command: Copy",
     "DESCRIPTION": "If your next card played is an Attack, lonelymod:Call lonelymod:Attack. NL Otherwise lonelymod:Call lonelymod:Protect.",
-    "UPGRADE_DESCRIPTION": "If your next card played is: NL An Attack: lonelymod:Call lonelymod:Attack. NL A Power: lonelymod:Call lonelymod:Special. NL Other: lonelymod:Call lonelymod:Protect."
+    "UPGRADE_DESCRIPTION": "If your next card played is: NL An Attack: lonelymod:Call lonelymod:Attack. NL A Power: lonelymod:Call lonelymod:Special. NL Otherwise lonelymod:Call lonelymod:Protect."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",

@@ -25,8 +25,6 @@ public class PanicAttack extends AbstractEasyCard {
     }
 
     public void upp() {
-        upgradeDamage(2);
-        upgradeMagicNumber(1);
-        uDesc();
+        upgradeDamage(3);
     }
 }

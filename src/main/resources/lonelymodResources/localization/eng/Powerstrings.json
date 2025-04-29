@@ -78,17 +78,14 @@
     "NAME": "Pin Down",
     "DESCRIPTIONS": [
       "Whenever you deal unblocked attack damage this turn, apply #b",
-      " #yTarget and #b",
-      " #yVulnerable."
+      " #yTarget and #yVulnerable."
     ]
   },
   "${ModID}:PinDownPlusPower": {
     "NAME": "Pin Down+",
     "DESCRIPTIONS": [
       "Whenever you deal unblocked attack damage this turn, apply #b",
-      " #yTarget, #b",
-      " #yVulnerable, and #b",
-      " #yWeak."
+      " #yTarget, #yVulnerable, and #yWeak."
     ]
   },
   "${ModID}:PrevailPower": {
@@ -266,6 +263,13 @@
       "At the end of your turn, #yCall #yProtect.",
       "At the end of your next #b",
       " turns, #yCall #yProtect."
+    ]
+  },
+  "${ModID}:CopyCommandPower": {
+    "NAME": "Copy Command",
+    "DESCRIPTIONS": [
+      "Next time you play a card, if it is an Attack, #yCall #yAttack, NL otherwise #yCall #yProtect.",
+      "Next time you play a card, if it is: an Attack, #yCall #yAttack, NL a Power, #yCall #ySpecial, NL otherwise #yCall #yProtect."
     ]
   },
   "${ModID}:FrenzyPower":  {

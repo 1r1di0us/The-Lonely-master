@@ -1,5 +1,6 @@
 package lonelymod.patches;
 
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,9 +21,10 @@ import lonelymod.relics.MeatsStomach;
 public class CreateCardSummonPatch {
     @SpirePrefixPatch
     public static void summonCompanionWithCard(CardGroup __instance, AbstractCard c) {
-        if (__instance.type == CardGroup.CardGroupType.HAND ||
+        if ((__instance.type == CardGroup.CardGroupType.HAND ||
                 __instance.type == CardGroup.CardGroupType.DISCARD_PILE ||
-                __instance.type == CardGroup.CardGroupType.DRAW_PILE) {
+                __instance.type == CardGroup.CardGroupType.DRAW_PILE) &&
+                StSLib.getMasterDeckEquivalent(c) == null) {
             if (c.hasTag(AbstractEasyCard.Enums.COMPANION) &&
                     CompanionField.currCompanion.get(AbstractDungeon.player) == null &&
                     !(AbstractDungeon.player.hasRelic(BonesStomach.ID) || AbstractDungeon.player.hasRelic(MeatsStomach.ID))) {

@@ -16,10 +16,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.LonelyMod;
+import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
+import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.util.TexLoader;
 
-public class FetchPower extends AbstractEasyPower implements CloneablePowerInterface {
+public class FetchPower extends AbstractEasyPower implements CloneablePowerInterface, TriggerOnPerformMoveInterface {
    
     public static final String POWER_ID = makeID("FetchPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -32,11 +34,11 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
     private boolean isUsed = false;
 
     public FetchPower(AbstractCreature owner, int amount) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.DEBUFF, false, owner, amount);
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
 
-        type = PowerType.DEBUFF;
+        type = PowerType.BUFF;
         isTurnBased = false;
         this.amount = amount;
 
@@ -52,7 +54,8 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
         updateDescription();
     }
 
-    @Override
+    //used to be a debuff applied to enemy and triggered when you attacked that enemy.
+    /*@Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.owner == CompanionField.currCompanion.get(AbstractDungeon.player) && !this.isUsed) {
             flash();
@@ -61,6 +64,15 @@ public class FetchPower extends AbstractEasyPower implements CloneablePowerInter
             addToBot(new RemoveSpecificPowerAction(this.owner, CompanionField.currCompanion.get(AbstractDungeon.player), this));
         }
         return damageAmount;
+    }*/
+
+    public void triggerOnPerformMove(byte nextMove) {
+        if (!this.isUsed && nextMove == AbstractCompanion.ATTACK) {
+            flash();
+            addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), this.owner, new StrengthPower(CompanionField.currCompanion.get(AbstractDungeon.player), this.amount), this.amount));
+            this.isUsed = true;
+            addToBot(new RemoveSpecificPowerAction(this.owner, CompanionField.currCompanion.get(AbstractDungeon.player), this));
+        }
     }
 
     @Override

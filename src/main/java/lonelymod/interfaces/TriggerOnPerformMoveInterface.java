@@ -1,5 +1,5 @@
 package lonelymod.interfaces;
 
-public interface TriggerOnPerformMoveInterface { //currently unused but I'll leave it.
+public interface TriggerOnPerformMoveInterface {
     void triggerOnPerformMove(byte move);
 }

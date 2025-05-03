@@ -9,10 +9,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import lonelymod.cards.AbstractEasyCard;
 
-public class Dominate extends AbstractEasyCard {
+public class DEPRECATEDDominate extends AbstractEasyCard {
     public final static String ID = makeID("Dominate");
 
-    public Dominate() {
+    public DEPRECATEDDominate() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseDamage = 0;
         baseMagicNumber = magicNumber = 0;

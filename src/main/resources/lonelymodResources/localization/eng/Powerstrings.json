@@ -61,7 +61,7 @@
   "${ModID}:FetchPower": {
     "NAME": "Fetch",
     "DESCRIPTIONS": [
-      "The next time your #yCompanion #yAttacks this enemy, grant #b",
+      "The next time your #yCompanion #yAttacks, grant #b",
       " #yStrength."
     ]
   },
@@ -333,21 +333,21 @@
   "${ModID}:MechanicPower": {
     "NAME": "Power",
     "DESCRIPTIONS": [
-      "Whenever you play a Power card, gains #b1 #yPower."
+      "Whenever you play a Power card, gains #b1 #yPower. All her moves scale with #yPower."
     ]
   },
   "${ModID}:SpyPower": {
     "NAME": "Crafty",
     "DESCRIPTIONS": [
-      "Give him #yShiv cards to empower his Attack #yMove. His Attack #yMove will hit #b",
-      " time.",
-      " times."
+      "Dzil's #yAttack #yMove will hit #b",
+      " time. Give him #yShiv cards to increase this by #b1.",
+      " times. Give him #yShiv cards to increase this by #b1."
     ]
   },
   "${ModID}:ManiacPower": {
     "NAME": "Fervor",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, he gains #b",
+      "Whenever you lose HP, gains #b",
       " #yStrength."
     ]
   }

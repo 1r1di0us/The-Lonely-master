@@ -23,7 +23,7 @@ public class Lonely extends AbstractEasyCard {
     public Lonely() {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         cardToPreview.addAll(CardTips);
-        this.baseMagicNumber = this.magicNumber = 10;
+        this.baseMagicNumber = this.magicNumber = 16;
     }
     
     public void use(AbstractPlayer p, AbstractMonster m) {

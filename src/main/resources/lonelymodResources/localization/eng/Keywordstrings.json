@@ -133,16 +133,6 @@
     "DESCRIPTION": "Look at the top X cards on your discard pile. NL You may choose any of them to shuffle into your draw pile."
   },
   {
-    "PROPER_NAME": "Vigor",
-    "NAMES": [
-      "vigor",
-      "vigor.",
-      "Vigor",
-      "Vigor."
-    ],
-    "DESCRIPTION": "The next attack you play deals X more damage."
-  },
-  {
     "ID": "stamina",
     "PROPER_NAME": "Stamina",
     "NAMES": [
@@ -151,7 +141,7 @@
       "Stamina",
       "Stamina."
     ],
-    "DESCRIPTION": "The next card you play that gives you #yBlock gives X more #yBlock."
+    "DESCRIPTION": "Your next Block Card gains additional #yBlock."
   },
   {
     "ID": "plated_armor",

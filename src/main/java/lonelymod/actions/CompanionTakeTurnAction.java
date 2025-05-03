@@ -27,12 +27,13 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
                 addToTop(new IntentFlashAction(currCompanion));
                 addToTop(new ShowMoveNameAction(currCompanion, currCompanion.moveName));
             }
-            if (!TipTracker.tips.get("INTENT_TIP") && AbstractDungeon.player.currentBlock == 0 && (currCompanion.intent == AbstractMonster.Intent.ATTACK || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEBUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_BUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEFEND))
+            // FTUE tip for monsters but could be useful for companions too if necessary.
+            /*if (!TipTracker.tips.get("INTENT_TIP") && AbstractDungeon.player.currentBlock == 0 && (currCompanion.intent == AbstractMonster.Intent.ATTACK || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEBUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_BUFF || currCompanion.intent == AbstractMonster.Intent.ATTACK_DEFEND))
                 if (AbstractDungeon.floorNum <= 5) {
                     TipTracker.blockCounter++;
                 } else {
                     TipTracker.neverShowAgain("INTENT_TIP");
-                }
+                }*/
             currCompanion.performTurn(callDefault);
             currCompanion.applyTurnPowers();
         }

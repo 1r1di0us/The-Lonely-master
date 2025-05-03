@@ -19,21 +19,19 @@ public class Brainstorm extends AbstractEasyCard {
 
     public Brainstorm() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 13;
+        this.baseDamage = 13;
         this.isMultiDamage = true;
-        baseMagicNumber = magicNumber = 1;
+        this.baseMagicNumber = this.magicNumber = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        DamageInfo info = new DamageInfo(p, this.baseDamage);
-        float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
+        float speedTime = 0.2F;
         if (Settings.FAST_MODE)
             speedTime = 0.0F;
-        addToTop(new DamageAllEnemiesAction(p,
-                DamageInfo.createDamageMatrix(info.base, true, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
-        for (AbstractMonster m3 : (AbstractDungeon.getMonsters()).monsters) {
-            if (!m3.isDeadOrEscaped() && !m3.halfDead)
-                addToTop(new VFXAction(new LightningEffect(m3.drawX, m3.drawY), speedTime));
+        addToTop(new DamageAllEnemiesAction(p, this.baseDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
+            if (!mon.isDeadOrEscaped() && !mon.halfDead)
+                addToTop(new VFXAction(new LightningEffect(mon.drawX, mon.drawY), speedTime));
         }
         addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
         addToBot(new BrainstormAction(this.magicNumber));

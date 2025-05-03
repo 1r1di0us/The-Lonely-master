@@ -20,7 +20,7 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class CopyCommandPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
+public class DEPRECATEDCopyCommandPower extends AbstractEasyPower implements CloneablePowerInterface, NonStackablePower {
     public static final String POWER_ID = makeID("CopyCommandPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -30,7 +30,7 @@ public class CopyCommandPower extends AbstractEasyPower implements CloneablePowe
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/CopyCommand32.png");
     private boolean upgraded;
 
-    public CopyCommandPower(AbstractCreature owner, boolean upgraded) {
+    public DEPRECATEDCopyCommandPower(AbstractCreature owner, boolean upgraded) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 0);
 
         this.owner = owner;
@@ -77,6 +77,6 @@ public class CopyCommandPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public AbstractPower makeCopy() {
-        return new CopyCommandPower(this.owner, this.upgraded);
+        return new DEPRECATEDCopyCommandPower(this.owner, this.upgraded);
     }
 }

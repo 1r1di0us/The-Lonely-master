@@ -106,11 +106,11 @@
   },
   "${ModID}:Fetch": {
     "NAME": "Fetch!",
-    "DESCRIPTION": "Deal !D! damage. NL Next time your lonelymod:Companion lonelymod:Attacks this enemy, grant !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! lonelymod:Target. NL Next time your lonelymod:Companion lonelymod:Attacks, grant !${ModID}:m2! Strength."
   },
   "${ModID}:FieryArrow": {
     "NAME": "Fiery Arrow",
-    "DESCRIPTION": "Deal !D! damage. NL The enemy takes !${ModID}:sd! damage at the start of its next 3 turns."
+    "DESCRIPTION": "Deal !D! damage. NL At the start of the enemy's next 3 turns, deal !${ModID}:sd! damage."
   },
   "${ModID}:OnTheHunt": {
     "NAME": "On The Hunt",
@@ -412,7 +412,7 @@
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
-    "DESCRIPTION": "Passive Power NL At the start of your turn and whenever you Enter Calm, gains 5 lonelymod:Vigor."
+    "DESCRIPTION": "Passive Power NL At the start of your turn and whenever you Enter Calm, gains 5 Vigor."
   },
   "${ModID}:OracleNothing": {
     "NAME": "Nothing",
@@ -549,12 +549,18 @@
   },
   "${ModID}:CommandTarget": {
     "NAME": "Command: Target",
-    "DESCRIPTION": "Apply !M! lonelymod:Target. NL If the enemy is below half health, lonelymod:Call lonelymod:Attack. NL Otherwise lonelymod:Call lonelymod:Protect."
+    "DESCRIPTION": "Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Protect. NL Add !${ModID}:m2! *Command: *Destroy to your hand.",
+    "UPGRADE_DESCRIPTION": "Apply !M! lonelymod:Target. NL lonelymod:Call lonelymod:Protect. NL Add !${ModID}:m2! *Command: *Destroy+ to your hand."
   },
   "${ModID}:CommandCopy": {
     "NAME": "Command: Copy",
-    "DESCRIPTION": "If your next card played is an Attack, lonelymod:Call lonelymod:Attack. NL Otherwise lonelymod:Call lonelymod:Protect.",
-    "UPGRADE_DESCRIPTION": "If your next card played is: NL An Attack: lonelymod:Call lonelymod:Attack. NL A Power: lonelymod:Call lonelymod:Special. NL Otherwise lonelymod:Call lonelymod:Protect."
+    "DESCRIPTION": "If the last card played this combat was: NL An Attack, lonelymod:Call lonelymod:Attack. NL A Skill, lonelymod:Call lonelymod:Protect.",
+    "UPGRADE_DESCRIPTION": "If the last card played this combat was: NL An Attack, lonelymod:Call lonelymod:Attack. NL A Skill, lonelymod:Call lonelymod:Protect. NL A Power, lonelymod:Call lonelymod:Special."
+  },
+  "${ModID}:CommandDestroy": {
+    "NAME": "Command: Destroy",
+    "DESCRIPTION": "Retain. NL lonelymod:Call lonelymod:Attack. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL lonelymod:Call lonelymod:Attack."
   },
   "${ModID}:Apprehend": {
     "NAME": "Apprehend",

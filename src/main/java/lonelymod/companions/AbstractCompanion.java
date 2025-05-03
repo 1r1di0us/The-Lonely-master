@@ -62,7 +62,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public int targetAmount = 0;
     public static Random companionRng = null;
     public CompanionMoveInfo move;
-    public boolean isPlayerTurn = true;
+    public boolean isPlayerTurn = true; // used for retargeting when player kills monster
     private Color nameColor = new Color();
     private Color nameBgColor = new Color(0.0F, 0.0F, 0.0F, 0.0F);
     private float hoverTimer = 0.0F;
@@ -135,14 +135,14 @@ public abstract class AbstractCompanion extends AbstractMonster {
         }
         takeTurn();
         for (AbstractPower p : this.powers)
-            if (p instanceof TriggerOnPerformMoveInterface)
+            if (p instanceof TriggerOnPerformMoveInterface) //nothing currently
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
         for (AbstractPower p : AbstractDungeon.player.powers)
-            if (p instanceof TriggerOnPerformMoveInterface) //nothing currently
+            if (p instanceof TriggerOnPerformMoveInterface) //only fetch
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
         if (callDefault) {
             for (AbstractPower p : this.powers)
-                if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //frenzy
+                if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //only frenzy
                     ((TriggerOnCompanionTurnEndPowerInterface) p).triggerOnCompanionTurnEnd();
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //nothing currently

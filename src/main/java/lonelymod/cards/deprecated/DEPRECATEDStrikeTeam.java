@@ -13,10 +13,10 @@ import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
 
-public class StrikeTeam extends AbstractEasyCard {
+public class DEPRECATEDStrikeTeam extends AbstractEasyCard {
     public final static String ID = makeID("StrikeTeam");
 
-    public StrikeTeam() {
+    public DEPRECATEDStrikeTeam() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 8;
         baseMagicNumber = magicNumber = 1;

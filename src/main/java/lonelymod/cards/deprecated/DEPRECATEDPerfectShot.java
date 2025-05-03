@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.cards.AbstractEasyCard;
 
-public class PerfectShot extends AbstractEasyCard {
+public class DEPRECATEDPerfectShot extends AbstractEasyCard {
     public final static String ID = makeID("PerfectShot");
 
-    public PerfectShot() {
+    public DEPRECATEDPerfectShot() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = 11;
     }

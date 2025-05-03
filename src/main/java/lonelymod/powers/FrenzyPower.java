@@ -15,6 +15,7 @@ import lonelymod.actions.PerformMoveAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 import lonelymod.interfaces.TriggerOnCompanionTurnEndPowerInterface;
+import lonelymod.interfaces.TriggerOnPerformMoveInterface;
 import lonelymod.util.TexLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -75,6 +76,9 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
             addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
             addToBot(new WaitAction(0.1F));
         }
+        for (AbstractPower p : AbstractDungeon.player.powers)
+            if (p instanceof TriggerOnPerformMoveInterface) //only fetch
+                ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(AbstractCompanion.ATTACK);
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 

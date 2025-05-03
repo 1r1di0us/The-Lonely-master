@@ -28,7 +28,7 @@ public class Brainstorm extends AbstractEasyCard {
         float speedTime = 0.2F;
         if (Settings.FAST_MODE)
             speedTime = 0.0F;
-        addToTop(new DamageAllEnemiesAction(p, this.baseDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+        addToTop(new DamageAllEnemiesAction(p, this.baseDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
         for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
             if (!mon.isDeadOrEscaped() && !mon.halfDead)
                 addToTop(new VFXAction(new LightningEffect(mon.drawX, mon.drawY), speedTime));

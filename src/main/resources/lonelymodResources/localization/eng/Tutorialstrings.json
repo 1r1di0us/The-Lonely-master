@@ -6,7 +6,7 @@
       "Whenever a #yMove is #yCalled, It will change your #yCompanion's intent to that #yMove. NL NL Keep in mind that #yCalling a #yMove merely overrides the previous Intent, and does not provide any intrinsic value.",
       "After your turn is over, your #yCompanion will perform its current intent, before the enemies take their turn.",
       "Every #yCompanion is summoned with its own unique Power. NL NL Make sure to read these Powers, as they may allow you to interact with your #yCompanion outside of #yCalling #yMoves.",
-      "Some cards #yCall #yMoves or create other cards that #yCall #yMoves. NL NL As long as you have one of these cards in your deck, a #yCompanion will be #ySummoned at the start of combat."
+      "There are a total of #b8 #yCompanions, #b5 of which are Gremlins. Each character has their own Gremlin. NL NL The first time a #yMove #yCalling card enters combat, your character's Gremlin will be automatically #ySummoned."
     ],
     "LABEL": [
       "Next",

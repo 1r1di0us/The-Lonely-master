@@ -5,6 +5,7 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -25,7 +26,7 @@ public class LongShot extends AbstractEasyCard {
         boolean bonus = true;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (m.drawX - mo.drawX < -30 && !mo.isDeadOrEscaped() && !(AbstractDungeon.getCurrRoom() instanceof MonsterRoom && lastCombatMetricKey.equals("Shield and Spear"))) {
-                bonus = false; // daggers are 30 away from each other
+                bonus = false; // daggers are 30 away from each other, and spear and shield both work
             }
         }
         if (bonus) {
@@ -55,7 +56,6 @@ public class LongShot extends AbstractEasyCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-
         if (!cardStrings.DESCRIPTION.equals(this.rawDescription)) {
             this.rawDescription = cardStrings.DESCRIPTION;
             initializeDescription();

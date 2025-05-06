@@ -54,7 +54,7 @@ public class UtterDesperationPower extends AbstractEasyPower implements Cloneabl
                 if (!AbstractDungeon.player.hand.isEmpty()) {
                     CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                        if (!(c.type == AbstractCard.CardType.STATUS) && !(c.type == AbstractCard.CardType.CURSE) && !c.isEthereal) {
+                        if (!(c.costForTurn == -2) && !c.isEthereal) {
                             tmp.addToRandomSpot(c);
                         }
                     }

@@ -154,10 +154,6 @@ public class LonelyMod implements
         return modID + "Resources/images/relics/" + resourcePath;
     }
 
-    public static String makeOrbPath(String resourcePath) {
-        return modID + "Resources/images/orbs/" + resourcePath;
-    }
-
     public static String makePowerPath(String resourcePath) {
         return modID + "Resources/images/powers/" + resourcePath;
     }
@@ -303,8 +299,6 @@ public class LonelyMod implements
         BaseMod.loadCustomStringsFile(CardStrings.class, makeLocPath(Settings.language, "Cardstrings"));
 
         BaseMod.loadCustomStringsFile(RelicStrings.class, makeLocPath(Settings.language, "Relicstrings"));
-
-        BaseMod.loadCustomStringsFile(OrbStrings.class, makeLocPath(Settings.language, "Orbstrings"));
 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, makeLocPath(Settings.language, "Charstrings"));
 

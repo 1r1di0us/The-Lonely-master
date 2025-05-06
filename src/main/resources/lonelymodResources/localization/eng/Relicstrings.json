@@ -34,7 +34,8 @@
     "NAME": "Paper Daug",
     "FLAVOR": "Reminds you of Bones.",
     "DESCRIPTIONS": [
-      "Enemies with #yTarget take 100% more damage from Companions rather than 50%."
+      "Enemies with #yTarget take #b",
+      "% more damage from Companions rather than #b50%."
     ]
   },
   "${ModID}:WorldMap": {

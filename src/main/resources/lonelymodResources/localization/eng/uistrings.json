@@ -16,6 +16,11 @@
       " Cards to Return Next Turn."
     ]
   },
+  "${ModID}:DarkRitualAction": {
+    "TEXT": [
+      "Exhaust"
+    ]
+  },
   "${ModID}:FeedTheBearMessage": {
     "TEXT": [
       "I shouldn't feed my enemies."

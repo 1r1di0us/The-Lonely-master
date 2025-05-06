@@ -432,7 +432,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
         if (isTargeted) {
             if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
-                tmp = (int) (tmp * 2.0F);
+                tmp = (int) (tmp * PaperDaug.MULT);
             else
                 tmp = (int) (tmp * 1.5F);
         }
@@ -539,7 +539,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
         }
         if (isTargeted && target.hasPower(TargetPower.POWER_ID))
             if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
-                tmp = (int)(tmp * 2.0F);
+                tmp = (int)(tmp * PaperDaug.MULT);
             else
                 tmp = (int)(tmp * 1.5F);
         if (dmg.base != (int)tmp)

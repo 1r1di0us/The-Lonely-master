@@ -135,7 +135,7 @@
   },
   "${ModID}:WickedTalons": {
     "NAME": "Wicked Talons",
-    "DESCRIPTION": "Deal !D! damage twice. NL Gain !M! Strength and lose !${ModID}:m2! Dexterity."
+    "DESCRIPTION": "Deal !D! damage twice. NL Gain !M! Strength. NL Lose !${ModID}:m2! Dexterity."
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
@@ -161,8 +161,8 @@
   },
   "${ModID}:DarkRitual": {
     "NAME": "Dark Ritual",
-    "DESCRIPTION": "Gain !M! Ritual. NL Exhaust !${ModID}:m2! card.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Gain !M! Ritual. NL Exhaust !${ModID}:m2! card."
+    "DESCRIPTION": "Exhaust 1 card. NL Next turn, gain Strength equal to double its cost.",
+    "UPGRADE_DESCRIPTION": "Exhaust 1 card. NL Next turn, gain Strength equal to double its cost + !M!."
   },
   "${ModID}:Genius": {
     "NAME": "Genius",
@@ -191,7 +191,7 @@
   },
   "${ModID}:Prevail": {
     "NAME": "Prevail",
-    "DESCRIPTION": "Gain !B! Block. At the start of your next !M! turns, gain !${ModID}:sb! Block."
+    "DESCRIPTION": "Gain !B! Block. NL At the start of your next !M! turns, gain !${ModID}:sb! Block."
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
@@ -317,8 +317,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "At the end of your turn, play and exhaust a random, non-ethereal card from your hand.",
-    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random, non-ethereal card from your hand."
+    "DESCRIPTION": "At the end of your turn, play and exhaust a random, non Ethereal card from your hand.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random, non Ethereal card from your hand."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",

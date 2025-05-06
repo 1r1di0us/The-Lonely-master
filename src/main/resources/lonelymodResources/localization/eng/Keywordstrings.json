@@ -6,7 +6,7 @@
       "Summon",
       "SUMMON"
     ],
-    "DESCRIPTION": "Replaces the current #yCompanion with a new one. The first time a #yMove #yCalling card enters combat, a #yCompanion will automatically be #ySummoned."
+    "DESCRIPTION": "Replaces the current #yCompanion with a new one. The first time a #yMove #yCalling card enters combat, a Gremlin #yCompanion will automatically be #ySummoned."
   },
   {
     "ID": "companion_move",

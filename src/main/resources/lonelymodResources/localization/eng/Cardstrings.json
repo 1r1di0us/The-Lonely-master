@@ -139,11 +139,11 @@
   },
   "${ModID}:BrokenDreams": {
     "NAME": "Broken Dreams",
-    "DESCRIPTION": "Shuffle a *Fake *Out into your draw pile. NL Draw !${ModID}:m2! cards. NL Gain !M! Weak."
+    "DESCRIPTION": "Shuffle a *Misery into your draw pile. NL Draw !${ModID}:m2! cards. NL Gain !M! Weak."
   },
   "${ModID}:BrokenHeart": {
     "NAME": "Broken Heart",
-    "DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E] [E]. NL Gain !M! Vulnerable."
+    "DESCRIPTION": "Add an *Outburst to your hand. NL Gain [E] [E] [E]. NL Gain !M! Vulnerable."
   },
   "${ModID}:BrokenSpirit": {
     "NAME": "Broken Spirit",
@@ -195,7 +195,7 @@
   },
   "${ModID}:Relax": {
     "NAME": "Relax",
-    "DESCRIPTION": "Draw !M! cards. NL Lose all your Block. NL For every !${ModID}:m2! Block removed, gain [E]."
+    "DESCRIPTION": "Draw !M! cards. NL Lose all your Block. NL For every !${ModID}:m2! Block lost, gain [E]."
   },
   "${ModID}:SingleOut": {
     "NAME": "Single Out",
@@ -235,7 +235,7 @@
   },
   "${ModID}:Teamwork": {
     "NAME": "Teamwork",
-    "DESCRIPTION": "Gain !M! Dexterity. Grant your lonelymod:Companion !${ModID}:m2! Dexterity."
+    "DESCRIPTION": "Gain !M! Dexterity. NL Grant !${ModID}:m2! Dexterity."
   },
   "${ModID}:TwoStepsAhead": {
     "NAME": "Two Steps Ahead",
@@ -264,15 +264,7 @@
   },
   "${ModID}:ExponentialForce": {
     "NAME": "Exponential Force",
-    "DESCRIPTION": "Deal !D! damage. NL If NOT Fatal, double this card's damage this combat."
-  },
-  "${ModID}:FakeOut": {
-    "NAME": "Fake Out",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! minus the unblocked damage this dealt in Block.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
-    "EXTENDED_DESCRIPTION": [
-      "Deal !D! damage. NL Gain !M! Block."
-    ]
+    "DESCRIPTION": "Deal !D! damage. NL If this doesn't kill an enemy, double its damage this combat."
   },
   "${ModID}:Abandon": {
     "NAME": "Abandon",
@@ -280,7 +272,8 @@
   },
   "${ModID}:DefyDeath": {
     "NAME": "Defy Death",
-    "DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and NL gain !${ModID}:m2! Strength. NL Exhaust."
+    "DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and NL gain [E] [E] [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "You cannot die this turn. Next turn, NL draw !M! cards and NL gain [E] [E] [E] [E]. NL Exhaust."
   },
   "${ModID}:Frenzy": {
     "NAME": "Frenzy",
@@ -296,9 +289,13 @@
     "NAME": "Lonely",
     "DESCRIPTION": "Choose a card to play: *Bravery, *Desperation, *Resolve. NL Every !M!th card you play has no effect."
   },
+  "${ModID}:Misery": {
+    "NAME": "Misery",
+    "DESCRIPTION": "Whenever you gain Block this turn, NL deal !M! damage to ALL enemies. NL Gain !B! Block."
+  },
   "${ModID}:Omen": {
     "NAME": "Omen",
-    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL lonelymod:Call lonelymod:Special. NL Lose !M! Strength. Exhaust."
+    "DESCRIPTION": "lonelymod:Summon lonelymod:Omen. NL lonelymod:Call lonelymod:Special. NL Lose !M! Strength. NL Exhaust."
   },
   "${ModID}:Outburst": {
     "NAME": "Outburst",
@@ -578,6 +575,14 @@
     "NAME": "Dominate",
     "DESCRIPTION": "Deal !D! damage. NL If this deals !M! unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL If this deals !M! or less unblocked damage, enemy loses !${ModID}:m2! Strength. Exhaust."
+  },
+  "${ModID}:FakeOut": {
+    "NAME": "Fake Out",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! minus the unblocked damage this dealt in Block.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": [
+      "Deal !D! damage. NL Gain !M! Block."
+    ]
   },
   "${ModID}:PerfectShot": {
     "NAME": "Perfect Shot",

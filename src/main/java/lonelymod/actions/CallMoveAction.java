@@ -49,7 +49,7 @@ public class CallMoveAction extends AbstractGameAction {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[1], true));
             } else if (move == AbstractCompanion.NONE) {
                 currCompanion.callNone(); //doesn't activate wild form because it is used when omen is summoned
-            } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID)) {
+            } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID) && triggerPowers != -1) {
                 AbstractDungeon.player.getPower(WildFormPower.POWER_ID).flash();
                 addToTop(new WildFormCallMoveAction(move, currCompanion)); //this happens second, need to perform last move before you call this move.
                 for (int i = 0; i < AbstractDungeon.player.getPower(WildFormPower.POWER_ID).amount; i++)

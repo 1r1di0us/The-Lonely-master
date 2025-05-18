@@ -1,20 +1,21 @@
-package lonelymod.cards;
+package lonelymod.cards.deprecated;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.FakeOutAction;
+import lonelymod.cards.AbstractEasyCard;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class FakeOut extends AbstractEasyCard {
+public class DEPRECATEDFakeOut extends AbstractEasyCard {
     public final static String ID = makeID("FakeOut");
 
-    public FakeOut() {
+    public DEPRECATEDFakeOut() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseDamage = 1;
-        baseBlock = 12;
+        baseBlock = 14;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

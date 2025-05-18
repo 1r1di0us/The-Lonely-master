@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import lonelymod.powers.DefyDeathPower;
 import lonelymod.powers.GainStrengthBuffPower;
 
@@ -26,11 +27,12 @@ public class DefyDeath extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DefyDeathPower(p, 1), 1));
         addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, this.magicNumber), this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new GainStrengthBuffPower(p, this.secondMagic), this.secondMagic));
+        addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, this.secondMagic), this.secondMagic));
     }
 
     public void upp() {
         upgradeMagicNumber(1);
         upgradeSecondMagic(1);
+        uDesc();
     }
 }

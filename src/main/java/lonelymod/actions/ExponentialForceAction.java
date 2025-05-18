@@ -31,7 +31,7 @@ public class ExponentialForceAction extends AbstractGameAction {
                 AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AbstractGameAction.AttackEffect.SMASH));
             }
             this.target.damage(this.info);
-            if (!((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead && !this.target.hasPower("Minion"))) {
+            if (!((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead)) {
                 for (AbstractCard c : GetAllInBattleInstances.get(this.uuid)) {
                     c.baseDamage += c.baseDamage;
                     if (c.baseDamage < 0)

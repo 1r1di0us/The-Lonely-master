@@ -154,7 +154,14 @@
     "DESCRIPTIONS": [
       "Every #b",
       "th card you play has #rno #reffect.",
-      "The next card you play will have #rno #reffect."
+      " The next card you play will have #rno #reffect."
+    ]
+  },
+  "${ModID}:MiseryPower": {
+    "NAME": "Misery",
+    "DESCRIPTIONS": [
+      "Whenever you gain #yBlock this turn, deal #b",
+      " damage to ALL enemies."
     ]
   },
   "${ModID}:BraveryPower": {

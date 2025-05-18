@@ -14,13 +14,13 @@ public class BrokenDreams extends AbstractEasyCard {
 
     public BrokenDreams() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.cardsToPreview = new FakeOut();
+        this.cardsToPreview = new Misery();
         this.baseMagicNumber = this.magicNumber = 3;
         this.baseSecondMagic = this.secondMagic = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new MakeTempCardInDrawPileAction(new FakeOut(), 1, true, true));
+        addToBot(new MakeTempCardInDrawPileAction(new Misery(), 1, true, true));
         addToBot(new DrawCardAction(p, this.secondMagic));
         addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.magicNumber, false), this.magicNumber));
     }

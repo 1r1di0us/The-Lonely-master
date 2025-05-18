@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -48,7 +49,12 @@ public class OutburstAction extends AbstractGameAction {
         (AbstractDungeon.getCurrRoom()).souls.remove(c);
         addToBot(new NewQueueCardAction(c, true, false, true));
         for (int i = 0; i < this.playAmt - 1; i++) {
-            AbstractCard tmp = c.makeStatEquivalentCopy();
+            AbstractCard tmp = c.makeSameInstanceOf();
+            AbstractDungeon.player.limbo.addToBottom(tmp);
+            tmp.current_x = c.current_x;
+            tmp.current_y = c.current_y;
+            tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+            tmp.target_y = Settings.HEIGHT / 2.0F;
             tmp.purgeOnUse = true;
             addToBot(new NewQueueCardAction(tmp, true, false, true));
         }
@@ -81,7 +87,12 @@ public class OutburstAction extends AbstractGameAction {
                 (AbstractDungeon.getCurrRoom()).souls.remove(c);
                 addToBot(new NewQueueCardAction(c, true, false, true));
                 for (int i = 0; i < this.playAmt - 1; i++) {
-                    AbstractCard tmp = c.makeStatEquivalentCopy();
+                    AbstractCard tmp = c.makeSameInstanceOf();
+                    AbstractDungeon.player.limbo.addToBottom(tmp);
+                    tmp.current_x = c.current_x;
+                    tmp.current_y = c.current_y;
+                    tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+                    tmp.target_y = Settings.HEIGHT / 2.0F;
                     tmp.purgeOnUse = true;
                     addToBot(new NewQueueCardAction(tmp, true, false, true));
                 }
@@ -102,7 +113,12 @@ public class OutburstAction extends AbstractGameAction {
                 (AbstractDungeon.getCurrRoom()).souls.remove(c);
                 addToBot(new NewQueueCardAction(c, true, false, true));
                 for (int i = 0; i < this.playAmt - 1; i++) {
-                    AbstractCard tmp = c.makeStatEquivalentCopy();
+                    AbstractCard tmp = c.makeSameInstanceOf();
+                    AbstractDungeon.player.limbo.addToBottom(tmp);
+                    tmp.current_x = c.current_x;
+                    tmp.current_y = c.current_y;
+                    tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+                    tmp.target_y = Settings.HEIGHT / 2.0F;
                     tmp.purgeOnUse = true;
                     addToBot(new NewQueueCardAction(tmp, true, false, true));
                 }

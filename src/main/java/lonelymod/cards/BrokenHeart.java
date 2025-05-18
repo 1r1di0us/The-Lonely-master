@@ -16,7 +16,7 @@ public class BrokenHeart extends AbstractEasyCard {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.cardsToPreview = new Outburst();
         this.baseMagicNumber = this.magicNumber = 3;
-        this.baseSecondMagic = this.secondMagic = 2;
+        this.baseSecondMagic = this.secondMagic = 3;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -275,11 +275,7 @@ public class Spy extends AbstractCompanion {
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         if (card instanceof Shiv) {
             addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
-            if (this.nextMove == ATTACK) {
-                flashIntent();
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, getPower(SpyPower.POWER_ID).amount, true, true);
-                createIntent();
-            }
+            refreshMove(ATTACK);
         }
     }
 }

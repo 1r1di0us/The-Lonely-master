@@ -54,7 +54,7 @@ public class MiseryPower extends AbstractEasyPower implements CloneablePowerInte
         if (blockAmount > 0.0F) {
             flash();
             //addToBot(new SFXAction("RAGE"));
-            addToBot(new VFXAction(this.owner, new ShockWaveEffect(this.owner.hb.cX, this.owner.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.25F));
+            addToBot(new VFXAction(this.owner, new ShockWaveEffect(this.owner.hb.cX, this.owner.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.15F));
             addToBot(new DamageAllEnemiesAction(this.owner,  DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
         }
     }

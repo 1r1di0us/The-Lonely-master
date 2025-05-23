@@ -29,6 +29,8 @@ public class CallMoveAction extends AbstractGameAction {
         this.move = move;
         this.currCompanion = currCompanion;
         this.triggerPowers = triggerPowers; //set triggerPowers to -1 to denote no triggering powers under any circumstances
+        // triggerPowers being set to -1 is no longer being used, use AbstractCompanion.refreshMove instead
+        // But I will leave this functionality in.
     }
 
     public CallMoveAction(byte move, AbstractCompanion currCompanion) {

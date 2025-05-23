@@ -33,3 +33,15 @@ commission good art
 animate character
 custom companion tooltip with pages or tabs or drop down
 lock some cards and relics behind the xp system
+
+THOUGHTS:
+Increment Version
+Maybe rename primal to Primal Call or something?
+Action Plan rework? lower block but make card draw baseline?
+Idea: Oracle Special converts Vigor into Strength?
+nerf Omen Protect to only block once?
+
+THINGS I WAS GOING TO DO BEFORE I WAS RUDELY INTERRUPTED:
+Combine callDefault, callAttack, callProtect, and callSpecial together into callMove.
+add getTarget argument to callMove so we aren't always getting targets.
+callMainMove calls callMove method.

@@ -333,7 +333,8 @@
   },
   "${ModID}:TheManiac": {
     "NAME": "The Maniac",
-    "DESCRIPTION": "lonelymod:Companion. NL A vicious gremlin that becomes angrier whenever its friend is hurt."
+    "DESCRIPTION": "lonelymod:Companion. NL A vicious gremlin that becomes angrier whenever its friend is hurt.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A vicious gremlin that becomes angrier whenever its friend is hurt. NL Upgrade has no effect."
   },
   "${ModID}:Fervor": {
     "NAME": "Fervor",
@@ -357,7 +358,8 @@
   },
   "${ModID}:TheSpy": {
     "NAME": "The Spy",
-    "DESCRIPTION": "lonelymod:Companion. NL A deadly gremlin that can use anything you give it to great effect."
+    "DESCRIPTION": "lonelymod:Companion. NL A deadly gremlin that can use anything you give it to great effect.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A deadly gremlin that can use anything you give it to great effect. NL Upgrade has no effect."
   },
   "${ModID}:Crafty": {
     "NAME": "Crafty",
@@ -381,7 +383,8 @@
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
-    "DESCRIPTION": "lonelymod:Companion. NL An inventive gremlin that has spent its life tinkering with Orb technology."
+    "DESCRIPTION": "lonelymod:Companion. NL An inventive gremlin that has spent its life tinkering with Orb technology.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL An inventive gremlin that has spent its life tinkering with Orb technology. NL Upgrade has no effect."
   },
   "${ModID}:Power": {
     "NAME": "Power",
@@ -405,7 +408,8 @@
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
-    "DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat."
+    "DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat. NL Upgrade has no effect."
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
@@ -429,11 +433,12 @@
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
-    "DESCRIPTION": "lonelymod:Companion. NL An unwanted gremlin that tries its best to help out."
+    "DESCRIPTION": "lonelymod:Companion. NL An unwanted gremlin that tries its best to help out.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL An unwanted gremlin that tries its best to help out. NL Upgrade has no effect."
   },
   "${ModID}:Empower": {
     "NAME": "Empower",
-    "DESCRIPTION": "Passive Power NL Every third lonelymod:Move you lonelymod:Call is Empowered, gaining additional effects."
+    "DESCRIPTION": "Passive Power NL Every time you #yCall 3 #yMoves, gains 2 Strength and 2 Dexterity, and makes the next move Empowered."
   },
   "${ModID}:OutcastNothing": {
     "NAME": "Nothing",
@@ -445,15 +450,16 @@
   },
   "${ModID}:HoldGround": {
     "NAME": "Hold Ground",
-    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Grants 4 more Block. NL Gains Vigor equal to Block granted."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Gains Vigor equal to Block granted."
   },
   "${ModID}:TrainUp": {
     "NAME": "Train Up",
-    "DESCRIPTION": "Special Move NL Gains 6 Strength and 6 Dexterity. NL Empowered: Grants 3 Strength and 3 Dexterity."
+    "DESCRIPTION": "Special Move NL Triggers Empower 2 times. NL Empowered: First, increases the Strength and Dexterity gain from Empower by 1."
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
-    "DESCRIPTION": "lonelymod:Companion. NL An emaciated canine from the Drywoods, he's always hungry."
+    "DESCRIPTION": "lonelymod:Companion. NL An emaciated canine from the Drywoods, he's always hungry.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL An emaciated canine from the Drywoods, he's always hungry. NL Upgrade has no effect."
   },
   "${ModID}:Excitement": {
     "NAME": "Excitement",
@@ -477,7 +483,8 @@
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
-    "DESCRIPTION": "lonelymod:Companion. NL A full stomach doesn't stop him from chomping down everything that fits in his mouth."
+    "DESCRIPTION": "lonelymod:Companion. NL A full stomach doesn't stop him from chomping down everything that fits in his mouth.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A full stomach doesn't stop him from chomping down everything that fits in his mouth. NL Upgrade has no effect."
   },
   "${ModID}:FeedTheBear": {
     "NAME": "Feed The Bear",
@@ -505,7 +512,8 @@
   },
   "${ModID}:TheVulchyr": {
     "NAME": "The Vulchyr",
-    "DESCRIPTION": "lonelymod:Companion. NL An evil being that drains power from its master to destroy their enemies."
+    "DESCRIPTION": "lonelymod:Companion. NL An evil being that drains power from its master to destroy their enemies.",
+    "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL An evil being that drains power from its master to destroy their enemies. NL Upgrade has no effect."
   },
   "${ModID}:Claws": {
     "NAME": "Claws",

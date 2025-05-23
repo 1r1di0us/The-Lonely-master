@@ -32,38 +32,18 @@ public class TheOracle extends AbstractEasyCard {
 
     public void triggerWhenDrawn() {
         addToTop(new DrawCardAction(1));
-        AbstractCard attack = new CommandAttack();
-        AbstractCard protect = new CommandProtect();
-        AbstractCard special = new CommandSpecial();
-        if (upgraded) {
-            attack.upgrade();
-            protect.upgrade();
-            special.upgrade();
-        }
-        addToTop(new MakeTempCardInDrawPileAction(special, 1, true, true, false));
-        addToTop(new MakeTempCardInDrawPileAction(protect, 1, true, true, false));
-        addToTop(new MakeTempCardInDrawPileAction(attack, 1, true, true, false));
         addToTop(new SummonCompanionAction(new Oracle(), false));
         addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new SummonCompanionAction(new Oracle(), false));
-        AbstractCard attack = new CommandAttack();
-        AbstractCard protect = new CommandProtect();
-        AbstractCard special = new CommandSpecial();
-        if (upgraded) {
-            attack.upgrade();
-            protect.upgrade();
-            special.upgrade();
-        }
-        addToBot(new MakeTempCardInDrawPileAction(attack, 1, true, true, false));
-        addToBot(new MakeTempCardInDrawPileAction(protect, 1, true, true, false));
-        addToBot(new MakeTempCardInDrawPileAction(special, 1, true, true, false));
         addToBot(new DrawCardAction(1));
     }
 
-    public void upp() {}
+    public void upp() {
+        uDesc();
+    }
 
     public static final ArrayList<AbstractCard> CardTips = new ArrayList<AbstractCard>() {
         {

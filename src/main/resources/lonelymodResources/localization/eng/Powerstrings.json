@@ -325,9 +325,18 @@
   "${ModID}:OutcastPower": {
     "NAME": "Empower",
     "DESCRIPTIONS": [
-      "Whenever you #yCall a #yMove, gains #b1 #yEmpower. Moves performed at #b",
-      " or more #yEmpower will gain additional effects and reset #yEmpower to 0.",
-      "NL THE CURRENT MOVE IS EMPOWERED!"
+      "Every time you #yCall #b",
+      " #yMoves, gains #b",
+      " #yStrength and #b",
+      " #yDexterity, and makes the next #yMove #yEmpowered."
+    ]
+  },
+  "${ModID}:EmpoweredPower": {
+    "NAME": "Empowered",
+    "DESCRIPTIONS": [
+      "The new #yMove is #yEmpowered!",
+      "The next #b",
+      " #yMoves are #yEmpowered!"
     ]
   },
   "${ModID}:OraclePower": {

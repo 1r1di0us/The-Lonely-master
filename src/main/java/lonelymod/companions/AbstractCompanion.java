@@ -162,8 +162,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public abstract void talk();
 
-    public void callMainMove(byte move, boolean flashIntent, boolean makeIntent) {
-        if (flashIntent) flashIntent();
+    public void callMainMove(byte move, boolean flash, boolean makeIntent) {
+        if (flash) flashIntent();
         switch (move) {
             case ATTACK:
                 callAttack();
@@ -191,6 +191,35 @@ public abstract class AbstractCompanion extends AbstractMonster {
             flashIntent();
         }
         setMove(NONE, Intent.NONE);
+    }
+
+    public void refreshMove() {
+        refreshMove(true, (byte) 6); // 6 means any move
+    }
+
+    public void refreshMove(byte moveToRefresh) {
+        refreshMove(true, moveToRefresh);
+    }
+
+    public void refreshMove(boolean flash, byte moveToRefresh) { // for effects that change stuff other than the damage/block of the move, like empower, crafty, and claws.
+        if (flash) flashIntent();
+        if (nextMove == moveToRefresh || moveToRefresh == 6) { // 6 means any move
+            switch (nextMove) { // cover all cases just in case
+                case DEFAULT:
+                    callDefault();
+                case ATTACK:
+                    callAttack();
+                case PROTECT:
+                    callProtect();
+                case SPECIAL:
+                    callSpecial();
+                case UNKNOWN:
+                    callUnknown();
+                case NONE:
+                    callNone();
+            }
+        }
+        createIntent();
     }
 
     public abstract void updateIntentTip();
@@ -346,8 +375,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     public float getRotationTimeNeeded() {
         return 2.5f;
-    }
-
+    } //no clue what this is
 
     private void updateIntent() {
         this.bobEffect.update();

@@ -176,12 +176,10 @@
       " #yBlock.",
       " #yBlock and gain #yVigor equal to the #yBlock granted.",
 
-      "Fring intends to gain #b",
-      " #yStrength and #b",
-      " #yDexterity.",
-      " #yDexterity and also grant you #b",
-      " #yStrength and #b",
-      " #yDexterity.",
+      "Fring intends to increase the #yStrength and #yDexterity gain of #yEmpower by #b",
+      ", and trigger #yEmpower #b",
+      "Fring intends to trigger #yEmpower #b",
+      " times.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -197,19 +195,16 @@
       "Empowered: Grants #b",
       " #yBlock and gains #yVigor equal to the #yBlock granted.",
 
-      "Gains #b",
-      " #yStrength and #b",
-      " #yDexterity.",
-      "Empowered: Gains #b",
-      " #yStrength and #b",
-      " #yDexterity, and also Grants you #b",
-      " #yStrength and #b",
-      " #yDexterity."
+      "Triggers #yEmpower #b",
+      " times.",
+      "Empowered: Increases the #yStrength and #yDexterity gain of #yEmpower by #b",
+      ", and then triggers #yEmpower #b",
+      " times."
     ],
     "DIALOG": [
       "Don't hurt me!",
       "Tell me what to do!",
-      "Can I join you?"
+      "Can I help?"
     ]
   },
   "${ModID}:Oracle": {

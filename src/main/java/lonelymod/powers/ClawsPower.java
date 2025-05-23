@@ -59,10 +59,14 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
             addToBot(new ApplyPowerAction(this.owner, this.owner, new ClawsPower(this.owner, 1)));
             updateDescription();
             //hardcoded but who cares
-            if (this.owner instanceof Omen && ((Omen) this.owner).nextMove == AbstractCompanion.ATTACK) {
+            if (this.owner instanceof AbstractCompanion) {
+                ((AbstractCompanion) this.owner).refreshMove(AbstractCompanion.ATTACK);
+            }
+            // used to do this, felt dumb
+            /*if (this.owner instanceof Omen && ((Omen) this.owner).nextMove == AbstractCompanion.ATTACK) {
                 ((Omen) this.owner).updateAttack = true;
                 addToBot(new CallMoveAction(AbstractCompanion.ATTACK, ((AbstractCompanion) this.owner), -1));
-            }
+            }*/
         }
     }
 

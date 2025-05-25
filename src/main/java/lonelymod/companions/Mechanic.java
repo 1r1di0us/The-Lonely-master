@@ -71,7 +71,7 @@ public class Mechanic extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void performTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 talk();
@@ -83,30 +83,28 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                }
                 if (hasPower(MechanicPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++)
                         addToBot(new ChannelAction(new Lightning()));
-                    }
                 }
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) // make sure the companion goes away at the very end
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 if (hasPower(MechanicPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++)
                         addToBot(new ChannelAction(new Frost()));
-                    }
                 }
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (hasPower(MechanicPower.POWER_ID))
@@ -122,7 +120,7 @@ public class Mechanic extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
                 talk();
@@ -134,30 +132,29 @@ public class Mechanic extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
+                getTarget();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
+                    if (hasPower(CompanionVigorPower.POWER_ID))
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                 if (hasPower(MechanicPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++)
                         addToTop(new ChannelAction(new Lightning()));
-                    }
                 }
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.LIGHTNING));
-                }
                 break;
             case PROTECT:
-                if (hasPower(MechanicPower.POWER_ID)) {
-                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++) {
-                        addToTop(new ChannelAction(new Frost()));
-                    }
-                }
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
+                if (hasPower(MechanicPower.POWER_ID)) {
+                    for (int i = 0; i < getPower(MechanicPower.POWER_ID).amount; i++)
+                        addToTop(new ChannelAction(new Frost()));
+                }
                 else
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 break;
             case SPECIAL:
                 addToTop(new ChannelAction(new Plasma()));
@@ -169,25 +166,22 @@ public class Mechanic extends AbstractCompanion {
         }
     }
 
-    @Override
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-    }
-
-    @Override
-    public void callAttack() {
-        getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
-    }
-
-    @Override
-    public void callProtect() {
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-    }
-
-    @Override
-    public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
+                break;
+            case PROTECT:
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
+                break;
+        }
     }
 
     @Override

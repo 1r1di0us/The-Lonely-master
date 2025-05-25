@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import com.megacrit.cardcrawl.random.Random;
 import lonelymod.LonelyMod;
@@ -91,7 +90,7 @@ public class Bones extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void performTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
@@ -106,17 +105,19 @@ public class Bones extends AbstractCompanion {
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
+                    addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger(); // do these actions last?
+                } else {
+                    addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 }
-                addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
+                addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 break;
             case SPECIAL:
                 talk();
@@ -137,32 +138,35 @@ public class Bones extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 break;
             case ATTACK:
-                addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
+                    addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.NONE));
                     addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToTop(new WaitAction(0.4F));
+                } else {
+                    addToTop(new ApplyPowerAction(this, this, new StrengthPower(this, ATTACK_PWR_AMT), ATTACK_PWR_AMT));
                 }
                 break;
             case PROTECT:
+                if (hasPower(StaminaPower.POWER_ID))
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
                 addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_PWR_AMT), PROTECT_PWR_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(1).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 talk();
@@ -179,34 +183,22 @@ public class Bones extends AbstractCompanion {
         }
     }
 
-    @Override
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.DEFEND, this.block.get(0).base, false);
-    }
-
-    @Override
-    public void callAttack() {
-        /*if (hasPower(BonesPower.POWER_ID)) {
-            getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }*/
-        getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
-    }
-
-    @Override
-    public void callProtect() {
-        /*if (hasPower(BonesPower.POWER_ID)) {
-            getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }*/
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
-    }
-
-    @Override
-    public void callSpecial() {
-        /*if (hasPower(BonesPower.POWER_ID)) {
-            getPower(BonesPower.POWER_ID).onSpecificTrigger();
-        }*/
-        setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.DEFEND, this.block.get(0).base, false);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[1], ATTACK, Intent.ATTACK_BUFF, this.damage.get(0).base, true);
+                break;
+            case PROTECT:
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(1).base, PROTECT_AMT, true, false);
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.STRONG_DEBUFF);
+                break;
+        }
     }
 
     @Override

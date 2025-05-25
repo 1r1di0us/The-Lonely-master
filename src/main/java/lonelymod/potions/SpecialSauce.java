@@ -1,6 +1,6 @@
 package lonelymod.potions;
 
-import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,7 +10,10 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import lonelymod.KeywordManager;
-import lonelymod.actions.SpecialSauceCallAction;
+import lonelymod.actions.CallMoveAction;
+import lonelymod.actions.CompanionTakeTurnAction;
+import lonelymod.actions.PerformMoveAction;
+import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
 
 import static lonelymod.LonelyMod.makeID;
@@ -41,9 +44,17 @@ public class SpecialSauce extends AbstractPotion {
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[0], true));
         }
         else {
-            for (int i = 0; i < this.potency; i++) {
-                addToBot(new SpecialSauceCallAction(CompanionField.currCompanion.get(AbstractDungeon.player)));
+            byte prevMove = CompanionField.currCompanion.get(AbstractDungeon.player).nextMove;
+            //addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player), false, true));
+            if (this.potency > 1) {
+                for (int i = 0; i < this.potency; i++) {
+                    //addToBot(new CompanionTakeTurnAction(false));
+                    addToBot(new PerformMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player))); //this way we don't show the name
+                    addToBot(new WaitAction(0.1F));
+                }
             }
+            //addToBot(new CompanionTakeTurnAction(false, prevMove, false, true));
+            addToBot(new CallMoveAction(prevMove, CompanionField.currCompanion.get(AbstractDungeon.player), false, true)); // hopefully no one noticed
         }
     }
 

@@ -13,9 +13,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
@@ -67,7 +64,7 @@ public class Outcast extends AbstractCompanion {
         addToTop(new ApplyPowerAction(this, this, new OutcastPower(this, 0, true, EMPOWER_STR, EMPOWER_DEX)));
     }
 
-    public void takeTurn() {
+    public void performTurn() {
         switch (nextMove) {
             case DEFAULT:
                 talk();
@@ -85,10 +82,9 @@ public class Outcast extends AbstractCompanion {
                     if (hasPower(EmpoweredPower.POWER_ID)) {
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
                             addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                        addToBot(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
-                    } else {
+                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
+                    } else
                         addToBot(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                    }
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
                 }
@@ -97,11 +93,10 @@ public class Outcast extends AbstractCompanion {
                 if (hasPower(EmpoweredPower.POWER_ID)) {
                     addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                     addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, this.block.get(0).output)));
-                    addToBot(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
+                    addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                 }
-                else {
+                else
                     addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                }
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
@@ -109,11 +104,10 @@ public class Outcast extends AbstractCompanion {
                 if (hasPower(OutcastPower.POWER_ID)) {
                     if (hasPower(EmpoweredPower.POWER_ID)) {
                         ((OutcastPower) getPower(OutcastPower.POWER_ID)).upgradeEmpower(EMP_SPECIAL_STR_INC, EMP_SPECIAL_DEX_INC);
-                        addToBot(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
+                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                     }
-                    for (int i = 0; i < SPECIAL_TRIGGER_AMT; i++) {
+                    for (int i = 0; i < SPECIAL_TRIGGER_AMT; i++)
                         getPower(OutcastPower.POWER_ID).onSpecificTrigger();
-                    }
                 }
                 break;
             case UNKNOWN:
@@ -123,7 +117,7 @@ public class Outcast extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
                 talk();
@@ -137,67 +131,67 @@ public class Outcast extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                     if (hasPower(EmpoweredPower.POWER_ID)) {
-                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                         for (int i = 0; i < EMP_ATTACK_AMT; i++)
                             addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                    } else {
+                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
+                    } else
                         addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                    }
                 }
                 break;
             case PROTECT:
+                if (hasPower(StaminaPower.POWER_ID))
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
                 if (hasPower(EmpoweredPower.POWER_ID)) {
-                    addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                     addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, this.block.get(0).output)));
                     addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                    addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                 }
-                else {
+                else
                     addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                }
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (hasPower(OutcastPower.POWER_ID)) {
                     if (hasPower(EmpoweredPower.POWER_ID)) {
-                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                         ((OutcastPower) getPower(OutcastPower.POWER_ID)).upgradeEmpower(EMP_SPECIAL_STR_INC, EMP_SPECIAL_DEX_INC);
+                        addToTop(new ReducePowerAction(this, this, getPower(EmpoweredPower.POWER_ID), 1));
                     }
-                    for (int i = 0; i < SPECIAL_TRIGGER_AMT; i++) {
+                    for (int i = 0; i < SPECIAL_TRIGGER_AMT; i++)
                         getPower(OutcastPower.POWER_ID).onSpecificTrigger();
-                    }
                 }
                 break;
         }
     }
 
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-    }
-
-    public void callAttack() {
-        getTarget();
-        if (hasPower(EmpoweredPower.POWER_ID)) {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
-        } else {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                if (hasPower(EmpoweredPower.POWER_ID)) {
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, EMP_ATTACK_AMT, true, true);
+                } else {
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+                }
+                break;
+            case PROTECT:
+                if (hasPower(EmpoweredPower.POWER_ID)) {
+                    setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+                } else {
+                    setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
+                }
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
+                break;
         }
-    }
 
-    public void callProtect() {
-        if (hasPower(EmpoweredPower.POWER_ID)) {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-        } else {
-            setMove(MOVES[2], PROTECT, Intent.DEFEND, this.block.get(0).base, false);
-        }
-    }
-
-    public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
 
     public void updateIntentTip() {

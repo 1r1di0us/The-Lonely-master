@@ -57,7 +57,7 @@ public class CompanionVigorPower extends AbstractEasyPower implements CloneableP
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
-    public void frenzyTrigger() {
+    public void instantTrigger() {
         flash();
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }

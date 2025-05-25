@@ -334,7 +334,7 @@
   "${ModID}:EmpoweredPower": {
     "NAME": "Empowered",
     "DESCRIPTIONS": [
-      "The new #yMove is #yEmpowered!",
+      "The next #yMove is #yEmpowered!",
       "The next #b",
       " #yMoves are #yEmpowered!"
     ]

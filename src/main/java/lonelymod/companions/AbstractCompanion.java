@@ -128,12 +128,16 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     // move methods:
 
-    public void performTurn(boolean callDefault) {
+    @Override
+    public void takeTurn() { // unused but i have to override it
+        takeTurn(true);
+    }
+    public void takeTurn(boolean callDefault) {
         if (callDefault) AbstractDungeon.actionManager.turnHasEnded = true; // this way vulnerable and target don't immediately go down if the companion applies them
         if (!(targetEnemy != null && !targetEnemy.isDeadOrEscaped())) {
             getTarget(); //I have no clue if this solves anything, but this used to call getTarget();
         }
-        takeTurn();
+        performTurn();
         for (AbstractPower p : this.powers)
             if (p instanceof TriggerOnPerformMoveInterface) //nothing currently
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(this.nextMove);
@@ -147,55 +151,38 @@ public abstract class AbstractCompanion extends AbstractMonster {
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //nothing currently
                     ((TriggerOnCompanionTurnEndPowerInterface) p).triggerOnCompanionTurnEnd();
-            addToBot(new CallMoveAction(DEFAULT, this));
+            addToBot(new CallMoveAction(DEFAULT, this, false, true)); // silent call default because CompanionSHowIntentPatch reveals the intent at the right time
         }
     }
 
-    @Override
-    public abstract void takeTurn();
+    public abstract void performTurn();
 
-    public abstract void performMove(byte move);
+    public abstract void performImmediately(byte move);
 
     public abstract void useOnSummonAction(boolean onBattleStart);
 
-    public abstract void callDefault();
-
     public abstract void talk();
 
-    public void callMainMove(byte move, boolean flash, boolean makeIntent) {
-        if (flash) flashIntent();
-        switch (move) {
-            case ATTACK:
-                callAttack();
-                break;
-            case PROTECT:
-                callProtect();
-                break;
-            case SPECIAL:
-                callSpecial();
-                break;
-        }
-        if (makeIntent) createIntent();
-    }
-    protected abstract void callAttack();
-    protected abstract void callProtect();
-    protected abstract void callSpecial();
 
-    public void callUnknown() {
-        flashIntent();
-        setMove(UNKNOWN, Intent.UNKNOWN);
-        createIntent();
+    protected abstract void setupMove(byte move, boolean allowRetarget);
+
+    public void callMove(byte move) {
+        callMove(move, true, true);
     }
-    public void callNone() {
-        if (nextMove != NONE) {
-            flashIntent();
-        }
-        setMove(NONE, Intent.NONE);
+
+    public void callMove(byte move, boolean flash, boolean makeIntent) {
+        if (nextMove != NONE && flash) flashIntent(); // don't flash nothing
+        if (move == UNKNOWN) setMove(UNKNOWN, Intent.UNKNOWN);
+        else if (move == NONE) setMove(NONE, Intent.NONE);
+        else setupMove(move, true);
+        if (makeIntent) createIntent();
     }
 
     public void refreshMove() {
         refreshMove(true, (byte) 6); // 6 means any move
     }
+
+    public void refreshMove(boolean flash) { refreshMove(flash, (byte) 6); }
 
     public void refreshMove(byte moveToRefresh) {
         refreshMove(true, moveToRefresh);
@@ -204,22 +191,9 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public void refreshMove(boolean flash, byte moveToRefresh) { // for effects that change stuff other than the damage/block of the move, like empower, crafty, and claws.
         if (flash) flashIntent();
         if (nextMove == moveToRefresh || moveToRefresh == 6) { // 6 means any move
-            switch (nextMove) { // cover all cases just in case
-                case DEFAULT:
-                    callDefault();
-                case ATTACK:
-                    callAttack();
-                case PROTECT:
-                    callProtect();
-                case SPECIAL:
-                    callSpecial();
-                case UNKNOWN:
-                    callUnknown();
-                case NONE:
-                    callNone();
-            }
+            setupMove(nextMove, false);
         }
-        createIntent();
+        createIntent(); // we refresh so of course we recreate the intent
     }
 
     public abstract void updateIntentTip();
@@ -241,7 +215,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     protected void getMove(int paramInt) {};
 
     protected void getMove() {
-        this.callDefault();
+        this.callMove(DEFAULT, false, false); // not sure why we don't make intent or flash here
     }
 
     @Override

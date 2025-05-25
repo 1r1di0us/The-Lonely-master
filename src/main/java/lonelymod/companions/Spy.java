@@ -68,7 +68,7 @@ public class Spy extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void performTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 talk();
@@ -93,9 +93,9 @@ public class Spy extends AbstractCompanion {
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnBlockPower(AbstractDungeon.player, this.block.get(0).output)));
+                addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
@@ -114,7 +114,7 @@ public class Spy extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
                 talk();
@@ -126,9 +126,10 @@ public class Spy extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                     if (hasPower(SpyPower.POWER_ID)) {
                         for (int i = 0; i < getPower(SpyPower.POWER_ID).amount; i++) {
                             addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -137,13 +138,14 @@ public class Spy extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
+                if (hasPower(StaminaPower.POWER_ID))
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
                 addToTop(new ApplyPowerAction(this, this, new CompanionDexterityPower(this, PROTECT_PWR_AMT)));
                 addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnBlockPower(AbstractDungeon.player, this.block.get(0).output)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
                     addToTop(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
@@ -156,29 +158,26 @@ public class Spy extends AbstractCompanion {
         }
     }
 
-    @Override
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-    }
-
-    @Override
-    public void callAttack() {
-        getTarget();
-        if (hasPower(SpyPower.POWER_ID) && getPower(SpyPower.POWER_ID).amount > 1)
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, getPower(SpyPower.POWER_ID).amount, true, true);
-        else
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
-    }
-
-    @Override
-    public void callProtect() {
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-    }
-
-    @Override
-    public void callSpecial() {
-        getTarget();
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                if (hasPower(SpyPower.POWER_ID) && getPower(SpyPower.POWER_ID).amount > 1)
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, getPower(SpyPower.POWER_ID).amount, true, true);
+                else
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+                break;
+            case PROTECT:
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+                break;
+            case SPECIAL:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[3], SPECIAL, Intent.DEBUFF); // was originally BUFF?
+                break;
+        }
     }
 
     @Override

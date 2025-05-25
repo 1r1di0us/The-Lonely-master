@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
+import lonelymod.actions.CallMoveAction;
 import lonelymod.actions.PerformMoveAction;
 import lonelymod.companions.AbstractCompanion;
 import lonelymod.fields.CompanionField;
@@ -72,14 +73,15 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
     @Override
     public void triggerOnCompanionTurnEnd() {
         flash();
-        for (int i = 0; i < this.amount; i++) { //attack already happened once
+        for (int i = 0; i < this.amount; i++) {
             addToBot(new PerformMoveAction(AbstractCompanion.ATTACK, compOwner));
             addToBot(new WaitAction(0.1F));
         }
         for (AbstractPower p : AbstractDungeon.player.powers)
             if (p instanceof TriggerOnPerformMoveInterface) //only fetch
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(AbstractCompanion.ATTACK);
-        addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        addToBot(new CallMoveAction(AbstractCompanion.NONE, compOwner, false)); // do we need to call none?
+        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 
     @Override

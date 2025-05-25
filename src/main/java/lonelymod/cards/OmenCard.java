@@ -59,7 +59,7 @@ public class OmenCard extends AbstractEasyCard {
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
             addToBot(new VFXAction(p, new BorderLongFlashEffect(Color.BLACK), 0.0F, true));
             addToBot(new SummonOmenCardAction(false));
-        } else {
+        } else { //omen already summoned
             //copied from Corruption:
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.BLACK, p.hb.cX, p.hb.cY), 0.1F));
             addToBot(new VFXAction(p, new VerticalAuraEffect(Color.CYAN, p.hb.cX, p.hb.cY), 0.0F));
@@ -67,7 +67,6 @@ public class OmenCard extends AbstractEasyCard {
             addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
 
         }
-        //addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {

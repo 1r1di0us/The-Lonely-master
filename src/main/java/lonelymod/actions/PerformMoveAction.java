@@ -7,7 +7,7 @@ public class PerformMoveAction extends AbstractGameAction {
 
     private final byte move;
     private final AbstractCompanion currCompanion;
-    //Done by frenzy. Use CompanionTakeTurnAction if it is not already the companion's turn.
+    //Done by frenzy, special sauce, and multi-wild form. Use CompanionTakeTurnAction if you want the move name to show up, and to use addToBot's like a good boy.
     public PerformMoveAction(byte move, AbstractCompanion currCompanion) {
         this.move = move;
         this.currCompanion = currCompanion;
@@ -16,8 +16,7 @@ public class PerformMoveAction extends AbstractGameAction {
     public void update() {
         currCompanion.nextMove = move;
         currCompanion.flashIntent();
-        currCompanion.getTarget();
-        currCompanion.performMove(move);
+        currCompanion.performImmediately(move);
         currCompanion.applyTurnPowers();
         this.isDone = true;
     }

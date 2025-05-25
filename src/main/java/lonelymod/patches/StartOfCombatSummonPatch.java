@@ -11,6 +11,7 @@ import lonelymod.cards.AbstractEasyCard;
 import lonelymod.companions.*;
 import lonelymod.relics.BonesStomach;
 import lonelymod.relics.MeatsStomach;
+import lonelymod.relics.ShortLeash;
 
 @SpirePatch(
         clz=AbstractPlayer.class,
@@ -28,6 +29,7 @@ public class StartOfCombatSummonPatch {
                 }
             }
         }
+        if (__instance.hasRelic(ShortLeash.ID)) needsCompanion = true; // short leash calls moves too!
         if (needsCompanion && !(__instance.hasRelic(BonesStomach.ID) || __instance.hasRelic(MeatsStomach.ID))) {
             //default = maniac
             AbstractCompanion companion = new Maniac();

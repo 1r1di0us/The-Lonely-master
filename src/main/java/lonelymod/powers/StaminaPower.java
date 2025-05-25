@@ -56,6 +56,11 @@ public class StaminaPower extends AbstractEasyPower implements CloneablePowerInt
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
+    public void instantTrigger() {
+        flash();
+        addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    }
+
     @Override
     public float modifyBlock(float blockAmount) {
         blockAmount += this.amount;

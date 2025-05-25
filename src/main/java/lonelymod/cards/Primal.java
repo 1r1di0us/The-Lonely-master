@@ -21,8 +21,8 @@ public class Primal extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (upgraded) addToBot(new CompanionTakeTurnAction(false));
-        addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
+        if (upgraded) addToBot(new CompanionTakeTurnAction(false, AbstractCompanion.SPECIAL));
+        else addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player)));
     }
 
     public void upp() {

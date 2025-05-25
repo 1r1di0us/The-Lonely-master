@@ -36,9 +36,9 @@ public class SummonOmenCardAction extends AbstractGameAction {
             this.c = new Omen();
             CompanionField.currCompanion.set(AbstractDungeon.player, this.c);
             //in case you have wild form, and you use omen then default move doesn't happen
-            this.c.callNone();
+            this.c.callMove(AbstractCompanion.NONE); // CallMoveAction is too slow here.
             this.c.healthBarUpdatedEvent();
-            this.c.createIntent();
+            //this.c.createIntent(); // moved to callMove()
             CompanionField.playableCards.set(AbstractDungeon.player, null);
             //this.c.animX = 1200.0F * Settings.xScale;
             this.c.applyPowers();

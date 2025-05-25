@@ -67,7 +67,7 @@ public class Maniac extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void performTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 talk();
@@ -95,7 +95,7 @@ public class Maniac extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                if (this.hasPower(StrengthPower.POWER_ID)) {
+                if (this.hasPower(StrengthPower.POWER_ID) && this.getPower(StrengthPower.POWER_ID).amount > 0) {
                     addToBot(new RemoveSpecificPowerAction(this, this, getPower(StrengthPower.POWER_ID)));
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, (this.getPower(StrengthPower.POWER_ID).amount + SPECIAL_PWR_AMT))));
                 } else {
@@ -109,7 +109,7 @@ public class Maniac extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
                 talk();
@@ -123,18 +123,20 @@ public class Maniac extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;
             case PROTECT:
+                if (hasPower(StaminaPower.POWER_ID))
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
+                getTarget();
                 addToTop(new ApplyPowerAction(targetEnemy, this, new VulnerablePower(targetEnemy, PROTECT_DEBUFF_AMT, true)));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 if (this.hasPower(StrengthPower.POWER_ID))
@@ -145,26 +147,23 @@ public class Maniac extends AbstractCompanion {
         }
     }
 
-    @Override
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-    }
-
-    @Override
-    public void callAttack() {
-        getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
-    }
-
-    @Override
-    public void callProtect() {
-        getTarget();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
-    }
-
-    @Override
-    public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, ATTACK_AMT, true, true);
+                break;
+            case PROTECT:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, false);
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
+                break;
+        }
     }
 
     @Override

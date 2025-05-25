@@ -44,8 +44,6 @@ public class Omen extends AbstractCompanion {
     private int attackDmg;
     private int protectBlk;
 
-    public boolean updateAttack = false;
-
     public Omen() {
         super("Omen", ID, 0.0F, 0.0F, 190.0F, 251.0F, IMG);
         this.defaultDmg = DEFAULT_DMG;
@@ -72,7 +70,7 @@ public class Omen extends AbstractCompanion {
         addToTop(new ApplyPowerAction(this, this, new ClawsPower(this, INIT_CLAWS_AMT)));
     }
 
-    public void takeTurn() {
+    public void performTurn() {
         switch (nextMove) {
             case DEFAULT:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
@@ -102,10 +100,10 @@ public class Omen extends AbstractCompanion {
                 addToBot(new SFXAction("ATTACK_PIERCING_WAIL"));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToBot(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
+                if (hasPower(StaminaPower.POWER_ID))
+                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
@@ -118,21 +116,23 @@ public class Omen extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 }
                 break;
             case ATTACK:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(ClawsPower.POWER_ID))
                         getPower(ClawsPower.POWER_ID).onSpecificTrigger();
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                     if (this.hasPower(ClawsPower.POWER_ID)) {
                         for (int i = 0; i < this.getPower(ClawsPower.POWER_ID).amount; i++) {
                             addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -144,13 +144,14 @@ public class Omen extends AbstractCompanion {
                 }
                 break;
             case PROTECT:
+                getTarget();
+                if (hasPower(StaminaPower.POWER_ID))
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
                 talk();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped())
                     addToTop(new ApplyPowerAction(targetEnemy, this, new TargetPower(targetEnemy, PROTECT_DEBUFF_AMT, true), PROTECT_DEBUFF_AMT));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
-                if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 addToTop(new SFXAction("ATTACK_PIERCING_WAIL"));
                 break;
             case SPECIAL:
@@ -160,35 +161,28 @@ public class Omen extends AbstractCompanion {
         }
     }
 
-    public void callDefault() {
-        getTarget();
-        setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
-    }
-
-    public void callAttack() {
-        if (updateAttack) {
-            updateAttack = false;
-            if (nextMove != ATTACK) {
-                return; //in case of heel making clawspower call attack after you called protect
-            }
-        } else {
-            getTarget();
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[0], DEFAULT, Intent.ATTACK, this.damage.get(0).base, true);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                if (this.hasPower(ClawsPower.POWER_ID)) {
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(ClawsPower.POWER_ID).amount, true, true);
+                } else {
+                    logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
+                }
+                break;
+            case PROTECT:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, PROTECT_AMT, true, false);
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
+                break;
         }
-        if (this.hasPower(ClawsPower.POWER_ID)) {
-            setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(ClawsPower.POWER_ID).amount, true, true);
-        } else {
-            logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
-            return;
-        }
-    }
-
-    public void callProtect() {
-        getTarget();
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_DEBUFF, this.block.get(0).base, PROTECT_AMT, true, false);
-    }
-
-    public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
     }
 
     public void updateIntentTip() {

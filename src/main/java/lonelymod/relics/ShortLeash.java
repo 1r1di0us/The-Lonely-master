@@ -1,5 +1,6 @@
 package lonelymod.relics;
 
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import lonelymod.LonelyCharacter;
 import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
@@ -19,7 +20,6 @@ public class ShortLeash extends AbstractEasyRelic implements RelicOnSummonInterf
         if (onBattleStart) {
             flash();
             addToBot(new CallMoveAction(AbstractCompanion.PROTECT, c));
-            this.grayscale = true;
         }
     }
 }

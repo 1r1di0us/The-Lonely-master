@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.fields.CompanionField;
@@ -67,7 +68,7 @@ public class Oracle extends AbstractCompanion {
     }
 
     @Override
-    public void takeTurn() {
+    public void performTurn() {
         switch (this.nextMove) {
             case DEFAULT:
                 talk();
@@ -87,9 +88,9 @@ public class Oracle extends AbstractCompanion {
                 break;
             case PROTECT:
                 addToBot(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
+                addToBot(new ChangeStanceAction(CalmStance.STANCE_ID));
                 if (hasPower(StaminaPower.POWER_ID))
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
-                addToBot(new ChangeStanceAction("Calm"));
                 break;
             case SPECIAL:
                 Miracle miracle = new Miracle();
@@ -106,7 +107,7 @@ public class Oracle extends AbstractCompanion {
         }
     }
 
-    public void performMove(byte move) {
+    public void performImmediately(byte move) {
         switch (move) {
             case DEFAULT:
                 talk();
@@ -118,17 +119,18 @@ public class Oracle extends AbstractCompanion {
                 }
                 break;
             case ATTACK:
+                getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
                     if (hasPower(CompanionVigorPower.POWER_ID))
-                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).frenzyTrigger();
+                        ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
                     addToTop(new DamageAction(targetEnemy, this.damage.get(0), AbstractGameAction.AttackEffect.FIRE));
                 }
                 break;
             case PROTECT:
-                addToTop(new ChangeStanceAction("Calm"));
-                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 if (hasPower(StaminaPower.POWER_ID))
-                    getPower(StaminaPower.POWER_ID).onSpecificTrigger();
+                    ((StaminaPower) getPower(StaminaPower.POWER_ID)).instantTrigger();
+                addToTop(new ChangeStanceAction(CalmStance.STANCE_ID));
+                addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 break;
             case SPECIAL:
                 Insight insight = new Insight();
@@ -141,25 +143,22 @@ public class Oracle extends AbstractCompanion {
         }
     }
 
-    @Override
-    public void callDefault() {
-        setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
-    }
-
-    @Override
-    public void callAttack() {
-        getTarget();
-        setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
-    }
-
-    @Override
-    public void callProtect() {
-        setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
-    }
-
-    @Override
-    public void callSpecial() {
-        setMove(MOVES[3], SPECIAL, Intent.BUFF);
+    public void setupMove(byte move, boolean allowRetarget) {
+        switch (move) {
+            case DEFAULT:
+                setMove(MOVES[0], DEFAULT, Intent.UNKNOWN);
+                break;
+            case ATTACK:
+                if (allowRetarget) getTarget();
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+                break;
+            case PROTECT:
+                setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
+                break;
+            case SPECIAL:
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
+                break;
+        }
     }
 
     @Override

@@ -26,11 +26,11 @@
       "I shouldn't feed my enemies."
     ]
   },
-  "${ModID}:CallActionMessage": {
+  "${ModID}:CallMoveMessage": {
     "TEXT": [
       "But nobody came...",
       "My companion is not listening!",
-      "That is not a valid action!"
+      "That is not a valid move!"
     ]
   },
   "${ModID}:AwakenedOneMessage": {

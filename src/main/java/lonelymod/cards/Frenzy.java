@@ -25,15 +25,11 @@ public class Frenzy extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new CallMoveAction(AbstractCompanion.UNKNOWN, CompanionField.currCompanion.get(AbstractDungeon.player)));
+        addToBot(new CallMoveAction(AbstractCompanion.UNKNOWN, CompanionField.currCompanion.get(AbstractDungeon.player), false));
         addToBot(new EasyXCostAction(this, (effect, params) -> {
             if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
-                //if (upgraded) {
-                //    addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new FrenzyPower(CompanionField.currCompanion.get(AbstractDungeon.player), effect + 1)));
-                //} else {
                 if (effect > 0)
                     addToBot(new ApplyPowerAction(CompanionField.currCompanion.get(AbstractDungeon.player), p, new FrenzyPower(CompanionField.currCompanion.get(AbstractDungeon.player), effect)));
-                //}
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0F, CallMoveAction.TEXT[0], true));
             }

@@ -65,9 +65,9 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
         if (this.amount == triggerNum-1) {
             this.amount = 0;
             updateDescription();
-            addToTop(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, this.DexAmt))); //add to top so it happens even with wild form
-            addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.StrAmt)));
-            addToTop(new ApplyPowerAction(this.owner, this.owner, new EmpoweredPower(this.owner, 1, false)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new EmpoweredPower(this.owner, 1, false)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.StrAmt)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, this.DexAmt)));
         } else {
             this.amount++;
             updateDescription();
@@ -75,12 +75,12 @@ public class OutcastPower extends AbstractEasyPower implements CloneablePowerInt
     }
 
     @Override
-    public void onSpecificTrigger() {
+    public void onSpecificTrigger() { // immediately trigger Empower
         flash();
         updateDescription();
-        addToTop(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, this.DexAmt)));
-        addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.StrAmt)));
-        addToTop(new ApplyPowerAction(this.owner, this.owner, new EmpoweredPower(this.owner, 1, true)));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new EmpoweredPower(this.owner, 1, true)));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.StrAmt)));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, this.DexAmt)));
     }
 
     public void upgradeEmpower(int StrIncrease, int DexIncrease) {

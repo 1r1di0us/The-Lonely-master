@@ -8,15 +8,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import lonelymod.LonelyMod;
-import lonelymod.actions.CallMoveAction;
 import lonelymod.companions.AbstractCompanion;
-import lonelymod.companions.Omen;
-import lonelymod.fields.CompanionField;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -58,15 +53,9 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
             flash();
             addToBot(new ApplyPowerAction(this.owner, this.owner, new ClawsPower(this.owner, 1)));
             updateDescription();
-            //hardcoded but who cares
             if (this.owner instanceof AbstractCompanion) {
                 ((AbstractCompanion) this.owner).refreshMove(AbstractCompanion.ATTACK);
             }
-            // used to do this, felt dumb
-            /*if (this.owner instanceof Omen && ((Omen) this.owner).nextMove == AbstractCompanion.ATTACK) {
-                ((Omen) this.owner).updateAttack = true;
-                addToBot(new CallMoveAction(AbstractCompanion.ATTACK, ((AbstractCompanion) this.owner), -1));
-            }*/
         }
     }
 

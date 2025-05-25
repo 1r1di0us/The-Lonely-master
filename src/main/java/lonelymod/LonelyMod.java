@@ -69,7 +69,7 @@ public class LonelyMod implements
 
     // mod config stuff
     public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String SKIP_TUTORIALS_SETTING = "skip tutorial";
+    public static final String SKIP_TUTORIALS_SETTING = "skip tutorial"; // I don't think this actually shows up anywhere
     public static final String REMOVE_COMMANDS_SETTING = "remove colorless command cards";
     public static Boolean skipTutorialsPlaceholder = true; // The boolean we'll be setting on/off (true/false)
     public static Boolean removeCommandsPlaceholder = true;
@@ -256,7 +256,7 @@ public class LonelyMod implements
 
         settingsPanel.addUIElement(skipTutorials); // Add the button to the settings panel. Button is a go.
 
-        removeCommands = new ModLabeledToggleButton("Remove Colorless Command Cards (Requires restart. Will mess up any ongoing run)",
+        removeCommands = new ModLabeledToggleButton("Remove Colorless Command Cards (requires restart, may mess up any ongoing run)",
                 350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
                 removeCommandsPlaceholder, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in

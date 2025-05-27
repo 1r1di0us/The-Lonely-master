@@ -15,19 +15,9 @@ public class CompanionMoveInfo {
 
     public boolean isMultiDamage;
     public boolean isMultiBlock;
+    public boolean stanceAffected;
 
-    public CompanionMoveInfo(byte nextMove, AbstractMonster.Intent intent, int intentBaseDmg, int damageMultiplier, boolean isMultiDamage, int intentBaseBlk, int blockMultiplier, boolean isMultiBlock) {
-        this.nextMove = nextMove;
-        this.intent = intent;
-        this.baseDamage = intentBaseDmg;
-        this.damageMultiplier = damageMultiplier;
-        this.isMultiDamage = isMultiDamage;
-        this.baseBlock = intentBaseBlk;
-        this.blockMultiplier = blockMultiplier;
-        this.isMultiBlock = isMultiBlock;
-    }
-
-    public CompanionMoveInfo(byte nextMove, AbstractMonster.Intent intent, int intentBase, int multiplier, boolean isMulti, boolean isAttack) {
+    public CompanionMoveInfo(byte nextMove, AbstractMonster.Intent intent, int intentBase, int multiplier, boolean isMulti, boolean isAttack, boolean stanceAffected) {
         if (isAttack) {
             this.nextMove = nextMove;
             this.intent = intent;
@@ -37,6 +27,7 @@ public class CompanionMoveInfo {
             this.baseBlock = -1;
             this.blockMultiplier = 0;
             this.isMultiBlock = false;
+            this.stanceAffected = stanceAffected;
         } else {
             this.nextMove = nextMove;
             this.intent = intent;
@@ -46,6 +37,7 @@ public class CompanionMoveInfo {
             this.baseBlock = intentBase;
             this.blockMultiplier = multiplier;
             this.isMultiBlock = isMulti;
+            this.stanceAffected = false; // block is not affected by wrath
         }
     }
 }

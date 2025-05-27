@@ -338,7 +338,7 @@
   },
   "${ModID}:Fervor": {
     "NAME": "Fervor",
-    "DESCRIPTION": "Passive Power NL Whenever you lose HP, Kharn gains 2 Strength."
+    "DESCRIPTION": "Passive Power NL Whenever you lose HP, Kharn gains 2 Strength and 1 Dexterity."
   },
   "${ModID}:ManiacNothing": {
     "NAME": "Nothing",
@@ -377,9 +377,9 @@
     "NAME": "Speedy",
     "DESCRIPTION": "Protect Move NL Grants 6 Block. NL At the start of next turn, Grants 6 Block. NL Gains 1 Dexterity."
   },
-  "${ModID}:PoisonCloud": {
-    "NAME": "Poison Cloud",
-    "DESCRIPTION": "Special Move NL Applies 25 Poison evenly among ALL enemies, rounds down."
+  "${ModID}:Venomous": {
+    "NAME": "Venomous",
+    "DESCRIPTION": "Special Move NL Gains 3 *Shivs, 2 Envenom, and lonelymod:Calls lonelymod:Attack next turn."
   },
   "${ModID}:TheMechanic": {
     "NAME": "The Mechanic",
@@ -388,19 +388,19 @@
   },
   "${ModID}:Power": {
     "NAME": "Power",
-    "DESCRIPTION": "Passive Power NL Whenever you play a Power card, increase Power by 1."
+    "DESCRIPTION": "Passive Power NL Whenever you play a Power card that is in your deck, increase Power by 1."
   },
   "${ModID}:MechanicNothing": {
     "NAME": "Nothing",
     "DESCRIPTION": "Default Move NL Makes a smart noise."
   },
   "${ModID}:Electrocute": {
-    "NAME": "Bite",
+    "NAME": "Electrocute",
     "DESCRIPTION": "Attack Move NL Deals 8 damage. NL Channels 1 Lightning for every stack of Power."
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
-    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Channel 1 Frosts for every stack of Power."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Channel 1 Frost for every stack of Power."
   },
   "${ModID}:Supercritical": {
     "NAME": "Supercritical",
@@ -413,7 +413,7 @@
   },
   "${ModID}:Charge": {
     "NAME": "Charge",
-    "DESCRIPTION": "Passive Power NL At the start of your turn and whenever you Enter Calm, gains 5 Vigor."
+    "DESCRIPTION": "Passive Power NL At the start of your turn, if you are in: NL Calm, gains 5 Vigor. NL Wrath, gains 10 Vigor. NL Divinity, gains 15 Vigor."
   },
   "${ModID}:OracleNothing": {
     "NAME": "Nothing",
@@ -421,7 +421,7 @@
   },
   "${ModID}:FieryBlast": {
     "NAME": "Fiery Blast",
-    "DESCRIPTION": "Attack Move NL Deals 10 damage."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Affected by Stances."
   },
   "${ModID}:PeacefulProtest": {
     "NAME": "Peaceful Protest",
@@ -429,7 +429,7 @@
   },
   "${ModID}:Blessing": {
     "NAME": "Blessing",
-    "DESCRIPTION": "Special Move NL Adds 2 *Miracle+ to your hand. NL Shuffles 2 *Insight+ into your draw pile."
+    "DESCRIPTION": "Special Move NL Next turn, lonelymod:Calls lonelymod:Attack and grants 1 Mantra for every 5 Vigor they have."
   },
   "${ModID}:TheOutcast": {
     "NAME": "The Outcast",
@@ -438,7 +438,7 @@
   },
   "${ModID}:Empower": {
     "NAME": "Empower",
-    "DESCRIPTION": "Passive Power NL Every time you #yCall 3 #yMoves, gains 2 Strength and 2 Dexterity, and makes the next move Empowered."
+    "DESCRIPTION": "Passive Power NL Every time you lonelymod:Call 3 lonelymod:Moves, gains 2 Strength and 2 Dexterity, and makes the next lonelymod:Move Empowered."
   },
   "${ModID}:OutcastNothing": {
     "NAME": "Nothing",

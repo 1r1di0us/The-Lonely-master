@@ -110,10 +110,6 @@ public class Outcast extends AbstractCompanion {
                         getPower(OutcastPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
-            case UNKNOWN:
-                break;
-            case NONE:
-                break;
         }
     }
 

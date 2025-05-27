@@ -16,18 +16,18 @@ import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
 
-public class ClawsPower extends AbstractEasyPower implements CloneablePowerInterface {
-    public static final String POWER_ID = makeID("ClawsPower");
+public class OmenPower extends AbstractEasyPower implements CloneablePowerInterface {
+    public static final String POWER_ID = makeID("OmenPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws84.png");
-    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Claws32.png");
+    private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen84.png");
+    private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Omen32.png");
 
     private final int initAmount = 5;
 
-    public ClawsPower(AbstractCreature owner, int amount) {
+    public OmenPower(AbstractCreature owner, int amount) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, amount);
 
         this.owner = owner;
@@ -51,10 +51,10 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK) {
             flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new ClawsPower(this.owner, 1)));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new OmenPower(this.owner, 1)));
             updateDescription();
-            if (this.owner instanceof AbstractCompanion) {
-                ((AbstractCompanion) this.owner).refreshMove(AbstractCompanion.ATTACK);
+            if (this.owner instanceof AbstractCompanion && ((AbstractCompanion) this.owner).nextMove == AbstractCompanion.ATTACK) {
+                ((AbstractCompanion) this.owner).callMove(AbstractCompanion.ATTACK, false, true, false);
             }
         }
     }
@@ -71,6 +71,6 @@ public class ClawsPower extends AbstractEasyPower implements CloneablePowerInter
 
     @Override
     public AbstractPower makeCopy() {
-        return new ClawsPower(this.owner, this.amount);
+        return new OmenPower(this.owner, this.amount);
     }
 }

@@ -48,7 +48,7 @@ public class EmpoweredPower extends AbstractEasyPower implements CloneablePowerI
     @Override
     public void onInitialApplication() {
         if (this.owner instanceof AbstractCompanion && !this.triggered) {
-            ((AbstractCompanion) this.owner).refreshMove(false);
+            ((AbstractCompanion) this.owner).callMove(((AbstractCompanion) this.owner).nextMove, false, true);
         }
     }
     @Override

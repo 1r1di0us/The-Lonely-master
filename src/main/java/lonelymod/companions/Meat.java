@@ -143,10 +143,6 @@ public class Meat extends AbstractCompanion {
                     bonusAmt = 0;
                 }
                 break;
-            case UNKNOWN:
-                break;
-            case NONE:
-                break;
         }
     }
 

@@ -14,15 +14,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.fields.CompanionField;
-import lonelymod.powers.CompanionDexterityPower;
-import lonelymod.powers.CompanionVigorPower;
-import lonelymod.powers.SpyPower;
-import lonelymod.powers.StaminaPower;
+import lonelymod.powers.*;
 
 import java.util.ArrayList;
 
@@ -36,7 +32,9 @@ public class Spy extends AbstractCompanion {
     private static final int ATTACK_DMG = 6;
     private static final int PROTECT_BLK = 6;
     private static final int PROTECT_PWR_AMT = 1;
-    private static final int SPECIAL_DEBUFF_AMT = 25;
+    private static final int SPECIAL_SHIV_AMT = 3;
+    private static final int SPECIAL_ENVENOM_AMT = 2;
+    private static final int SPECIAL_ATTACK_AMT = 1;
 
     private int attackDmg;
     private int protectBlk;
@@ -56,7 +54,7 @@ public class Spy extends AbstractCompanion {
             add(new SpyNothing());
             add(new Assassinate());
             add(new Speedy());
-            add(new PoisonCloud());
+            add(new Venomous());
         }
     };
 
@@ -98,18 +96,9 @@ public class Spy extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
-                    for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                        addToBot(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
-                    }
-                    int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
-                    addToBot(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
-                }
-                break;
-            case UNKNOWN:
-                break;
-            case NONE:
+                addToBot(new ApplyPowerAction(this, this, new SpyPower(this, SPECIAL_SHIV_AMT)));
+                addToBot(new ApplyPowerAction(this, this, new CompanionEnvenomPower(this, SPECIAL_ENVENOM_AMT)));
+                addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ATTACK_AMT)));
                 break;
         }
     }
@@ -145,15 +134,9 @@ public class Spy extends AbstractCompanion {
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 break;
             case SPECIAL:
-                getTarget();
-                if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    int remainderPoison = SPECIAL_DEBUFF_AMT % AbstractDungeon.getCurrRoom().monsters.monsters.size();
-                    addToTop(new ApplyPowerAction(this, this, new PoisonPower(targetEnemy, this, remainderPoison)));
-                    int distributedPoison = Math.floorDiv(SPECIAL_DEBUFF_AMT, AbstractDungeon.getCurrRoom().monsters.monsters.size());
-                    for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                        addToTop(new ApplyPowerAction(mo, this, new PoisonPower(mo, this, distributedPoison)));
-                    }
-                }
+                addToTop(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ATTACK_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new CompanionEnvenomPower(this, SPECIAL_ENVENOM_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new SpyPower(this, SPECIAL_SHIV_AMT)));
                 break;
         }
     }
@@ -175,7 +158,7 @@ public class Spy extends AbstractCompanion {
                 break;
             case SPECIAL:
                 if (allowRetarget) getTarget();
-                setMove(MOVES[3], SPECIAL, Intent.DEBUFF); // was originally BUFF?
+                setMove(MOVES[3], SPECIAL, Intent.BUFF);
                 break;
         }
     }
@@ -207,12 +190,12 @@ public class Spy extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[9] + SPECIAL_DEBUFF_AMT + INTENTS[10];
+                this.intentTip.body = INTENTS[9] + SPECIAL_SHIV_AMT + INTENTS[10] + SPECIAL_ENVENOM_AMT + INTENTS[11];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
                 this.intentTip.header = MOVES[4];
-                this.intentTip.body = INTENTS[11];
+                this.intentTip.body = INTENTS[12];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case NONE:
@@ -251,7 +234,7 @@ public class Spy extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[8] + SPECIAL_DEBUFF_AMT + INTENT_TOOLTIPS[9];
+                    return INTENT_TOOLTIPS[8] + SPECIAL_SHIV_AMT + INTENT_TOOLTIPS[9] + SPECIAL_ENVENOM_AMT + INTENT_TOOLTIPS[10];
                 }
         }
         return "";
@@ -274,7 +257,9 @@ public class Spy extends AbstractCompanion {
     public void useTheCard(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         if (card instanceof Shiv) {
             addToBot(new ApplyPowerAction(this, this, new SpyPower(this, 1)));
-            refreshMove(ATTACK);
+            if (nextMove == ATTACK) {
+                callMove(ATTACK, false, true, false);
+            }
         }
     }
 }

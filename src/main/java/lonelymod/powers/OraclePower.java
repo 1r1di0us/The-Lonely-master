@@ -3,15 +3,12 @@ package lonelymod.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.stances.CalmStance;
 import lonelymod.LonelyMod;
-import lonelymod.companions.Oracle;
+import lonelymod.actions.OraclePowerAction;
 import lonelymod.util.TexLoader;
 
 import static lonelymod.LonelyMod.makeID;
@@ -49,21 +46,12 @@ public class OraclePower extends AbstractEasyPower implements CloneablePowerInte
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + (this.amount*2) + DESCRIPTIONS[2] + (this.amount*3) + DESCRIPTIONS[3];
     }
 
     @Override
-    public void atEndOfRound() {
-        flash();
-        addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
-    }
-
-    @Override
-    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
-        if (!oldStance.ID.equals(newStance.ID) && newStance.ID.equals(CalmStance.STANCE_ID)) {
-            flash();
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionVigorPower(this.owner, this.amount)));
-        }
+    public void atStartOfTurn() {
+        addToBot(new OraclePowerAction(this.owner, this.amount, this.amount*2, this.amount*3)); // make it an action so it happens after Simmering Fury
     }
 
     @Override

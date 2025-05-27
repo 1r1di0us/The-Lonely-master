@@ -24,14 +24,16 @@ public class ManiacPower extends AbstractEasyPower implements CloneablePowerInte
 
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Maniac84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Maniac32.png");
+    private int dexAmt;
 
-    public ManiacPower(AbstractCreature owner) {
-        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, 2);
+    public ManiacPower(AbstractCreature owner, int StrAmt, int dexAmt) {
+        super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, false, owner, StrAmt);
 
         this.owner = owner;
 
         type = AbstractPower.PowerType.BUFF;
         isTurnBased = false;
+        this.dexAmt = dexAmt;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,17 +51,18 @@ public class ManiacPower extends AbstractEasyPower implements CloneablePowerInte
     public void wasHPLost(DamageInfo info, int damageAmount) {
         if (damageAmount > 0) {
             flash();
-            addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount), this.amount));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount), this.amount));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new CompanionDexterityPower(this.owner, this.dexAmt), this.dexAmt));
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.dexAmt + DESCRIPTIONS[2];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new ManiacPower(this.owner);
+        return new ManiacPower(this.owner, amount, dexAmt);
     }
 }

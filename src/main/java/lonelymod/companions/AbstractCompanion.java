@@ -135,7 +135,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
     public void takeTurn(boolean callDefault) {
         if (callDefault) AbstractDungeon.actionManager.turnHasEnded = true; // this way vulnerable and target don't immediately go down if the companion applies them
         if (!(targetEnemy != null && !targetEnemy.isDeadOrEscaped())) {
-            getTarget(); //I have no clue if this solves anything, but this used to call getTarget();
+            getTarget(); //I have no clue if this solves anything
         }
         performTurn();
         for (AbstractPower p : this.powers)
@@ -171,29 +171,15 @@ public abstract class AbstractCompanion extends AbstractMonster {
     }
 
     public void callMove(byte move, boolean flash, boolean makeIntent) {
+        callMove(move, flash, makeIntent, true);
+    }
+
+    public void callMove(byte move, boolean flash, boolean makeIntent, boolean allowRetarget) { //allowRetarget is for when you just want to refresh the move
         if (nextMove != NONE && flash) flashIntent(); // don't flash nothing
         if (move == UNKNOWN) setMove(UNKNOWN, Intent.UNKNOWN);
         else if (move == NONE) setMove(NONE, Intent.NONE);
-        else setupMove(move, true);
+        else setupMove(move, allowRetarget);
         if (makeIntent) createIntent();
-    }
-
-    public void refreshMove() {
-        refreshMove(true, (byte) 6); // 6 means any move
-    }
-
-    public void refreshMove(boolean flash) { refreshMove(flash, (byte) 6); }
-
-    public void refreshMove(byte moveToRefresh) {
-        refreshMove(true, moveToRefresh);
-    }
-
-    public void refreshMove(boolean flash, byte moveToRefresh) { // for effects that change stuff other than the damage/block of the move, like empower, crafty, and claws.
-        if (flash) flashIntent();
-        if (nextMove == moveToRefresh || moveToRefresh == 6) { // 6 means any move
-            setupMove(nextMove, false);
-        }
-        createIntent(); // we refresh so of course we recreate the intent
     }
 
     public abstract void updateIntentTip();
@@ -255,44 +241,50 @@ public abstract class AbstractCompanion extends AbstractMonster {
         updateIntentTip();
     }
 
-    public void setMove(String moveName, byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack, boolean wrathAffected) {
         this.moveName = moveName;
         if (nextMove != -1) {
             this.moveHistory.add(nextMove);
         }
-        this.move = new CompanionMoveInfo(nextMove, intent, base, multiplier, isMulti, isAttack);
+        this.move = new CompanionMoveInfo(nextMove, intent, base, multiplier, isMulti, isAttack, wrathAffected);
+    }
+
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
+        this.setMove(moveName, nextMove, intent, base, multiplier, isMulti, isAttack, false);
+    }
+
+    public void setMove(byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
+        this.setMove(null, nextMove, intent, base, multiplier, isMulti, isAttack, false);
+    }
+
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, boolean isAttack, boolean wrathAffected) {
+        this.setMove(moveName, nextMove, intent, base, 0, false, isAttack, wrathAffected);
+    }
+
+    public void setMove(String moveName, byte nextMove, Intent intent, int base, boolean isAttack) {
+        this.setMove(moveName, nextMove, intent, base, 0, false, isAttack, false);
+    }
+
+    public void setMove(byte nextMove, Intent intent, int base, boolean isAttack) {
+        this.setMove(null, nextMove, intent, base, 0, false, isAttack, false);
+    }
+
+    public void setMove(byte nextMove, Intent intent) {
+        this.setMove(null, nextMove, intent, -1, 0, false, false, false);
     }
 
     @Override
     public void setMove(String moveName, byte nextMove, Intent intent) {
         if (intent == AbstractMonster.Intent.ATTACK || intent == AbstractMonster.Intent.ATTACK_BUFF || intent == AbstractMonster.Intent.ATTACK_DEFEND || intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEFEND || intent == AbstractMonster.Intent.DEFEND_BUFF || intent == AbstractMonster.Intent.DEFEND_DEBUFF) {
             for(int i = 0; i < 8; ++i) {
-                AbstractDungeon.effectsQueue.add(new TextAboveCreatureEffect(MathUtils.random((float)Settings.WIDTH * 0.25F, (float)Settings.WIDTH * 0.75F), MathUtils.random((float)Settings.HEIGHT * 0.25F, (float)Settings.HEIGHT * 0.75F), "ENEMY MOVE " + moveName + " IS SET INCORRECTLY! REPORT TO DEV", Color.RED.cpy()));
+                AbstractDungeon.effectsQueue.add(new TextAboveCreatureEffect(MathUtils.random((float)Settings.WIDTH * 0.25F, (float)Settings.WIDTH * 0.75F), MathUtils.random((float)Settings.HEIGHT * 0.25F, (float)Settings.HEIGHT * 0.75F), "COMPANION MOVE " + moveName + " IS SET INCORRECTLY! REPORT TO DEV", Color.RED.cpy()));
             }
 
             logger.info("COMPANION MOVE " + moveName + " IS SET INCORRECTLY! REPORT TO DEV");
         }
 
-        this.setMove(moveName, nextMove, intent, -1, 0, false, false);
+        this.setMove(moveName, nextMove, intent, -1, 0, false, false, false);
     }
-
-    public void setMove(byte nextMove, Intent intent, int base, int multiplier, boolean isMulti, boolean isAttack) {
-        this.setMove(null, nextMove, intent, base, multiplier, isMulti, isAttack);
-    }
-
-    public void setMove(String moveName, byte nextMove, Intent intent, int base, boolean isAttack) {
-        this.setMove(moveName, nextMove, intent, base, 0, false, isAttack);
-    }
-
-    public void setMove(byte nextMove, Intent intent, int base, boolean isAttack) {
-        this.setMove(null, nextMove, intent, base, 0, false, isAttack);
-    }
-
-    public void setMove(byte nextMove, Intent intent) {
-        this.setMove(null, nextMove, intent, -1, 0, false, false);
-    }
-
-    //you should override the other setMove() functions, so they do the funny when you set the move wrong
 
     //important update methods:
 
@@ -431,7 +423,35 @@ public abstract class AbstractCompanion extends AbstractMonster {
                     tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
             }
         }
-        //tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        if (isTargeted) {
+            if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
+                tmp = (int) (tmp * PaperDaug.MULT);
+            else
+                tmp = (int) (tmp * 1.5F);
+        }
+        for (AbstractPower p : this.powers)
+            tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
+        if (targetEnemy != null) {
+            for (AbstractPower p : targetEnemy.powers)
+                tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+        dmg = MathUtils.floor(tmp);
+        if (dmg < 0)
+            dmg = 0;
+        this.intentDmg = dmg;
+    }
+
+    private void calculateStanceDamage(int dmg) {
+        float tmp = dmg;
+        for (AbstractPower p : this.powers)
+            tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+        if (targetEnemy != null) {
+            for (AbstractPower p : targetEnemy.powers) {
+                if (!(p instanceof VulnerablePower))
+                    tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+            }
+        }
+        tmp = AbstractDungeon.player.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
         if (isTargeted) {
             if (AbstractDungeon.player.hasRelic(PaperDaug.ID))
                 tmp = (int) (tmp * PaperDaug.MULT);
@@ -465,9 +485,8 @@ public abstract class AbstractCompanion extends AbstractMonster {
 
     @Override
     public void applyPowers() {
-        //used to call getTarget() if targetEnemy is null or dead or escaped.
         if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-            for (DamageInfo dmg : this.damage) {
+            for (DamageInfo dmg : this.damage) { // calculate it as normal damage but don't trigger responses from powers like thorns
                 dmg.type = DamageInfo.DamageType.NORMAL;
                 applyPowersToDamage(dmg, targetEnemy);
                 dmg.type = DamageInfo.DamageType.THORNS;
@@ -476,8 +495,10 @@ public abstract class AbstractCompanion extends AbstractMonster {
         for (BlockInfo blk : this.block) {
             blk.applyPowers(this, AbstractDungeon.player);
         }
-        if (this.move.baseDamage > -1 && targetEnemy != null && !targetEnemy.isDeadOrEscaped())
-            calculateDamage(this.move.baseDamage);
+        if (this.move.baseDamage > -1 && targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
+            if (this.move.stanceAffected) calculateStanceDamage(this.move.baseDamage);
+            else calculateDamage(this.move.baseDamage);
+        }
         if (this.move.baseBlock > -1)
             calculateBlock(this.move.baseBlock);
         this.intentImg = getIntentImg();

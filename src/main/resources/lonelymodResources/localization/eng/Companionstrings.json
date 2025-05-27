@@ -220,27 +220,27 @@
       "Sowru intends to make thoughtful sounds.",
 
       "Sowru intends to attack an enemy for #b",
-      " damage.",
+      " damage, affected by Stances.",
 
       "Sowru intends to grant you #b",
       " #yBlock and convince you to enter #yCalm.",
 
-      "Sowru intends to add #b",
-      " #yMiracle+ to your hand and shuffle #b",
-      " #yInsight+ into your draw pile.",
+      "Sowru intends to #yCall #yAttack and grant #b",
+      " #yMantra for every #b",
+      " #yVigor they have at the start of next turn.",
 
       "This Companion's intentions are #yUnknown."
     ],
     "INTENT_TOOLTIPS": [
       "Deals #b",
-      " damage.",
+      " damage. Affected by Stances.",
 
       "Grants #b",
       " #yBlock and causes you to enter #yCalm.",
 
-      "Adds #b",
-      " #yMiracle+ to your hand and shuffles #b",
-      " #yInsight+ into your draw pile."
+      "Next turn, #yCalls #yAttack and grants #b",
+      " #yMantra for every #b",
+      " #yVigor they has."
     ],
     "DIALOG": [
       "I've come to study...",
@@ -299,7 +299,7 @@
       "Nothing",
       "Assassinate",
       "Speedy",
-      "Poison Cloud",
+      "Venomous",
       "Unknown"
     ],
     "INTENTS": [
@@ -315,8 +315,9 @@
       " #yBlock next turn, and gain #b",
       " #yDexterity",
 
-      "Dzil intends to apply #b",
-      " #yPoison evenly among ALL enemies, rounds down.",
+      "Dzil intends to gain #b",
+      " #yShivs, #b",
+      " #yEnvenom, and #yCall #yAttack at the start of the next turn.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -331,8 +332,9 @@
       " #yBlock next turn. Gains #b",
       " #yDexterity.",
 
-      "Applies #b",
-      " #yPoison evenly among all enemies, rounds down."
+      "Gains #b",
+      " #yShivs, #b",
+      " #yEnvenom, and #yCalls #yAttack at the start of the next turn."
     ],
     "DIALOG": [
       "Can I see your knives?",

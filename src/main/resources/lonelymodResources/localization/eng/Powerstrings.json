@@ -314,7 +314,7 @@
       " damage."
     ]
   },
-  "${ModID}:ClawsPower": {
+  "${ModID}:OmenPower": {
     "NAME": "Claws",
     "DESCRIPTIONS": [
       "Omen's next #yAttack #yMove will hit #b",
@@ -342,14 +342,23 @@
   "${ModID}:OraclePower": {
     "NAME": "Chant",
     "DESCRIPTIONS": [
-      "At the start of each turn and whenever you enter #yCalm, gains #b",
+      "At the start of your turn, if you are in: NL #yCalm, gains #b",
+      " #yVigor. NL #yWrath, gains #b",
+      " #yVigor. NL #yDivinity, gains #b",
       " #yVigor."
+    ]
+  },
+  "${ModID}:GrantMantraNextTurnPower": {
+    "NAME": "Grant Mantra Next Turn",
+    "DESCRIPTIONS": [
+      "At the start of next turn, grants #b",
+      " #yMantra."
     ]
   },
   "${ModID}:MechanicPower": {
     "NAME": "Power",
     "DESCRIPTIONS": [
-      "Whenever you play a Power card, gains #b1 #yPower. All her moves scale with #yPower."
+      "Whenever you play a Power card that is in your deck, gains #b1 #yPower."
     ]
   },
   "${ModID}:SpyPower": {
@@ -360,11 +369,19 @@
       " times. Give him #yShiv cards to increase this by #b1."
     ]
   },
+  "${ModID}:CompanionEnvenomPower": {
+    "NAME": "Envenom",
+    "DESCRIPTIONS": [
+      "Whenever this deals unblocked attack damage, apply #b",
+      " #yPoison."
+    ]
+  },
   "${ModID}:ManiacPower": {
     "NAME": "Fervor",
     "DESCRIPTIONS": [
       "Whenever you lose HP, gains #b",
-      " #yStrength."
+      " #yStrength and #b",
+      " #yDexterity."
     ]
   }
 }

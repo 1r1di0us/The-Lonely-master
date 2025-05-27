@@ -63,7 +63,7 @@ public class Maniac extends AbstractCompanion {
     @Override
     public void useOnSummonAction(boolean onBattleStart) {
         CompanionField.playableCards.set(AbstractDungeon.player, null);
-        addToTop(new ApplyPowerAction(this, this, new ManiacPower(this)));
+        addToTop(new ApplyPowerAction(this, this, new ManiacPower(this, 2, 1)));
     }
 
     @Override
@@ -101,10 +101,6 @@ public class Maniac extends AbstractCompanion {
                 } else {
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new StrengthPower(this, SPECIAL_PWR_AMT)));
                 }
-                break;
-            case UNKNOWN:
-                break;
-            case NONE:
                 break;
         }
     }

@@ -113,10 +113,6 @@ public class Mechanic extends AbstractCompanion {
                     logger.info("ERROR: MECHANIC SUMMONED WITHOUT POWER");
                 addToBot(new ChannelAction(new Plasma()));
                 break;
-            case UNKNOWN:
-                break;
-            case NONE:
-                break;
         }
     }
 

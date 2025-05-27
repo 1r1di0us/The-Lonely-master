@@ -26,13 +26,13 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
         this.silentCall = immSilentCall;
     }
     public CompanionTakeTurnAction(boolean callDefault, byte immediateCall, boolean immTriggerPowers) {
-        this(callDefault, immediateCall, immTriggerPowers, false); // 6 means none, so nothing happens with the others
+        this(callDefault, immediateCall, immTriggerPowers, false);
     }
     public CompanionTakeTurnAction(boolean callDefault, byte immediateCall) {
-        this(callDefault, immediateCall, true, false); // 6 means none, so nothing happens with the others
+        this(callDefault, immediateCall, true, false);
     }
     public CompanionTakeTurnAction(boolean callDefault) {
-        this(callDefault, (byte) 6, false, false); // 6 means none, so nothing happens with the others
+        this(callDefault, AbstractCompanion.NONE, false, false); // if its NONE don't call a move
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
                 }*/
             currCompanion.takeTurn(callDefault);
             currCompanion.applyTurnPowers();
-            if (immediateCall != (byte) 6) { // cover all bases i guess, maybe some day we'll do wacky things
+            if (immediateCall != AbstractCompanion.NONE) { // none means no calling.
                 addToBot(new ImmediateCallMoveAction(immediateCall, currCompanion, triggerPowers, silentCall));
             }
         }

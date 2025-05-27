@@ -2,16 +2,12 @@ package lonelymod.cards.colorlesssummons;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.SummonCompanionAction;
 import lonelymod.cards.AbstractEasyCard;
-import lonelymod.cards.colorlesscommands.CommandAttack;
-import lonelymod.cards.colorlesscommands.CommandProtect;
-import lonelymod.cards.colorlesscommands.CommandSpecial;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.companions.Spy;
 
@@ -51,7 +47,7 @@ public class TheSpy extends AbstractEasyCard {
             add(new SpyNothing());
             add(new Assassinate());
             add(new Speedy());
-            add(new PoisonCloud());
+            add(new Venomous());
         }
     };
 }

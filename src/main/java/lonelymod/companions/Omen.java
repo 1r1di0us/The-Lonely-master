@@ -67,7 +67,7 @@ public class Omen extends AbstractCompanion {
 
     public void useOnSummonAction(boolean onBattleStart) {
         CompanionField.playableCards.set(AbstractDungeon.player, null);
-        addToTop(new ApplyPowerAction(this, this, new ClawsPower(this, INIT_CLAWS_AMT)));
+        addToTop(new ApplyPowerAction(this, this, new OmenPower(this, INIT_CLAWS_AMT)));
     }
 
     public void performTurn() {
@@ -81,8 +81,8 @@ public class Omen extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    if (this.hasPower(ClawsPower.POWER_ID)) {
-                        for (int i = 0; i < this.getPower(ClawsPower.POWER_ID).amount; i++) {
+                    if (this.hasPower(OmenPower.POWER_ID)) {
+                        for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
                             addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                         }
                     } else {
@@ -91,8 +91,8 @@ public class Omen extends AbstractCompanion {
                     }
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                    if (hasPower(ClawsPower.POWER_ID))
-                        getPower(ClawsPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(OmenPower.POWER_ID))
+                        getPower(OmenPower.POWER_ID).onSpecificTrigger();
                 }
                 break;
             case PROTECT:
@@ -107,11 +107,7 @@ public class Omen extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
-                break;
-            case UNKNOWN:
-                break;
-            case NONE:
+                addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 break;
         }
     }
@@ -129,12 +125,12 @@ public class Omen extends AbstractCompanion {
             case ATTACK:
                 getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    if (hasPower(ClawsPower.POWER_ID))
-                        getPower(ClawsPower.POWER_ID).onSpecificTrigger();
+                    if (hasPower(OmenPower.POWER_ID))
+                        getPower(OmenPower.POWER_ID).onSpecificTrigger();
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
-                    if (this.hasPower(ClawsPower.POWER_ID)) {
-                        for (int i = 0; i < this.getPower(ClawsPower.POWER_ID).amount; i++) {
+                    if (this.hasPower(OmenPower.POWER_ID)) {
+                        for (int i = 0; i < this.getPower(OmenPower.POWER_ID).amount; i++) {
                             addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                         }
                     } else {
@@ -155,7 +151,7 @@ public class Omen extends AbstractCompanion {
                 addToTop(new SFXAction("ATTACK_PIERCING_WAIL"));
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
+                addToTop(new ApplyPowerAction(this, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 addToTop(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
                 break;
         }
@@ -169,8 +165,8 @@ public class Omen extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (allowRetarget) getTarget();
-                if (this.hasPower(ClawsPower.POWER_ID)) {
-                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(ClawsPower.POWER_ID).amount, true, true);
+                if (this.hasPower(OmenPower.POWER_ID)) {
+                    setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(1).base, this.getPower(OmenPower.POWER_ID).amount, true, true);
                 } else {
                     logger.info("ERROR: OMEN SUMMONED WITHOUT POWER");
                 }
@@ -194,8 +190,8 @@ public class Omen extends AbstractCompanion {
                 return;
             case ATTACK:
                 this.intentTip.header = MOVES[1];
-                if (hasPower(ClawsPower.POWER_ID))
-                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.getPower(ClawsPower.POWER_ID).amount + INTENTS[4];
+                if (hasPower(OmenPower.POWER_ID))
+                    this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + this.getPower(OmenPower.POWER_ID).amount + INTENTS[4];
                 else
                     this.intentTip.body = INTENTS[2] + this.intentDmg + INTENTS[3] + INIT_CLAWS_AMT + INTENTS[4];
                 this.intentTip.img = getIntentTipImg();
@@ -232,8 +228,8 @@ public class Omen extends AbstractCompanion {
                 if (head) {
                     return MOVES[1];
                 } else {
-                    if (hasPower(ClawsPower.POWER_ID))
-                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(ClawsPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
+                    if (hasPower(OmenPower.POWER_ID))
+                        return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + this.getPower(OmenPower.POWER_ID).amount + INTENT_TOOLTIPS[2];
                     else
                         return INTENT_TOOLTIPS[0] + this.damage.get(1).output + INTENT_TOOLTIPS[1] + INIT_CLAWS_AMT + INTENT_TOOLTIPS[2];
                 }

@@ -16,11 +16,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import lonelymod.actions.OraclePowerAction;
 import lonelymod.cards.summonmoves.*;
 import lonelymod.fields.CompanionField;
-import lonelymod.powers.CompanionVigorPower;
-import lonelymod.powers.OraclePower;
-import lonelymod.powers.StaminaPower;
+import lonelymod.powers.*;
 
 import java.util.ArrayList;
 
@@ -34,7 +33,9 @@ public class Oracle extends AbstractCompanion {
     public static final int INIT_POWER_AMT = 5;
     private static final int ATTACK_DMG = 10;
     private static final int PROTECT_BLK = 6;
-    public static final int SPECIAL_CARD_AMT = 2;
+    public static final int SPECIAL_MANTRA_AMT = 1;
+    public static final int SPECIAL_VIGOR_MOD = 5;
+    public static final int SPECIAL_ATTACK_AMT = 1;
 
     private int attackDmg;
     private int protectBlk;
@@ -62,7 +63,7 @@ public class Oracle extends AbstractCompanion {
     public void useOnSummonAction(boolean onBattleStart) {
         CompanionField.playableCards.set(AbstractDungeon.player, null);
         if (!onBattleStart) {
-            addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, INIT_POWER_AMT))); //start of turn do the thing
+            addToTop(new OraclePowerAction(this, INIT_POWER_AMT, INIT_POWER_AMT*2, INIT_POWER_AMT*3)); //start of turn do the thing
         }
         addToTop(new ApplyPowerAction(this, this, new OraclePower(this, INIT_POWER_AMT)));
     }
@@ -93,16 +94,10 @@ public class Oracle extends AbstractCompanion {
                     getPower(StaminaPower.POWER_ID).onSpecificTrigger();
                 break;
             case SPECIAL:
-                Miracle miracle = new Miracle();
-                miracle.upgrade();
-                addToBot(new MakeTempCardInHandAction(miracle, 2));
-                Insight insight = new Insight();
-                insight.upgrade();
-                addToBot(new MakeTempCardInDrawPileAction(insight, 2, true, true));
-                break;
-            case UNKNOWN:
-                break;
-            case NONE:
+                if (hasPower(CompanionVigorPower.POWER_ID)) {
+                    addToBot(new ApplyPowerAction(this, this, new GrantMantraNextTurnPower(this, SPECIAL_MANTRA_AMT * Math.floorDiv(getPower(CompanionVigorPower.POWER_ID).amount, SPECIAL_VIGOR_MOD))));
+                }
+                addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ATTACK_AMT)));
                 break;
         }
     }
@@ -133,12 +128,10 @@ public class Oracle extends AbstractCompanion {
                 addToTop(new GainBlockAction(AbstractDungeon.player, this, this.block.get(0).output));
                 break;
             case SPECIAL:
-                Insight insight = new Insight();
-                insight.upgrade();
-                addToTop(new MakeTempCardInDrawPileAction(insight, 2, true, true));
-                Miracle miracle = new Miracle();
-                miracle.upgrade();
-                addToTop(new MakeTempCardInHandAction(miracle, 2));
+                addToTop(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ATTACK_AMT)));
+                if (hasPower(CompanionVigorPower.POWER_ID)) {
+                    addToTop(new ApplyPowerAction(this, this, new GrantMantraNextTurnPower(this, SPECIAL_MANTRA_AMT * Math.floorDiv(getPower(CompanionVigorPower.POWER_ID).amount, SPECIAL_VIGOR_MOD))));
+                }
                 break;
         }
     }
@@ -150,7 +143,7 @@ public class Oracle extends AbstractCompanion {
                 break;
             case ATTACK:
                 if (allowRetarget) getTarget();
-                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true);
+                setMove(MOVES[1], ATTACK, Intent.ATTACK, this.damage.get(0).base, true, true);
                 break;
             case PROTECT:
                 setMove(MOVES[2], PROTECT, Intent.DEFEND_BUFF, this.block.get(0).base, false);
@@ -181,7 +174,7 @@ public class Oracle extends AbstractCompanion {
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[5] + SPECIAL_CARD_AMT + INTENTS[6] + SPECIAL_CARD_AMT + INTENTS[7];
+                this.intentTip.body = INTENTS[5] + SPECIAL_MANTRA_AMT + INTENTS[6] + SPECIAL_VIGOR_MOD + INTENTS[7];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
@@ -218,7 +211,7 @@ public class Oracle extends AbstractCompanion {
                 if (head) {
                     return MOVES[3];
                 } else {
-                    return INTENT_TOOLTIPS[4] + SPECIAL_CARD_AMT + INTENT_TOOLTIPS[5] + SPECIAL_CARD_AMT + INTENT_TOOLTIPS[6];
+                    return INTENT_TOOLTIPS[4] + SPECIAL_MANTRA_AMT + INTENT_TOOLTIPS[5] + SPECIAL_VIGOR_MOD + INTENT_TOOLTIPS[6];
                 }
         }
         return "";

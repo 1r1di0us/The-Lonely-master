@@ -46,7 +46,7 @@ public class CallMoveAction extends AbstractGameAction {
         }
         else {
             byte prevMove = currCompanion.nextMove;
-            if (prevMove == AbstractCompanion.UNKNOWN) {
+            if (prevMove == AbstractCompanion.UNKNOWN && move != AbstractCompanion.DEFAULT) {
                 triggerPowers = false; // unknown move (frenzy) stops calling of moves
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[1], true));
             } else if (AbstractDungeon.player.hasPower(WildFormPower.POWER_ID) && triggerPowers) {

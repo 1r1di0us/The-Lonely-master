@@ -45,16 +45,11 @@ public class SpecialSauce extends AbstractPotion {
         }
         else {
             byte prevMove = CompanionField.currCompanion.get(AbstractDungeon.player).nextMove;
-            //addToBot(new CallMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player), false, true));
-            if (this.potency > 1) {
-                for (int i = 0; i < this.potency; i++) {
-                    //addToBot(new CompanionTakeTurnAction(false));
-                    addToBot(new PerformMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player))); //this way we don't show the name
-                    addToBot(new WaitAction(0.1F));
-                }
+            for (int i = 0; i < this.potency; i++) {
+                addToBot(new PerformMoveAction(AbstractCompanion.SPECIAL, CompanionField.currCompanion.get(AbstractDungeon.player))); //this way we don't show the name
+                addToBot(new WaitAction(0.1F));
             }
-            //addToBot(new CompanionTakeTurnAction(false, prevMove, false, true));
-            addToBot(new CallMoveAction(prevMove, CompanionField.currCompanion.get(AbstractDungeon.player), false, true)); // hopefully no one noticed
+            addToBot(new CallMoveAction(prevMove, CompanionField.currCompanion.get(AbstractDungeon.player), false, false)); // hopefully no one noticed
         }
     }
 

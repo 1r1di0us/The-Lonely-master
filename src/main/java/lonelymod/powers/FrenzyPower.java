@@ -80,7 +80,9 @@ public class FrenzyPower extends AbstractEasyPower implements CloneablePowerInte
         for (AbstractPower p : AbstractDungeon.player.powers)
             if (p instanceof TriggerOnPerformMoveInterface) //only fetch
                 ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(AbstractCompanion.ATTACK);
-        addToBot(new CallMoveAction(AbstractCompanion.NONE, compOwner, false)); // do we need to call none?
+        for (AbstractPower p : CompanionField.currCompanion.get(AbstractDungeon.player).powers)
+            if (p instanceof TriggerOnPerformMoveInterface)
+                ((TriggerOnPerformMoveInterface) p).triggerOnPerformMove(AbstractCompanion.ATTACK); //nothing currently
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 

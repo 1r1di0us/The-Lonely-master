@@ -151,7 +151,7 @@ public abstract class AbstractCompanion extends AbstractMonster {
             for (AbstractPower p : AbstractDungeon.player.powers)
                 if (p instanceof TriggerOnCompanionTurnEndPowerInterface) //nothing currently
                     ((TriggerOnCompanionTurnEndPowerInterface) p).triggerOnCompanionTurnEnd();
-            addToBot(new CallMoveAction(DEFAULT, this, false, true)); // silent call default because CompanionSHowIntentPatch reveals the intent at the right time
+            addToBot(new CallMoveAction(DEFAULT, this, false, true)); // silent call default because CompanionShowIntentPatch reveals the intent at the right time
         }
     }
 

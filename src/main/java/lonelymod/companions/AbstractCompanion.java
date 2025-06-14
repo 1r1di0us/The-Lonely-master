@@ -608,6 +608,29 @@ public abstract class AbstractCompanion extends AbstractMonster {
         return ImageMaster.INTENT_UNKNOWN_L;
     }
 
+    protected Texture getAttackIntent() {
+        int tmp;
+        if (this.isMultiDmg) {// 685
+            tmp = this.intentDmg * this.intentMultiAmt;// 686
+        } else {
+            tmp = this.intentDmg;// 688
+        }
+
+        if (tmp < 5) {// 691
+            return ImageMaster.INTENT_ATK_1;// 692
+        } else if (tmp < 10) {// 693
+            return ImageMaster.INTENT_ATK_2;// 694
+        } else if (tmp < 15) {// 695
+            return ImageMaster.INTENT_ATK_3;// 696
+        } else if (tmp < 20) {// 697
+            return ImageMaster.INTENT_ATK_4;// 698
+        } else if (tmp < 25) {// 699
+            return ImageMaster.INTENT_ATK_5;// 700
+        } else {
+            return tmp < 30 ? ImageMaster.INTENT_ATK_6 : ImageMaster.INTENT_ATK_7;// 701 702 704
+        }
+    }
+
     public Texture getIntentTipImg() {
         switch (this.intent) {
             case ATTACK:

@@ -23,21 +23,23 @@ public class CallMoveAction extends AbstractGameAction {
     private final byte move;
     private final AbstractCompanion currCompanion;
     private boolean triggerPowers;
-    private boolean silentCall;
+    private boolean flash;
+    private boolean makeIntent;
 
-    public CallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers, boolean silentCall) {
+    public CallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers, boolean flash, boolean makeIntent) {
         this.actionType = ActionType.SPECIAL;
         this.duration = this.startDuration = Settings.ACTION_DUR_FAST;
         this.move = move;
         this.currCompanion = currCompanion;
         this.triggerPowers = triggerPowers; //set triggerPowers to false to denote no triggering powers under any circumstances
-        this.silentCall = silentCall; //for when you don't want anyone to notice, and when you call Default
+        this.flash = flash;
+        this.makeIntent = makeIntent;
         // set triggerPowers to false when calling DEFAULT, UNKNOWN, or NONE
     }
-
-    public CallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers) { this(move, currCompanion, triggerPowers, false); }
+    public CallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers, boolean silentCall) { this(move, currCompanion, triggerPowers, !silentCall, !silentCall); }
+    public CallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers) { this(move, currCompanion, triggerPowers, true, true); }
     public CallMoveAction(byte move, AbstractCompanion currCompanion) {
-        this(move, currCompanion, true, false);
+        this(move, currCompanion, true, true, true);
     }
 
     public void update() {
@@ -63,8 +65,7 @@ public class CallMoveAction extends AbstractGameAction {
             } else if (move > AbstractCompanion.NONE || move < AbstractCompanion.DEFAULT) { // aka the move is not real
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
             } else {
-                if (silentCall) currCompanion.callMove(move, false, false);
-                else currCompanion.callMove(move, true, true);
+                currCompanion.callMove(move, flash, makeIntent);
             }
             if (triggerPowers) {
                 for (AbstractPower p : currCompanion.powers)

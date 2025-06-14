@@ -51,15 +51,6 @@ public class MeatPower extends AbstractEasyPower implements CloneablePowerInterf
     }
 
     @Override
-    public void onSpecificTrigger() {
-        if (this.amount > 0) {
-            flash();
-            this.amount = 0;
-            updateDescription();
-        }
-    }
-
-    @Override
     public void atEndOfRound() {
         addToTop(new MakeTempCardInHandAction(new FeedTheBear())); //to make sure none end up in the discard
     }

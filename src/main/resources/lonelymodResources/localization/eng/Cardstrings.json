@@ -314,8 +314,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "At the end of your turn, play and exhaust a random, non Ethereal card from your hand.",
-    "UPGRADE_DESCRIPTION": "At the end of your turn, play a random, non Ethereal card from your hand."
+    "DESCRIPTION": "At the end of your turn, play and exhaust the top card of your discard pile.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play the top card of your discard pile."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
@@ -388,7 +388,7 @@
   },
   "${ModID}:Power": {
     "NAME": "Power",
-    "DESCRIPTION": "Passive Power NL Whenever you play a Power card that is in your deck, increase Power by 1."
+    "DESCRIPTION": "Passive Power NL Whenever you play a Power card that is in your deck, increase *Power by 1."
   },
   "${ModID}:MechanicNothing": {
     "NAME": "Nothing",
@@ -396,23 +396,23 @@
   },
   "${ModID}:Electrocute": {
     "NAME": "Electrocute",
-    "DESCRIPTION": "Attack Move NL Deals 8 damage. NL Channels 1 Lightning for every stack of Power."
+    "DESCRIPTION": "Attack Move NL Deals 8 damage. NL Channels 1 Lightning for every stack of *Power."
   },
   "${ModID}:IceWall": {
     "NAME": "Ice Wall",
-    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Channel 1 Frost for every stack of Power."
+    "DESCRIPTION": "Protect Move NL Grants 6 Block. NL Channel 1 Frost for every stack of *Power."
   },
   "${ModID}:Supercritical": {
     "NAME": "Supercritical",
-    "DESCRIPTION": "Special Move NL Evokes your next orb once for every stack of Power. NL Channels 1 Plasma."
+    "DESCRIPTION": "Special Move NL Evokes your next orb once for every stack of *Power. NL Channels 1 Plasma."
   },
   "${ModID}:TheOracle": {
     "NAME": "The Oracle",
     "DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat.",
     "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat. NL Upgrade has no effect."
   },
-  "${ModID}:Charge": {
-    "NAME": "Charge",
+  "${ModID}:Chant": {
+    "NAME": "Chant",
     "DESCRIPTION": "Passive Power NL At the start of your turn, if you are in: NL Calm, gains 5 Vigor. NL Wrath, gains 10 Vigor. NL Divinity, gains 15 Vigor."
   },
   "${ModID}:OracleNothing": {
@@ -446,15 +446,15 @@
   },
   "${ModID}:SpearJab": {
     "NAME": "Spear Jab",
-    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL Empowered: Deal 10 damage again."
+    "DESCRIPTION": "Attack Move NL Deals 10 damage. NL *Empowered: Deal 10 damage again."
   },
   "${ModID}:HoldGround": {
     "NAME": "Hold Ground",
-    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL Empowered: Gains Vigor equal to Block granted."
+    "DESCRIPTION": "Protect Move NL Grants 8 Block. NL *Empowered: Gains Vigor equal to Block granted."
   },
   "${ModID}:TrainUp": {
     "NAME": "Train Up",
-    "DESCRIPTION": "Special Move NL Triggers Empower 2 times. NL Empowered: First, increases the Strength and Dexterity gain from Empower by 1."
+    "DESCRIPTION": "Special Move NL Triggers *Empower 2 times. NL *Empowered: First, increases the Strength and Dexterity gain from *Empower by 1."
   },
   "${ModID}:TheDryhound": {
     "NAME": "The Dryhound",
@@ -479,7 +479,7 @@
   },
   "${ModID}:Howl": {
     "NAME": "Howl",
-    "DESCRIPTION": "Special Move NL Applies 3 lonelymod:Target and 3 Vulnerable to ALL enemies. NL Gains 5 Strength. NL Grants 3 Strength."
+    "DESCRIPTION": "Special Move NL Gains 5 Strength. NL Grants 3 Strength. NL Applies 3 lonelymod:Target and 3 Vulnerable to ALL enemies."
   },
   "${ModID}:TheDrybear": {
     "NAME": "The Drybear",
@@ -488,27 +488,27 @@
   },
   "${ModID}:FeedTheBear": {
     "NAME": "Feed The Bear",
-    "DESCRIPTION": "Give him some energy. NL Play as much as you like."
+    "DESCRIPTION": "Give him some Energy. NL Play as much as you like."
   },
-  "${ModID}:EnergyStore": {
-    "NAME": "Energy Store",
-    "DESCRIPTION": "Passive Power NL You can feed Meat [E] during your turn. NL Moves will spend stored [E] to do additional effects."
+  "${ModID}:Appetite": {
+    "NAME": "Appetite",
+    "DESCRIPTION": "Passive Power NL You can feed Meat [E] during your turn to immediately activate his current *Move's *Ability."
   },
   "${ModID}:Stretch": {
     "NAME": "Stretch",
-    "DESCRIPTION": "Default Move NL Gains 2 Vigor and 2 lonelymod:Stamina. Gains 2 more of each for each [E] spent."
+    "DESCRIPTION": "Default Move NL Gains 2 Vigor and 2 lonelymod:Stamina. NL *Ability: Gains 3 Vigor and 3 lonelymod:Stamina."
   },
   "${ModID}:Maul": {
     "NAME": "Maul",
-    "DESCRIPTION": "Attack Move NL Deals 8 damage 2 times. NL Deals 8 damage again and gains 1 Strength for each [E] spent."
+    "DESCRIPTION": "Attack Move NL Deals 8 damage 2 times. NL Deals 8 damage again if the enemy is debuffed. NL *Ability: Converts up to 5 Vigor into Strength."
   },
   "${ModID}:BodyBlock": {
     "NAME": "Body Block",
-    "DESCRIPTION": "Protect Move NL Grants 5 Block 3 times. NL Next turn, grants [E] and applies 1 Weak for each [E] spent."
+    "DESCRIPTION": "Protect Move NL Grants 5 Block 3 times. NL *Ability: Next turn, grants [E] and applies 2 Weak."
   },
   "${ModID}:Devour": {
     "NAME": "Devour",
-    "DESCRIPTION": "Special Move NL Deals 25 damage. NL Applies Constricted equal to damage dealt. Deals 10 more damage for each [E] spent."
+    "DESCRIPTION": "Special Move NL Deals 12 damage. NL Applies Constricted equal to damage dealt. NL *Ability: Gains 6 Vigor, and lonelymod:Calls lonelymod:Attack next turn."
   },
   "${ModID}:TheVulchyr": {
     "NAME": "The Vulchyr",

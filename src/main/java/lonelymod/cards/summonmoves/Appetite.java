@@ -10,12 +10,12 @@ import lonelymod.cards.AbstractEasyCard;
 import static lonelymod.LonelyMod.makeID;
 import static lonelymod.LonelyMod.modID;
 
-public class EnergyStore extends CustomCard {
-    public final static String ID = makeID("EnergyStore");
+public class Appetite extends CustomCard {
+    public final static String ID = makeID("Appetite");
     public final static String ImageID = makeID("TheDrybear");
     protected final CardStrings cardStrings;
 
-    public EnergyStore() {
+    public Appetite() {
         super(ID, "", AbstractEasyCard.getCardTextureString(ImageID.replace(modID + ":", ""), AbstractEasyCard.CardType.SKILL),
                 -2, "", AbstractEasyCard.CardType.SKILL, AbstractEasyCard.CardColor.COLORLESS, AbstractEasyCard.CardRarity.SPECIAL, AbstractEasyCard.CardTarget.SELF);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);

@@ -20,13 +20,15 @@ public class ImmediateCallMoveAction extends AbstractGameAction {
     private final byte move;
     private final AbstractCompanion currCompanion;
     private boolean triggerPowers;
-    private boolean silentCall;
+    private boolean flash;
+    private boolean makeIntent;
     // used immediately after CompanionTakeTurnAction when used by Primal, Special Sauce, or Wild Form.
-    public ImmediateCallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers, boolean silentCall) {
+    public ImmediateCallMoveAction(byte move, AbstractCompanion currCompanion, boolean triggerPowers, boolean flash, boolean makeIntent) {
         this.move = move;
         this.currCompanion = currCompanion;
         this.triggerPowers = triggerPowers;
-        this.silentCall = silentCall;
+        this.flash = flash;
+        this.makeIntent = makeIntent;
     }
 
     public void update() {
@@ -34,8 +36,7 @@ public class ImmediateCallMoveAction extends AbstractGameAction {
         if (move > AbstractCompanion.NONE || move < AbstractCompanion.DEFAULT) { // aka the move is not real
             AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, TEXT[2], true));
         } else { // very simple, you could abuse it with default, unknown and none moves potentially but just don't?
-            if (silentCall) currCompanion.callMove(move, false, true); // I think we NEED to make Intent here
-            else currCompanion.callMove(move, true, true);
+            currCompanion.callMove(move, flash, makeIntent);
         }
         if (triggerPowers) {
             for (AbstractPower p : currCompanion.powers)

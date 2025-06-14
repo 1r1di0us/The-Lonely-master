@@ -21,11 +21,11 @@
       " times, and gain #b",
       " #yVigor.",
 
-      "Bones intends to apply #b",
+      "Bones intends to gain #b",
+      " #yStrength, grant you #b",
+      " #yStrength, and apply #b",
       " #yVulnerable and #b",
-      " #yTarget to ALL enemies, gain #b",
-      " #yStrength, and grant you #b",
-      " #yStrength.",
+      " #yTarget to ALL enemies.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -39,11 +39,11 @@
       " times. Gains #b",
       " #yVigor.",
 
-      "Applies #b",
+      "Gains #b",
+      " #yStrength. Grants #b",
+      " #yStrength. Applies #b",
       " #yVulnerable and #b",
-      " #yTarget to ALL enemies. Gains #b",
-      " #yStrength and Grants #b",
-      " #yStrength."
+      " #yTarget to ALL enemies."
     ],
     "DIALOG": [
       "Woof!",
@@ -63,43 +63,39 @@
     "INTENTS": [
       "Meat intends to gain #b",
       " #yVigor and #b",
-      " #yStamina. Gains #g",
-      " more of each for each Energy spent.",
+      " #yStamina.",
+      " NL #yAbility: Gains #b",
 
       "Meat intends to attack an enemy for #b",
       " damage #b",
-      " times. Hits #g",
-      " more time and gains #g",
-      " #yStrength for each Energy spent.",
+      " times. Hits #b",
+      " more time if the enemy is debuffed. NL #yAbility: Converts up to #b",
+      " #yVigor into #yStrength.",
 
       "Meat intends to grant you #b",
       " #yBlock #b",
-      " times. Next turn, grants #g",
-      " Energy and applies #g",
-      " #yWeak for each Energy spent.",
+      " times. NL #yAbility: Next turn, grants #b",
+      " #yEnergy and applies #b",
+      " #yWeak.",
 
       "Meat intends to attack an enemy for #b",
-      " damage, applying Constricted equal to the unblocked damage dealt. Deals #g",
-      " more damage for each Energy spent.",
+      " damage. Gains #yVigor and applies #yConstricted equal to the unblocked damage dealt. NL #yAbility: Gains #b",
+      " #yVigor, and #yCalls #yAttack next turn.",
 
       "This Companion's intentions are #yUnknown."
     ],
     "INTENT_TOOLTIPS": [
       "Deals #b",
       " damage #b",
-      " times. Hits #g",
-      " more time and gains #g",
-      " Strength for each Energy spent.",
+      " times. Hits #b",
+      " more time if the enemy is debuffed.",
 
       "Grants #b",
       " #yBlock #b",
-      " times. Next turn, grants #g",
-      " Energy and applies #g",
-      " #yWeak for each Energy spent.",
+      " times.",
 
       "Deals #b",
-      " damage, applying Constricted equal to the unblocked damage dealt. Deals #g",
-      " more damage for each Energy spent."
+      " damage. Gains #yVigor and applies #yConstricted equal to the unblocked damage dealt."
     ],
     "DIALOG": [
       "Grrr...",

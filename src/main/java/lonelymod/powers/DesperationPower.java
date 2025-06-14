@@ -50,12 +50,18 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
 
     @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (isPlayer) {
+        if (isPlayer && !AbstractDungeon.player.discardPile.isEmpty()) {
             for (int i = 0; i < this.amount; i++) {
+                if (AbstractDungeon.player.discardPile.size() - i >= 0) break;
+                else if (AbstractDungeon.player.discardPile.getNCardFromTop(AbstractDungeon.player.discardPile.size() - i).costForTurn != -2) {
+                    addToBot(new PlayCardAction(AbstractDungeon.player.hand, AbstractDungeon.player.discardPile.getNCardFromTop(i), AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
+                }
+            }
+            /*for (int i = 0; i < this.amount; i++) { // old effect
                 if (!AbstractDungeon.player.hand.isEmpty()) {
                     CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                        if (!(c.costForTurn == -2) && !c.isEthereal) {
+                        if (c.costForTurn != -2 && !c.isEthereal) {
                             tmp.addToRandomSpot(c);
                         }
                     }
@@ -65,16 +71,16 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
                         addToBot(new PlayCardAction(AbstractDungeon.player.hand, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
                     }
                 }
-            }
+            }*/
         }
     }
 
     @Override
     public void updateDescription() {
         if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0];
         } else if (this.amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
     }
 

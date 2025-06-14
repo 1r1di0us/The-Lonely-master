@@ -35,6 +35,7 @@ public class UtterDesperationPower extends AbstractEasyPower implements Cloneabl
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.priority = 6; //to go before DesperationPower
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -49,12 +50,18 @@ public class UtterDesperationPower extends AbstractEasyPower implements Cloneabl
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-        if (isPlayer) {
+        if (isPlayer && !AbstractDungeon.player.discardPile.isEmpty()) {
             for (int i = 0; i < this.amount; i++) {
+                if (i < AbstractDungeon.player.discardPile.size()) break;
+                else if (AbstractDungeon.player.discardPile.getNCardFromTop(i).costForTurn != -2) {
+                    addToBot(new PlayCardAction(AbstractDungeon.player.hand, AbstractDungeon.player.discardPile.getNCardFromTop(i), AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), false));
+                }
+            }
+            /*for (int i = 0; i < this.amount; i++) { // old effect
                 if (!AbstractDungeon.player.hand.isEmpty()) {
                     CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                        if (!(c.costForTurn == -2) && !c.isEthereal) {
+                        if (c.costForTurn != -2 && !c.isEthereal) {
                             tmp.addToRandomSpot(c);
                         }
                     }
@@ -64,16 +71,16 @@ public class UtterDesperationPower extends AbstractEasyPower implements Cloneabl
                         addToBot(new PlayCardAction(AbstractDungeon.player.hand, cardToPlay, AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), false));
                     }
                 }
-            }
+            }*/
         }
     }
 
     @Override
     public void updateDescription() {
         if (this.amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0];
         } else if (this.amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
         }
     }
 

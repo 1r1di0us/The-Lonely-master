@@ -14,16 +14,21 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
     private final boolean callDefault;
     private final byte immediateCall;
     private final boolean triggerPowers;
-    private final boolean silentCall;
+    private final boolean flash;
+    private final boolean makeIntent;
 
-    public CompanionTakeTurnAction(boolean callDefault, byte immediateCall, boolean immTriggerPowers, boolean immSilentCall) {
+    public CompanionTakeTurnAction(boolean callDefault, byte immediateCall, boolean immTriggerPowers, boolean immFlash, boolean immMakeIntent) {
         if (CompanionField.currCompanion.get(AbstractDungeon.player) != null) {
             currCompanion = CompanionField.currCompanion.get(AbstractDungeon.player);
         }
         this.callDefault = callDefault;
         this.immediateCall = immediateCall;
         this.triggerPowers = immTriggerPowers;
-        this.silentCall = immSilentCall;
+        this.flash = immFlash;
+        this.makeIntent = immMakeIntent;
+    }
+    public CompanionTakeTurnAction(boolean callDefault, byte immediateCall, boolean immTriggerPowers, boolean immSilentCall) {
+        this(callDefault, immediateCall, immTriggerPowers, !immSilentCall, !immSilentCall);
     }
     public CompanionTakeTurnAction(boolean callDefault, byte immediateCall, boolean immTriggerPowers) {
         this(callDefault, immediateCall, immTriggerPowers, false);
@@ -53,7 +58,7 @@ public class CompanionTakeTurnAction extends AbstractGameAction {
             currCompanion.takeTurn(callDefault);
             currCompanion.applyTurnPowers();
             if (immediateCall != AbstractCompanion.NONE) { // none means no calling.
-                addToBot(new ImmediateCallMoveAction(immediateCall, currCompanion, triggerPowers, silentCall));
+                addToBot(new ImmediateCallMoveAction(immediateCall, currCompanion, triggerPowers, flash, makeIntent));
             }
         }
         this.isDone = true;

@@ -27,25 +27,24 @@ public class Counterstrike extends AbstractEasyCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (m.getIntentBaseDmg() >= 0 && !m.isDeadOrEscaped()) {
+        if (!m.isDeadOrEscaped()) {
             if (magicNumber <= 1) {
                 magicNumber = 1; //so it attacks at least once.
             }
             AttackEffect effect;
-            if (damage <= 9)
+            if (damage <= 0)
+                effect = AttackEffect.BLUNT_LIGHT;
+            else if (damage <= 9)
                 effect = AttackEffect.SLASH_DIAGONAL;
             else if (damage <= 19)
-                effect = AttackEffect.SLASH_HEAVY;
+                effect = AttackEffect.SLASH_HORIZONTAL;
             else if (damage <= 29)
-                effect = AttackEffect.BLUNT_HEAVY;
+                effect = AttackEffect.SLASH_HEAVY;
             else
-                effect = AttackEffect.SMASH;
+                effect = AttackEffect.BLUNT_HEAVY;
             for (int i = 0; i < magicNumber; i++) {
                 addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), effect));
             }
-        }
-        else if (!m.isDeadOrEscaped()) {
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AttackEffect.BLUNT_LIGHT));
         }
     }
 

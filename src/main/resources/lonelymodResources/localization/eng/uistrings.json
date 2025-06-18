@@ -26,6 +26,12 @@
       "I shouldn't feed my enemies."
     ]
   },
+  "${ModID}:CommandCopyMessage": {
+    "TEXT": [
+      "There's nothing to copy!",
+      "Can't copy that!"
+    ]
+  },
   "${ModID}:CallMoveMessage": {
     "TEXT": [
       "But nobody came...",

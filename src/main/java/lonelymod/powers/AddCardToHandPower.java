@@ -80,9 +80,9 @@ public class AddCardToHandPower extends AbstractEasyPower implements CloneablePo
         if (cardToAdd == null) {
             description = DESCRIPTIONS[4];
         } else if (amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + cardToAdd.name + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + cardToAdd.name.replaceAll(" ", " #y") + DESCRIPTIONS[2];
         } else if (amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + cardToAdd.name + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + cardToAdd.name.replaceAll(" ", " #y") + DESCRIPTIONS[3];
         }
     }
 

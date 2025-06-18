@@ -37,6 +37,7 @@ public class PinDownPower extends AbstractEasyPower implements CloneablePowerInt
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.priority = 6; //so its after pin down plus
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());

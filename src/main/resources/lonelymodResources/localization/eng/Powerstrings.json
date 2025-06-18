@@ -182,16 +182,16 @@
   "${ModID}:DesperationPower": {
     "NAME": "Desperation",
     "DESCRIPTIONS": [
-      "At the end of your turn, play and exhaust the top card of your discard pile.",
-      "At the end of your turn, play and exhaust the top #b",
+      "At the end of your turn, play and exhaust the bottom card of your discard pile.",
+      "At the end of your turn, play and exhaust the bottom #b",
       " cards of your discard pile."
     ]
   },
   "${ModID}:UtterDesperationPower": {
     "NAME": "Utter Desperation",
     "DESCRIPTIONS": [
-      "At the end of your turn, play the top card of your discard pile.",
-      "At the end of your turn, play the top #b",
+      "At the end of your turn, play and exhaust the top card of your discard pile.",
+      "At the end of your turn, play and exhaust the top #b",
       " cards of your discard pile."
     ]
   },
@@ -297,7 +297,7 @@
   "${ModID}:MeatPower": {
     "NAME": "Appetite",
     "DESCRIPTIONS": [
-      "You can feed Meat #yEnergy during your turn to immediately activate his current #yMove's #yAbility."
+      "You can feed Meat #yEnergy to activate his current #yMove's #yAbility."
     ]
   },
   "${ModID}:ApplyWeakNextTurnPower": {

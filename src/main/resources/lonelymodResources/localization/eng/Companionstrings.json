@@ -74,13 +74,13 @@
 
       "Meat intends to grant you #b",
       " #yBlock #b",
-      " times. NL #yAbility: Next turn, grants #b",
-      " #yEnergy and applies #b",
+      " times. NL #yAbility: Gains #b",
+      " #yVigor. Next turn, applies #b",
       " #yWeak.",
 
       "Meat intends to attack an enemy for #b",
-      " damage. Gains #yVigor and applies #yConstricted equal to the unblocked damage dealt. NL #yAbility: Gains #b",
-      " #yVigor, and #yCalls #yAttack next turn.",
+      " damage. Gains #yVigor and applies #yConstricted equal to HALF the unblocked damage dealt. NL #yAbility: Next turn, grants #b",
+      " #yEnergy and #yCalls #yAttack.",
 
       "This Companion's intentions are #yUnknown."
     ],
@@ -95,12 +95,13 @@
       " times.",
 
       "Deals #b",
-      " damage. Gains #yVigor and applies #yConstricted equal to the unblocked damage dealt."
+      " damage. Gains #yVigor and applies #yConstricted equal to HALF the unblocked damage dealt."
     ],
     "DIALOG": [
       "Grrr...",
       "ROOOOARRR!",
-      "GROOOAAA!"
+      "GROOOAAA!",
+      "I have no Vigor!"
     ]
   },
   "${ModID}:Omen": {
@@ -146,7 +147,7 @@
       " turns."
     ],
     "DIALOG": [
-      "SQUAK!",
+      "SQUAAK!",
       "CACAW!",
       "KRAW!"
     ]
@@ -198,9 +199,10 @@
       " times."
     ],
     "DIALOG": [
-      "Don't hurt me!",
-      "Tell me what to do!",
-      "Can I help?"
+      "Glyarpt!",
+      "bleelghllghh...",
+      "KHYAAA!",
+      "Please sir, you promised to let my wife and child go."
     ]
   },
   "${ModID}:Oracle": {
@@ -239,9 +241,9 @@
       " #yVigor they has."
     ],
     "DIALOG": [
-      "I've come to study...",
-      "Show me the way, teacher!",
-      "Peace be with you!"
+      "Hawoo dee...",
+      "Kwud gee nya?",
+      "Beoof... fer plaff!"
     ]
   },
   "${ModID}:Mechanic": {
@@ -284,9 +286,9 @@
       " #yPlasma."
     ],
     "DIALOG": [
-      "n...Nice robot...",
-      "d...Do you know h...how to set this u...up?",
-      "uh...c...can i...uhm....oh"
+      "Gyuwhk!!!",
+      "Zort geebul famubreh?!",
+      "Beezels seplur gligen vlam..."
     ]
   },
   "${ModID}:Spy": {
@@ -333,9 +335,9 @@
       " #yEnvenom, and #yCalls #yAttack at the start of the next turn."
     ],
     "DIALOG": [
-      "Can I see your knives?",
-      "Lemme at 'em!",
-      "I want to stab them too!"
+      "shiny?",
+      "pik pik pik pik...",
+      "(:<"
     ]
   },
   "${ModID}:Maniac": {

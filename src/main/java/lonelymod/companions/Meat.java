@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import lonelymod.cards.colorlesssummons.FeedTheBear;
 import lonelymod.cards.summonmoves.*;
@@ -40,10 +41,10 @@ public class Meat extends AbstractCompanion {
     public static final Texture shoulder2Img = ImageMaster.loadImage(SHOULDER2);
 
 
-    private static final int DEFAULT_PWR_AMT = 2, DEFAULT_ABILITY_AMT = 3;
-    private static final int ATTACK_DMG = 8, ATTACK_AMT = 2, ATTACK_BONUS = 1, ATTACK_ABILITY_MAX_STR = 5;
-    private static final int PROTECT_BLK = 5, PROTECT_AMT = 3, PROTECT_ABILITY_ENERGY = 1, PROTECT_ABILITY_WEAK = 2;
-    private static final int SPECIAL_DMG = 12, SPECIAL_ABILITY_VIGOR = 6, SPECIAL_ABILITY_ATTACK = 1;
+    private static final int DEFAULT_PWR_AMT = 2, DEFAULT_ABILITY_AMT = 2;
+    private static final int ATTACK_DMG = 6, ATTACK_AMT = 2, ATTACK_BONUS = 1, ATTACK_ABILITY_MAX_STR = 4;
+    private static final int PROTECT_BLK = 4, PROTECT_AMT = 3, PROTECT_ABILITY_VIGOR = 4, PROTECT_ABILITY_WEAK = 1;
+    private static final int SPECIAL_DMG = 12, SPECIAL_ABILITY_ENERGY = 2, SPECIAL_ABILITY_ATTACK = 1;
     private int attackDmg;
     private int protectBlk;
     private int specialDmg;
@@ -109,17 +110,16 @@ public class Meat extends AbstractCompanion {
                 break;
             case SPECIAL:
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    talk();
                     addToBot(new WaitAction(0.4F));
                     addToBot(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, Color.GOLD
                             .cpy()), 0.0F));
                     addToBot(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
-                    addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, this.damage.get(1).output), this.damage.get(1).output));
+                    addToBot(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, (this.damage.get(1).output + 1) / 2))); // why the fuck did they delete Math.ceilDiv???
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         getPower(CompanionVigorPower.POWER_ID).onSpecificTrigger();
-                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, this.damage.get(1).output), this.damage.get(1).output));
+                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, (this.damage.get(1).output + 1) / 2)));
                 }
                 break;
         }
@@ -158,11 +158,11 @@ public class Meat extends AbstractCompanion {
             case SPECIAL:
                 getTarget();
                 if (targetEnemy != null && !targetEnemy.isDeadOrEscaped()) {
-                    addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, getDamageOutput(this.damage.get(1).base, this.damage.get(1).type, targetEnemy))));
+                    int output = getDamageOutput(this.damage.get(1).base, this.damage.get(1).type, targetEnemy);
+                    addToTop(new ApplyPowerAction(this, this, new CompanionVigorPower(this, (output + 1) / 2))); // why the fuck did they remove ceiling division?!?!?
                     if (hasPower(CompanionVigorPower.POWER_ID))
                         ((CompanionVigorPower) getPower(CompanionVigorPower.POWER_ID)).instantTrigger();
-                    talk();
-                    addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, this.damage.get(1).output), this.damage.get(1).output));
+                    addToTop(new ApplyPowerAction(targetEnemy, this, new ConstrictedPower(targetEnemy, this, (this.damage.get(1).output + 1) / 2)));
                     addToTop(new DamageAction(targetEnemy, this.damage.get(1), AbstractGameAction.AttackEffect.NONE));
                     addToTop(new VFXAction(new BiteEffect(targetEnemy.hb.cX +
                             MathUtils.random(-25.0F, 25.0F) * Settings.scale, targetEnemy.hb.cY +
@@ -205,8 +205,11 @@ public class Meat extends AbstractCompanion {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (nextMove == AbstractCompanion.ATTACK) { // refresh attack in case you apply a debuff
-            callMove(AbstractCompanion.ATTACK, false, true, false);
+        if (nextMove == AbstractCompanion.ATTACK && move.damageMultiplier == 2 && targetEnemy != null && !targetEnemy.isDeadOrEscaped()) { // refresh attack in case you apply a debuff
+            for (AbstractPower pow : targetEnemy.powers) if (pow.type == AbstractPower.PowerType.DEBUFF) {
+                callMove(AbstractCompanion.ATTACK, false, true, false);
+                break;
+            }
         }
     }
 
@@ -258,12 +261,12 @@ public class Meat extends AbstractCompanion {
                 return;
             case PROTECT:
                 this.intentTip.header = MOVES[2];
-                this.intentTip.body = INTENTS[9] + this.intentBlk + INTENTS[10] + PROTECT_AMT + INTENTS[11] + PROTECT_ABILITY_ENERGY + INTENTS[12] + PROTECT_ABILITY_WEAK + INTENTS[13];
+                this.intentTip.body = INTENTS[9] + this.intentBlk + INTENTS[10] + PROTECT_AMT + INTENTS[11] + PROTECT_ABILITY_VIGOR + INTENTS[12] + PROTECT_ABILITY_WEAK + INTENTS[13];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case SPECIAL:
                 this.intentTip.header = MOVES[3];
-                this.intentTip.body = INTENTS[14] + this.intentDmg + INTENTS[15] + SPECIAL_ABILITY_VIGOR + INTENTS[16];
+                this.intentTip.body = INTENTS[14] + this.intentDmg + INTENTS[15] + SPECIAL_ABILITY_ENERGY + INTENTS[16];
                 this.intentTip.img = getIntentTipImg();
                 return;
             case UNKNOWN:
@@ -326,8 +329,8 @@ public class Meat extends AbstractCompanion {
             //flashIntent();
             switch (this.nextMove) {
                 case DEFAULT:
-                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_ABILITY_AMT), DEFAULT_ABILITY_AMT));
-                    addToBot(new ApplyPowerAction(this, this, new StaminaPower(this, DEFAULT_ABILITY_AMT), DEFAULT_ABILITY_AMT));
+                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, DEFAULT_ABILITY_AMT)));
+                    addToBot(new ApplyPowerAction(this, this, new StaminaPower(this, DEFAULT_ABILITY_AMT)));
                     break;
                 case ATTACK:
                     if (hasPower(CompanionVigorPower.POWER_ID) && getPower(CompanionVigorPower.POWER_ID).amount > 0) { //can never be too careful
@@ -337,19 +340,23 @@ public class Meat extends AbstractCompanion {
                         } else {
                             strAmount = getPower(CompanionVigorPower.POWER_ID).amount;
                         }
+                        if (strAmount == 0) {
+                            AbstractDungeon.effectList.add(new ThoughtBubble(this.dialogX, this.dialogY, 3.0F, DIALOG[3], true));
+                        } else {
                         addToBot(new ReducePowerAction(this, this, getPower(CompanionVigorPower.POWER_ID), strAmount));
                         addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, strAmount)));
+                        }
                     }
                     break;
                 case PROTECT:
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, PROTECT_ABILITY_ENERGY)));
+                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, PROTECT_ABILITY_VIGOR)));
                     addToBot(new ApplyPowerAction(this, this, new ApplyWeakNextTurnPower(this, PROTECT_ABILITY_WEAK)));
                     break;
                 case SPECIAL:
                     if (targetEnemy == null || targetEnemy.isDeadOrEscaped()) {
                         getTarget();
                     }
-                    addToBot(new ApplyPowerAction(this, this, new CompanionVigorPower(this, SPECIAL_ABILITY_VIGOR)));
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, SPECIAL_ABILITY_ENERGY)));
                     addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ABILITY_ATTACK)));
                     break;
             }

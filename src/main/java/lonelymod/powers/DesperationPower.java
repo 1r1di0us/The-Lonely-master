@@ -4,8 +4,6 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -35,6 +33,7 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.priority = 6; // to go after UtterDesperationPower
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -52,9 +51,10 @@ public class DesperationPower extends AbstractEasyPower implements CloneablePowe
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer && !AbstractDungeon.player.discardPile.isEmpty()) {
             for (int i = 0; i < this.amount; i++) {
-                if (AbstractDungeon.player.discardPile.size() - i >= 0) break;
-                else if (AbstractDungeon.player.discardPile.getNCardFromTop(AbstractDungeon.player.discardPile.size() - i).costForTurn != -2) {
-                    addToBot(new PlayCardAction(AbstractDungeon.player.hand, AbstractDungeon.player.discardPile.getNCardFromTop(i), AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
+                if (i >= AbstractDungeon.player.discardPile.size()) break;
+                else if (AbstractDungeon.player.discardPile.getNCardFromTop(AbstractDungeon.player.discardPile.size() - i - 1).costForTurn != -2) {
+                    addToBot(new PlayCardAction(AbstractDungeon.player.discardPile, AbstractDungeon.player.discardPile.getNCardFromTop(AbstractDungeon.player.discardPile.size() - i - 1),
+                            AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng), true));
                 }
             }
             /*for (int i = 0; i < this.amount; i++) { // old effect

@@ -314,8 +314,8 @@
   },
   "${ModID}:Desperation": {
     "NAME": "Desperation",
-    "DESCRIPTION": "At the end of your turn, play and exhaust the top card of your discard pile.",
-    "UPGRADE_DESCRIPTION": "At the end of your turn, play the top card of your discard pile."
+    "DESCRIPTION": "At the end of your turn, play and exhaust the bottom card of your discard pile.",
+    "UPGRADE_DESCRIPTION": "At the end of your turn, play and exhaust the top card of your discard pile."
   },
   "${ModID}:MuscleMemory": {
     "NAME": "Muscle Memory",
@@ -488,27 +488,34 @@
   },
   "${ModID}:FeedTheBear": {
     "NAME": "Feed The Bear",
-    "DESCRIPTION": "Give him some Energy. NL Play as much as you like."
+    "DESCRIPTION": "Give him some Energy. NL Play as much as you like.",
+    "EXTENDED_DESCRIPTION": [
+      "Gains 2 Vigor. NL Gains 2 lonelymod:Stamina.",
+      "Converts up to 4 Vigor into Strength.",
+      "Gains 4 Vigor. NL Next turn, applies 1 Weak.",
+      "Next turn, Grants NL [E] [E] and lonelymod:Calls lonelymod:Attack.",
+      "Converts up to 4 Vigor into Strength. NL (He has no vigor!)"
+      ]
   },
   "${ModID}:Appetite": {
     "NAME": "Appetite",
-    "DESCRIPTION": "Passive Power NL You can feed Meat [E] during your turn to immediately activate his current *Move's *Ability."
+    "DESCRIPTION": "Passive Power NL You can feed Meat [E] to activate his current *Move's *Ability."
   },
   "${ModID}:Stretch": {
     "NAME": "Stretch",
-    "DESCRIPTION": "Default Move NL Gains 2 Vigor and 2 lonelymod:Stamina. NL *Ability: Gains 3 Vigor and 3 lonelymod:Stamina."
+    "DESCRIPTION": "Default Move NL Gains 2 Vigor and 2 lonelymod:Stamina. NL *Ability: Gains 2 Vigor and 2 lonelymod:Stamina."
   },
   "${ModID}:Maul": {
     "NAME": "Maul",
-    "DESCRIPTION": "Attack Move NL Deals 8 damage 2 times. NL Deals 8 damage again if the enemy is debuffed. NL *Ability: Converts up to 5 Vigor into Strength."
+    "DESCRIPTION": "Attack Move NL Deals 6 damage 2 times. NL Deals 6 damage again if the enemy is debuffed. NL *Ability: Converts up to 4 Vigor into Strength."
   },
   "${ModID}:BodyBlock": {
     "NAME": "Body Block",
-    "DESCRIPTION": "Protect Move NL Grants 5 Block 3 times. NL *Ability: Next turn, grants [E] and applies 2 Weak."
+    "DESCRIPTION": "Protect Move NL Grants 4 Block 3 times. NL *Ability: Gains 4 Vigor. Next turn, applies 1 Weak."
   },
   "${ModID}:Devour": {
     "NAME": "Devour",
-    "DESCRIPTION": "Special Move NL Deals 12 damage. NL Applies Constricted equal to damage dealt. NL *Ability: Gains 6 Vigor, and lonelymod:Calls lonelymod:Attack next turn."
+    "DESCRIPTION": "Special Move NL Deals 12 damage. NL Gains Vigor and applies Constricted equal to HALF the unblocked damage dealt. NL *Ability: Next turn, Grants [E] [E] and lonelymod:Calls lonelymod:Attack."
   },
   "${ModID}:TheVulchyr": {
     "NAME": "The Vulchyr",

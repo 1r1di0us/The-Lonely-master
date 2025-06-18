@@ -38,7 +38,6 @@ public class TheDryhound extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new SummonCompanionAction(new Bones(), false));
-        addToBot(new DrawCardAction(1));
     }
 
     public void upp() {

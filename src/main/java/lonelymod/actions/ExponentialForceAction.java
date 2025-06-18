@@ -1,12 +1,15 @@
 package lonelymod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 
 import java.util.UUID;
 
@@ -28,7 +31,10 @@ public class ExponentialForceAction extends AbstractGameAction {
             if (info.output < 40) {
                 AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             } else {
-                AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AbstractGameAction.AttackEffect.SMASH));
+                if (this.target != null) {
+                    this.addToBot(new VFXAction(new WeightyImpactEffect(this.target.hb.cX, this.target.hb.cY)));
+                }
+                this.addToBot(new WaitAction(0.8F));
             }
             this.target.damage(this.info);
             if (!((this.target.isDying || this.target.currentHealth <= 0) && !this.target.halfDead)) {

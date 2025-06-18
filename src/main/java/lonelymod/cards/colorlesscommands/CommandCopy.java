@@ -1,12 +1,10 @@
 package lonelymod.cards.colorlesscommands;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import lonelymod.actions.CommandCopyAction;
 import lonelymod.cards.AbstractEasyCard;
 import lonelymod.fields.CompanionField;
-import lonelymod.powers.DEPRECATEDCopyCommandPower;
 
 import static lonelymod.LonelyMod.makeID;
 

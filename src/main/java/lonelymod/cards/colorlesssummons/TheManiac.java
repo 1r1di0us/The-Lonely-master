@@ -38,7 +38,6 @@ public class TheManiac extends AbstractEasyCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new SummonCompanionAction(new Maniac(), false));
-        addToBot(new DrawCardAction(1));
     }
 
     public void upp() {

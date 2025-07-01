@@ -411,8 +411,8 @@
     "DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat.",
     "UPGRADE_DESCRIPTION": "lonelymod:Companion. NL A wise gremlin that prefers a patient approach to combat. NL Upgrade has no effect."
   },
-  "${ModID}:Chant": {
-    "NAME": "Chant",
+  "${ModID}:Charge": {
+    "NAME": "Charge",
     "DESCRIPTION": "Passive Power NL At the start of your turn, if you are in: NL Calm, gains 5 Vigor. NL Wrath, gains 10 Vigor. NL Divinity, gains 15 Vigor."
   },
   "${ModID}:OracleNothing": {

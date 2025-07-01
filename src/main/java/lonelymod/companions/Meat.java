@@ -357,7 +357,7 @@ public class Meat extends AbstractCompanion {
                         getTarget();
                     }
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new EnergizedPower(AbstractDungeon.player, SPECIAL_ABILITY_ENERGY)));
-                    addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(this, SPECIAL_ABILITY_ATTACK)));
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ABILITY_ATTACK)));
                     break;
             }
             createIntent();

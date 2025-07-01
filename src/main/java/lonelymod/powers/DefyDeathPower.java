@@ -4,7 +4,6 @@ import static lonelymod.LonelyMod.makeID;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnPlayerDeathPower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,9 +14,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import basemod.interfaces.CloneablePowerInterface;
 import lonelymod.LonelyMod;
+import lonelymod.interfaces.OnPlayerDeathPreFairyInterface;
 import lonelymod.util.TexLoader;
 
-public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerInterface, OnPlayerDeathPower {
+public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerInterface, OnPlayerDeathPreFairyInterface {
     
     public static final String POWER_ID = makeID("DefyDeathPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -59,11 +59,11 @@ public class DefyDeathPower extends AbstractEasyPower implements CloneablePowerI
         updateDescription();
     }
 
-    public boolean onPlayerDeath(AbstractPlayer p, DamageInfo info) {
+    public boolean onPlayerDeathPreFairy(AbstractPlayer p, DamageInfo info) {
         flash();
         p.currentHealth = 1;
         p.healthBarRevivedEvent();
-        return false;
+        return false; // causes the function to immediately return.
     }
 
     @Override

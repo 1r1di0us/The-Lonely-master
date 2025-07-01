@@ -107,7 +107,7 @@ public class Omen extends AbstractCompanion {
                 break;
             case SPECIAL:
                 addToBot(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
-                addToBot(new ApplyPowerAction(this, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 break;
         }
     }
@@ -151,7 +151,7 @@ public class Omen extends AbstractCompanion {
                 addToTop(new SFXAction("ATTACK_PIERCING_WAIL"));
                 break;
             case SPECIAL:
-                addToTop(new ApplyPowerAction(this, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, this, new AttackNextTurnPower(AbstractDungeon.player, SPECIAL_ATK_AMT)));
                 addToTop(new ApplyPowerAction(this, this, new RitualPower(this, SPECIAL_PWR_AMT, false)));
                 break;
         }

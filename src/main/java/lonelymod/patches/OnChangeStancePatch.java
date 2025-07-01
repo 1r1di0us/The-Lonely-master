@@ -15,7 +15,6 @@ import lonelymod.fields.CompanionField;
 
 import java.util.ArrayList;
 
-
 @SpirePatch(
         clz=ChangeStanceAction.class,
         method="update"

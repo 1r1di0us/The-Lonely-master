@@ -161,6 +161,7 @@
     "NAME": "Misery",
     "DESCRIPTIONS": [
       "Whenever you gain #yBlock this turn, deal #b",
+      " damage to a random enemy.",
       " damage to ALL enemies."
     ]
   },
@@ -267,9 +268,9 @@
   "${ModID}:HelpPower":  {
     "NAME": "Help!",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yCall #yProtect.",
+      "At the end of your turn, if your #yCompanion intends to #yDefault, #yCall #yProtect.",
       "At the end of your next #b",
-      " turns, #yCall #yProtect."
+      " turns, if your #yCompanion intends to #yDefault, #yCall #yProtect."
     ]
   },
   "${ModID}:CopyCommandPower": {

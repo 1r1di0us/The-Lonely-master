@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -29,7 +30,9 @@ public class MiseryPower extends AbstractEasyPower implements CloneablePowerInte
     private static final Texture tex84 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Misery84.png");
     private static final Texture tex32 = TexLoader.getTexture(LonelyMod.modID + "Resources/images/powers/Misery32.png");
 
-    public MiseryPower(AbstractCreature owner, int amount) {
+    boolean upgraded;
+
+    public MiseryPower(AbstractCreature owner, int amount, boolean upgraded) {
         super(POWER_ID, NAME, AbstractPower.PowerType.BUFF, true, owner, amount);
 
         this.owner = owner;
@@ -37,6 +40,7 @@ public class MiseryPower extends AbstractEasyPower implements CloneablePowerInte
         type = PowerType.BUFF;
         isTurnBased = true;
         this.amount = amount;
+        this.upgraded = upgraded;
 
         if (tex84 != null) {
             region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, tex84.getWidth(), tex84.getHeight());
@@ -53,9 +57,15 @@ public class MiseryPower extends AbstractEasyPower implements CloneablePowerInte
     public void onGainedBlock(float blockAmount) {
         if (blockAmount > 0.0F) {
             flash();
+            if (upgraded) {
+                addToBot(new VFXAction(this.owner, new ShockWaveEffect(this.owner.hb.cX, this.owner.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.15F));
+                addToBot(new DamageAllEnemiesAction(this.owner,  DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
+            }
+            else {
+                addToBot(new VFXAction(this.owner, new ShockWaveEffect(this.owner.hb.cX, this.owner.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.15F));
+                addToBot(new DamageRandomEnemyAction(new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+            }
             //addToBot(new SFXAction("RAGE"));
-            addToBot(new VFXAction(this.owner, new ShockWaveEffect(this.owner.hb.cX, this.owner.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.15F));
-            addToBot(new DamageAllEnemiesAction(this.owner,  DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
         }
     }
 
@@ -65,10 +75,14 @@ public class MiseryPower extends AbstractEasyPower implements CloneablePowerInte
     }
 
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        if (upgraded) {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+        } else {
+            this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        }
     }
 
     public AbstractPower makeCopy() {
-        return new MiseryPower(this.owner, this.amount);
+        return new MiseryPower(this.owner, this.amount, this.upgraded);
     }
 }

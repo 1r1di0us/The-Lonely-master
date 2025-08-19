@@ -18,6 +18,7 @@ public class TwistedChant extends AbstractEasyCard {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 3;
         baseSecondMagic = secondMagic = 1;
+        this.cardsToPreview = new Dazed();
         this.isEthereal = true;
     }
 

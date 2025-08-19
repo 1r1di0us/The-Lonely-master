@@ -42,7 +42,7 @@
       "Default",
       "Default Move"
     ],
-    "DESCRIPTION": "Move: The weakest #yMove. NL #yCompanions will default to performing this #yMove on their turn."
+    "DESCRIPTION": "Move: The weakest #yMove. NL Automatically #yCalled at the start of your turn."
   },
   {
     "ID": "attack_move",

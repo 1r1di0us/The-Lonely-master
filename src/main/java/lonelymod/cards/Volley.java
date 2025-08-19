@@ -13,7 +13,7 @@ public class Volley extends AbstractEasyCard {
 
     public Volley() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
-        baseDamage = 6;
+        baseDamage = 7;
         this.isMultiDamage = true;
     }
 

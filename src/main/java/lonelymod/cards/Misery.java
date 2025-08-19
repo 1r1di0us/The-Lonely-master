@@ -13,16 +13,17 @@ public class Misery extends AbstractEasyCard {
     public Misery() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         baseBlock = 10;
-        baseMagicNumber = magicNumber = 3;
+        baseMagicNumber = magicNumber = 4;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new MiseryPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new MiseryPower(p, this.magicNumber, this.upgraded)));
         blck();
     }
 
     public void upp() {
         upgradeMagicNumber(2);
-        upgradeBlock(2);
+        //upgradeBlock(2);
+        uDesc();
     }
 }

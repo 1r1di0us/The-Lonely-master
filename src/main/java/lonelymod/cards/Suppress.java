@@ -23,8 +23,8 @@ public class Suppress extends AbstractEasyCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new EasyXCostAction(this, (effect, params) -> {
             for (int i = 0; i < effect + params[0]; i++) {
-                addToBot(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 blck();
+                addToBot(new AttackDamageRandomEnemyAction(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             }
             return true;
         }, magicNumber));

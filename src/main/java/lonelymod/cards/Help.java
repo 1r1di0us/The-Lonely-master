@@ -12,7 +12,7 @@ public class Help extends AbstractEasyCard {
 
     public Help() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 2;
+        baseMagicNumber = magicNumber = 3;
         this.tags.add(Enums.COMPANION);
     }
 
